@@ -1,4 +1,4 @@
-This is my dotfiles repository1.
+This is my dotfiles repository.
 
 Setup
 -----
