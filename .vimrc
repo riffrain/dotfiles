@@ -3,28 +3,24 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
-" Required:
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+" dein.vimがインストールされていないときはインストール
+let s:cache_home = '~/.cache'
+let s:dein_dir = s:cache_home . '/dein'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if !isdirectory(s:dein_repo_dir)
+  call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
+endif
 
 " Required:
-if dein#load_state('~/.cache/dein')
-  call dein#begin('~/.cache/dein')
+let &runtimepath = s:dein_repo_dir .",". &runtimepath
 
-  " Let dein manage dein
-  " Required:
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+" Load TOML
+let s:toml_file = s:dein_dir.'/dein.toml'
 
-  " Add or remove your plugins here:
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
-  " You can specify revision/branch/tag.
-  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-
-  call dein#add('mattn/emmet-vim')
-  call dein#add('bling/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('w0ng/vim-hybrid')
+" Required:
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+  call dein#load_toml(s:toml_file)
 
   " Required:
   call dein#end()
@@ -41,6 +37,10 @@ if dein#check_install()
 endif
 
 "End dein Scripts-------------------------
+
+"ColorScheme
+set background=dark
+colorscheme hybrid
 
 let mapleader = "\<Space>"
 
@@ -68,9 +68,7 @@ set title
 set whichwrap=b,s,[,],<,>
 set smartindent
 set cursorline
-set background=dark
-colorscheme hybrid
-set clipboard=unnamed,autoselect
+"set clipboard=unnamed,autoselect
 set fenc=utf-8
 set nobackup
 set noswapfile
