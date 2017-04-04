@@ -38,20 +38,7 @@ endif
 
 "End dein Scripts-------------------------
 
-"ColorScheme
-set background=dark
-colorscheme hybrid
-
 let mapleader = "\<Space>"
-
-"Plugin Settings
-let g:airline_powerline_fonts=1
-let g:airline_theme='powerlineish'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_section_z=''
-let g:airline#extensions#tabline#enabled = 1
-let g:user_emmet_leader_key='<C-e>'
 
 "Settings
 set number
@@ -78,4 +65,10 @@ set wildmode=list:longest
 "Mapping
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 inoremap jj <Esc>
+nmap <Leader>e :VimFilerExplorer<CR>
+
+"ColorScheme
+set background=dark
+colorscheme hybrid
+
 
