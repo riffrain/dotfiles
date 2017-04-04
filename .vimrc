@@ -71,4 +71,7 @@ nmap <Leader>e :VimFilerExplorer<CR>
 set background=dark
 colorscheme hybrid
 
+set nobackup
+set noswapfile
+set fenc=utf-8
 
