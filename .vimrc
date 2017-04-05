@@ -1,5 +1,5 @@
-scriptencoding utf-8
 set encoding=utf-8
+scriptencoding utf-8
 
 "dein Scripts-----------------------------
 if &compatible
@@ -41,7 +41,7 @@ endif
 
 "End dein Scripts-------------------------
 
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 "Settings
 set number
@@ -50,13 +50,14 @@ set showcmd
 set ruler
 set wildmenu
 set showmatch
+set matchtime=1
 highlight LineNr ctermfg=darkgray
 set list
 set listchars=tab:——,trail:·,extends:>,precedes:<,space:·
 set backspace=indent,eol,start
 set title
 set whichwrap=b,s,[,],<,>
-set smartindent
+"set smartindent
 set cursorline
 "set clipboard=unnamed,autoselect
 set fenc=utf-8
@@ -78,7 +79,6 @@ set nobackup
 set noswapfile
 set fenc=utf-8
 
-"NeoVimの場合の設定
 if has('nvim')
   "Terminal Mode
   tnoremap <silent> <ESC> <C-\><C-n>
@@ -101,3 +101,7 @@ nnoremap ∆ <C-w>j
 nnoremap ˚ <C-w>k
 nnoremap ¬ <C-w>l
 
+inoremap { {}<Left>
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap ( ()<ESC>i
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
