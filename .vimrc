@@ -1,3 +1,6 @@
+scriptencoding utf-8
+set encoding=utf-8
+
 "dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
@@ -49,7 +52,7 @@ set wildmenu
 set showmatch
 highlight LineNr ctermfg=darkgray
 set list
-set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
+set listchars=tab:——,trail:·,extends:>,precedes:<,space:·
 set backspace=indent,eol,start
 set title
 set whichwrap=b,s,[,],<,>
@@ -74,4 +77,27 @@ colorscheme hybrid
 set nobackup
 set noswapfile
 set fenc=utf-8
+
+"NeoVimの場合の設定
+if has('nvim')
+  "Terminal Mode
+  tnoremap <silent> <ESC> <C-\><C-n>
+  tnoremap <M-h> <C-\><C-n><C-w>h
+  tnoremap <M-j> <C-\><C-n><C-w>j
+  tnoremap <M-k> <C-\><C-n><C-w>k
+  tnoremap <M-l> <C-\><C-n><C-w>l
+  tnoremap ˙ <C-\><C-n><C-w>h
+  tnoremap ∆ <C-\><C-n><C-w>j
+  tnoremap ˚ <C-\><C-n><C-w>k
+  tnoremap ¬ <C-\><C-n><C-w>l
+endif
+
+nnoremap <M-h> <C-w>h
+nnoremap <M-j> <C-w>j
+nnoremap <M-k> <C-w>k
+nnoremap <M-l> <C-w>l
+nnoremap ˙ <C-w>h
+nnoremap ∆ <C-w>j
+nnoremap ˚ <C-w>k
+nnoremap ¬ <C-w>l
 
