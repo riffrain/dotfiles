@@ -105,3 +105,7 @@ inoremap { {}<Left>
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
 inoremap ( ()<ESC>i
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=0
