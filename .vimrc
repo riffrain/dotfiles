@@ -79,6 +79,21 @@ set nobackup
 set noswapfile
 set fenc=utf-8
 
+nnoremap <Left> h
+nnoremap <Right> l
+nnoremap <Up> k
+nnoremap <Down> j
+vnoremap <Left> h
+vnoremap <Right> l
+vnoremap <Up> k
+vnoremap <Down> j
+inoremap <S-Left> <Esc>vh
+inoremap <S-Right> <Esc>vl
+inoremap <S-Up> <Esc>vk
+inoremap <S-Down> <Esc>vj
+
+
+
 if has('nvim')
   "Terminal Mode
   tnoremap <silent> <ESC> <C-\><C-n>
@@ -86,26 +101,46 @@ if has('nvim')
   tnoremap <M-j> <C-\><C-n><C-w>j
   tnoremap <M-k> <C-\><C-n><C-w>k
   tnoremap <M-l> <C-\><C-n><C-w>l
-  tnoremap ˙ <C-\><C-n><C-w>h
-  tnoremap ∆ <C-\><C-n><C-w>j
-  tnoremap ˚ <C-\><C-n><C-w>k
-  tnoremap ¬ <C-\><C-n><C-w>l
+  tnoremap ˙ <C-\><C-n><C-w>h      " Mac用
+  tnoremap ∆ <C-\><C-n><C-w>j      " Mac用
+  tnoremap ˚ <C-\><C-n><C-w>k      " Mac用
+  tnoremap ¬ <C-\><C-n><C-w>l      " Mac用
 endif
 
 nnoremap <M-h> <C-w>h
 nnoremap <M-j> <C-w>j
 nnoremap <M-k> <C-w>k
 nnoremap <M-l> <C-w>l
-nnoremap ˙ <C-w>h
-nnoremap ∆ <C-w>j
-nnoremap ˚ <C-w>k
-nnoremap ¬ <C-w>l
+nnoremap ˙ <C-w>h      " Mac用
+nnoremap ∆ <C-w>j      " Mac用
+nnoremap ˚ <C-w>k      " Mac用
+nnoremap ¬ <C-w>l      " Mac用
 
+" カッコ保管
 inoremap { {}<Left>
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
 inoremap ( ()<ESC>i
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
 
+" Tab設定
 set tabstop=4
 set shiftwidth=4
 set softtabstop=0
+
+" agが使える場合は、Unite.vimのgrepでagを使う
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
+" grep検索
+nnoremap <silent> <Leader>g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+
+" カーソル位置の単語をgrep検索
+nnoremap <silent> <Leader>cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+
+" grep検索結果の再呼出
+nnoremap <silent> <Leader>r  :<C-u>UniteResume search-buffer<CR>
+
+

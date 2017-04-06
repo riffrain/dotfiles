@@ -40,6 +40,16 @@ repo = 'w0ng/vim-hybrid'
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
+hook_add = '''
+" ref: http://blog.monochromegane.com/blog/2013/09/18/ag-and-unite/
+" insert modeで開始
+let g:unite_enable_start_insert = 1
+
+" 大文字小文字を区別しない
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+'''
+
 
 [[plugins]]
 repo = 'Shougo/vimfiler.vim'
