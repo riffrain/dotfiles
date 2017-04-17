@@ -6,6 +6,10 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
 " dein.vimがインストールされていないときはインストール
 let s:cache_home = '~/.cache'
 let s:dein_dir = expand(s:cache_home . '/dein')
@@ -143,4 +147,5 @@ nnoremap <silent> <Leader>cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C
 " grep検索結果の再呼出
 nnoremap <silent> <Leader>r  :<C-u>UniteResume search-buffer<CR>
 
+let g:python3_host_prog = expand('~/.pyenv/shims/python')
 
