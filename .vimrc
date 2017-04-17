@@ -69,20 +69,17 @@ set nobackup
 set noswapfile
 set visualbell
 set wildmode=list:longest
-
-"Mapping
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
-inoremap jj <Esc>
-nmap <Leader>e :VimFilerExplorer<CR>
-
-"ColorScheme
-set background=dark
-colorscheme hybrid
-
 set nobackup
 set noswapfile
 set fenc=utf-8
+set tabstop=4
+set shiftwidth=4
+set softtabstop=0
 
+
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+inoremap jj <Esc>
+nmap <Leader>e :VimFilerExplorer<CR>
 nnoremap <Left> h
 nnoremap <Right> l
 nnoremap <Up> k
@@ -95,8 +92,6 @@ inoremap <S-Left> <Esc>vh
 inoremap <S-Right> <Esc>vl
 inoremap <S-Up> <Esc>vk
 inoremap <S-Down> <Esc>vj
-
-
 
 if has('nvim')
   "Terminal Mode
@@ -120,24 +115,6 @@ nnoremap ∆ <C-w>j      " Mac用
 nnoremap ˚ <C-w>k      " Mac用
 nnoremap ¬ <C-w>l      " Mac用
 
-" カッコ保管
-inoremap { {}<Left>
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap ( ()<ESC>i
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
-
-" Tab設定
-set tabstop=4
-set shiftwidth=4
-set softtabstop=0
-
-" agが使える場合は、Unite.vimのgrepでagを使う
-if executable('ag')
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-  let g:unite_source_grep_recursive_opt = ''
-endif
-
 " grep検索
 nnoremap <silent> <Leader>g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 
@@ -147,5 +124,4 @@ nnoremap <silent> <Leader>cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C
 " grep検索結果の再呼出
 nnoremap <silent> <Leader>r  :<C-u>UniteResume search-buffer<CR>
 
-let g:python3_host_prog = expand('~/.pyenv/shims/python')
 
