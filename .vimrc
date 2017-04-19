@@ -124,4 +124,4 @@ nnoremap <silent> <Leader>cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C
 " grep検索結果の再呼出
 nnoremap <silent> <Leader>r  :<C-u>UniteResume search-buffer<CR>
 
-
+set mouse=

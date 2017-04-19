@@ -90,5 +90,5 @@ repo = 'padawan-php/deoplete-padawan'
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_source = '''
-  let g:python3_host_prog = expand('~/.pyenv/shims/python')
+  let g:python3_host_prog = system('which python3') 
 '''
