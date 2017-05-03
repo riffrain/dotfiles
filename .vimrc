@@ -57,7 +57,11 @@ set showmatch
 set matchtime=1
 highlight LineNr ctermfg=darkgray
 set list
-set listchars=tab:——,trail:·,extends:>,precedes:<,space:·
+if has('nvim')
+	set listchars=tab:——,trail:·,extends:>,precedes:<,space:·
+else
+	set listchars=tab:——,trail:·,extends:>,precedes:<
+endif
 set backspace=indent,eol,start
 set title
 set whichwrap=b,s,[,],<,>
