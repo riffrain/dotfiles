@@ -104,20 +104,20 @@ if has('nvim')
   tnoremap <M-j> <C-\><C-n><C-w>j
   tnoremap <M-k> <C-\><C-n><C-w>k
   tnoremap <M-l> <C-\><C-n><C-w>l
-  tnoremap ˙ <C-\><C-n><C-w>h      " Mac用
-  tnoremap ∆ <C-\><C-n><C-w>j      " Mac用
-  tnoremap ˚ <C-\><C-n><C-w>k      " Mac用
-  tnoremap ¬ <C-\><C-n><C-w>l      " Mac用
+  tnoremap ˙ <C-\><C-n><C-w>h
+  tnoremap ∆ <C-\><C-n><C-w>j
+  tnoremap ˚ <C-\><C-n><C-w>k
+  tnoremap ¬ <C-\><C-n><C-w>l
 endif
 
 nnoremap <M-h> <C-w>h
 nnoremap <M-j> <C-w>j
 nnoremap <M-k> <C-w>k
 nnoremap <M-l> <C-w>l
-nnoremap ˙ <C-w>h      " Mac用
-nnoremap ∆ <C-w>j      " Mac用
-nnoremap ˚ <C-w>k      " Mac用
-nnoremap ¬ <C-w>l      " Mac用
+nnoremap ˙ <C-w>h
+nnoremap ∆ <C-w>j
+nnoremap ˚ <C-w>k
+nnoremap ¬ <C-w>l
 
 " grep検索
 nnoremap <silent> <Leader>g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
