@@ -127,3 +127,9 @@ nnoremap <silent> <Leader>cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C
 nnoremap <silent> <Leader>r  :<C-u>UniteResume search-buffer<CR>
 
 set mouse=
+
+nnoremap <C-j> <C-d>
+nnoremap <C-k> <C-u>
+
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
