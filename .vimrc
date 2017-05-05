@@ -1,7 +1,6 @@
 set encoding=utf-8
 scriptencoding utf-8
 
-"dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
 endif
@@ -50,12 +49,12 @@ let g:mapleader = "\<Space>"
 "Settings
 set number
 set laststatus=2
-set showcmd
+"set showcmd
 set ruler
 set wildmenu
 set showmatch
 set matchtime=1
-highlight LineNr ctermfg=darkgray
+"highlight LineNr ctermfg=darkgray
 set list
 if has('nvim')
 	set listchars=tab:——,trail:·,extends:>,precedes:<,space:·
@@ -66,7 +65,7 @@ set backspace=indent,eol,start
 set title
 set whichwrap=b,s,[,],<,>
 "set smartindent
-set cursorline
+"set cursorline
 "set clipboard=unnamed,autoselect
 set fenc=utf-8
 set nobackup
@@ -75,7 +74,6 @@ set visualbell
 set wildmode=list:longest
 set nobackup
 set noswapfile
-set fenc=utf-8
 set tabstop=4
 set shiftwidth=4
 set softtabstop=0
