@@ -1,85 +1,79 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+if [[ ! -d ~/.zplug ]];then
+  git clone https://github.com/zplug/zplug ~/.zplug
+fi
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export XDG_CONFIG_HOME=$HOME/.config
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="fishy"
+source ~/.zplug/init.zsh
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# enhancd config
+export ENHANCD_COMMAND=ed
+export ENHANCD_FILTER=ENHANCD_FILTER=fzy:fzf:peco
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Vanilla shell
+zplug "yous/vanilli.sh"
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# Additional completion definitions for Zsh
+zplug "zsh-users/zsh-completions"
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+# Load the theme.
+zplug "yous/lime"
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# Syntax highlighting bundle. zsh-syntax-highlighting must be loaded after
+# excuting compinit command and sourcing other plugins.
+zplug "zsh-users/zsh-syntax-highlighting", nice:9
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+# ZSH port of Fish shell's history search feature
+zplug "zsh-users/zsh-history-substring-search", nice:10
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+# Tracks your most used directories, based on 'frecency'.
+zplug "rupa/z", use:"*.sh"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# A next-generation cd command with an interactive filter
+zplug "b4b4r07/enhancd", use:init.sh
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+# This plugin adds many useful aliases and functions.
+zplug "plugins/git",   from:oh-my-zsh
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
 
-source $ZSH/oh-my-zsh.sh
+# Lime theme settings
+export LIME_DIR_DISPLAY_COMPONENTS=2
 
-# User configuration
+# Better history searching with arrow keys
+if zplug check "zsh-users/zsh-history-substring-search"; then
+    bindkey "$terminfo[kcuu1]" history-substring-search-up
+    bindkey "$terminfo[kcud1]" history-substring-search-down
+fi
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# Add color to ls command
+export CLICOLOR=1
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# NeoVim config
+export XDG_CONFIG_HOME=$HOME/.xdgconfig
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# Load rbenv
+if [ -e "$HOME/.rbenv" ]; then
+  eval "$(rbenv init - zsh)"
+fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# Set GOPATH for Go
+if command -v go &> /dev/null; then
+  [ -d "$HOME/go" ] || mkdir "$HOME/go"
+  export GOPATH="$HOME/go"
+  export GOROOT=/usr/local/opt/go/libexec
+  export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+fi
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Set PATH for GAE
+export PATH=$HOME/go/appengine:$PATH

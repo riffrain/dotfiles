@@ -9,7 +9,6 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
-" dein.vimがインストールされていないときはインストール
 let s:cache_home = '~/.cache'
 let s:dein_dir = expand(s:cache_home . '/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -37,12 +36,9 @@ endif
 filetype plugin indent on
 syntax enable
 
-" If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
 endif
-
-"End dein Scripts-------------------------
 
 let g:mapleader = "\<Space>"
 
@@ -88,18 +84,7 @@ nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 inoremap jj <Esc>
 
 nnoremap <Leader>e :VimFilerExplorer<CR>
-nnoremap <Left> h
-nnoremap <Right> l
-nnoremap <Up> k
-nnoremap <Down> j
-vnoremap <Left> h
-vnoremap <Right> l
-vnoremap <Up> k
-vnoremap <Down> j
-inoremap <S-Left> <Esc>vh
-inoremap <S-Right> <Esc>vl
-inoremap <S-Up> <Esc>vk
-inoremap <S-Down> <Esc>vj
+
 
 if has('nvim')
   "Terminal Mode
@@ -135,6 +120,18 @@ nnoremap <silent> <Leader>r  :<C-u>UniteResume search-buffer<CR>
 " ---------------
 " 移動系
 " ---------------
+nnoremap <Left> h
+nnoremap <Right> l
+nnoremap <Up> gk
+nnoremap <Down> gj
+vnoremap <Left> h
+vnoremap <Right> l
+vnoremap <Up> gk
+vnoremap <Down> gj
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
 nnoremap <C-j> jjjjj
 nnoremap <C-k> kkkkk
 
@@ -143,8 +140,8 @@ inoremap <C-z> <Esc>ui
 " [Ctrl]+yでリドゥ
 inoremap <C-y> <Esc><C-r><Insert>
 
-"let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-"let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " ファンクションキーの割り当て
 " F1:前のタブ
