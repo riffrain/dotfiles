@@ -67,7 +67,7 @@ set whichwrap=b,s,[,],<,>
 "set smartindent
 "set clipboard=unnamed,autoselect
 set nocursorline
-autocmd InsertEnter,InsertLeave * set cursorline!
+autocmd InsertLeave * set cursorline!
 set fenc=utf-8
 set nobackup
 set noswapfile
@@ -80,9 +80,13 @@ set shiftwidth=4
 set softtabstop=0
 set showtabline=2
 set t_Co=256
+set mouse=
 
+" ハイライトを消す
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
+
 inoremap jj <Esc>
+
 nnoremap <Leader>e :VimFilerExplorer<CR>
 nnoremap <Left> h
 nnoremap <Right> l
@@ -128,13 +132,19 @@ nnoremap <silent> <Leader>cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C
 " grep検索結果の再呼出
 nnoremap <silent> <Leader>r  :<C-u>UniteResume search-buffer<CR>
 
-set mouse=
+" ---------------
+" 移動系
+" ---------------
+nnoremap <C-j> jjjjj
+nnoremap <C-k> kkkkk
 
-nnoremap <C-j> <C-d>
-nnoremap <C-k> <C-u>
+" [Ctrl]+zでアンドゥ
+inoremap <C-z> <Esc>ui
+" [Ctrl]+yでリドゥ
+inoremap <C-y> <Esc><C-r><Insert>
 
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " ファンクションキーの割り当て
 " F1:前のタブ
@@ -183,9 +193,9 @@ nnoremap <Leader>Q :<C-u>q!<CR>
 " 「 p」：ペースト
 nnoremap <Leader>p :<C-u>set invpaste<CR>
 " 「 m」：マウスモードOFF
-noremap <Leader>m :<C-u>set mouse=<CR>:set nonumber<CR>
+noremap <Leader>m :<C-u>set mouse=<CR>:set mouse=<CR>
 " 「 M」：マウスモードON
-noremap <Leader>M :<C-u>set mouse=a<CR>:set number<CR>
+noremap <Leader>M :<C-u>set mouse=a<CR>:set mouse=a<CR>
 " 「 s」：ウィンドウを縦分割
 nnoremap <Leader>s :<C-u>sp<CR>
 " 「 v」：ウィンドウを横分割
@@ -206,11 +216,6 @@ noremap <Leader>c :<C-u>:setlocal cursorline!<CR>
 noremap <Leader>C :<C-u>:setlocal cursorcolumn!<CR>
 " 「 l」：タブ、空白、改行などの可視化ON／OFF
 noremap <Leader>l :<C-u>:setlocal list!<CR>
-
-" [Ctrl]+zでアンドゥ
-inoremap <C-z> <Esc>ui
-" [Ctrl]+yでリドゥ
-inoremap <C-y> <Esc><C-r><Insert>
 
 " 無限undo Vimを終了しても復元する
 if has('persistent_undo')
