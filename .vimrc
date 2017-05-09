@@ -63,7 +63,7 @@ set whichwrap=b,s,[,],<,>
 "set smartindent
 "set clipboard=unnamed,autoselect
 set nocursorline
-autocmd InsertLeave * set cursorline!
+"autocmd InsertLeave * set cursorline!
 set fenc=utf-8
 set nobackup
 set noswapfile
@@ -78,13 +78,13 @@ set showtabline=2
 set t_Co=256
 set mouse=
 
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
 " ハイライトを消す
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
-
 inoremap jj <Esc>
-
 nnoremap <Leader>e :VimFilerExplorer<CR>
-
 
 if has('nvim')
   "Terminal Mode
@@ -140,9 +140,6 @@ inoremap <C-z> <Esc>ui
 " [Ctrl]+yでリドゥ
 inoremap <C-y> <Esc><C-r><Insert>
 
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
 " ファンクションキーの割り当て
 " F1:前のタブ
 nnoremap <F1> gT
@@ -183,16 +180,16 @@ inoremap <F12> <Esc>:<C-u>setlocal list!<CR><Insert>
 
 " 「 r」：.vimrcのリロード
 noremap <Leader>r :source ~/.vimrc<CR>:noh<CR>
-" 「 q」：ファイルを閉じる
-nnoremap <Leader>q :<C-u>q<CR>
-" 「 Q」：ファイルを強制的に閉じる
-nnoremap <Leader>Q :<C-u>q!<CR>
+"" 「 q」：ファイルを閉じる
+"nnoremap <Leader>q :<C-u>q<CR>
+"" 「 Q」：ファイルを強制的に閉じる
+"nnoremap <Leader>Q :<C-u>q!<CR>
 " 「 p」：ペースト
 nnoremap <Leader>p :<C-u>set invpaste<CR>
 " 「 m」：マウスモードOFF
-noremap <Leader>m :<C-u>set mouse=<CR>:set mouse=<CR>
+noremap <Leader>m :<C-u>set mouse=<CR>
 " 「 M」：マウスモードON
-noremap <Leader>M :<C-u>set mouse=a<CR>:set mouse=a<CR>
+noremap <Leader>M :<C-u>set mouse=a<CR>
 " 「 s」：ウィンドウを縦分割
 nnoremap <Leader>s :<C-u>sp<CR>
 " 「 v」：ウィンドウを横分割
