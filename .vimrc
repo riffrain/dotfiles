@@ -63,7 +63,7 @@ set whichwrap=b,s,[,],<,>
 "set smartindent
 "set clipboard=unnamed,autoselect
 set nocursorline
-"autocmd InsertLeave * set cursorline!
+autocmd InsertLeave * set cursorline!
 set fenc=utf-8
 set nobackup
 set noswapfile
@@ -78,8 +78,6 @@ set showtabline=2
 set t_Co=256
 set mouse=
 
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " ハイライトを消す
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
@@ -132,8 +130,8 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
-nnoremap <C-j> jjjjj
-nnoremap <C-k> kkkkk
+nnoremap <C-j> 5j
+nnoremap <C-k> 5k
 
 " [Ctrl]+zでアンドゥ
 inoremap <C-z> <Esc>ui
@@ -217,3 +215,5 @@ if has('persistent_undo')
     set undofile
 endif
 
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
