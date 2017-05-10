@@ -40,9 +40,10 @@ if dein#check_install()
   call dein#install()
 endif
 
-let g:mapleader = "\<Space>"
 
-"Settings
+" =============
+" Settings
+" =============
 set number
 set laststatus=2
 "set showcmd
@@ -78,46 +79,25 @@ set showtabline=2
 set t_Co=256
 set mouse=
 
+let g:mapleader = "\<Space>"
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-" ハイライトを消す
-nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
+
+" ===========================
+" keymap
+" ===========================
+
 inoremap jj <Esc>
+nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap <Leader>e :VimFilerExplorer<CR>
 
-if has('nvim')
-  "Terminal Mode
-  tnoremap <silent> <ESC> <C-\><C-n>
-  tnoremap <M-h> <C-\><C-n><C-w>h
-  tnoremap <M-j> <C-\><C-n><C-w>j
-  tnoremap <M-k> <C-\><C-n><C-w>k
-  tnoremap <M-l> <C-\><C-n><C-w>l
-  tnoremap ˙ <C-\><C-n><C-w>h
-  tnoremap ∆ <C-\><C-n><C-w>j
-  tnoremap ˚ <C-\><C-n><C-w>k
-  tnoremap ¬ <C-\><C-n><C-w>l
-endif
-
-nnoremap <M-h> <C-w>h
-nnoremap <M-j> <C-w>j
-nnoremap <M-k> <C-w>k
-nnoremap <M-l> <C-w>l
-nnoremap ˙ <C-w>h
-nnoremap ∆ <C-w>j
-nnoremap ˚ <C-w>k
-nnoremap ¬ <C-w>l
-
-" grep検索
+" unite.vim
 nnoremap <silent> <Leader>g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
-
-" カーソル位置の単語をgrep検索
 nnoremap <silent> <Leader>cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
-
-" grep検索結果の再呼出
 nnoremap <silent> <Leader>r  :<C-u>UniteResume search-buffer<CR>
 
-" ---------------
 " 移動系
-" ---------------
 nnoremap <Left> h
 nnoremap <Right> l
 nnoremap <Up> gk
@@ -133,12 +113,7 @@ nnoremap gk k
 nnoremap <C-j> 5j
 nnoremap <C-k> 5k
 
-" [Ctrl]+zでアンドゥ
-inoremap <C-z> <Esc>ui
-" [Ctrl]+yでリドゥ
-inoremap <C-y> <Esc><C-r><Insert>
-
-" ファンクションキーの割り当て
+" Function key
 " F1:前のタブ
 nnoremap <F1> gT
 inoremap <F1> <Esc>gTi
@@ -176,12 +151,7 @@ inoremap <F11> <Esc>:<C-u>setlocal cursorline!<CR><Insert>
 nnoremap <F12> :<C-u>setlocal list!<CR>
 inoremap <F12> <Esc>:<C-u>setlocal list!<CR><Insert>
 
-" 「 r」：.vimrcのリロード
-noremap <Leader>r :source ~/.vimrc<CR>:noh<CR>
-"" 「 q」：ファイルを閉じる
-"nnoremap <Leader>q :<C-u>q<CR>
-"" 「 Q」：ファイルを強制的に閉じる
-"nnoremap <Leader>Q :<C-u>q!<CR>
+" Leader
 " 「 p」：ペースト
 nnoremap <Leader>p :<C-u>set invpaste<CR>
 " 「 m」：マウスモードOFF
@@ -208,12 +178,26 @@ noremap <Leader>c :<C-u>:setlocal cursorline!<CR>
 noremap <Leader>C :<C-u>:setlocal cursorcolumn!<CR>
 " 「 l」：タブ、空白、改行などの可視化ON／OFF
 noremap <Leader>l :<C-u>:setlocal list!<CR>
+"" 「 r」：.vimrcのリロード
+"noremap <leader>r :source ~/.vimrc<cr>:noh<cr>
+"" 「 q」：ファイルを閉じる
+"nnoremap <Leader>q :<C-u>q<CR>
+"" 「 Q」：ファイルを強制的に閉じる
+"nnoremap <Leader>Q :<C-u>q!<CR>
 
+" Ctrl+*
+" [Ctrl]+zでアンドゥ
+inoremap <C-z> <Esc>ui
+" [Ctrl]+yでリドゥ
+inoremap <C-y> <Esc><C-r><Insert>
 " 無限undo Vimを終了しても復元する
 if has('persistent_undo')
     set undodir=./.vimundo,~/.vimundo
     set undofile
 endif
 
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" NeoVim
+if has('nvim')
+  tnoremap <silent> <ESC> <C-\><C-n>
+endif
+
