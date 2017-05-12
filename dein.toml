@@ -10,6 +10,10 @@ repo = 'Shougo/neosnippet.vim'
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
+hook_add = '''
+  let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/'
+'''
+
 
 [[plugins]]
 repo = 'Shougo/vimshell'
@@ -93,4 +97,5 @@ hook_source = '''
 
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
+
 
