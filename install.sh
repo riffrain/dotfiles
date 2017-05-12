@@ -2,8 +2,6 @@
 
 ln -s ./.vim ~/.vim
 ln -s ./.vimrc ~/.vimrc
-ln -s ./.zshrc ~/.zshrc
-ln -s ./.bashrc ~/.bashrc
 
 # install dein.vim
 if [ ! -d "~/.cache/dein" ]; then
@@ -12,3 +10,8 @@ if [ ! -d "~/.cache/dein" ]; then
   curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
   sh ./installer.sh ~/.cache/dein
 fi
+
+ln -s ./.zshrc ~/.zshrc
+ln -s ./.bashrc ~/.bashrc
+source ~/.bashrc
+source ~/.zshrc
