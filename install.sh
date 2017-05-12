@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
 ln -s ./.vim ~/.vim
 ln -s ./.vimrc ~/.vimrc
 ln -s ./.zshrc ~/.zshrc
-
+ln -s ./.bashrc ~/.bashrc
 
 # install dein.vim
 if [ ! -d "~/.cache/dein" ]; then
