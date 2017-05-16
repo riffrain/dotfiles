@@ -35,12 +35,13 @@ hook_add = '''
   let g:airline_theme='powerlineish'
   let g:airline#extensions#tabline#enabled = 1
 '''
-
 [[plugins]]
 repo = 'w0ng/vim-hybrid'
+[[plugins]]
+repo = 'zacanger/angr.vim'
 hook_add = '''
   set background=dark
-  au MyAutoCmd VimEnter * nested colorscheme hybrid
+  au MyAutoCmd VimEnter * nested colorscheme angr
 '''
 
 [[plugins]]
@@ -98,4 +99,6 @@ hook_source = '''
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
 
+[[plugins]]
+repo = 'tpope/vim-surround'
 
