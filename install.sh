@@ -1,12 +1,13 @@
 #!/bin/sh
 
-#----------
-# vim
-#----------
+# -------------------------------
+# Editor
+
+## vim
 ln -s ./.vim ~/.vim
 ln -s ./.vimrc ~/.vimrc
 
-# install dein.vim
+### install dein.vim
 if [ ! -d "~/.cache/dein" ]; then
   mkdir -p ~/.cache/dein
   curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/.cache/dein/installer.sh
@@ -14,24 +15,24 @@ if [ ! -d "~/.cache/dein" ]; then
   ln -s dein.toml ~/.cache/dein/dein.toml
 fi
 
-#----------
-# zsh
-#----------
+# -------------------------------
+# Shell
+
+## zsh
 ln -s ./.zshrc ~/.zshrc
 source ~/.zshrc
 
-#----------
-# bash
-#----------
+## bash
 ln -s ./.bashrc ~/.bashrc
 source ~/.bashrc
 
-#----------
-# fish
-#----------
+## fish
 if [ ! -d "~/.config/fish" ]; then
   mkdir -p ~/.config/fish
-  # install fish
+
+  echo 'please install `fish shell` and `fishserman`'
+  echo 'install fisheman: curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher'
+
+  ln -s ./config.fish ~/.config/fish/config.fish
 fi
 
-ln -s ./config.fish ~/.config/fish/config.fish
