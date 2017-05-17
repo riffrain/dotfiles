@@ -1,5 +1,8 @@
 #!/bin/sh
 
+#----------
+# vim
+#----------
 ln -s ./.vim ~/.vim
 ln -s ./.vimrc ~/.vimrc
 
@@ -11,7 +14,24 @@ if [ ! -d "~/.cache/dein" ]; then
   sh ./installer.sh ~/.cache/dein
 fi
 
+#----------
+# zsh
+#----------
 ln -s ./.zshrc ~/.zshrc
+source ~/.zshrc
+
+#----------
+# bash
+#----------
 ln -s ./.bashrc ~/.bashrc
 source ~/.bashrc
-source ~/.zshrc
+
+#----------
+# fish
+#----------
+if [ ! -d "~/.config/fish" ]; then
+  mkdir -p ~/.config/fish
+  # install fish
+fi
+
+ln -s ./config.fish ~/.config/fish/config.fish
