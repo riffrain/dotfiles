@@ -76,13 +76,14 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=0
 set showtabline=2
-set t_Co=256
+"set t_Co=256
 set mouse=
-
-let g:mapleader = "\<Space>"
+set incsearch
+set hlsearch
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
+let g:mapleader = "\<Space>"
 
 " ===========================
 " keymap
@@ -110,8 +111,8 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
-nnoremap <C-j> 5j
-nnoremap <C-k> 5k
+nnoremap <C-j> 10j
+nnoremap <C-k> 10k
 
 " Function key
 " F1:前のタブ
@@ -184,12 +185,14 @@ noremap <Leader>l :<C-u>:setlocal list!<CR>
 "nnoremap <Leader>q :<C-u>q<CR>
 "" 「 Q」：ファイルを強制的に閉じる
 "nnoremap <Leader>Q :<C-u>q!<CR>
+noremap <Leader>ub :<C-u>:Unite buffer<CR>
 
 " Ctrl+*
 " [Ctrl]+zでアンドゥ
 inoremap <C-z> <Esc>ui
 " [Ctrl]+yでリドゥ
 inoremap <C-y> <Esc><C-r><Insert>
+
 " 無限undo Vimを終了しても復元する
 if has('persistent_undo')
 	let s:undo_dir = expand(s:cache_home . '/vimundo')

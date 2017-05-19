@@ -92,6 +92,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias sl='ls'
+alias vi='vim'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -117,6 +118,5 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
-
+# export
 export EDITOR=vi
