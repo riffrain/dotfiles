@@ -192,7 +192,11 @@ inoremap <C-z> <Esc>ui
 inoremap <C-y> <Esc><C-r><Insert>
 " 無限undo Vimを終了しても復元する
 if has('persistent_undo')
-    set undodir=./.vimundo,~/.vimundo
+	let s:undo_dir = expand(s:cache_home . '/vimundo')
+	if !isdirectory(s:undo_dir)
+	  call system('mkdir -p ' . shellescape(s:undo_dir));
+	endif
+    set undodir=~/.cache/vimundo
     set undofile
 endif
 
