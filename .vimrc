@@ -90,13 +90,14 @@ let g:mapleader = "\<Space>"
 " ===========================
 
 inoremap jj <Esc>
-nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 nnoremap <Leader>e :VimFilerExplorer<CR>
 
 " unite.vim
 nnoremap <silent> <Leader>g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 nnoremap <silent> <Leader>cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 nnoremap <silent> <Leader>r  :<C-u>UniteResume search-buffer<CR>
+nnoremap <silent> <Leader>b  :<C-u>Unite buffer<CR>
 
 " 移動系
 nnoremap <Left> h
@@ -185,7 +186,6 @@ noremap <Leader>l :<C-u>:setlocal list!<CR>
 "nnoremap <Leader>q :<C-u>q<CR>
 "" 「 Q」：ファイルを強制的に閉じる
 "nnoremap <Leader>Q :<C-u>q!<CR>
-noremap <Leader>ub :<C-u>:Unite buffer<CR>
 
 " Ctrl+*
 " [Ctrl]+zでアンドゥ
@@ -207,4 +207,16 @@ endif
 if has('nvim')
   tnoremap <silent> <ESC> <C-\><C-n>
 endif
+
+" neosnppet
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+imap <expr><TAB>
+ \ pumvisible() ? "\<C-n>" :
+ \ neosnippet#expandable_or_jumpable() ?
+ \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
