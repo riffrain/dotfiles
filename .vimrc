@@ -2,34 +2,32 @@ set encoding=utf-8
 scriptencoding utf-8
 
 if &compatible
-set nocompatible               " Be iMproved
+  set nocompatible               " Be iMproved
 endif
 
 augroup MyAutoCmd
-autocmd!
+  autocmd!
 augroup END
 
+" dein.vim {{{
 let s:cache_home = '~/.cache'
 let s:dein_dir = expand(s:cache_home . '/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if !isdirectory(s:dein_repo_dir)
-call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
+  call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
 endif
-
 " Required:
 let &runtimepath = s:dein_repo_dir .",". &runtimepath
-
 " Load TOML
 let s:toml_file = s:dein_dir.'/dein.toml'
-
 " Required:
 if dein#load_state(s:dein_dir)
-call dein#begin(s:dein_dir)
-call dein#load_toml(s:toml_file)
+  call dein#begin(s:dein_dir)
+  call dein#load_toml(s:toml_file)
 
-" Required:
-call dein#end()
-call dein#save_state()
+  " Required:
+  call dein#end()
+  call dein#save_state()
 endif
 
 " Required:
@@ -37,9 +35,9 @@ filetype plugin indent on
 syntax enable
 
 if dein#check_install()
-call dein#install()
+  call dein#install()
 endif
-
+" }}}
 
 " =============
 " Settings
@@ -55,9 +53,9 @@ set matchtime=1
 "highlight LineNr ctermfg=darkgray
 set list
 if has('nvim')
-set listchars=tab:‣\ ,trail:･,extends:>,precedes:<,space:·
+  set listchars=tab:‣\ ,trail:･,extends:>,precedes:<,space:·
 else
-	set listchars=tab:‣\ ,trail:･,extends:>,precedes:<
+  set listchars=tab:‣\ ,trail:･,extends:>,precedes:<
 endif
 set backspace=indent,eol,start
 set title
@@ -84,7 +82,7 @@ set hlsearch
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 if has("termguicolors")
-	set termguicolors
+  set termguicolors
 endif
 
 let g:mapleader = "\<Space>"
@@ -92,36 +90,33 @@ let g:mapleader = "\<Space>"
 " ===========================
 " keymap
 " ===========================
-
 inoremap jj <Esc>
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
+noremap <Left> h
+noremap <Right> l
+noremap <Up> gk
+noremap <Down> gj
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
+noremap <S-j> <C-d>
+noremap <S-k> <C-u>
+noremap <C-j> 10j
+noremap <C-k> 10k
 
-" vimfiler
+" vimfiler {{{
 nnoremap <Leader>e :VimFilerExplorer<CR>
+" }}}
 
-" unite.vim
+" unite.vim {{{
 nnoremap <silent> <Leader>g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 nnoremap <silent> <Leader>cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 nnoremap <silent> <Leader>r  :<C-u>UniteResume search-buffer<CR>
 nnoremap <silent> <Leader>b  :<C-u>Unite buffer<CR>
+" }}}
 
-" 移動系
-nnoremap <Left> h
-nnoremap <Right> l
-nnoremap <Up> gk
-nnoremap <Down> gj
-vnoremap <Left> h
-vnoremap <Right> l
-vnoremap <Up> gk
-vnoremap <Down> gj
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
-nnoremap <C-j> 10j
-nnoremap <C-k> 10k
-
-" Function key
+" Function key {{{
 " F1:前のタブ
 nnoremap <F1> gT
 inoremap <F1> <Esc>gTi
@@ -158,8 +153,9 @@ inoremap <F11> <Esc>:<C-u>setlocal cursorline!<CR><Insert>
 " F12:タブ、空白、改行などの可視化ON／OFF
 nnoremap <F12> :<C-u>setlocal list!<CR>
 inoremap <F12> <Esc>:<C-u>setlocal list!<CR><Insert>
+" }}}
 
-" Leader
+" Leader {{{
 " 「 p」：ペースト
 nnoremap <Leader>p :<C-u>set invpaste<CR>
 " 「 m」：マウスモードOFF
@@ -192,29 +188,33 @@ noremap <Leader>l :<C-u>:setlocal list!<CR>
 "nnoremap <Leader>q :<C-u>q<CR>
 "" 「 Q」：ファイルを強制的に閉じる
 "nnoremap <Leader>Q :<C-u>q!<CR>
+" }}}
 
-" Ctrl+*
-" [Ctrl]+zでアンドゥ
-inoremap <C-z> <Esc>ui
-" [Ctrl]+yでリドゥ
-inoremap <C-y> <Esc><C-r><Insert>
+"" Ctrl+* {{{
+"" [Ctrl]+zでアンドゥ
+"inoremap <C-z> <Esc>ui
+"" [Ctrl]+yでリドゥ
+"inoremap <C-y> <Esc><C-r><Insert>
+" }}}
 
-" 無限undo Vimを終了しても復元する
+" Unlimited undo {{{
 if has('persistent_undo')
-	let s:undo_dir = expand(s:cache_home . '/vimundo')
-	if !isdirectory(s:undo_dir)
-	  call system('mkdir -p ' . shellescape(s:undo_dir))
-	endif
+    let s:undo_dir = expand(s:cache_home . '/vimundo')
+    if !isdirectory(s:undo_dir)
+      call system('mkdir -p ' . shellescape(s:undo_dir))
+    endif
     set undodir=~/.cache/vimundo
     set undofile
 endif
+" }}}
 
-" NeoVim
+" NeoVim {{{
 if has('nvim')
   tnoremap <silent> <ESC> <C-\><C-n>
 endif
+" }}}
 
-" neosnppet
+" neosnippet {{{
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -225,4 +225,4 @@ imap <expr><TAB>
 
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
+" }}}

@@ -51,10 +51,16 @@ repo = 'mattn/emmet-vim'
 hook_add = '''
   let g:user_emmet_leader_key='<C-e>'
 '''
+
+
+[[plugins]]
+repo = 'vim-syntastic/syntastic'
+
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
 let g:lightline = {
+      \ 'colorscheme': 'wombat',
       \ 'component': {
       \   'readonly': '%{&readonly?"\ue0a2":""}',
       \ },
@@ -77,8 +83,10 @@ let g:lightline = {
       \ 'component_type': {
       \   'syntastic': 'error',
       \ },
-      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+"      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+"      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+"      \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
+"      \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
       \ }
 
   function! LightlineModified()
@@ -213,7 +221,6 @@ hook_add = '''
 [[plugins]]
 repo = 'tpope/vim-surround'
 
-
 # colorscheme
 [[plugins]]
 repo = 'w0ng/vim-hybrid'
@@ -229,5 +236,5 @@ repo = 'romainl/flattened'
 repo = 'lifepillar/vim-solarized8'
 hook_add = '''
   set background=dark
-  au MyAutoCmd VimEnter * nested colorscheme monokai
+  au MyAutoCmd VimEnter * nested colorscheme hybrid
 '''
