@@ -217,10 +217,14 @@ repo = 'w0ng/vim-hybrid'
 [[plugins]]
 repo = 'tomasr/molokai'
 [[plugins]]
+repo = 'crusoexia/vim-monokai'
+[[plugins]]
 repo = 'zacanger/angr.vim'
+[[plugins]]
+repo = 'lu-ren/SerialExperimentsLain'
 hook_add = '''
   set background=dark
-  au MyAutoCmd VimEnter * nested colorscheme angr
+  au MyAutoCmd VimEnter * nested colorscheme monokai
   "mod number column bgolor
   au MyAutoCmd VimEnter * nested hi LineNr ctermbg=NONE
   hi LineNr ctermbg=NONE
