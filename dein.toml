@@ -1,3 +1,5 @@
+# common toml
+
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
@@ -10,12 +12,14 @@ repo = 'Shougo/neosnippet.vim'
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
+depends = 'neosnippet.vim'
 hook_add = '''
 "  let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/'
 '''
 
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
+if = 'has("lua")'
 hook_add = '''
   let g:acp_enableAtStartup = 0
   let g:neocomplete#enable_at_startup = 1
@@ -31,7 +35,6 @@ hook_add = '''
   endfunction
 
   inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
   inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
   inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
@@ -43,15 +46,8 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/vimshell'
+repo = 'shougo/vimshell'
 rev = '3787e5'
-
-[[plugins]]
-repo = 'mattn/emmet-vim'
-hook_add = '''
-  let g:user_emmet_leader_key='<C-e>'
-'''
-
 
 [[plugins]]
 repo = 'vim-syntastic/syntastic'
@@ -214,26 +210,18 @@ hook_add = '''
   au MyAutoCmd VimEnter * nested :VimFilerExplorer
 '''
 
-[[plugins]]
-repo = 'tpope/vim-surround'
-
 # colorscheme
 [[plugins]]
 repo = 'w0ng/vim-hybrid'
+hook_add = '''
+  set background=dark
+  au MyAutoCmd VimEnter * nested colorscheme hybrid
+'''
 [[plugins]]
 repo = 'tomasr/molokai'
 [[plugins]]
 repo = 'crusoexia/vim-monokai'
 [[plugins]]
 repo = 'zacanger/angr.vim'
-[[plugins]]
-repo = 'romainl/flattened'
-[[plugins]]
-repo = 'lifepillar/vim-solarized8'
-hook_add = '''
-  set background=dark
-  au MyAutoCmd VimEnter * nested colorscheme hybrid
-'''
 
-[[plugins]]
-repo = 'cohama/lexima.vim'
+

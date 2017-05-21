@@ -20,10 +20,20 @@ endif
 let &runtimepath = s:dein_repo_dir .",". &runtimepath
 " Load TOML
 let s:toml_file = s:dein_dir.'/dein.toml'
+let s:toml_file_lazy = s:dein_dir.'/lazy.toml'
+let s:toml_file_neovim = s:dein_dir.'/neovim.toml'
+
 " Required:
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
-  call dein#load_toml(s:toml_file)
+  " Load common toml
+  call dein#load_toml(s:toml_file, {'lazy': 0})
+  " Load lazy toml
+  call dein#load_toml(s:toml_file_lazy, {'lazy': 1})
+  " Load neovim toml
+  if has('nvim')
+    call dein#load_toml(s:toml_file_neovim, {'lazy': 1})
+  endif
 
   " Required:
   call dein#end()
