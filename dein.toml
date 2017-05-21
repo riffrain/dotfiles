@@ -205,7 +205,6 @@ repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
 hook_add = '''
   let g:vimfiler_as_default_explorer = 1
-  
   " auto start
   au MyAutoCmd VimEnter * nested :VimFilerExplorer
 '''
@@ -223,5 +222,3 @@ repo = 'tomasr/molokai'
 repo = 'crusoexia/vim-monokai'
 [[plugins]]
 repo = 'zacanger/angr.vim'
-
-
