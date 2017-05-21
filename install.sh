@@ -4,6 +4,7 @@
 # Editor
 
 ## vim
+echo 'install editor'
 ln -s ./.vim ~/.vim
 ln -s ./.vimrc ~/.vimrc
 
@@ -17,6 +18,8 @@ fi
 
 # -------------------------------
 # Shell
+
+echo 'install shell'
 
 ## zsh
 ln -s ./.zshrc ~/.zshrc

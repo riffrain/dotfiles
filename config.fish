@@ -1,5 +1,6 @@
 set fish_theme agnoster
 
+alias vi vim
 
 fish_vi_key_bindings
 # vi modeではなんか[I]みたいなの出るからオーバーライド

@@ -53,7 +53,7 @@ set matchtime=1
 "highlight LineNr ctermfg=darkgray
 set list
 if has('nvim')
-  set listchars=tab:‣\ ,trail:･,extends:>,precedes:<,space:·
+  set listchars=tab:‣\ ,trail:･,extends:>,precedes:<,space:･
 else
   set listchars=tab:‣\ ,trail:･,extends:>,precedes:<
 endif
