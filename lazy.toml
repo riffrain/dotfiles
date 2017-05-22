@@ -7,11 +7,3 @@ hook_add = '''
   let g:user_emmet_leader_key='<c-e>'
 '''
 
-# カッコ、カンマ等補完
-[[plugins]]
-repo = 'cohama/lexima.vim'
-
-# カッコ、カンマ置換
-[[plugins]]
-repo = 'tpope/vim-surround'
-
