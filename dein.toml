@@ -212,19 +212,25 @@ hook_add = '''
 # colorscheme
 [[plugins]]
 repo = 'w0ng/vim-hybrid'
-hook_add = '''
-  set background=dark
-  au MyAutoCmd VimEnter * nested colorscheme hybrid
-'''
+#hook_add = '''
+#  set background=dark
+#  au MyAutoCmd VimEnter * nested colorscheme hybrid
+#'''
 [[plugins]]
 repo = 'tomasr/molokai'
 [[plugins]]
 repo = 'crusoexia/vim-monokai'
 [[plugins]]
 repo = 'zacanger/angr.vim'
+hook_add = '''
+  set background=dark
+  au MyAutoCmd VimEnter * nested colorscheme angr
+  au MyAutoCmd VimEnter * nested hi LineNr ctermbg=NONE
+'''
 
+# Completion
 [[plugins]]
 repo = 'cohama/lexima.vim'
-
 [[plugins]]
 repo = 'tpope/vim-surround'
+
