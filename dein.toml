@@ -210,18 +210,18 @@ hook_add = '''
 # colorscheme
 [[plugins]]
 repo = 'w0ng/vim-hybrid'
-#hook_add = '''
-#  set background=dark
-#  au MyAutoCmd VimEnter * nested colorscheme hybrid
-#'''
+hook_add = '''
+  set background=dark
+  au MyAutoCmd VimEnter * nested colorscheme hybrid
+'''
 
 [[plugins]]
 repo = 'tomasr/molokai'
 [[plugins]]
-hook_add = '''
-  set background=dark
-  au MyAutoCmd VimEnter * nested colorscheme molokai
-'''
+#hook_add = '''
+#  set background=dark
+#  au MyAutoCmd VimEnter * nested colorscheme molokai
+#'''
 repo = 'crusoexia/vim-monokai'
 [[plugins]]
 repo = 'zacanger/angr.vim'
