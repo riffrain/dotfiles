@@ -1,5 +1,11 @@
 # lazy load
 
+# Completion
+[[plugins]]
+repo = 'cohama/lexima.vim'
+[[plugins]]
+repo = 'tpope/vim-surround'
+
 # Emmet
 [[plugins]]
 repo = 'mattn/emmet-vim'

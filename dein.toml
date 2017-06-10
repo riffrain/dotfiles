@@ -214,7 +214,6 @@ hook_add = '''
   set background=dark
   au MyAutoCmd VimEnter * nested colorscheme hybrid
 '''
-
 [[plugins]]
 repo = 'tomasr/molokai'
 [[plugins]]
@@ -231,11 +230,3 @@ repo = 'zacanger/angr.vim'
 #  au MyAutoCmd VimEnter * nested hi LineNr ctermbg=NONE
 #  hi LineNr ctermbg=NONE
 #'''
-
-# Completion
-[[plugins]]
-repo = 'cohama/lexima.vim'
-[[plugins]]
-repo = 'tpope/vim-surround'
-
-
