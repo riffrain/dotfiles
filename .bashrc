@@ -111,3 +111,5 @@ fi
 
 # export
 export EDITOR=vi
+export LSCOLORS=g
+
