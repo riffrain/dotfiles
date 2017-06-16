@@ -232,4 +232,4 @@ repo = 'zacanger/angr.vim'
 #'''
 
 [[plugins]]
-repo = 'editconfig/editconfig-vim'
+repo = 'editorconfig/editorconfig-vim'
