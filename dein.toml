@@ -230,3 +230,6 @@ repo = 'zacanger/angr.vim'
 #  au MyAutoCmd VimEnter * nested hi LineNr ctermbg=NONE
 #  hi LineNr ctermbg=NONE
 #'''
+
+[[plugins]]
+repo = 'editconfig/editconfig-vim'
