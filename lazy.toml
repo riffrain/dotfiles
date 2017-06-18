@@ -18,3 +18,14 @@ hook_source = '''
 
   autocmd MyAutoCmd VimEnter * nested EmmetInstall
 '''
+
+[[plugins]]
+repo = 'neomake/neomake'
+
+[[plugins]]
+repo = 'benjie/neomake-local-eslint.vim'
+depends = 'neomake/neomake'
+add_hook = '''
+  autocmd! BufWritePost * Neomake
+  let g:neomake_javascript_enabled_makers = ['eslint']
+'''

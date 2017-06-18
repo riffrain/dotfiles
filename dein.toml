@@ -233,3 +233,6 @@ repo = 'zacanger/angr.vim'
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo = 'mustache/vim-mustache-handlebars'
