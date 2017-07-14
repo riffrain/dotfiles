@@ -49,8 +49,8 @@ hook_add = '''
 repo = 'shougo/vimshell'
 rev = '3787e5'
 
-#[[plugins]]
-#repo = 'vim-syntastic/syntastic'
+[[plugins]]
+repo = 'vim-syntastic/syntastic'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
