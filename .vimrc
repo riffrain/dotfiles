@@ -29,7 +29,7 @@ if dein#load_state(s:dein_dir)
   " Load common toml
   call dein#load_toml(s:toml_file, {'lazy': 0})
   " Load lazy toml
-  call dein#load_toml(s:toml_file_lazy, {'lazy': 1})
+  call dein#load_toml(s:toml_file_lazy, {'lazy': 0})
   " Load neovim toml
   if has('nvim')
     call dein#load_toml(s:toml_file_neovim, {'lazy': 1})
