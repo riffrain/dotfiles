@@ -49,8 +49,8 @@ hook_add = '''
 repo = 'shougo/vimshell'
 rev = '3787e5'
 
-[[plugins]]
-repo = 'vim-syntastic/syntastic'
+#[[plugins]]
+#repo = 'vim-syntastic/syntastic'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
@@ -226,3 +226,41 @@ repo = 'zacanger/angr.vim'
 #  au MyAutoCmd VimEnter * nested hi LineNr ctermbg=NONE
 #  hi LineNr ctermbg=NONE
 #'''
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo = 'mustache/vim-mustache-handlebars'
+
+# Completion
+[[plugins]]
+repo = 'cohama/lexima.vim'
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+# Emmet
+[[plugins]]
+repo = 'mattn/emmet-vim'
+hook_source = '''
+  let g:user_emmet_install_global = 1
+  let g:user_emmet_leader_key='<C-e>'
+  let g:user_emmet_mode='ivn'
+  let g:use_emmet_complete_tag = 1
+  let g:user_emmet_expandabbr_key = '<Space>'
+
+  "autocmd MyAutoCmd VimEnter * nested EmmetInstall
+'''
+
+[[plugins]]
+repo = 'neomake/neomake'
+
+[[plugins]]
+repo = 'benjie/neomake-local-eslint.vim'
+depends = 'neomake/neomake'
+add_hook = '''
+  autocmd! BufWritePost * Neomake
+  let g:neomake_javascript_enabled_makers = ['eslint']
+  let g:neomake_error_sign = {'text': '>>', 'texthl': 'Error'}
+  let g:neomake_warning_sign = {'text': '>>',  'texthl': 'Todo'}
+'''
