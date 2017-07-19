@@ -47,7 +47,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'shougo/vimshell'
-rev = '3787e5'
 
 [[plugins]]
 repo = 'vim-syntastic/syntastic'
