@@ -69,7 +69,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias sl='ls'
 alias vi='vim'
-#alias ssh='ssh -A'
+alias ssh='ssh -A'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
