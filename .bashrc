@@ -69,6 +69,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias sl='ls'
 alias vi='vim'
+#alias ssh='ssh -A'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -112,5 +113,5 @@ fi
 
 # export
 export EDITOR=vi
-export LSCOLORS=g
+
 

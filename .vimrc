@@ -124,6 +124,8 @@ nnoremap <silent> <Leader>g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 nnoremap <silent> <Leader>cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 nnoremap <silent> <Leader>r  :<C-u>UniteResume search-buffer<CR>
 nnoremap <silent> <Leader>b  :<C-u>Unite buffer<CR>
+
+nnoremap <silent> <Leader>m  :<C-u>Unite mark<CR>
 " }}}
 
 " Function key {{{
@@ -169,9 +171,9 @@ inoremap <F12> <Esc>:<C-u>setlocal list!<CR><Insert>
 " 「 p」：ペースト
 nnoremap <Leader>p :<C-u>set invpaste<CR>
 " 「 m」：マウスモードOFF
-noremap <Leader>m :<C-u>set mouse=<CR>
+noremap <Leader>a :<C-u>set mouse=<CR>
 " 「 M」：マウスモードON
-noremap <Leader>M :<C-u>set mouse=a<CR>
+noremap <Leader>A :<C-u>set mouse=a<CR>
 " 「 s」：ウィンドウを縦分割
 nnoremap <Leader>s :<C-u>sp<CR>
 " 「 v」：ウィンドウを横分割

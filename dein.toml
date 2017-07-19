@@ -207,12 +207,17 @@ hook_add = '''
   let g:vimfiler_as_default_explorer = 1
 '''
 
+[[plugins]]
+repo = 'tacroe/unite-mark'
+depends = 'unite.vim'
+
 # colorscheme
 [[plugins]]
 repo = 'w0ng/vim-hybrid'
 [[plugins]]
 repo = 'tomasr/molokai'
 hook_add = '''
+  " Reduce LineNr colors
   autocmd ColorScheme * highlight LineNr ctermbg=234 ctermfg=240
   set background=dark
   au MyAutoCmd VimEnter * nested colorscheme molokai
@@ -221,12 +226,6 @@ hook_add = '''
 repo = 'crusoexia/vim-monokai'
 [[plugins]]
 repo = 'zacanger/angr.vim'
-#hook_add = '''
-#  set background=dark
-#  au MyAutoCmd VimEnter * nested colorscheme angr
-#  au MyAutoCmd VimEnter * nested hi LineNr ctermbg=NONE
-#  hi LineNr ctermbg=NONE
-#'''
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
