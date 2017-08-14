@@ -110,7 +110,7 @@ let g:lightline = {
   function! LightlineFugitive()
     try
     if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
-      let mark = ' '  " edit here for cool mark
+      let mark = ''  " edit here for cool mark
       let branch = fugitive#head()
       return branch !=# '' ? mark.branch : ''
     endif
