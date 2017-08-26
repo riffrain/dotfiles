@@ -94,7 +94,6 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 if has("termguicolors")
   set termguicolors
 endif
-"lightlineを使うので消す
 set noshowmode
 
 let g:mapleader = "\<Space>"
