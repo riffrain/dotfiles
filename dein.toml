@@ -11,6 +11,9 @@ build = 'make'
 repo = 'Shougo/neosnippet.vim'
 
 [[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 depends = 'neosnippet.vim'
 hook_add = '''
@@ -48,8 +51,6 @@ hook_add = '''
 [[plugins]]
 repo = 'Shougo/vimshell.vim'
 
-[[plugins]]
-repo = 'vim-syntastic/syntastic'
 
 [[plugins]]
 repo = 'itchyny/vim-gitbranch'
@@ -234,17 +235,18 @@ repo = 'zacanger/angr.vim'
 [[plugins]]
 repo = 'marciomazza/vim-brogrammer-theme'
 
-[[plugins]]
-repo = 'editorconfig/editorconfig-vim'
-
-[[plugins]]
-repo = 'mustache/vim-mustache-handlebars'
 
 # Completion
 [[plugins]]
 repo = 'cohama/lexima.vim'
 [[plugins]]
 repo = 'tpope/vim-surround'
+
+# hilight
+[[plugins]]
+repo = 'vim-syntastic/syntastic'
+[[plugins]]
+repo = 'mustache/vim-mustache-handlebars'
 
 # Emmet
 [[plugins]]
@@ -259,9 +261,9 @@ hook_source = '''
   "autocmd MyAutoCmd VimEnter * nested EmmetInstall
 '''
 
+#lint
 [[plugins]]
 repo = 'neomake/neomake'
-
 [[plugins]]
 repo = 'benjie/neomake-local-eslint.vim'
 depends = 'neomake/neomake'
