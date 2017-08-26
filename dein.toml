@@ -231,6 +231,8 @@ hook_add = '''
 repo = 'crusoexia/vim-monokai'
 [[plugins]]
 repo = 'zacanger/angr.vim'
+[[plugins]]
+repo = 'marciomazza/vim-brogrammer-theme'
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
