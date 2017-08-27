@@ -84,7 +84,9 @@ let g:lightline = {
       \ },
       \ 'component_type': {
       \   'syntastic': 'error',
-      \ }
+      \ },
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \ }
 
   function! LightlineModified()
@@ -100,7 +102,7 @@ let g:lightline = {
     return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
       \ fname == '__Tagbar__' ? g:lightline.fname :
       \ fname =~ '__Gundo\|NERD_tree' ? '' :
-      \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+      \ &ft == 'vimfiler' ? '' :
       \ &ft == 'unite' ? unite#get_status_string() :
       \ &ft == 'vimshell' ? vimshell#get_status_string() :
       \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
@@ -140,7 +142,7 @@ let g:lightline = {
       \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
       \ fname =~ 'NERD_tree' ? 'NERDTree' :
       \ &ft == 'unite' ? 'Unite' :
-      \ &ft == 'vimfiler' ? 'VimFiler' :
+      \ &ft == 'vimfiler' ? 'VF' :
       \ &ft == 'vimshell' ? 'VimShell' :
       \ winwidth(0) > 60 ? lightline#mode() : ''
   endfunction

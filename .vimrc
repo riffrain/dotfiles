@@ -54,7 +54,6 @@ endif
 " =============
 set number
 set laststatus=2
-set ambiwidth=double
 "set showcmd
 set ruler
 set wildmenu
