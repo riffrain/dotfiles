@@ -1,6 +1,3 @@
-[user]
-  email = raindropops@gmail.com
-  name = riffrain
 [alias]
   unstage = reset -q HEAD --
   discard = checkout --
