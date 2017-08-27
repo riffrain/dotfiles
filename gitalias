@@ -1,3 +1,4 @@
+#refs http://postd.cc/human-git-aliases/
 [alias]
   unstage = reset -q HEAD --
   discard = checkout --
@@ -8,8 +9,8 @@
   invert = revert
   last = log -1 HEAD --format=format:"%Cred%H"
   summary = status -u -s
-  graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
-  history = log -10 --format=format:'%Cgreen%h %Creset• %s (%aN, %ar)'
+  graph = log --graph --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
+  history = log --format=format:'%Cgreen%h %Creset• %s (%aN, %ar)'
   new-branch = checkout -b
   rename-branch = branch -m
   delete-branch = branch -D
@@ -38,3 +39,9 @@
   patch = add --patch
   tuck = stash save
   untuck = stash pop "stash@{0}"
+[diff]
+  compactionHeuristic = true
+  indentHeuristic = true
+  algorithm = patience
+[blame]
+  date = relative
