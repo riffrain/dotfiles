@@ -4,8 +4,8 @@ dotfiles
 usage
 ------
 
-* `gitalias`:
-Append `.gitconfig`:
+* `gitalias`:  
+Append to `.gitconfig`:
 ```
 [include]
   path = /path/to/dotfiles/gitalias
