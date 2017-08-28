@@ -93,7 +93,7 @@ if has("termguicolors")
   set termguicolors
 endif
 set noshowmode
-set ambiwidth=double
+"set ambiwidth=double
 
 let g:mapleader = "\<Space>"
 
