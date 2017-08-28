@@ -62,7 +62,7 @@ repo = 'tpope/vim-fugitive'
 repo = 'itchyny/lightline.vim'
 hook_add = '''
 let g:lightline = {
-      \ 'colorscheme': 'wonbat',
+      \ 'colorscheme': 'powerline',
       \ 'component': {
       \   'readonly': '%{&readonly?"\ue0a2":""}',
       \ },
