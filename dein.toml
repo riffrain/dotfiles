@@ -231,6 +231,8 @@ hook_add = '''
   au MyAutoCmd VimEnter * nested colorscheme molokai
 '''
 [[plugins]]
+repo = 'vim-scripts/Wombat'
+[[plugins]]
 repo = 'crusoexia/vim-monokai'
 [[plugins]]
 repo = 'zacanger/angr.vim'
