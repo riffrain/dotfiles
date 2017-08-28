@@ -224,6 +224,12 @@ depends = 'unite.vim'
 repo = 'w0ng/vim-hybrid'
 [[plugins]]
 repo = 'tomasr/molokai'
+hook_add = '''
+  " Reduce LineNr colors
+  autocmd ColorScheme * highlight LineNr ctermbg=234 ctermfg=240
+  set background=dark
+  au MyAutoCmd VimEnter * nested colorscheme molokai
+'''
 [[plugins]]
 repo = 'crusoexia/vim-monokai'
 [[plugins]]
@@ -232,12 +238,6 @@ repo = 'zacanger/angr.vim'
 repo = 'marciomazza/vim-brogrammer-theme'
 [[plugins]]
 repo = 'joshdick/onedark.vim'
-hook_add = '''
-  " Reduce LineNr colors
-  autocmd ColorScheme * highlight LineNr ctermbg=234 ctermfg=240
-  set background=dark
-  au MyAutoCmd VimEnter * nested colorscheme onedark
-'''
 
 
 # Completion

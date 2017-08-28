@@ -43,5 +43,6 @@
   compactionHeuristic = true
   indentHeuristic = true
   algorithm = patience
+  color = always
 [blame]
   date = relative

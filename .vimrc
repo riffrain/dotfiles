@@ -59,7 +59,6 @@ set ruler
 set wildmenu
 set showmatch
 set matchtime=1
-"highlight LineNr ctermfg=darkgray
 set list
 if has('nvim')
   set listchars=tab:¦\ ,trail:･,extends:>,precedes:<,space:･
@@ -94,6 +93,7 @@ if has("termguicolors")
   set termguicolors
 endif
 set noshowmode
+set ambiwidth=double
 
 let g:mapleader = "\<Space>"
 
