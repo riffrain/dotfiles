@@ -42,7 +42,7 @@
 [diff]
   compactionHeuristic = true
   indentHeuristic = true
-  algorithm = patience
+  algorithm = histogram
   color = always
 [blame]
   date = relative
