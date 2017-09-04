@@ -5,11 +5,14 @@ set bell-style none
 # 入力候補リストのディレクトリや実行可能ファイルに印をつける
 set visible-stats on
 
+set editing-mode vi
+
 # C-(n|p)でhistory-search
 "\C-p":history-search-backward
 "\C-n":history-search-forward
 "\e[A":history-search-backward
 "\e[B":history-search-forward
+"\C-j": vi-movement-mode
 
 $if Bash
     # スペースで特殊変数がその場で展開
