@@ -253,6 +253,8 @@ repo = 'tpope/vim-surround'
 repo = 'vim-syntastic/syntastic'
 [[plugins]]
 repo = 'mustache/vim-mustache-handlebars'
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
 
 # Emmet
 [[plugins]]
