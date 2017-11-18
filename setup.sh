@@ -10,7 +10,7 @@ ln -s $path'/.vimrc' ~/.vimrc
 # neovim
 if [ ! -d "~/.config/nvim" ]; then
   mkdir -p ~/.config/nvim
-  ln -s $path'/.vim' ~/.config/nvim/init.vim
+  ln -s $path'/.vimrc' ~/.config/nvim/init.vim
 fi
 
 ### install dein.vim
@@ -23,3 +23,5 @@ if [ ! -d "~/.cache/dein" ]; then
   ln -s $path'/neovim.toml' ~/.cache/dein/neovim.toml
 fi
 
+echo 'setup bash'
+ln -s $path'/.bashrc/' ~/.bashrc
