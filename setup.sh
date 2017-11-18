@@ -24,19 +24,19 @@ if [ ! -d "~/.cache/dein" ]; then
 fi
 
 echo 'setup bash'
-if [ -f "~/.bashrc" ]; then
+if [ -f ~/.bashrc ]; then
   unlink ~/.bashrc
 fi
 ln -s $path'/.bashrc' ~/.bashrc
 
 echo 'setup inputrc'
-if [ -f "~/.inputrc" ]; then
+if [ -f ~/.inputrc ]; then
   unlink ~/.inputrc
 fi
 ln -s $path'/.inputrc' ~/.inputrc
 
 echo 'add gitalias'
-if [ ! -f "~/.gitconfig" ]; then
+if [ ! -f ~/.gitconfig ]; then
   touch ~/.gitconfig
 fi
 echo -e '[include]\n  path = $path/gitalias' >> ~/.gitconfig
