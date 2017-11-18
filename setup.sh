@@ -39,4 +39,4 @@ echo 'add gitalias'
 if [ ! -f ~/.gitconfig ]; then
   touch ~/.gitconfig
 fi
-echo -e "[include]\n  path = "$path"/gitalias" >> ~/.gitconfig
+echo "[include] path = "$path"/gitalias" >> ~/.gitconfig
