@@ -24,4 +24,7 @@ if [ ! -d "~/.cache/dein" ]; then
 fi
 
 echo 'setup bash'
+if [ ! -f "~/.bashrc" ]; then
+  unlink ~/.bashrc
+fi
 ln -s $path'/.bashrc/' ~/.bashrc
