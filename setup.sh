@@ -35,8 +35,20 @@ if [ -f ~/.inputrc ]; then
 fi
 ln -s $path'/.inputrc' ~/.inputrc
 
-echo 'add gitalias'
+echo 'add git tweaks'
 if [ ! -f ~/.gitconfig ]; then
   touch ~/.gitconfig
+  echo "[include] path = "$path"/git/git-alias" >> ~/.gitconfig
 fi
-echo "[include] path = "$path"/gitalias" >> ~/.gitconfig
+if [ ! -f ~/.git-prompt.sh ]; then
+  unlink ~/.git-prompt.sh
+fi
+ln -s $path'/git/git-prompt.sh' ~/.git-prompt.sh
+
+if [ ! -f ~/.git-completion.bash ]; then
+  unlink ~/.git-completion.bash
+fi
+ln -s $path'/git/git-completion.bash' ~/.git-completion.bash
+
+# apply
+source ~/.bashrc
