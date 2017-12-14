@@ -281,3 +281,6 @@ add_hook = '''
   let g:neomake_error_sign = {'text': '>>', 'texthl': 'Error'}
   let g:neomake_warning_sign = {'text': '>>',  'texthl': 'Todo'}
 '''
+
+[[plugins]]
+repo = 'othree/yajs.vim'

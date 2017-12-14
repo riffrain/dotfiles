@@ -81,6 +81,7 @@ set nobackup
 set noswapfile
 set tabstop=4
 set shiftwidth=4
+set expandtab
 set softtabstop=0
 set showtabline=2
 set t_Co=256
