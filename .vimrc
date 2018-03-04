@@ -79,10 +79,11 @@ set visualbell
 set wildmode=list:longest
 set nobackup
 set noswapfile
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set softtabstop=0
 set showtabline=2
+set expandtab
 set t_Co=256
 set mouse=
 set incsearch
