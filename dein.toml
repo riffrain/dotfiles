@@ -224,11 +224,13 @@ depends = 'unite.vim'
 repo = 'w0ng/vim-hybrid'
 [[plugins]]
 repo = 'tomasr/molokai'
+[[plugins]]
+repo = 'Erichain/vim-monokai-pro'
 hook_add = '''
   " Reduce LineNr colors
-  autocmd ColorScheme * highlight LineNr ctermbg=234 ctermfg=240
+  " autocmd ColorScheme * highlight LineNr ctermbg=234 ctermfg=240
   set background=dark
-  au MyAutoCmd VimEnter * nested colorscheme molokai
+  au MyAutoCmd VimEnter * nested colorscheme monokai_pro
 '''
 [[plugins]]
 repo = 'vim-scripts/Wombat'
@@ -281,6 +283,11 @@ add_hook = '''
   let g:neomake_error_sign = {'text': '>>', 'texthl': 'Error'}
   let g:neomake_warning_sign = {'text': '>>',  'texthl': 'Todo'}
 '''
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+[[plugins]]
+repo = 'othree/yajs.vim'
 
 [[plugins]]
 repo = 'leafgarland/typescript-vim'

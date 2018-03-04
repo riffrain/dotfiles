@@ -1,3 +1,6 @@
+source ~/.git-prompt.sh
+source ~/.git-completion.bash
+
 # ~/.bashrc: executed by bash(1) for non-login shells.  # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) # for examples # If not running interactively, don't do anything case $- in *i*) ;; *) return;; esac # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -47,9 +50,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='\[\033[01;34m\]\w\[\033[00m\]\[\033[01;32m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='\w\$(__git_ps1 "(%s)")\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -70,6 +73,7 @@ alias l='ls -CF'
 alias sl='ls'
 alias vi='vim'
 alias ssh='ssh -A'
+alias less='less -qR'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then

@@ -1,0 +1,1 @@
+/home/tanaka/dotfiles/.vim

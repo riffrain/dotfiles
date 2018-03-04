@@ -81,9 +81,9 @@ set nobackup
 set noswapfile
 set tabstop=2
 set shiftwidth=2
+set expandtab
 set softtabstop=0
 set showtabline=2
-set expandtab
 set t_Co=256
 set mouse=
 set incsearch
