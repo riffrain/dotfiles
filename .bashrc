@@ -118,3 +118,4 @@ fi
 # export
 export EDITOR=vi
 
+export PATH="$HOME/.yarn/bin:$PATH"

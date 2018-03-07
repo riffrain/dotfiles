@@ -79,8 +79,8 @@ set visualbell
 set wildmode=list:longest
 set nobackup
 set noswapfile
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 "set noexpandtab
 set softtabstop=0
