@@ -284,3 +284,8 @@ add_hook = '''
 
 [[plugins]]
 repo = 'othree/yajs.vim'
+[[plugins]]
+repo = 'othree/html5.vim'
+hook_source = '''
+  autocmd BufNewFile,BufRead *.vue set filetype=html "When opening or creating a .vue file set the filetype to HTML for proper rendering
+'''

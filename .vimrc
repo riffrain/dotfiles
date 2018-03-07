@@ -82,6 +82,7 @@ set noswapfile
 set tabstop=4
 set shiftwidth=4
 set expandtab
+"set noexpandtab
 set softtabstop=0
 set showtabline=2
 set t_Co=256
@@ -97,6 +98,8 @@ set noshowmode
 "set ambiwidth=double
 
 let g:mapleader = "\<Space>"
+
+autocmd BufNewFile,BufRead *.vue set filetype=html "When opening or creating a .vue file set the filetype to HTML for proper rendering
 
 " ===========================
 " keymap
