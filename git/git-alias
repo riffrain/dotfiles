@@ -39,6 +39,7 @@
   patch = add --patch
   tuck = stash save
   untuck = stash pop "stash@{0}"
+  master = !git checkout master && git pull
 [diff]
   compactionHeuristic = true
   indentHeuristic = true
