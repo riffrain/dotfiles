@@ -2,6 +2,7 @@
 
 [[plugins]]
 repo = 'Shougo/dein.vim'
+rev = '1.5'
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
@@ -255,8 +256,6 @@ repo = 'tpope/vim-surround'
 repo = 'vim-syntastic/syntastic'
 [[plugins]]
 repo = 'mustache/vim-mustache-handlebars'
-[[plugins]]
-repo = 'kchmck/vim-coffee-script'
 
 # Emmet
 [[plugins]]
@@ -277,7 +276,7 @@ repo = 'neomake/neomake'
 [[plugins]]
 repo = 'benjie/neomake-local-eslint.vim'
 depends = 'neomake/neomake'
-add_hook = '''
+hook_add = '''
   autocmd! BufWritePost * Neomake
   let g:neomake_javascript_enabled_makers = ['eslint']
   let g:neomake_error_sign = {'text': '>>', 'texthl': 'Error'}
@@ -289,9 +288,21 @@ repo = 'leafgarland/typescript-vim'
 [[plugins]]
 repo = 'othree/yajs.vim'
 [[plugins]]
-repo = 'othree/html5.vim'
-hook_source = '''
-  autocmd BufNewFile,BufRead *.vue set filetype=html "When opening or creating a .vue file set the filetype to HTML for proper rendering
-'''
+repo = 'pangloss/vim-javascript'
 [[plugins]]
-repo = 'leafgarland/typescript-vim'
+repo = 'othree/html5.vim'
+hook_add = '''
+  autocmd BufNewFile,BufRead *.vue set filetype=html
+  autocmd BufNewFile,BufRead *.vue syntax sync fromstart
+'''
+# [[plugins]]
+# repo = 'posva/vim-vue'
+# hook_add = '''
+#   let g:vue_disable_pre_processors=1
+#   autocmd FileType vue syntax sync fromstart
+# '''
+# [[plugins]]
+# repo = 'leafOfTree/vim-vue-plugin'
+# hook_add = '''
+#   let g:vim_vue_plugin_load_full_syntax = 1
+# '''

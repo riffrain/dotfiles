@@ -14,7 +14,7 @@ let s:cache_home = '~/.cache'
 let s:dein_dir = expand(s:cache_home . '/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if !isdirectory(s:dein_repo_dir)
-  call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
+  call system('git clone --depth=1 -b 1.5 https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
 endif
 " Required:
 let &runtimepath = s:dein_repo_dir .",". &runtimepath
@@ -98,8 +98,9 @@ set noshowmode
 "set ambiwidth=double
 
 let g:mapleader = "\<Space>"
+let g:vue_disable_pre_processors=1
 
-autocmd BufNewFile,BufRead *.vue set filetype=html "When opening or creating a .vue file set the filetype to HTML for proper rendering
+" autocmd BufNewFile,BufRead *.vue set filetype=html "When opening or creating a .vue file set the filetype to HTML for proper rendering
 
 " ===========================
 " keymap
@@ -132,44 +133,44 @@ nnoremap <silent> <Leader>b  :<C-u>Unite buffer<CR>
 nnoremap <silent> <Leader>m  :<C-u>Unite mark<CR>
 " }}}
 
-" Function key {{{
-" F1:前のタブ
-nnoremap <F1> gT
-inoremap <F1> <Esc>gTi
-" F2:次のタブ
-nnoremap <F2> gt
-inoremap <F2> <Esc>gt<Insert>
-" F3:下候補
-nnoremap <F3> n
-inoremap <F3> <Esc>n<Insert>
-" F4:上候補
-nnoremap <F4> N
-inoremap <F4> <Esc>N<Insert>
-" F5:マークの下検索
-nnoremap <F5> ]'zz
-inoremap <F5> <Esc>]'zz<Insert>
-" F6:マークの上検索
-nnoremap <F6> ['zz
-inoremap <F6> <Esc>['zz<Insert>
-" F7:マーク一覧
-nnoremap <F7> :marks<CR>
-inoremap <F7> <Esc>:marks<CR>
-" F8:マーク一括削除
-nnoremap <F8> :delmarks!<CR>
-inoremap <F8> <Esc>:delmarks!<CR><Insert>
-" F9:マーク位置保存
-nnoremap <F9> :<C-u>call <SID>AutoMarkrement()<CR>
-inoremap <F9> <Esc>:<C-u>call <SID>AutoMarkrement()<CR><Insert>
-" F10:行番号表示／非表示
-nnoremap <F10> :<C-u>setlocal number!<CR>
-inoremap <F10> <Esc>:<C-u>setlocal number!<CR><Insert>
-" F11:カーソルラインの表示／非表示
-nnoremap <F11> :<C-u>setlocal cursorline!<CR>
-inoremap <F11> <Esc>:<C-u>setlocal cursorline!<CR><Insert>
-" F12:タブ、空白、改行などの可視化ON／OFF
-nnoremap <F12> :<C-u>setlocal list!<CR>
-inoremap <F12> <Esc>:<C-u>setlocal list!<CR><Insert>
-" }}}
+" " Function key {{{
+" " F1:前のタブ
+" nnoremap <F1> gT
+" inoremap <F1> <Esc>gTi
+" " F2:次のタブ
+" nnoremap <F2> gt
+" inoremap <F2> <Esc>gt<Insert>
+" " F3:下候補
+" nnoremap <F3> n
+" inoremap <F3> <Esc>n<Insert>
+" " F4:上候補
+" nnoremap <F4> N
+" inoremap <F4> <Esc>N<Insert>
+" " F5:マークの下検索
+" nnoremap <F5> ]'zz
+" inoremap <F5> <Esc>]'zz<Insert>
+" " F6:マークの上検索
+" nnoremap <F6> ['zz
+" inoremap <F6> <Esc>['zz<Insert>
+" " F7:マーク一覧
+" nnoremap <F7> :marks<CR>
+" inoremap <F7> <Esc>:marks<CR>
+" " F8:マーク一括削除
+" nnoremap <F8> :delmarks!<CR>
+" inoremap <F8> <Esc>:delmarks!<CR><Insert>
+" " F9:マーク位置保存
+" nnoremap <F9> :<C-u>call <SID>AutoMarkrement()<CR>
+" inoremap <F9> <Esc>:<C-u>call <SID>AutoMarkrement()<CR><Insert>
+" " F10:行番号表示／非表示
+" nnoremap <F10> :<C-u>setlocal number!<CR>
+" inoremap <F10> <Esc>:<C-u>setlocal number!<CR><Insert>
+" " F11:カーソルラインの表示／非表示
+" nnoremap <F11> :<C-u>setlocal cursorline!<CR>
+" inoremap <F11> <Esc>:<C-u>setlocal cursorline!<CR><Insert>
+" " F12:タブ、空白、改行などの可視化ON／OFF
+" nnoremap <F12> :<C-u>setlocal list!<CR>
+" inoremap <F12> <Esc>:<C-u>setlocal list!<CR><Insert>
+" " }}}
 
 " Leader {{{
 " 「 p」：ペースト
