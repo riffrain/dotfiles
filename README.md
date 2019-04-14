@@ -1,13 +1,8 @@
 dotfiles
 ========
 
-usage
-------
+使い方
+----
 
-* `gitalias`:  
-Append to `.gitconfig`:
-```
-[include]
-  path = /path/to/dotfiles/gitalias
-```
-
+`setup.sh` を適宜コメントアウトして実行
+`.bashrc` など置き換えるので必要ならバックアップをとっておくこと
