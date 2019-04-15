@@ -264,12 +264,12 @@ augroup MarkMargin
     autocmd  BufEnter  *.vp*   :call MarkMargin(0)
 augroup END
 
-runtime .vim/plugin/dragvisuals.vim
-
-vmap  <expr>  <LEFT>   DVB_Drag('left')
-vmap  <expr>  <RIGHT>  DVB_Drag('right')
-vmap  <expr>  <DOWN>   DVB_Drag('down')
-vmap  <expr>  <UP>     DVB_Drag('up')
-vmap  <expr>  D        DVB_Duplicate()
-
-let g:DVB_TrimWS = 1
+" runtime .vim/plugin/dragvisuals.vim
+"
+" vmap  <expr>  <LEFT>   DVB_Drag('left')
+" vmap  <expr>  <RIGHT>  DVB_Drag('right')
+" vmap  <expr>  <DOWN>   DVB_Drag('down')
+" vmap  <expr>  <UP>     DVB_Drag('up')
+" vmap  <expr>  D        DVB_Duplicate()
+"
+" let g:DVB_TrimWS = 1
