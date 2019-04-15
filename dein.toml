@@ -52,7 +52,6 @@ hook_add = '''
 [[plugins]]
 repo = 'Shougo/vimshell.vim'
 
-
 [[plugins]]
 repo = 'itchyny/vim-gitbranch'
 
@@ -63,7 +62,7 @@ repo = 'tpope/vim-fugitive'
 repo = 'itchyny/lightline.vim'
 hook_add = '''
 let g:lightline = {
-      \ 'colorscheme': 'powerline',
+      \ 'colorscheme': 'onedark',
       \ 'component': {
       \   'readonly': '%{&readonly?"\ue0a2":""}',
       \ },
@@ -221,29 +220,34 @@ repo = 'tacroe/unite-mark'
 depends = 'unite.vim'
 
 # colorscheme
+# [[plugins]]
+# repo = 'vim-scripts/Wombat'
+# [[plugins]]
+# repo = 'w0ng/vim-hybrid'
+# [[plugins]]
+# repo = 'tomasr/molokai'
+# [[plugins]]
+# repo = 'Erichain/vim-monokai-pro'
+# [[plugins]]
+# repo = 'crusoexia/vim-monokai'
+# [[plugins]]
+# repo = 'zacanger/angr.vim'
+# [[plugins]]
+# repo = 'marciomazza/vim-brogrammer-theme'
 [[plugins]]
-repo = 'w0ng/vim-hybrid'
-[[plugins]]
-repo = 'tomasr/molokai'
-[[plugins]]
-repo = 'Erichain/vim-monokai-pro'
+repo = 'joshdick/onedark.vim'
 hook_add = '''
   " Reduce LineNr colors
   " autocmd ColorScheme * highlight LineNr ctermbg=234 ctermfg=240
   set background=dark
-  au MyAutoCmd VimEnter * nested colorscheme monokai_pro
+  au MyAutoCmd VimEnter * nested colorscheme onedark
 '''
-[[plugins]]
-repo = 'vim-scripts/Wombat'
-[[plugins]]
-repo = 'crusoexia/vim-monokai'
-[[plugins]]
-repo = 'zacanger/angr.vim'
-[[plugins]]
-repo = 'marciomazza/vim-brogrammer-theme'
-[[plugins]]
-repo = 'joshdick/onedark.vim'
-
+# [[plugins]]
+# repo = 'rakr/vim-one'
+# [[plugins]]
+# repo = 'skielbasa/vim-material-monokai'
+# [[plugins]]
+# repo = 'jacoborus/tender.vim'
 
 # Completion
 [[plugins]]
@@ -258,30 +262,29 @@ repo = 'vim-syntastic/syntastic'
 repo = 'mustache/vim-mustache-handlebars'
 
 # Emmet
-[[plugins]]
-repo = 'mattn/emmet-vim'
-hook_source = '''
-  let g:user_emmet_install_global = 1
-  let g:user_emmet_leader_key='<C-e>'
-  let g:user_emmet_mode='ivn'
-  let g:use_emmet_complete_tag = 1
-  let g:user_emmet_expandabbr_key = '<Space>'
-
-  "autocmd MyAutoCmd VimEnter * nested EmmetInstall
-'''
+# [[plugins]]
+# repo = 'mattn/emmet-vim'
+# hook_source = '''
+#   let g:user_emmet_install_global = 1
+#   let g:user_emmet_leader_key='<C-e>'
+#   let g:user_emmet_mode='ivn'
+#   let g:use_emmet_complete_tag = 1
+#   let g:user_emmet_expandabbr_key = '<Space>'
+#   "autocmd MyAutoCmd VimEnter * nested EmmetInstall
+# '''
 
 #lint
-[[plugins]]
-repo = 'neomake/neomake'
-[[plugins]]
-repo = 'benjie/neomake-local-eslint.vim'
-depends = 'neomake/neomake'
-hook_add = '''
-  autocmd! BufWritePost * Neomake
-  let g:neomake_javascript_enabled_makers = ['eslint']
-  let g:neomake_error_sign = {'text': '>>', 'texthl': 'Error'}
-  let g:neomake_warning_sign = {'text': '>>',  'texthl': 'Todo'}
-'''
+# [[plugins]]
+# repo = 'neomake/neomake'
+# [[plugins]]
+# repo = 'benjie/neomake-local-eslint.vim'
+# depends = 'neomake/neomake'
+# hook_add = '''
+#   autocmd! BufWritePost * Neomake
+#   let g:neomake_javascript_enabled_makers = ['eslint']
+#   let g:neomake_error_sign = {'text': '>>', 'texthl': 'Error'}
+#   let g:neomake_warning_sign = {'text': '>>',  'texthl': 'Todo'}
+# '''
 
 [[plugins]]
 repo = 'leafgarland/typescript-vim'
