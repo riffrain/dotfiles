@@ -62,7 +62,7 @@ repo = 'tpope/vim-fugitive'
 repo = 'itchyny/lightline.vim'
 hook_add = '''
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'powerline',
       \ 'component': {
       \   'readonly': '%{&readonly?"\ue0a2":""}',
       \ },
@@ -227,27 +227,27 @@ depends = 'unite.vim'
 # [[plugins]]
 # repo = 'tomasr/molokai'
 # [[plugins]]
-# repo = 'Erichain/vim-monokai-pro'
-# [[plugins]]
 # repo = 'crusoexia/vim-monokai'
 # [[plugins]]
 # repo = 'zacanger/angr.vim'
 # [[plugins]]
 # repo = 'marciomazza/vim-brogrammer-theme'
-[[plugins]]
-repo = 'joshdick/onedark.vim'
-hook_add = '''
-  " Reduce LineNr colors
-  " autocmd ColorScheme * highlight LineNr ctermbg=234 ctermfg=240
-  set background=dark
-  au MyAutoCmd VimEnter * nested colorscheme onedark
-'''
+# [[plugins]]
+# repo = 'joshdick/onedark.vim'
 # [[plugins]]
 # repo = 'rakr/vim-one'
 # [[plugins]]
 # repo = 'skielbasa/vim-material-monokai'
 # [[plugins]]
 # repo = 'jacoborus/tender.vim'
+[[plugins]]
+repo = 'Erichain/vim-monokai-pro'
+hook_add = '''
+  " Reduce LineNr colors
+  " "autocmd ColorScheme * highlight LineNr ctermbg=234 ctermfg=240
+  set background=dark
+  au MyAutoCmd VimEnter * nested colorscheme monokai_pro
+'''
 
 # Completion
 [[plugins]]
