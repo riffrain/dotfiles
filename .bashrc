@@ -66,11 +66,11 @@ xterm*|rxvt*)
 esac
 
 # some more ls aliases
-alias ll='ls -alF'
-alias ls="ls -G"
-alias la='ls -A'
-alias l='ls -CF'
-alias sl='ls'
+# alias ll='ls -alF'
+# alias ls="ls -G"
+# alias la='ls -A'
+# alias l='ls -CF'
+# alias sl='ls'
 alias vi='vim'
 alias ssh='ssh -A'
 alias less='less -qR'
