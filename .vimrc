@@ -111,9 +111,7 @@ let g:vue_disable_pre_processors=1
 
 " autocmd BufNewFile,BufRead *.vue set filetype=html "When opening or creating a .vue file set the filetype to HTML for proper rendering
 
-" ===========================
-" keymap
-" ===========================
+" Keymaps {{{
 inoremap jj <Esc>
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 noremap <Left> h
@@ -128,6 +126,21 @@ noremap <S-j> <C-d>
 noremap <S-k> <C-u>
 noremap <C-j> 10j
 noremap <C-k> 10k
+
+nnoremap <Leader>p :<C-u>set invpaste<CR>
+noremap <Leader>a :<C-u>set mouse=<CR>
+noremap <Leader>A :<C-u>set mouse=a<CR>
+nnoremap <Leader>s :<C-u>sp<CR>
+nnoremap <Leader>v :<C-u>vs<CR>
+nnoremap <Leader>S :<C-u>sp <TAB>
+nnoremap <Leader>V :<C-u>vs <TAB>
+nnoremap <Leader>t :<C-u>tabnew<cr>
+nnoremap <Leader>T :<C-u>tabnew <TAB>
+noremap <Leader>n :<C-u>:setlocal number!<CR>
+noremap <Leader>c :<C-u>:setlocal cursorline!<CR>
+noremap <Leader>C :<C-u>:setlocal cursorcolumn!<CR>
+noremap <Leader>l :<C-u>:setlocal list!<CR>
+"}}}
 
 " Unlimited undo {{{
 if has('persistent_undo')
