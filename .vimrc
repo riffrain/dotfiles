@@ -102,14 +102,12 @@ set hlsearch
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 if has("termguicolors")
-  "set termguicolors
+  set termguicolors
 endif
 set noshowmode
 "set ambiwidth=double
 
 let g:vue_disable_pre_processors=1
-
-" autocmd BufNewFile,BufRead *.vue set filetype=html "When opening or creating a .vue file set the filetype to HTML for proper rendering
 
 " Keymaps {{{
 inoremap jj <Esc>
