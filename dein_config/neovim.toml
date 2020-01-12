@@ -1,5 +1,5 @@
 # For NeoVim
-[[plugins]] # 補完
+[[plugins]]
 repo = 'Shougo/deoplete.nvim'
 if = 'has("python3")'
 on_event = 'InsertEnter'
@@ -18,9 +18,6 @@ hook_source = '''
     " <S-TAB>: completion back.
     inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 '''
-
-[[plugins]]
-repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
