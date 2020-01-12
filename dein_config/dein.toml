@@ -1,8 +1,12 @@
 # common toml
+[[plugins]]
+repo = 'Shougo/dein.vim'
+if = 'v:version < 800'
+rev = '1.5'
 
 [[plugins]]
 repo = 'Shougo/dein.vim'
-rev = '1.5'
+if = 'v:version >= 800'
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
@@ -191,55 +195,6 @@ let g:lightline = {
   endfunction
 '''
 
-[[plugins]]
-repo = 'Shougo/unite.vim'
-hook_add = '''
-  " ref: http://blog.monochromegane.com/blog/2013/09/18/ag-and-unite/
-  " insert modeで開始
-  let g:unite_enable_start_insert = 1
-  " 大文字小文字を区別しない
-  let g:unite_enable_ignore_case = 1
-  let g:unite_enable_smart_case = 1
-  " agが使える場合は、Unite.vimのgrepでagを使う
-  if executable('ag')
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-    let g:unite_source_grep_recursive_opt = ''
-  endif
-'''
-
-[[plugins]]
-repo = 'Shougo/vimfiler.vim'
-depends = 'unite.vim'
-hook_add = '''
-  let g:vimfiler_as_default_explorer = 1
-'''
-
-[[plugins]]
-repo = 'tacroe/unite-mark'
-depends = 'unite.vim'
-
-# colorscheme
-# [[plugins]]
-# repo = 'vim-scripts/Wombat'
-# [[plugins]]
-# repo = 'w0ng/vim-hybrid'
-# [[plugins]]
-# repo = 'tomasr/molokai'
-# [[plugins]]
-# repo = 'crusoexia/vim-monokai'
-# [[plugins]]
-# repo = 'zacanger/angr.vim'
-# [[plugins]]
-# repo = 'marciomazza/vim-brogrammer-theme'
-# [[plugins]]
-# repo = 'joshdick/onedark.vim'
-# [[plugins]]
-# repo = 'rakr/vim-one'
-# [[plugins]]
-# repo = 'skielbasa/vim-material-monokai'
-# [[plugins]]
-# repo = 'jacoborus/tender.vim'
 [[plugins]]
 repo = 'Erichain/vim-monokai-pro'
 hook_add = '''

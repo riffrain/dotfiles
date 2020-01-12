@@ -18,9 +18,7 @@ if [ ! -d "~/.cache/dein" ]; then
   mkdir -p ~/.cache/dein
   curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/.cache/dein/installer.sh
   sh ~/.cache/dein/installer.sh ~/.cache/dein
-  ln -s $path'/dein.toml' ~/.cache/dein/dein.toml
-  ln -s $path'/lazy.toml' ~/.cache/dein/lazy.toml
-  ln -s $path'/neovim.toml' ~/.cache/dein/neovim.toml
+  ln -s $path'/dein_config' ~/.cache/dein_config
 fi
 
 echo 'setup bash'

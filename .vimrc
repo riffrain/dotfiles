@@ -16,22 +16,30 @@ let s:cache_home = '~/.cache'
 let s:dein_dir = expand(s:cache_home . '/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if !isdirectory(s:dein_repo_dir)
-  call system('git clone --depth=1 -b 1.5 https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
+  call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
 endif
+if v:version < 800
+  call system('cd ' . shellescape(s:dein_repo_dir) . ' && git checkout 1.5')
+else
+  call system('cd ' . shellescape(s:dein_repo_dir) . ' && git checkout master')
+endif
+
 " Required:
 let &runtimepath = s:dein_repo_dir .",". &runtimepath
 " Load TOML
-let s:toml_file = s:dein_dir.'/dein.toml'
-let s:toml_file_lazy = s:dein_dir.'/lazy.toml'
-let s:toml_file_neovim = s:dein_dir.'/neovim.toml'
+let s:dein_config_dir = expand(s:cache_home . '/dein_config')
+let s:toml_file = s:dein_config_dir.'/dein.toml'
+let s:toml_file_vim = s:dein_config_dir.'/vim.toml'
+let s:toml_file_vim8 = s:dein_config_dir.'/vim8.toml'
+let s:toml_file_neovim = s:dein_config_dir.'/neovim.toml'
 
 " Required:
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
   " Load common toml
   call dein#load_toml(s:toml_file, {'lazy': 0})
-  " Load lazy toml
-  call dein#load_toml(s:toml_file_lazy, {'lazy': 0})
+  call dein#load_toml(s:toml_file_vim, {'lazy': 0})
+
   " Load neovim toml
   if has('nvim')
     call dein#load_toml(s:toml_file_neovim, {'lazy': 1})
