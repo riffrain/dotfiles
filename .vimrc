@@ -1,6 +1,8 @@
 set encoding=utf-8
 scriptencoding utf-8
 
+let g:mapleader = "\<Space>"
+
 if &compatible
   set nocompatible               " Be iMproved
 endif
@@ -97,7 +99,6 @@ endif
 set noshowmode
 "set ambiwidth=double
 
-let g:mapleader = "\<Space>"
 let g:vue_disable_pre_processors=1
 
 " autocmd BufNewFile,BufRead *.vue set filetype=html "When opening or creating a .vue file set the filetype to HTML for proper rendering
