@@ -13,10 +13,22 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 
 [[plugins]]
-repo = 'Shougo/neosnippet.vim'
+repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
-repo = 'editorconfig/editorconfig-vim'
+repo = 'Shougo/neosnippet.vim'
+hook_add = '''
+  inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  imap <expr><TAB>
+   \ pumvisible() ? "\<C-n>" :
+   \ neosnippet#expandable_or_jumpable() ?
+   \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+'''
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
