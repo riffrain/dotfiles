@@ -5,6 +5,7 @@ rev = 'release'
 
 [[plugins]]
 repo = 'Shougo/defx.nvim'
+if = 'has("python3")'
 on_cmd = 'Defx'
 hook_add = '''
   nnoremap <silent> <Leader>e :<C-u>Defx
@@ -28,10 +29,10 @@ hook_add = '''
       \ defx#is_directory() ?
       \ defx#do_action('open_directory') :
       \ defx#do_action('multi', [['open', 'split'], 'quit'])
-    " nnoremap <silent><buffer><expr> P
-    "   \ defx#is_directory() ?
-    "   \ defx#do_action('open_directory') :
-    "   \ defx#do_action('multi', [['open', 'pedit'], 'quit'])
+    nnoremap <silent><buffer><expr> P
+      \ defx#is_directory() ?
+      \ defx#do_action('open_directory') :
+      \ defx#do_action('multi', [['open', 'pedit'], 'quit'])
     nnoremap <silent><buffer><expr> o
       \ defx#do_action('open_or_close_tree')
     nnoremap <silent><buffer><expr> c
@@ -112,13 +113,14 @@ hook_source = '''
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
+if = 'has("python3")'
 hook_add = '''
   " keymap
-  " nnoremap <silent> <Leader>g  :<C-u>Denite grep:. -buffer-name=search-buffer<CR>
-  " nnoremap <silent> <Leader>cg :<C-u>Denite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
-  " nnoremap <silent> <Leader>r  :<C-u>DeniteResume search-buffer<CR>
-  " nnoremap <silent> <Leader>b  :<C-u>Denite buffer<CR>
-  " nnoremap <silent> <Leader>m  :<C-u>Denite mark<CR>
+  nnoremap <silent> <Leader>g  :<C-u>Denite grep:. -buffer-name=search-buffer<CR>
+  nnoremap <silent> <Leader>cg :<C-u>Denite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+  nnoremap <silent> <Leader>r  :<C-u>DeniteResume search-buffer<CR>
+  nnoremap <silent> <Leader>b  :<C-u>Denite buffer<CR>
+  nnoremap <silent> <Leader>m  :<C-u>Denite mark<CR>
 
   " 【Ctrl + d + a】 カレントディレクトリとバッファを表示
   nnoremap <silent><C-d>a :<C-u>Denite file buffer -split=floating file:new<CR>

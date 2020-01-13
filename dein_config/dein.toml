@@ -210,4 +210,4 @@ let g:lightline = {
 # repo = 'leafOfTree/vim-vue-plugin'
 # hook_add = '''
 #   let g:vim_vue_plugin_load_full_syntax = 1
-# '''
+# ''
