@@ -14,8 +14,6 @@ repo = 'editorconfig/editorconfig-vim'
 [[plugins]]
 repo = 'Erichain/vim-monokai-pro'
 hook_add = '''
-  " Reduce LineNr colors
-  " "autocmd ColorScheme * highlight LineNr ctermbg=234 ctermfg=240
   set background=dark
   au MyAutoCmd VimEnter * nested colorscheme monokai_pro
 '''
@@ -175,18 +173,6 @@ let g:lightline = {
 # repo = 'vim-syntastic/syntastic'
 # [[plugins]]
 # repo = 'mustache/vim-mustache-handlebars'
-
-# Emmet
-# [[plugins]]
-# repo = 'mattn/emmet-vim'
-# hook_source = '''
-#   let g:user_emmet_install_global = 1
-#   let g:user_emmet_leader_key='<C-e>'
-#   let g:user_emmet_mode='ivn'
-#   let g:use_emmet_complete_tag = 1
-#   let g:user_emmet_expandabbr_key = '<Space>'
-#   "autocmd MyAutoCmd VimEnter * nested EmmetInstall
-# '''
 
 #lint
 # [[plugins]]
