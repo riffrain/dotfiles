@@ -57,12 +57,10 @@ if dein#check_install()
 endif
 " }}}
 
-" =============
-" Settings
-" =============
+" Settings {{{
 set number
 set laststatus=2
-"set showcmd
+set showcmd
 set ruler
 set wildmenu
 set showmatch
@@ -111,8 +109,7 @@ if has("termguicolors")
 endif
 set noshowmode
 "set ambiwidth=double
-
-let g:vue_disable_pre_processors=1
+" }}}
 
 " Keymaps {{{
 inoremap jj <Esc>

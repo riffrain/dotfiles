@@ -1,5 +1,63 @@
 # For Vim
 [[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+hook_add = '''
+  inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  imap <expr><TAB>
+   \ pumvisible() ? "\<C-n>" :
+   \ neosnippet#expandable_or_jumpable() ?
+   \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+depends = 'neosnippet.vim'
+hook_add = '''
+"  let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/'
+'''
+
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+if = 'has("lua")'
+hook_add = '''
+  let g:acp_enableAtStartup = 0
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_smart_case = 1
+  let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+  inoremap <expr><C-g>     neocomplete#undo_completion()
+  inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function()
+    return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  endfunction
+
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+  let g:neocomplete#sources#dictionary#dictionaries = {
+     \ 'default' : '',
+     \ 'php' : $HOME.'/.vim/dict/php.dict',
+     \ 'ctp' : $HOME.'/.vim/dict/php.dict'
+     \ }
+'''
+
+[[plugins]]
+repo = 'Shougo/vimshell.vim'
+
+
+[[plugins]]
 repo = 'Shougo/unite.vim'
 hook_add = '''
   " ref: http://blog.monochromegane.com/blog/2013/09/18/ag-and-unite/
