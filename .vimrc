@@ -4,7 +4,7 @@ scriptencoding utf-8
 let g:mapleader = "\<Space>"
 
 if &compatible
-  set nocompatible               " Be iMproved
+  set nocompatible
 endif
 
 augroup MyAutoCmd
@@ -42,7 +42,7 @@ if dein#load_state(s:dein_dir)
 
   " Load neovim toml
   if has('nvim')
-    call dein#load_toml(s:toml_file_neovim, {'lazy': 1})
+    call dein#load_toml(s:toml_file_neovim, {'lazy': 0})
   endif
 
   " Required:
@@ -70,11 +70,12 @@ set wildmenu
 set showmatch
 set matchtime=1
 set list
-if has('nvim')
-  set listchars=tab:¦\ ,trail:･,extends:>,precedes:<,space:･
-else
-  set listchars=tab:¦\ ,trail:･,extends:>,precedes:<
-endif
+" if has('nvim')
+"   set listchars=tab:¦\ ,trail:･,extends:>,precedes:<,space:･
+" else
+"  set listchars=tab:¦\ ,trail:･,extends:>,precedes:<
+" endif
+set listchars=tab:¦\ ,trail:･,extends:>,precedes:<
 set backspace=indent,eol,start
 set title
 set whichwrap=b,s,[,],<,>
@@ -151,7 +152,7 @@ if has('persistent_undo')
 endif
 " }}}
 
-" NeoVim {{{
+" Neovim {{{
 if has('nvim')
   tnoremap <silent> <ESC> <C-\><C-n>
 endif

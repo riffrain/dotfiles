@@ -100,9 +100,7 @@ let g:lightline = {
       \ },
       \ 'component_type': {
       \   'syntastic': 'error',
-      \ },
-      \ 'separator': { 'left': "\ue0b0", 'right': "" },
-      \ 'subseparator': { 'left': "\ue0b1", 'right': "|" }
+      \ }
       \ }
 
   function! LightlineModified()
