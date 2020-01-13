@@ -36,13 +36,11 @@ let s:toml_file_neovim = s:dein_config_dir.'/neovim.toml'
 " Required:
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
-  " Load common toml
   call dein#load_toml(s:toml_file, {'lazy': 0})
-  call dein#load_toml(s:toml_file_vim, {'lazy': 0})
-
-  " Load neovim toml
   if has('nvim')
     call dein#load_toml(s:toml_file_neovim, {'lazy': 0})
+  else
+    call dein#load_toml(s:toml_file_vim, {'lazy': 0})
   endif
 
   " Required:
@@ -100,8 +98,14 @@ set t_Co=256
 set mouse=
 set incsearch
 set hlsearch
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+if has('nvim')
+  let &t_SI .= "\<Esc>[5 q"
+  let &t_SR .= "\<Esc>[4 q"
+  let &t_EI .= "\<Esc>[3 q"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 if has("termguicolors")
   set termguicolors
 endif

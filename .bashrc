@@ -115,6 +115,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export N_PREFIX=$HOME/.local
+
 # export
 export EDITOR=vi
 

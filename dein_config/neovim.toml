@@ -1,6 +1,7 @@
 # For NeoVim
 [[plugins]]
 repo = 'neoclide/coc.nvim'
+rev = 'release'
 
 [[plugins]]
 repo = 'Shougo/defx.nvim'
