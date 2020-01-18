@@ -54,10 +54,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/vimshell.vim'
-
-
-[[plugins]]
 repo = 'Shougo/unite.vim'
 hook_add = '''
   " ref: http://blog.monochromegane.com/blog/2013/09/18/ag-and-unite/

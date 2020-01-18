@@ -159,7 +159,6 @@ if has('nvim')
 endif
 " }}}
 
-highlight ColorColumn ctermfg=208 ctermbg=Black
 function! MarkMargin (on)
     if exists('b:MarkMargin')
         try
