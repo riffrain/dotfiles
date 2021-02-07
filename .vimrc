@@ -36,11 +36,13 @@ let s:toml_file_neovim = s:dein_config_dir.'/neovim.toml'
 " Required:
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
-  call dein#load_toml(s:toml_file, {'lazy': 0})
-  if has('nvim')
+  if v:version < 800
+    call dein#load_toml(s:toml_file, {'lazy': 0})
+    call dein#load_toml(s:toml_file_vim, {'lazy': 0})
+  elseif has('nvim')
     call dein#load_toml(s:toml_file_neovim, {'lazy': 0})
   else
-    call dein#load_toml(s:toml_file_vim, {'lazy': 0})
+    call dein#load_toml(s:toml_file_vim8, {'lazy': 0})
   endif
 
   " Required:

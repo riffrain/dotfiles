@@ -1,8 +1,232 @@
-# For Vim8
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo = 'Erichain/vim-monokai-pro'
+hook_add = '''
+  set background=dark
+  au MyAutoCmd VimEnter * nested colorscheme monokai_pro
+  highlight ColorColumn ctermfg=208 ctermbg=Black
+'''
+
+[[plugins]]
+repo = 'cohama/lexima.vim'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'wellle/targets.vim'
+
+[[plugins]]
+repo = 'tpope/vim-unimpaired'
+
+[[plugins]]
+repo = 'itchyny/vim-gitbranch'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+depends = ['itchyny/vim-gitbranch', 'tpope/vim-fugitive']
+hook_add = '''
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"\ue0a2":""}',
+      \ },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
+      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LightlineFugitive',
+      \   'filename': 'LightlineFilename',
+      \   'fileformat': 'LightlineFileformat',
+      \   'filetype': 'LightlineFiletype',
+      \   'fileencoding': 'LightlineFileencoding',
+      \   'mode': 'LightlineMode',
+      \   'ctrlpmark': 'CtrlPMark',
+      \ },
+      \ 'component_expand': {
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \ },
+      \ 'component_type': {
+      \   'syntastic': 'error',
+      \ }
+      \ }
+
+  function! LightlineModified()
+    return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  endfunction
+
+  function! LightlineReadonly()
+    return &ft !~? 'help' && &readonly ? 'RO' : ''
+  endfunction
+
+  function! LightlineFilename()
+    let fname = expand('%:~')
+    return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
+      \ fname == '__Tagbar__' ? g:lightline.fname :
+      \ fname =~ '__Gundo\|NERD_tree' ? '' :
+      \ &ft == 'vimfiler' ? '' :
+      \ &ft == 'unite' ? unite#get_status_string() :
+      \ &ft == 'vimshell' ? vimshell#get_status_string() :
+      \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+      \ ('' != fname ? fname : '[No Name]') .
+      \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+  endfunction
+
+  function! LightlineFugitive()
+    try
+    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+      let mark = ''  " edit here for cool mark
+      let branch = fugitive#head()
+      return branch !=# '' ? mark.branch : ''
+    endif
+    catch
+    endtry
+    return ''
+  endfunction
+
+  function! LightlineFileformat()
+    return winwidth(0) > 70 ? &fileformat : ''
+  endfunction
+
+  function! LightlineFiletype()
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+  endfunction
+
+  function! LightlineFileencoding()
+    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+  endfunction
+
+  function! LightlineMode()
+    let fname = expand('%:t')
+    return fname == '__Tagbar__' ? 'Tagbar' :
+      \ fname == 'ControlP' ? 'CtrlP' :
+      \ fname == '__Gundo__' ? 'Gundo' :
+      \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+      \ fname =~ 'NERD_tree' ? 'NERDTree' :
+      \ &ft == 'unite' ? 'Unite' :
+      \ &ft == 'vimfiler' ? 'VF' :
+      \ &ft == 'vimshell' ? 'VimShell' :
+      \ winwidth(0) > 60 ? lightline#mode() : ''
+  endfunction
+
+  function! CtrlPMark()
+    if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
+    call lightline#link('iR'[g:lightline.ctrlp_regex])
+    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
+        \ , g:lightline.ctrlp_next], 0)
+    else
+    return ''
+    endif
+  endfunction
+
+  let g:ctrlp_status_func = {
+    \ 'main': 'CtrlPStatusFunc_1',
+    \ 'prog': 'CtrlPStatusFunc_2',
+    \ }
+
+  function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
+    let g:lightline.ctrlp_regex = a:regex
+    let g:lightline.ctrlp_prev = a:prev
+    let g:lightline.ctrlp_item = a:item
+    let g:lightline.ctrlp_next = a:next
+    return lightline#statusline(0)
+  endfunction
+
+  function! CtrlPStatusFunc_2(str)
+    return lightline#statusline(0)
+  endfunction
+
+  let g:tagbar_status_func = 'TagbarStatusFunc'
+
+  function! TagbarStatusFunc(current, sort, fname, ...) abort
+    let g:lightline.fname = a:fname
+    return lightline#statusline(0)
+  endfunction
+
+  augroup AutoSyntastic
+    autocmd!
+    autocmd BufWritePost *.c,*.cpp call s:syntastic()
+  augroup END
+  function! s:syntastic()
+    SyntasticCheck
+    call lightline#update()
+  endfunction
+'''
+
+[[plugins]]
+repo = 't9md/vim-choosewin'
+hook_add='''
+  let g:choosewin_label='sdfghjkl'
+'''
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+depends = ['t9md/vim-choosewin', 'roxma/nvim-yarp', 'roxma/vim-hug-neovim-rpc']
+hook_add='''
+  nnoremap <Leader>e :Defx -split=vertical -winwidth=50 -direction=topleft -toggle<CR>
+
+  autocmd FileType defx call s:defx_my_settings()
+  function! s:defx_my_settings() abort
+    nnoremap <silent><buffer><expr> <CR>
+    \ defx#is_directory() ?
+    \ defx#do_action('open') :
+    \ defx#do_action('open', 'choose')
+    nnoremap <silent><buffer><expr> c defx#do_action('copy')
+    nnoremap <silent><buffer><expr> m defx#do_action('move')
+    nnoremap <silent><buffer><expr> p defx#do_action('paste')
+    nnoremap <silent><buffer><expr> l
+    \ defx#is_directory() ?
+    \ defx#do_action('open_tree') :
+    \ defx#do_action('open', 'choose')
+    nnoremap <silent><buffer><expr> o defx#do_action('open_tree', 'toggle')
+    nnoremap <silent><buffer><expr> K defx#do_action('new_directory')
+    nnoremap <silent><buffer><expr> N defx#do_action('new_file')
+    nnoremap <silent><buffer><expr> M defx#do_action('new_multiple_files')
+    nnoremap <silent><buffer><expr> C defx#do_action('toggle_columns', 'mark:indent:icon:filename:type:size:time')
+    nnoremap <silent><buffer><expr> S defx#do_action('toggle_sort', 'time')
+    nnoremap <silent><buffer><expr> d defx#do_action('remove')
+    nnoremap <silent><buffer><expr> r defx#do_action('rename')
+    nnoremap <silent><buffer><expr> ! defx#do_action('execute_command')
+    nnoremap <silent><buffer><expr> x defx#do_action('execute_system')
+    nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
+    nnoremap <silent><buffer><expr> . defx#do_action('toggle_ignored_files')
+    nnoremap <silent><buffer><expr> ; defx#do_action('repeat')
+    nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
+    nnoremap <silent><buffer><expr> ~ defx#do_action('cd')
+    nnoremap <silent><buffer><expr> q defx#do_action('quit')
+    nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
+    nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
+    nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
+    nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
+    nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
+  endfunction
+'''
+
+[[plugins]]
+repo='prabirshrestha/vim-lsp'
+[[plugins]]
+repo='mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
 # [[plugins]]
-# repo = 'roxma/nvim-yarp'
-# if = "!has('nvim')"
-#
+# repo = 'Shougo/deoplete.nvim'
 # [[plugins]]
-# repo = 'roxma/vim-hug-neovim-rpc'
-# if = "!has('nvim')"
+# repo = 'lighttiger2505/deoplete-vim-lsp'
