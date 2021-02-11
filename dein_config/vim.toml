@@ -75,15 +75,5 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/vimfiler.vim'
-depends = 'unite.vim'
-hook_add = '''
-  let g:vimfiler_as_default_explorer = 1
-
-  " keymap
-  nnoremap <silent> <Leader>e :VimFilerExplorer<CR>
-'''
-
-[[plugins]]
 repo = 'tacroe/unite-mark'
 depends = 'unite.vim'

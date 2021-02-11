@@ -2,6 +2,13 @@
 
 path=$(pwd)
 
+# agignore {{{
+if [ -f ~/.agignore ]; then
+  unlink ~/.agignore
+fi
+ln -s $path'/.agignore' ~/.agignore
+# }}}
+
 # vim {{{
 echo 'install editor'
 ln -s $path'/.vim' ~/.vim
@@ -24,7 +31,7 @@ fi
 
 echo 'setup bash'
 if [ -f ~/.bashrc ]; then
-   unlink ~/.bashrc
+ unlink ~/.bashrc
 fi
 ln -s $path'/.bashrc' ~/.bashrc
 #
@@ -34,20 +41,20 @@ if [ -f ~/.inputrc ]; then
 fi
 ln -s $path'/.inputrc' ~/.inputrc
 
- echo 'add git tweaks'
- if [ -f ~/.gitconfig ]; then
-   touch ~/.gitconfig
-   echo "[include] path = "$path"/git/git-alias" >> ~/.gitconfig
- fi
- if [ -f ~/.git-prompt.sh ]; then
-   unlink ~/.git-prompt.sh
- fi
- ln -s $path'/git/git-prompt.sh' ~/.git-prompt.sh
+echo 'add git tweaks'
+if [ -f ~/.gitconfig ]; then
+  touch ~/.gitconfig
+  echo "[include] path = "$path"/git/git-alias" >> ~/.gitconfig
+fi
+if [ -f ~/.git-prompt.sh ]; then
+  unlink ~/.git-prompt.sh
+fi
+ln -s $path'/git/git-prompt.sh' ~/.git-prompt.sh
 
- if [ -f ~/.git-completion.bash ]; then
-   unlink ~/.git-completion.bash
- fi
- ln -s $path'/git/git-completion.bash' ~/.git-completion.bash
+if [ -f ~/.git-completion.bash ]; then
+  unlink ~/.git-completion.bash
+fi
+ln -s $path'/git/git-completion.bash' ~/.git-completion.bash
 
- # apply
- source ~/.bashrc
+# apply
+source ~/.bashrc
