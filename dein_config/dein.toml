@@ -94,11 +94,11 @@ let g:lightline = {
 
   fu! LightlineFugitive()
     try
-    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
-      let mark = ''  " edit here for cool mark
-      let branch = fugitive#head()
-      retu branch !=# '' ? mark.branch : ''
-    en
+      if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+        let mark = ''  " edit here for cool mark
+        let branch = fugitive#head()
+        retu branch !=# '' ? mark.branch : ''
+      en
     catch
     endtry
     retu ''
@@ -131,11 +131,11 @@ let g:lightline = {
 
   fu! CtrlPMark()
     if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
-    cal lightline#link('iR'[g:lightline.ctrlp_regex])
-    retu lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
-        \ , g:lightline.ctrlp_next], 0)
-    else
-    retu ''
+      cal lightline#link('iR'[g:lightline.ctrlp_regex])
+      retu lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
+          \ , g:lightline.ctrlp_next], 0)
+    el
+      retu ''
     en
   endf
 
@@ -183,9 +183,10 @@ hook_add='''
     let g:ctrlp_use_caching=0
     let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
   en
+  let g:ctrlp_show_hidden = 1
 
-  nnoremap <Leader>g :CtrlP<CR>
-  nnoremap <Leader>b :CtrlPMixed<CR>
+  nn <Leader>g :CtrlP<CR>
+  nn <Leader>b :CtrlPMixed<CR>
 '''
 
 [[plugins]]
@@ -198,50 +199,51 @@ hook_add='''
 
 [[plugins]]
 repo='preservim/nerdtree'
+depends = ['vim-choosewin']
 hook_add='''
-  nnoremap <Leader>e :NERDTreeToggle<CR>
   let g:NERDTreeMouseMode = 0
   let g:NERDTreeMapToggleHidden = '.'
   let g:NERDTreeMapCustomOpen = 'o'
   let g:NERDTreeMapActivateNode = '<CR>'
 
-  au MyAutoCmd FileType nerdtree cal s:MyNerdTreeSettings()
-  fu! s:MyNerdTreeSettings()
-    cal NERDTreeAddKeyMap({
-           \ 'key': 'l',
-           \ 'callback': 'ToggleDir',
-           \ 'quickhelpText': 'open current dir',
-           \ 'scope': 'DirNode' })
-    cal NERDTreeAddKeyMap({
-           \ 'key': 'h',
-           \ 'callback': 'ToggleDir',
-           \ 'quickhelpText': 'close current dir',
-           \ 'scope': 'DirNode' })
-    cal NERDTreeAddKeyMap({
-          \ 'key':      g:NERDTreeMapActivateNode,
-          \ 'scope':    'FileNode',
-          \ 'callback': 'ChooseWinOpen',
-          \ 'override': 1 })
-
-    fu! ToggleDir(directoryNode)
-      if a:directoryNode.isRoot() && a:directoryNode.isOpen
-          retu
-      en
-      cal a:directoryNode.activate({})
-    endf
-
-    fu! ChooseWinOpen(fileNode)
-      let l:wincount = winnr('$')
-      if l:wincount > 2
-        let l:nerdwindow = win_getid()
-        cal choosewin#start(range(2, l:wincount))
-        cal win_gotoid(l:nerdwindow)
-      en
-
-      cal a:fileNode.activate({
-        \ 'reuse': 'all',
-        \ 'where': 'p',
-        \ 'keepopen': !nerdtree#closeTreeOnOpen() })
-    endf
+  nn <Leader>e :NERDTreeToggle<CR>
+'''
+hook_post_source='''
+  if exists('g:loaded_my_nerdtree_settings')
+      fini
+  en
+  let g:loaded_my_nerdtree_settings = 1
+  cal NERDTreeAddKeyMap({
+         \ 'key': 'l',
+         \ 'callback': 'ToggleDir',
+         \ 'quickhelpText': 'open current dir',
+         \ 'scope': 'DirNode' })
+  cal NERDTreeAddKeyMap({
+         \ 'key': 'h',
+         \ 'callback': 'ToggleDir',
+         \ 'quickhelpText': 'close current dir',
+         \ 'scope': 'DirNode' })
+  cal NERDTreeAddKeyMap({
+        \ 'key':      g:NERDTreeMapActivateNode,
+        \ 'scope':    'FileNode',
+        \ 'callback': 'ChooseWinOpen',
+        \ 'override': 1 })
+  fu! ToggleDir(directoryNode)
+    if a:directoryNode.isRoot() && a:directoryNode.isOpen
+        retu
+    en
+    cal a:directoryNode.activate({})
+  endf
+  fu! ChooseWinOpen(fileNode)
+    let l:wincount = winnr('$')
+    if l:wincount > 2
+      let l:nerdwindow = win_getid()
+      cal choosewin#start(range(2, l:wincount))
+      cal win_gotoid(l:nerdwindow)
+    en
+    cal a:fileNode.activate({
+      \ 'reuse': 'all',
+      \ 'where': 'p',
+      \ 'keepopen': !nerdtree#closeTreeOnOpen() })
   endf
 '''
