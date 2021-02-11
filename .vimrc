@@ -29,20 +29,14 @@ let &runtimepath = s:dein_repo_dir .",". &runtimepath
 " Load TOML
 let s:dein_config_dir = expand(s:cache_home . '/dein_config')
 let s:toml_file = s:dein_config_dir.'/dein.toml'
-let s:toml_file_vim = s:dein_config_dir.'/vim.toml'
 let s:toml_file_vim8 = s:dein_config_dir.'/vim8.toml'
 
 " Required:
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
-
   call dein#load_toml(s:toml_file, {'lazy': 0})
   if v:version >= 800
-    " vim8
     call dein#load_toml(s:toml_file_vim8, {'lazy': 0})
-  else
-    " vim7
-    call dein#load_toml(s:toml_file_vim, {'lazy': 0})
   endif
 
   " Required:

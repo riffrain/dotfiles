@@ -189,6 +189,7 @@ hook_add='''
   let g:NERDTreeMapToggleHidden = '.'
   let g:NERDTreeMapCustomOpen = 'o'
   let g:NERDTreeMapActivateNode = '<CR>'
+  let g:NERDTreeShowHidden = 1
 
   au FileType nerdtree cal s:MyNerdTreeSettings()
   fu! s:MyNerdTreeSettings()
