@@ -37,6 +37,12 @@ repo = 'itchyny/vim-gitbranch'
 repo = 'tpope/vim-fugitive'
 
 [[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
+[[plugins]]
 repo = 'itchyny/lightline.vim'
 depends = ['itchyny/vim-gitbranch', 'tpope/vim-fugitive']
 hook_add = '''
@@ -173,6 +179,7 @@ repo = 't9md/vim-choosewin'
 hook_add='''
   let g:choosewin_label='sdfghjkl'
   let g:choosewin_overlay_enable = 1
+  let g:choosewin_overlay_clear_multibyte = 1
 '''
 
 [[plugins]]
@@ -200,6 +207,12 @@ hook_post_source='''
          \ 'quickhelpText': 'close current dir',
          \ 'scope': 'DirNode' })
 
+  call NERDTreeAddKeyMap({
+        \ 'key':      g:NERDTreeMapActivateNode,
+        \ 'scope':    'FileNode',
+        \ 'callback': 'ChooseWinOpen',
+        \ 'override': 1 })
+
   function! MyNERDTreeToggle(directoryNode) abort
     if a:directoryNode.isRoot() && a:directoryNode.isOpen
         return
@@ -207,22 +220,17 @@ hook_post_source='''
     call a:directoryNode.activate({})
   endfunction
 
-  " Define NERDTree key mappings.
-  call NERDTreeAddKeyMap({
-        \ 'key':      g:NERDTreeMapActivateNode,
-        \ 'scope':    'FileNode',
-        \ 'callback': 'ChooseWinOpen',
-        \ 'override': 1
-        \ })
-
-  function! ChooseWinOpen(node) abort
-    " It is necessary to jump back the NERDTree window, cause local buffer
-    " variables are required for the following procedure.
-    let l:nerdwindow = win_getid()
-    call choosewin#start(range(2, winnr('$')))
-    " Jump back to the NERDTree window and continue to open the file.
-    call win_gotoid(l:nerdwindow)
-    call a:node.activate({'reuse': 'all', 'where': 'p', 'keepopen': !nerdtree#closeTreeOnOpen()})
+  function! ChooseWinOpen(fileNode) abort
+    let l:wincount = winnr('$')
+    if l:wincount > 2
+      let l:nerdwindow = win_getid()
+      call choosewin#start(range(2, l:wincount))
+      call win_gotoid(l:nerdwindow)
+    endif
+    call a:fileNode.activate({
+      \ 'reuse': 'all',
+      \ 'where': 'p',
+      \ 'keepopen': !nerdtree#closeTreeOnOpen() })
   endfunction
 '''
 
