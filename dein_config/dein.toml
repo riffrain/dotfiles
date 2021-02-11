@@ -213,15 +213,15 @@ hook_add='''
 hook_post_source='''
   cal NERDTreeAddKeyMap({
          \ 'key': 'l',
-         \ 'callback': 'ToggleDir',
+         \ 'callback': 'OpenCurrentDir',
          \ 'quickhelpText': 'open current dir',
          \ 'scope': 'DirNode' })
 
   cal NERDTreeAddKeyMap({
          \ 'key': 'h',
-         \ 'callback': 'ToggleDir',
+         \ 'callback': 'CloseCurrentDir',
          \ 'quickhelpText': 'close current dir',
-         \ 'scope': 'DirNode' })
+         \ 'scope': 'Node' })
 
   cal NERDTreeAddKeyMap({
         \ 'key':      g:NERDTreeMapActivateNode,
@@ -229,11 +229,34 @@ hook_post_source='''
         \ 'callback': 'ChooseWinOpen',
         \ 'override': 1 })
 
-  fu! ToggleDir(directoryNode)
-    if a:directoryNode.isRoot() && a:directoryNode.isOpen
-        retu
+  fu! OpenCurrentDir(dirNode)
+    if a:dirNode.isRoot()
+      return
     en
-    cal a:directoryNode.activate({})
+    if a:dirNode.isOpen
+      return
+    en
+    cal a:dirNode.activate({})
+    let l:children = a:dirNode.getVisibleChildren()
+    cal l:children[0].putCursorHere(1, 0)
+  endf
+
+  fu! CloseCurrentDir(node)
+    let l:node = a:node.path.isDirectory ? a:node.getCascadeRoot() : a:node
+    if l:node.isRoot()
+      return
+    en
+    if empty(l:node.parent)
+      return
+    en
+    if l:node.parent.isRoot()
+      return
+    en
+    if !l:node.parent.isOpen
+      return
+    en
+    cal l:node.parent.putCursorHere(1, 0)
+    cal l:node.parent.activate({})
   endf
 
   fu! ChooseWinOpen(fileNode)
