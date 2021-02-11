@@ -29,6 +29,12 @@ repo = 'itchyny/vim-gitbranch'
 repo = 'tpope/vim-repeat'
 
 [[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
 repo = 'Erichain/vim-monokai-pro'
 hook_add = '''
   au MyAutoCmd VimEnter * nested colorscheme monokai_pro
@@ -65,17 +71,17 @@ let g:lightline = {
       \ }
       \ }
 
-  function! LightlineModified()
-    return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-  endfunction
+  fu! LightlineModified()
+    retu &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  endf
 
-  function! LightlineReadonly()
-    return &ft !~? 'help' && &readonly ? 'RO' : ''
-  endfunction
+  fu! LightlineReadonly()
+    retu &ft !~? 'help' && &readonly ? 'RO' : ''
+  endf
 
-  function! LightlineFilename()
+  fu! LightlineFilename()
     let fname = expand('%:~')
-    return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
+    retu fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
       \ fname == '__Tagbar__' ? g:lightline.fname :
       \ fname =~ '__Gundo\|NERD_tree' ? '' :
       \ &ft == 'vimfiler' ? '' :
@@ -84,35 +90,35 @@ let g:lightline = {
       \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
       \ ('' != fname ? fname : '[No Name]') .
       \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
-  endfunction
+  endf
 
-  function! LightlineFugitive()
+  fu! LightlineFugitive()
     try
     if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
       let mark = ''  " edit here for cool mark
       let branch = fugitive#head()
-      return branch !=# '' ? mark.branch : ''
-    endif
+      retu branch !=# '' ? mark.branch : ''
+    en
     catch
     endtry
-    return ''
-  endfunction
+    retu ''
+  endf
 
-  function! LightlineFileformat()
-    return winwidth(0) > 70 ? &fileformat : ''
-  endfunction
+  fu! LightlineFileformat()
+    retu winwidth(0) > 70 ? &fileformat : ''
+  endf
 
-  function! LightlineFiletype()
-    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-  endfunction
+  fu! LightlineFiletype()
+    retu winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+  endf
 
-  function! LightlineFileencoding()
-    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-  endfunction
+  fu! LightlineFileencoding()
+    retu winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+  endf
 
-  function! LightlineMode()
+  fu! LightlineMode()
     let fname = expand('%:t')
-    return fname == '__Tagbar__' ? 'Tagbar' :
+    retu fname == '__Tagbar__' ? 'Tagbar' :
       \ fname == 'ControlP' ? 'CtrlP' :
       \ fname == '__Gundo__' ? 'Gundo' :
       \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
@@ -121,50 +127,51 @@ let g:lightline = {
       \ &ft == 'vimfiler' ? 'VF' :
       \ &ft == 'vimshell' ? 'VimShell' :
       \ winwidth(0) > 60 ? lightline#mode() : ''
-  endfunction
+  endf
 
-  function! CtrlPMark()
+  fu! CtrlPMark()
     if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
-    call lightline#link('iR'[g:lightline.ctrlp_regex])
-    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
+    cal lightline#link('iR'[g:lightline.ctrlp_regex])
+    retu lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
         \ , g:lightline.ctrlp_next], 0)
     else
-    return ''
-    endif
-  endfunction
+    retu ''
+    en
+  endf
 
   let g:ctrlp_status_func = {
     \ 'main': 'CtrlPStatusFunc_1',
     \ 'prog': 'CtrlPStatusFunc_2',
     \ }
 
-  function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
+  fu! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
     let g:lightline.ctrlp_regex = a:regex
     let g:lightline.ctrlp_prev = a:prev
     let g:lightline.ctrlp_item = a:item
     let g:lightline.ctrlp_next = a:next
-    return lightline#statusline(0)
-  endfunction
+    retu lightline#statusline(0)
+  endf
 
-  function! CtrlPStatusFunc_2(str)
-    return lightline#statusline(0)
-  endfunction
+  fu! CtrlPStatusFunc_2(str)
+    retu lightline#statusline(0)
+  endf
 
   let g:tagbar_status_func = 'TagbarStatusFunc'
 
-  function! TagbarStatusFunc(current, sort, fname, ...) abort
+  fu! TagbarStatusFunc(current, sort, fname, ...) abort
     let g:lightline.fname = a:fname
-    return lightline#statusline(0)
-  endfunction
+    retu lightline#statusline(0)
+  endf
 
   augroup AutoSyntastic
-    autocmd!
-    autocmd BufWritePost *.c,*.cpp call s:syntastic()
+    au!
+    au BufWritePost *.c,*.cpp cal s:syntastic()
   augroup END
-  function! s:syntastic()
+
+  fu! s:syntastic()
     SyntasticCheck
-    call lightline#update()
-  endfunction
+    cal lightline#update()
+  endf
 '''
 
 [[plugins]]
@@ -174,57 +181,54 @@ hook_add='''
   let g:choosewin_overlay_enable = 1
   let g:choosewin_overlay_clear_multibyte = 1
 '''
-
 [[plugins]]
 repo='preservim/nerdtree'
 hook_add='''
   nnoremap <Leader>e :NERDTreeToggle<CR>
-
   let g:NERDTreeMouseMode = 0
   let g:NERDTreeMapToggleHidden = '.'
   let g:NERDTreeMapCustomOpen = 'o'
   let g:NERDTreeMapActivateNode = '<CR>'
 
-  autocmd VimEnter * call dein#call_hook('post_source')
-'''
-hook_post_source='''
-  call NERDTreeAddKeyMap({
-         \ 'key': 'l',
-         \ 'callback': 'MyNERDTreeToggle',
-         \ 'quickhelpText': 'open current dir',
-         \ 'scope': 'DirNode' })
+  au FileType nerdtree cal s:MyNerdTreeSettings()
+  fu! s:MyNerdTreeSettings()
+    cal NERDTreeAddKeyMap({
+           \ 'key': 'l',
+           \ 'callback': 'ToggleDir',
+           \ 'quickhelpText': 'open current dir',
+           \ 'scope': 'DirNode' })
+    cal NERDTreeAddKeyMap({
+           \ 'key': 'h',
+           \ 'callback': 'ToggleDir',
+           \ 'quickhelpText': 'close current dir',
+           \ 'scope': 'DirNode' })
+    cal NERDTreeAddKeyMap({
+          \ 'key':      g:NERDTreeMapActivateNode,
+          \ 'scope':    'FileNode',
+          \ 'callback': 'ChooseWinOpen',
+          \ 'override': 1 })
 
-  call NERDTreeAddKeyMap({
-         \ 'key': 'h',
-         \ 'callback': 'MyNERDTreeToggle',
-         \ 'quickhelpText': 'close current dir',
-         \ 'scope': 'DirNode' })
+    fu! ToggleDir(directoryNode)
+      if a:directoryNode.isRoot() && a:directoryNode.isOpen
+          retu
+      en
+      cal a:directoryNode.activate({})
+    endf
 
-  call NERDTreeAddKeyMap({
-        \ 'key':      g:NERDTreeMapActivateNode,
-        \ 'scope':    'FileNode',
-        \ 'callback': 'ChooseWinOpen',
-        \ 'override': 1 })
+    fu! ChooseWinOpen(fileNode)
+      let l:wincount = winnr('$')
+      if l:wincount > 2
+        let l:nerdwindow = win_getid()
+        cal choosewin#start(range(2, l:wincount))
+        cal win_gotoid(l:nerdwindow)
+      en
 
-  function! MyNERDTreeToggle(directoryNode) abort
-    if a:directoryNode.isRoot() && a:directoryNode.isOpen
-        return
-    endif
-    call a:directoryNode.activate({})
-  endfunction
-
-  function! ChooseWinOpen(fileNode) abort
-    let l:wincount = winnr('$')
-    if l:wincount > 2
-      let l:nerdwindow = win_getid()
-      call choosewin#start(range(2, l:wincount))
-      call win_gotoid(l:nerdwindow)
-    endif
-    call a:fileNode.activate({
-      \ 'reuse': 'all',
-      \ 'where': 'p',
-      \ 'keepopen': !nerdtree#closeTreeOnOpen() })
-  endfunction
+      cal a:fileNode.activate({
+        \ 'reuse': 'all',
+        \ 'where': 'p',
+        \ 'keepopen': !nerdtree#closeTreeOnOpen() })
+    endf
+  endf
 '''
 
 [[plugins]]
@@ -232,9 +236,11 @@ repo='rking/ag.vim'
 [[plugins]]
 repo='ctrlpvim/ctrlp.vim'
 hook_add='''
-if executable('ag')
-  let g:ctrlp_use_caching=0
-  let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
-endif
-nnoremap <Leader>g :CtrlP<CR>
+  if executable('ag')
+    let g:ctrlp_use_caching=0
+    let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
+  en
+
+  nnoremap <Leader>g :CtrlP<CR>
+  nnoremap <Leader>b :CtrlPMixed<CR>
 '''
