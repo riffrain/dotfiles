@@ -176,8 +176,10 @@ let g:lightline = {
 
 [[plugins]]
 repo='rking/ag.vim'
+
 [[plugins]]
 repo='ctrlpvim/ctrlp.vim'
+depends = ['ag.vim']
 hook_add='''
   if executable('ag')
     let g:ctrlp_use_caching=0
@@ -209,31 +211,31 @@ hook_add='''
   nn <Leader>e :NERDTreeToggle<CR>
 '''
 hook_post_source='''
-  if exists('g:loaded_my_nerdtree_settings')
-      fini
-  en
-  let g:loaded_my_nerdtree_settings = 1
   cal NERDTreeAddKeyMap({
          \ 'key': 'l',
          \ 'callback': 'ToggleDir',
          \ 'quickhelpText': 'open current dir',
          \ 'scope': 'DirNode' })
+
   cal NERDTreeAddKeyMap({
          \ 'key': 'h',
          \ 'callback': 'ToggleDir',
          \ 'quickhelpText': 'close current dir',
          \ 'scope': 'DirNode' })
+
   cal NERDTreeAddKeyMap({
         \ 'key':      g:NERDTreeMapActivateNode,
         \ 'scope':    'FileNode',
         \ 'callback': 'ChooseWinOpen',
         \ 'override': 1 })
+
   fu! ToggleDir(directoryNode)
     if a:directoryNode.isRoot() && a:directoryNode.isOpen
         retu
     en
     cal a:directoryNode.activate({})
   endf
+
   fu! ChooseWinOpen(fileNode)
     let l:wincount = winnr('$')
     if l:wincount > 2
