@@ -11,14 +11,6 @@ if = 'v:version >= 800'
 repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
-repo = 'Erichain/vim-monokai-pro'
-hook_add = '''
-  set background=dark
-  au MyAutoCmd VimEnter * nested colorscheme monokai_pro
-  highlight ColorColumn ctermfg=208 ctermbg=Black
-'''
-
-[[plugins]]
 repo = 'cohama/lexima.vim'
 
 [[plugins]]
@@ -34,13 +26,14 @@ repo = 'tpope/vim-unimpaired'
 repo = 'itchyny/vim-gitbranch'
 
 [[plugins]]
-repo = 'tpope/vim-fugitive'
-
-[[plugins]]
-repo = 'airblade/vim-gitgutter'
-
-[[plugins]]
 repo = 'tpope/vim-repeat'
+
+[[plugins]]
+repo = 'Erichain/vim-monokai-pro'
+hook_add = '''
+  au MyAutoCmd VimEnter * nested colorscheme monokai_pro
+  highlight ColorColumn ctermfg=208 ctermbg=Black
+'''
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
