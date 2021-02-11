@@ -5,24 +5,24 @@ let g:mapleader = "\<Space>"
 
 if &compatible
   set nocompatible
-endif
+en
 
-augroup MyAutoCmd
-  autocmd!
-augroup END
+aug MyAutoCmd
+  au!
+aug END
 
 " dein.vim {{{
 let s:cache_home = '~/.cache'
 let s:dein_dir = expand(s:cache_home . '/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if !isdirectory(s:dein_repo_dir)
-  call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
-endif
+  cal system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
+en
 if v:version < 800
-  call system('cd ' . shellescape(s:dein_repo_dir) . ' && git checkout 1.5')
+  cal system('cd ' . shellescape(s:dein_repo_dir) . ' && git checkout 1.5')
 else
-  call system('cd ' . shellescape(s:dein_repo_dir) . ' && git checkout master')
-endif
+  cal system('cd ' . shellescape(s:dein_repo_dir) . ' && git checkout master')
+en
 
 " Required:
 let &runtimepath = s:dein_repo_dir .",". &runtimepath
@@ -33,24 +33,24 @@ let s:toml_file_vim8 = s:dein_config_dir.'/vim8.toml'
 
 " Required:
 if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-  call dein#load_toml(s:toml_file, {'lazy': 0})
+  cal dein#begin(s:dein_dir)
+  cal dein#load_toml(s:toml_file, {'lazy': 0})
   if v:version >= 800
-    call dein#load_toml(s:toml_file_vim8, {'lazy': 0})
-  endif
+    cal dein#load_toml(s:toml_file_vim8, {'lazy': 0})
+  en
 
   " Required:
-  call dein#end()
-  call dein#save_state()
-endif
+  cal dein#end()
+  cal dein#save_state()
+en
 
 " Required:
 filetype plugin indent on
 syntax enable
 
 if dein#check_install()
-  call dein#install()
-endif
+  cal dein#install()
+en
 " }}}
 
 " Settings {{{
@@ -62,19 +62,12 @@ set wildmenu
 set showmatch
 set matchtime=1
 set list
-" if has('nvim')
-"   set listchars=tab:¦\ ,trail:･,extends:>,precedes:<,space:･
-" else
-"  set listchars=tab:¦\ ,trail:･,extends:>,precedes:<
-" endif
 set listchars=tab:¦\ ,trail:･,extends:>,precedes:<
 set backspace=indent,eol,start
 set title
 set whichwrap=b,s,[,],<,>
-"set smartindent
-"set clipboard=unnamed,autoselect
 set nocursorline
-autocmd InsertLeave * set cursorline!
+au InsertLeave * set cursorline!
 set fenc=utf-8
 set nobackup
 set noswapfile
@@ -85,26 +78,18 @@ set noswapfile
 set tabstop=2
 set shiftwidth=2
 set expandtab
-"set noexpandtab
 set softtabstop=0
 set showtabline=2
 set t_Co=256
 set mouse=
 set incsearch
 set hlsearch
-if has('nvim')
-  let &t_SI .= "\<Esc>[5 q"
-  let &t_SR .= "\<Esc>[4 q"
-  let &t_EI .= "\<Esc>[3 q"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 if has("termguicolors")
   set termguicolors
-endif
+en
 set noshowmode
-"set ambiwidth=double
 set background=dark
 " }}}
 
@@ -143,34 +128,28 @@ noremap <Leader>l :<C-u>:setlocal list!<CR>
 if has('persistent_undo')
     let s:undo_dir = expand(s:cache_home . '/vimundo')
     if !isdirectory(s:undo_dir)
-      call system('mkdir -p ' . shellescape(s:undo_dir))
-    endif
+      cal system('mkdir -p ' . shellescape(s:undo_dir))
+    en
     set undodir=~/.cache/vimundo
     set undofile
-endif
+en
 " }}}
 
-" Neovim {{{
-if has('nvim')
-  tnoremap <silent> <ESC> <C-\><C-n>
-endif
-" }}}
-
-function! MarkMargin (on)
+fu! MarkMargin (on)
     if exists('b:MarkMargin')
         try
-            call matchdelete(b:MarkMargin)
+            cal matchdelete(b:MarkMargin)
         catch /./
         endtry
         unlet b:MarkMargin
-    endif
+    en
     if a:on
         let b:MarkMargin = matchadd('ColorColumn', '\%81v\s*\zs\S', 100)
-    endif
-endfunction
+    en
+endf
 
-augroup MarkMargin
-    autocmd!
-    autocmd  BufEnter  *       :call MarkMargin(1)
-    autocmd  BufEnter  *.vp*   :call MarkMargin(0)
-augroup END
+aug MarkMargin
+    au!
+    au  BufEnter  *       :cal MarkMargin(1)
+    au  BufEnter  *.vp*   :cal MarkMargin(0)
+aug END

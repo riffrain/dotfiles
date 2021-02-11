@@ -163,15 +163,29 @@ let g:lightline = {
     retu lightline#statusline(0)
   endf
 
-  augroup AutoSyntastic
+  aug AutoSyntastic
     au!
     au BufWritePost *.c,*.cpp cal s:syntastic()
-  augroup END
+  aug END
 
   fu! s:syntastic()
     SyntasticCheck
     cal lightline#update()
   endf
+'''
+
+[[plugins]]
+repo='rking/ag.vim'
+[[plugins]]
+repo='ctrlpvim/ctrlp.vim'
+hook_add='''
+  if executable('ag')
+    let g:ctrlp_use_caching=0
+    let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
+  en
+
+  nnoremap <Leader>g :CtrlP<CR>
+  nnoremap <Leader>b :CtrlPMixed<CR>
 '''
 
 [[plugins]]
@@ -181,6 +195,7 @@ hook_add='''
   let g:choosewin_overlay_enable = 1
   let g:choosewin_overlay_clear_multibyte = 1
 '''
+
 [[plugins]]
 repo='preservim/nerdtree'
 hook_add='''
@@ -189,9 +204,8 @@ hook_add='''
   let g:NERDTreeMapToggleHidden = '.'
   let g:NERDTreeMapCustomOpen = 'o'
   let g:NERDTreeMapActivateNode = '<CR>'
-  let g:NERDTreeShowHidden = 1
 
-  au FileType nerdtree cal s:MyNerdTreeSettings()
+  au MyAutoCmd FileType nerdtree cal s:MyNerdTreeSettings()
   fu! s:MyNerdTreeSettings()
     cal NERDTreeAddKeyMap({
            \ 'key': 'l',
@@ -230,18 +244,4 @@ hook_add='''
         \ 'keepopen': !nerdtree#closeTreeOnOpen() })
     endf
   endf
-'''
-
-[[plugins]]
-repo='rking/ag.vim'
-[[plugins]]
-repo='ctrlpvim/ctrlp.vim'
-hook_add='''
-  if executable('ag')
-    let g:ctrlp_use_caching=0
-    let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
-  en
-
-  nnoremap <Leader>g :CtrlP<CR>
-  nnoremap <Leader>b :CtrlPMixed<CR>
 '''
