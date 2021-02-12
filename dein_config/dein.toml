@@ -12,6 +12,12 @@ repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
+if = 'v:version < 800'
+rev = 'aef88ca'
+
+[[plugins]]
+repo = 'cohama/lexima.vim'
+if = 'v:version >= 800'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
@@ -176,6 +182,9 @@ let g:lightline = {
 
 [[plugins]]
 repo='rking/ag.vim'
+hook_add='''
+  nn <Leader>g :Ag
+'''
 
 [[plugins]]
 repo='ctrlpvim/ctrlp.vim'
@@ -187,8 +196,8 @@ hook_add='''
   en
   let g:ctrlp_show_hidden = 1
 
-  nn <Leader>g :CtrlP<CR>
-  nn <Leader>b :CtrlPMixed<CR>
+  nn <Leader>f :CtrlP<CR>
+  nn <Leader>b :CtrlPBuffer<CR>
 '''
 
 [[plugins]]
@@ -223,11 +232,11 @@ hook_post_source='''
          \ 'quickhelpText': 'close current dir',
          \ 'scope': 'Node' })
 
-  cal NERDTreeAddKeyMap({
-        \ 'key':      g:NERDTreeMapActivateNode,
-        \ 'scope':    'FileNode',
-        \ 'callback': 'ChooseWinOpen',
-        \ 'override': 1 })
+  " cal NERDTreeAddKeyMap({
+  "       \ 'key':      g:NERDTreeMapActivateNode,
+  "       \ 'scope':    'FileNode',
+  "       \ 'callback': 'ChooseWinOpen',
+  "       \ 'override': 1 })
 
   fu! OpenCurrentDir(dirNode)
     if a:dirNode.isRoot()
@@ -271,4 +280,17 @@ hook_post_source='''
       \ 'where': 'p',
       \ 'keepopen': !nerdtree#closeTreeOnOpen() })
   endf
+'''
+
+[[plugins]]
+repo = 'vim-syntastic/syntastic'
+[[plugins]]
+repo = 'othree/yajs.vim'
+[[plugins]]
+repo = 'pangloss/vim-javascript'
+[[plugins]]
+repo = 'othree/html5.vim'
+hook_add = '''
+  autocmd BufNewFile,BufRead *.vue set filetype=html
+  autocmd BufNewFile,BufRead *.vue syntax sync fromstart
 '''
