@@ -182,9 +182,6 @@ let g:lightline = {
 
 [[plugins]]
 repo='rking/ag.vim'
-hook_add='''
-  nn <Leader>g :Ag
-'''
 
 [[plugins]]
 repo='ctrlpvim/ctrlp.vim'
@@ -195,9 +192,33 @@ hook_add='''
     let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
   en
   let g:ctrlp_show_hidden = 1
-
   nn <Leader>f :CtrlP<CR>
-  nn <Leader>b :CtrlPBuffer<CR>
+'''
+
+[[plugins]]
+repo='Shougo/vimproc.vim'
+build='make'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+depends=['vimproc.vim']
+hook_add = '''
+  " ref: http://blog.monochromegane.com/blog/2013/09/18/ag-and-unite/
+  let g:unite_enable_start_insert = 1
+  let g:unite_enable_ignore_case = 1
+  let g:unite_enable_smart_case = 1
+  if executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+    let g:unite_source_grep_recursive_opt = ''
+  endif
+  " keymap
+  nn <silent> <Leader>g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+  nn <silent> <Leader>cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+  nn <silent> <Leader>r  :<C-u>UniteResume search-buffer<CR>
+  nn <silent> <Leader>b  :<C-u>Unite buffer<CR>
+  nn <silent> <Leader>m  :<C-u>Unite mark<CR>
+  vnoremap /g y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
 '''
 
 [[plugins]]
@@ -232,13 +253,13 @@ hook_post_source='''
          \ 'quickhelpText': 'close current dir',
          \ 'scope': 'Node' })
 
-  " cal NERDTreeAddKeyMap({
-  "       \ 'key':      g:NERDTreeMapActivateNode,
-  "       \ 'scope':    'FileNode',
-  "       \ 'callback': 'ChooseWinOpen',
-  "       \ 'override': 1 })
+  cal NERDTreeAddKeyMap({
+        \ 'key':      g:NERDTreeMapActivateNode,
+        \ 'callback': 'ChooseWinOpen',
+        \ 'scope':    'FileNode',
+        \ 'override': 1 })
 
-  fu! OpenCurrentDir(dirNode)
+  fu! OpenCurrentDir(dirNode) abort
     if a:dirNode.isRoot()
       return
     en
@@ -250,7 +271,7 @@ hook_post_source='''
     cal l:children[0].putCursorHere(1, 0)
   endf
 
-  fu! CloseCurrentDir(node)
+  fu! CloseCurrentDir(node) abort
     let l:node = a:node.path.isDirectory ? a:node.getCascadeRoot() : a:node
     if l:node.isRoot()
       return
@@ -268,17 +289,14 @@ hook_post_source='''
     cal l:node.parent.activate({})
   endf
 
-  fu! ChooseWinOpen(fileNode)
+  fu! ChooseWinOpen(fileNode) abort
     let l:wincount = winnr('$')
     if l:wincount > 2
-      let l:nerdwindow = win_getid()
+      let l:nardwinnr = winnr()
       cal choosewin#start(range(2, l:wincount))
-      cal win_gotoid(l:nerdwindow)
+      silent exe l:nardwinnr.'wincmd w'
     en
-    cal a:fileNode.activate({
-      \ 'reuse': 'all',
-      \ 'where': 'p',
-      \ 'keepopen': !nerdtree#closeTreeOnOpen() })
+    cal a:fileNode.activate({ 'reuse': 'all', 'where': 'p', 'keepopen': 1 })
   endf
 '''
 
