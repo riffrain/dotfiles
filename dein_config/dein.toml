@@ -29,27 +29,42 @@ repo='wellle/targets.vim'
 repo='tpope/vim-unimpaired'
 
 [[plugins]]
-repo='tpope/vim-repeat'
-
-[[plugins]]
 repo='tpope/vim-fugitive'
 
 [[plugins]]
 repo='airblade/vim-gitgutter'
 
+# [[plugins]]
+# repo='Erichain/vim-monokai-pro'
+# hook_add='''
+#   au MyAutoCmd VimEnter * nested colorscheme monokai_pro
+#   highlight ColorColumn ctermfg=208 ctermbg=Black
+# '''
+
 [[plugins]]
-repo='Erichain/vim-monokai-pro'
+repo='sonph/onehalf'
+rtp='vim'
 hook_add='''
-  au MyAutoCmd VimEnter * nested colorscheme monokai_pro
-  highlight ColorColumn ctermfg=208 ctermbg=Black
+  au MyAutoCmd VimEnter * nested colorscheme onehalfdark
 '''
+
+[[plugins]]
+repo='rakr/vim-one'
+
+# [[plugins]]
+# repo='ayu-theme/ayu-vim'
+# hook_add='''
+#   let ayucolor="dark"
+#   au MyAutoCmd VimEnter * nested colorscheme ayu
+# '''
+
 
 [[plugins]]
 repo='itchyny/lightline.vim'
 depends=['tpope/vim-fugitive']
 hook_add='''
 let g:lightline = {
-      \ 'colorscheme': 'powerline',
+      \ 'colorscheme': 'onehalfdark',
       \ 'component': {
       \   'readonly': '%{&readonly?"\ue0a2":""}',
       \ },
