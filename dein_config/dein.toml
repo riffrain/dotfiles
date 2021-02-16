@@ -178,10 +178,8 @@ let g:lightline = {
 
 [[plugins]]
 repo='rking/ag.vim'
-
 [[plugins]]
 repo='ctrlpvim/ctrlp.vim'
-depends=['ag.vim']
 hook_add='''
   if executable('ag')
     let g:ctrlp_use_caching=0
@@ -223,8 +221,6 @@ hook_add='''
 repo='t9md/vim-choosewin'
 hook_add='''
   let g:choosewin_label='sdfghjkl'
-  let g:choosewin_overlay_enable = 1
-  let g:choosewin_overlay_clear_multibyte = 1
 '''
 
 [[plugins]]
