@@ -40,31 +40,31 @@ repo='airblade/vim-gitgutter'
 #   au MyAutoCmd VimEnter * nested colorscheme monokai_pro
 #   highlight ColorColumn ctermfg=208 ctermbg=Black
 # '''
-
-[[plugins]]
-repo='sonph/onehalf'
-rtp='vim'
-hook_add='''
-  au MyAutoCmd VimEnter * nested colorscheme onehalfdark
-'''
-
-[[plugins]]
-repo='rakr/vim-one'
-
 # [[plugins]]
-# repo='ayu-theme/ayu-vim'
-# hook_add='''
-#   let ayucolor="dark"
-#   au MyAutoCmd VimEnter * nested colorscheme ayu
-# '''
-
+# repo='sonph/onehalf'
+# rtp='vim'
+# [[plugins]]
+# repo='sainnhe/sonokai'
+# [[plugins]]
+# repo='crusoexia/vim-monokai'
+# [[plugins]]
+# repo='ajmwagar/vim-deus'
+# [[plugins]]
+# repo='rakr/vim-one'
+# [[plugins]]
+# repo='tomasr/molokai'
+[[plugins]]
+repo='tomasiser/vim-code-dark'
+hook_add='''
+  au MyAutoCmd VimEnter * nested colorscheme codedark
+'''
 
 [[plugins]]
 repo='itchyny/lightline.vim'
 depends=['tpope/vim-fugitive']
 hook_add='''
 let g:lightline = {
-      \ 'colorscheme': 'onehalfdark',
+      \ 'colorscheme': 'codedark',
       \ 'component': {
       \   'readonly': '%{&readonly?"\ue0a2":""}',
       \ },
@@ -281,18 +281,21 @@ hook_post_source='''
   endf
 '''
 
-[[plugins]]
-repo='vim-syntastic/syntastic'
+# [[plugins]]
+# repo='vim-syntastic/syntastic'
+#
+# [[plugins]]
+# repo='othree/yajs.vim'
+#
+# [[plugins]]
+# repo='pangloss/vim-javascript'
+#
+# [[plugins]]
+# repo='othree/html5.vim'
+# hook_add='''
+#   au BufNewFile,BufRead *.vue set filetype=html
+#   au BufNewFile,BufRead *.vue syntax sync fromstart
+# '''
 
 [[plugins]]
-repo='othree/yajs.vim'
-
-[[plugins]]
-repo='pangloss/vim-javascript'
-
-[[plugins]]
-repo='othree/html5.vim'
-hook_add='''
-  au BufNewFile,BufRead *.vue set filetype=html
-  au BufNewFile,BufRead *.vue syntax sync fromstart
-'''
+repo='sheerun/vim-polyglot'
