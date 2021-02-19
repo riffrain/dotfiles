@@ -88,32 +88,19 @@ se background=dark
 " Keymaps {{{
 ino jj <Esc>
 nn <silent><Esc><Esc> :<C-u>se nohlsearch!<CR>
-no <Left> h
-no <Right> l
-no <Up> gk
-no <Down> gj
 no j gj
 no k gk
 no gj j
 no gk k
-no <S-j> <C-d>
-no <S-k> <C-u>
+no <S-j> <Nop>
+no <S-k> <Nop>
 no <C-j> 10j
 no <C-k> 10k
-
 nn <Leader>p :<C-u>se invpaste<CR>
-no <Leader>a :<C-u>se mouse=<CR>
-no <Leader>A :<C-u>se mouse=a<CR>
 nn <Leader>s :<C-u>sp<CR>
 nn <Leader>v :<C-u>vs<CR>
-nn <Leader>S :<C-u>sp <TAB>
-nn <Leader>V :<C-u>vs <TAB>
-nn <Leader>t :<C-u>tabnew<cr>
-nn <Leader>T :<C-u>tabnew <TAB>
+nn <Leader>T :<C-u>tabnew<cr>
 no <Leader>n :<C-u>:setl number!<CR>
-no <Leader>c :<C-u>:setl cursorline!<CR>
-no <Leader>C :<C-u>:setl cursorcolumn!<CR>
-no <Leader>l :<C-u>:setl list!<CR>
 "}}}
 
 " Unlimited undo {{{

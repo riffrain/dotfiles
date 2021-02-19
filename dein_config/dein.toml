@@ -40,19 +40,6 @@ repo='airblade/vim-gitgutter'
 #   au MyAutoCmd VimEnter * nested colorscheme monokai_pro
 #   highlight ColorColumn ctermfg=208 ctermbg=Black
 # '''
-# [[plugins]]
-# repo='sonph/onehalf'
-# rtp='vim'
-# [[plugins]]
-# repo='sainnhe/sonokai'
-# [[plugins]]
-# repo='crusoexia/vim-monokai'
-# [[plugins]]
-# repo='ajmwagar/vim-deus'
-# [[plugins]]
-# repo='rakr/vim-one'
-# [[plugins]]
-# repo='tomasr/molokai'
 [[plugins]]
 repo='tomasiser/vim-code-dark'
 hook_add='''
@@ -213,7 +200,6 @@ build='make'
 repo='Shougo/unite.vim'
 depends=['vimproc.vim']
 hook_add='''
-  let g:unite_enable_start_insert = 1
   let g:unite_enable_ignore_case = 1
   let g:unite_enable_smart_case = 1
 
@@ -223,13 +209,11 @@ hook_add='''
     let g:unite_source_grep_recursive_opt = ''
   endif
 
-  nn <silent> <Leader>g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
-  nn <silent> <Leader>cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
-  nn <silent> <Leader>r  :<C-u>UniteResume search-buffer<CR>
-  nn <silent> <Leader>b  :<C-u>Unite buffer<CR>
-  nn <silent> <Leader>m  :<C-u>Unite mark<CR>
-
-  vn /g y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
+  nn <silent> <Leader>g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+  nn <silent> <Leader>c :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+  nn <silent> <Leader>r :<C-u>UniteResume search-buffer<CR>
+  nn <silent> <Leader>b :<C-u>Unite buffer<CR>
+  nn <silent> <Leader>m :<C-u>Unite mark<CR>
 '''
 
 [[plugins]]
@@ -281,21 +265,29 @@ hook_post_source='''
   endf
 '''
 
-# [[plugins]]
-# repo='vim-syntastic/syntastic'
-#
-# [[plugins]]
-# repo='othree/yajs.vim'
-#
-# [[plugins]]
-# repo='pangloss/vim-javascript'
-#
-# [[plugins]]
-# repo='othree/html5.vim'
-# hook_add='''
-#   au BufNewFile,BufRead *.vue set filetype=html
-#   au BufNewFile,BufRead *.vue syntax sync fromstart
-# '''
+[[plugins]]
+repo='vim-syntastic/syntastic'
 
 [[plugins]]
-repo='sheerun/vim-polyglot'
+repo='othree/yajs.vim'
+
+[[plugins]]
+repo='pangloss/vim-javascript'
+
+[[plugins]]
+repo='othree/html5.vim'
+hook_add='''
+  au BufNewFile,BufRead *.vue set filetype=html
+  au BufNewFile,BufRead *.vue syntax sync fromstart
+'''
+
+# [[plugins]]
+# repo='sheerun/vim-polyglot'
+
+[[plugins]]
+repo='iberianpig/tig-explorer.vim'
+hook_add='''
+if executable('tig')
+  nn <Leader>t :<C-u>TigOpenProjectRootDir<CR>
+en
+'''
