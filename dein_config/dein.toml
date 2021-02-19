@@ -53,6 +53,8 @@ repo='tomasiser/vim-code-dark'
 hook_add='''
   au MyAutoCmd VimEnter * nested colorscheme codedark
 '''
+[[plugins]]
+repo='mhartington/oceanic-next'
 
 [[plugins]]
 repo='itchyny/lightline.vim'
@@ -272,16 +274,15 @@ hook_post_source='''
 
 [[plugins]]
 repo='vim-syntastic/syntastic'
-
+# [[plugins]]
+# repo='othree/yajs.vim'
+# [[plugins]]
+# repo='pangloss/vim-javascript'
+# [[plugins]]
+# repo='othree/html5.vim'
+# hook_add='''
+#   au BufNewFile,BufRead *.vue set filetype=html
+#   au BufNewFile,BufRead *.vue syntax sync fromstart
+# '''
 [[plugins]]
-repo='othree/yajs.vim'
-
-[[plugins]]
-repo='pangloss/vim-javascript'
-
-[[plugins]]
-repo='othree/html5.vim'
-hook_add='''
-  au BufNewFile,BufRead *.vue set filetype=html
-  au BufNewFile,BufRead *.vue syntax sync fromstart
-'''
+repo='sheerun/vim-polyglot'

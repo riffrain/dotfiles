@@ -94,6 +94,8 @@ no gj j
 no gk k
 no <S-j> <Nop>
 no <S-k> <Nop>
+no <C-j> 10j
+no <C-k> 10k
 nn <Leader>p :<C-u>se invpaste<CR>
 nn <Leader>s :<C-u>sp<CR>
 nn <Leader>v :<C-u>vs<CR>
