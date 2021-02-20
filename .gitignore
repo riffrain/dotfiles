@@ -3,4 +3,3 @@
 .config/*
 .cache/.vimrc/temp/
 .vim/dein/*
-test
