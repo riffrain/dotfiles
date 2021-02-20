@@ -4,57 +4,63 @@ path=$(pwd)
 
 # agignore {{{
 if [ -f ~/.agignore ]; then
-  unlink ~/.agignore
+  mv ~/.agignore ~/.agignore.orig
 fi
 ln -s $path'/.agignore' ~/.agignore
 # }}}
 
 # vim {{{
-echo 'install editor'
 ln -s $path'/.vim' ~/.vim
 ln -s $path'/.vimrc' ~/.vimrc
-# }}}
-
-# neovim
-if [ ! -d "~/.config/nvim" ]; then
-  mkdir -p ~/.config/nvim
-  ln -s $path'/.vimrc' ~/.config/nvim/init.vim
-fi
-
-# install dein.vim
 if [ ! -d "~/.cache/dein" ]; then
   mkdir -p ~/.cache/dein
   curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/.cache/dein/installer.sh
   sh ~/.cache/dein/installer.sh ~/.cache/dein
   ln -s $path'/dein_config' ~/.cache/dein_config
 fi
+# }}}
 
-echo 'setup bash'
+# bash {{{
 if [ -f ~/.bashrc ]; then
- unlink ~/.bashrc
+  mv ~/.bashrc ~/.bashrc.orig
 fi
 ln -s $path'/.bashrc' ~/.bashrc
-#
-echo 'setup inputrc'
+# }}}
+
+# inputrc {{{
 if [ -f ~/.inputrc ]; then
-  unlink ~/.inputrc
+  mv ~/.inputrc ~/.inputrc.orig
 fi
 ln -s $path'/.inputrc' ~/.inputrc
+# }}}
 
-echo 'add git tweaks'
-if [ -f ~/.gitconfig ]; then
-  touch ~/.gitconfig
-  echo "[include] path = "$path"/git/git-alias" >> ~/.gitconfig
+# zsh {{{
+if [ -f ~/.zshrc ]; then
+  mv ~/.zshrc ~/.zshrc.orig
 fi
+ln -s $path'/.zshrc' ~/.zshrc
+# }}}
+
+# git {{{
+if [ ! -f ~/.gitconfig ]; then
+  touch ~/.gitconfig
+fi
+echo "[include] path = "$path"/git/git-alias" >> ~/.gitconfig
+
 if [ -f ~/.git-prompt.sh ]; then
-  unlink ~/.git-prompt.sh
+  mv ~/.git-prompt.sh ~/.git-prompt.sh.orig
 fi
 ln -s $path'/git/git-prompt.sh' ~/.git-prompt.sh
 
 if [ -f ~/.git-completion.bash ]; then
-  unlink ~/.git-completion.bash
+  mv ~/.git-completion.bash ~/.git-completion.bash.orig
 fi
 ln -s $path'/git/git-completion.bash' ~/.git-completion.bash
+# }}}
 
-# apply
-source ~/.bashrc
+# Apply
+if [ -n "$ZSH_VERSION" ]; then
+  source ~/.zshrc
+elif [ -n "$BASH_VERSION" ]; then
+  source ~/.bashrc
+fi
