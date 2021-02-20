@@ -48,20 +48,20 @@ en
 #   au MyAutoCmd VimEnter * nested colorscheme monokai_pro
 #   highlight ColorColumn ctermfg=208 ctermbg=Black
 # '''
+# [[plugins]]
+# repo='tomasiser/vim-code-dark'
 [[plugins]]
-repo='tomasiser/vim-code-dark'
+repo='doums/darcula'
 hook_add='''
-  au MyAutoCmd VimEnter * nested colorscheme codedark
+  au MyAutoCmd VimEnter * nested colorscheme darcula
 '''
-[[plugins]]
-repo='mhartington/oceanic-next'
 
 [[plugins]]
 repo='itchyny/lightline.vim'
 depends=['tpope/vim-fugitive']
 hook_add='''
 let g:lightline = {
-      \ 'colorscheme': 'codedark',
+      \ 'colorscheme': 'darculaOriginal',
       \ 'component': {
       \   'readonly': '%{&readonly?"\ue0a2":""}',
       \ },
