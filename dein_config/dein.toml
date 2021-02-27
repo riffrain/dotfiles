@@ -274,15 +274,15 @@ hook_post_source='''
 
 [[plugins]]
 repo='vim-syntastic/syntastic'
-# [[plugins]]
-# repo='othree/yajs.vim'
-# [[plugins]]
-# repo='pangloss/vim-javascript'
-# [[plugins]]
-# repo='othree/html5.vim'
-# hook_add='''
-#   au BufNewFile,BufRead *.vue set filetype=html
-#   au BufNewFile,BufRead *.vue syntax sync fromstart
-# '''
 [[plugins]]
-repo='sheerun/vim-polyglot'
+repo='othree/yajs.vim'
+[[plugins]]
+repo='pangloss/vim-javascript'
+[[plugins]]
+repo='othree/html5.vim'
+hook_add='''
+  au BufNewFile,BufRead *.vue set filetype=html
+  au BufNewFile,BufRead *.vue syntax sync fromstart
+'''
+# [[plugins]]
+# repo='sheerun/vim-polyglot'
