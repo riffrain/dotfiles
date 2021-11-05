@@ -19,7 +19,7 @@ setopt print_eight_bit
 autoload -Uz compinit && compinit
 autoload -Uz colors && colors
 
-zstyle ':completion:*:*:git:*' script "$HOME/.git-completion.bash"
+zstyle ':completion:*:*:git:*' script "$HOME/.git-completion.zsh"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 source "$HOME/.git-prompt.sh"
