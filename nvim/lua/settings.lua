@@ -59,11 +59,11 @@ se background=dark
 
 " Unlimited undo {{{
 if has('persistent_undo')
-    let s:undo_dir = expand(s:cache_home . '/vimundo')
+    let s:undo_dir = expand(s:cache_home . '/nvimundo')
     if !isdirectory(s:undo_dir)
       cal system('mkdir -p ' . shellescape(s:undo_dir))
     en
-    se undodir=~/.cache/vimundo
+    se undodir=~/.cache/nvimundo
     se undofile
 en
 " }}}
