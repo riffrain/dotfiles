@@ -26,6 +26,10 @@ vim.cmd([[
   nn <Leader>b <cmd>CtrlPBuffer<CR>
 ]])
 
+vim.cmd([[
+  nn <Leader>t <cmd>Telescope find_files<CR>
+]])
+
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
@@ -200,6 +204,20 @@ return require('packer').startup(function()
       }
     end
   }
+
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+    }
+  }
+
+  use 'prabirshrestha/vim-lsp'
+  use 'mattn/vim-lsp-settings'
+  use 'prabirshrestha/asyncomplete.vim'
+  use 'prabirshrestha/asyncomplete-lsp.vim'
+
+  use 'jremmen/vim-ripgrep'
 
   if packer_bootstrap then
     require('packer').sync()

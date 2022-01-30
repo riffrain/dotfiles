@@ -9,9 +9,13 @@ augroup END
 
 fu! NetrwMapping()
   nmap <buffer> . gh
+  nmap <buffer> <C-t> <Nop>
 endf
 
-let g:Netrw_UserMaps = [['<CR>', 'MyNetrwBrowse'], ['l', 'MyNetrwBrowse'], ['o', 'MyNetrwBrowse'],]
+let g:Netrw_UserMaps = []
+call add(g:Netrw_UserMaps, ['<CR>', 'MyNetrwBrowse'])
+call add(g:Netrw_UserMaps, ['l', 'MyNetrwBrowse'])
+call add(g:Netrw_UserMaps, ['o', 'MyNetrwBrowse'])
 
 fu! MyNetrwBrowse(isLocal)
   let l:wincount = winnr('$')

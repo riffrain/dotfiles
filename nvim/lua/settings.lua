@@ -84,6 +84,13 @@ endf
 aug MarkMargin
   au!
   au BufEnter * :cal MarkMargin(1)
-  au BufEnter *.vp* :cal MarkMargin(0)
 aug END
+
+
+if executable('rg')
+  set grepprg=rg\ --vimgrep
+  set grepformat=%f:%l:%c:%m
+endif
+
+au QuickfixCmdPost make,grep,grepadd,vimgrep copen
 ]])
