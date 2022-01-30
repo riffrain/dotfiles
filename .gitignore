@@ -3,3 +3,4 @@
 .config/*
 .cache/.vimrc/temp/
 .vim/dein/*
+nvim/plugin/packer_compiled.lua

@@ -87,5 +87,3 @@ aug MarkMargin
   au BufEnter *.vp* :cal MarkMargin(0)
 aug END
 ]])
-
-vim.cmd[[autocmd BufWritePost plugins.lua PackerCompile]]
