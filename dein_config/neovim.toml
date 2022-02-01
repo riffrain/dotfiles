@@ -1,0 +1,52 @@
+[[plugins]]
+repo='Shougo/dein.vim'
+
+[[plugins]]
+repo='editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo='cohama/lexima.vim'
+
+[[plugins]]
+repo='tpope/vim-surround'
+
+[[plugins]]
+repo='wellle/targets.vim'
+
+[[plugins]]
+repo='easymotion/vim-easymotion'
+
+[[plugins]]
+repo='Mofiqul/vscode.nvim'
+hook_add='''
+  let g:vscode_style = "dark"
+  let g:vscode_transparent = 1
+  let g:vscode_italic_comment = 1
+  try
+    colorscheme vscode
+  endtry
+'''
+
+[[plugins]]
+repo='vim-denops/denops.vim'
+
+[[plugins]]
+repo='Shougo/ddc.vim'
+
+[[plugins]]
+repo='Shougo/ddc-around'
+[[plugins]]
+repo='Shougo/ddc-matcher_head'
+[[plugins]]
+repo='Shougo/ddc-sorter_rank'
+
+[[plugins]]
+repo='Shougo/ddu.vim'
+
+[[plugins]]
+repo='kyazdani42/nvim-web-devicons'
+
+[[plugins]]
+repo='nvim-lualine/lualine.nvim'
+hook_add='''
+'''
