@@ -83,24 +83,24 @@ require('packer').startup(function()
       'LumaKernel/ddc-file',
       'matsui54/ddc-buffer',
       'tani/ddc-fuzzy',
+      'tani/ddc-onp',
       'Shougo/pum.vim',
     },
     config = function ()
       vim.cmd([[
-        call ddc#custom#patch_global('sources', ['around', 'file', 'nvim-lsp', 'buffer'])
-        call ddc#custom#patch_global('completionMenu', 'pum.vim')
-
+        call ddc#custom#patch_global('sources', ['nvim-lsp', 'around', 'buffer', 'file'])
+        " call ddc#custom#patch_global('completionMenu', 'pum.vim')
         call ddc#custom#patch_global('sourceOptions', {
           \ '_': {
-          \   'matchers': ['matcher_fuzzy'],
-          \   'converters': ['converter_fuzzy', 'converter_remove_overlap'],
-          \   'sorters': ['sorter_fuzzy'] },
-          \ 'around': {'mark': 'around'},
-          \ 'buffer': {'mark': 'buffer'},
+          \   'matchers': ['matcher_onp'],
+          \   'converters': ['converter_onp'],
+          \   'sorters': ['sorter_onp'] },
           \ 'nvim-lsp': {
           \   'mark': 'lsp',
           \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
           \ 'file': { 'mark': 'file', 'isVolatile': v:true, 'forceCompletionPattern': '\S/\S*' },
+          \ 'around': {'mark': 'around'},
+          \ 'buffer': {'mark': 'buffer'},
           \ })
         call ddc#custom#patch_global('sourceParams', {
           \ 'buffer': {
@@ -112,11 +112,21 @@ require('packer').startup(function()
           \ })
         call ddc#custom#patch_global('filterParams', {
           \   'matcher_fuzzy': {
-          \     'splitMode': 'word'
+          \     'splitMode': 'character',
           \   }
           \ })
 
         call ddc#enable()
+
+        " inoremap <silent><expr> <TAB>
+        "       \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+        "       \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+        "       \ '<TAB>' : ddc#manual_complete()
+        " inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
+        " inoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
+        " inoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
+        " inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
+        " inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
       ]])
     end
   }
