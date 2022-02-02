@@ -81,21 +81,39 @@ require('packer').startup(function()
       'Shougo/pum.vim',
       'Shougo/ddc-converter_remove_overlap',
       'LumaKernel/ddc-file',
+      'matsui54/ddc-buffer',
+      'tani/ddc-fuzzy',
+      'Shougo/pum.vim',
     },
     config = function ()
       vim.cmd([[
-        call ddc#custom#patch_global('sources', ['around', 'file', 'nvim-lsp'])
+        call ddc#custom#patch_global('sources', ['around', 'file', 'nvim-lsp', 'buffer'])
+        call ddc#custom#patch_global('completionMenu', 'pum.vim')
 
         call ddc#custom#patch_global('sourceOptions', {
           \ '_': {
-          \   'matchers': ['matcher_head'],
-          \   'converters': ['converter_remove_overlap'],
-          \   'sorters': ['sorter_rank'] },
+          \   'matchers': ['matcher_fuzzy'],
+          \   'converters': ['converter_fuzzy', 'converter_remove_overlap'],
+          \   'sorters': ['sorter_fuzzy'] },
           \ 'around': {'mark': 'around'},
+          \ 'buffer': {'mark': 'buffer'},
           \ 'nvim-lsp': {
           \   'mark': 'lsp',
           \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
           \ 'file': { 'mark': 'file', 'isVolatile': v:true, 'forceCompletionPattern': '\S/\S*' },
+          \ })
+        call ddc#custom#patch_global('sourceParams', {
+          \ 'buffer': {
+          \   'requireSameFiletype': v:false,
+          \   'limitBytes': 5000000,
+          \   'fromAltBuf': v:true,
+          \   'forceCollect': v:true,
+          \ },
+          \ })
+        call ddc#custom#patch_global('filterParams', {
+          \   'matcher_fuzzy': {
+          \     'splitMode': 'word'
+          \   }
           \ })
 
         call ddc#enable()
@@ -103,18 +121,18 @@ require('packer').startup(function()
     end
   }
 
-  -- use {
-  --   'matsui54/denops-popup-preview.vim',
-  --   config = function ()
-  --     vim.cmd([[call popup_preview#enable()]])
-  --   end
-  -- }
-  -- use {
-  --   'matsui54/denops-signature_help',
-  --   config = function ()
-  --     vim.cmd([[call signature_help#enable()]])
-  --   end
-  -- }
+  use {
+    'matsui54/denops-popup-preview.vim',
+    config = function ()
+      vim.cmd([[call popup_preview#enable()]])
+    end
+  }
+  use {
+    'matsui54/denops-signature_help',
+    config = function ()
+      vim.cmd([[call signature_help#enable()]])
+    end
+  }
 
   use "neovim/nvim-lspconfig"
   use "williamboman/nvim-lsp-installer"
@@ -316,6 +334,13 @@ require('packer').startup(function()
   --     { name = 'luasnip' },
   --   },
   -- }
+
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    -- config = function ()
+    --   vim.cmd [[TSUpdate]]
+    -- end
+  }
 
   if packer_bootstrap then
     require('packer').sync()
