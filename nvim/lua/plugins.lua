@@ -7,29 +7,6 @@ end
 vim.cmd [[packadd packer.nvim]]
 vim.cmd[[autocmd BufWritePost plugins.lua PackerCompile]]
 
--- -- NvimTree
--- vim.cmd([[
---   let g:nvim_tree_disable_window_picker = 0
---   let g:nvim_tree_window_picker_chars = "sdfghjkl"
---   " nn <Leader>e <cmd>NvimTreeToggle<CR>
--- ]])
-
--- CtrlP
--- vim.cmd([[
---   if executable('ag')
---     let g:ctrlp_use_caching=0
---     let g:ctrlp_user_command='ag %s -i -s --nocolor --nogroup -g ""'
---   en
---   let g:ctrlp_show_hidden = 1
---   nn <Leader>f <cmd>CtrlP<CR>
---   nn <Leader>l <cmd>CtrlPLine<CR>
---   nn <Leader>b <cmd>CtrlPBuffer<CR>
--- ]])
-
--- vim.cmd([[
---   nn <Leader>t <cmd>Telescope find_files<CR>
--- ]])
-
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
@@ -101,38 +78,48 @@ require('packer').startup(function()
       'Shougo/ddc-matcher_head',
       'Shougo/ddc-sorter_rank',
       'Shougo/ddc-nvim-lsp',
+      'Shougo/pum.vim',
+      'Shougo/ddc-converter_remove_overlap',
+      'LumaKernel/ddc-file',
     },
     config = function ()
       vim.cmd([[
-call ddc#custom#patch_global('sources', ['nvim-lsp'])
-call ddc#custom#patch_global('sourceOptions', {
-      \ '_': { 'matchers': ['matcher_head'], 'sorters': ['sorter_rank'] },
-      \ 'nvim-lsp': {
-      \   'mark': 'lsp',
-      \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
-      \ })
-call ddc#enable()
+        call ddc#custom#patch_global('sources', ['around', 'file', 'nvim-lsp'])
+
+        call ddc#custom#patch_global('sourceOptions', {
+          \ '_': {
+          \   'matchers': ['matcher_head'],
+          \   'converters': ['converter_remove_overlap'],
+          \   'sorters': ['sorter_rank'] },
+          \ 'around': {'mark': 'around'},
+          \ 'nvim-lsp': {
+          \   'mark': 'lsp',
+          \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
+          \ 'file': { 'mark': 'file', 'isVolatile': v:true, 'forceCompletionPattern': '\S/\S*' },
+          \ })
+
+        call ddc#enable()
       ]])
     end
   }
 
-  use {
-    'matsui54/denops-popup-preview.vim',
-    config = function ()
-      vim.cmd([[call popup_preview#enable()]])
-    end
-  }
-  use {
-    'matsui54/denops-signature_help',
-    config = function ()
-      vim.cmd([[call signature_help#enable()]])
-    end
-  }
+  -- use {
+  --   'matsui54/denops-popup-preview.vim',
+  --   config = function ()
+  --     vim.cmd([[call popup_preview#enable()]])
+  --   end
+  -- }
+  -- use {
+  --   'matsui54/denops-signature_help',
+  --   config = function ()
+  --     vim.cmd([[call signature_help#enable()]])
+  --   end
+  -- }
 
   use "neovim/nvim-lspconfig"
   use "williamboman/nvim-lsp-installer"
 
-  -- use 'ctrlpvim/ctrlp.vim'
+  use 'ctrlpvim/ctrlp.vim'
 
   -- use {
   --   't9md/vim-choosewin',
@@ -155,98 +142,103 @@ call ddc#enable()
   -- use 'prabirshrestha/asyncomplete.vim'
   -- use 'prabirshrestha/asyncomplete-lsp.vim'
 
-  -- use {
-  --   'kyazdani42/nvim-tree.lua',
-  --   requires = {
-  --     'kyazdani42/nvim-web-devicons',
-  --   },
-  --   config = function()
-  --     require'nvim-tree'.setup {
-  --       disable_netrw       = false,
-  --       hijack_netrw        = false,
-  --       open_on_setup       = false,
-  --       ignore_ft_on_setup  = {},
-  --       auto_close          = false,
-  --       open_on_tab         = false,
-  --       hijack_cursor       = false,
-  --       update_cwd          = false,
-  --       update_to_buf_dir   = {
-  --         enable = true,
-  --         auto_open = true,
-  --       },
-  --       diagnostics = {
-  --         enable = false,
-  --         icons = {
-  --           hint = "",
-  --           info = "",
-  --           warning = "",
-  --           error = "",
-  --         }
-  --       },
-  --       update_focused_file = {
-  --         enable      = false,
-  --         update_cwd  = false,
-  --         ignore_list = {}
-  --       },
-  --       system_open = {
-  --         cmd  = nil,
-  --         args = {}
-  --       },
-  --       filters = {
-  --         dotfiles = false,
-  --         custom = {}
-  --       },
-  --       git = {
-  --         enable = true,
-  --         ignore = true,
-  --         timeout = 500,
-  --       },
-  --       view = {
-  --         width = 30,
-  --         height = 30,
-  --         hide_root_folder = false,
-  --         side = 'left',
-  --         auto_resize = false,
-  --         mappings = {
-  --           custom_only = true,
-  --           list = {
-  --             { key = {'<CR>', 'l'}, action = 'edit' },
-  --             { key = '<C-v>', action = 'vsplit' },
-  --             { key = '<C-x>', action = 'split' },
-  --             { key = '<C-t>', action = 'tabnew' },
-  --             { key = '<', action = 'prev_sibling' },
-  --             { key = '>', action = 'next_sibling' },
-  --             { key = 'P', action = 'parent_node' },
-  --             { key = 'h', action = 'close_node' },
-  --             { key = 'K', action = 'first_sibling' },
-  --             { key = 'J', action = 'last_sibling' },
-  --             { key = 'I', action = 'toggle_ignored' },
-  --             { key = '.', action = 'toggle_dotfiles' },
-  --             { key = 'R', action = 'refresh' },
-  --             { key = 'ma', action = 'create' },
-  --             { key = 'md', action = 'remove' },
-  --             { key = 'mm', action = 'rename' },
-  --             { key = 'mx', action = 'cut' },
-  --             { key = 'mp', action = 'paste' },
-  --             { key = 'y', action = 'copy_name' },
-  --             { key = 'Y', action = 'copy_path' },
-  --             { key = 'gy', action = 'copy_absolute_path' },
-  --             { key = 'u', action = 'dir_up' },
-  --             { key = 'q', action = 'close' },
-  --             { key = '?', action = 'toggle_help' },
-  --           },
-  --         },
-  --         number = false,
-  --         relativenumber = false,
-  --         signcolumn = "yes"
-  --       },
-  --       trash = {
-  --         cmd = nil,
-  --         require_confirm = true
-  --       }
-  --     }
-  --   end
-  -- }
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+    },
+    config = function()
+      require'nvim-tree'.setup {
+        disable_netrw       = true,
+        hijack_netrw        = true,
+        open_on_setup       = false,
+        ignore_ft_on_setup  = {},
+        auto_close          = false,
+        open_on_tab         = false,
+        hijack_cursor       = false,
+        update_cwd          = false,
+        update_to_buf_dir   = {
+          enable = true,
+          auto_open = true,
+        },
+        diagnostics = {
+          enable = false,
+          icons = {
+            hint = "",
+            info = "",
+            warning = "",
+            error = "",
+          }
+        },
+        update_focused_file = {
+          enable      = false,
+          update_cwd  = false,
+          ignore_list = {}
+        },
+        system_open = {
+          cmd  = nil,
+          args = {}
+        },
+        filters = {
+          dotfiles = false,
+          custom = {}
+        },
+        git = {
+          enable = true,
+          ignore = true,
+          timeout = 500,
+        },
+        view = {
+          width = 30,
+          height = 30,
+          hide_root_folder = false,
+          side = 'left',
+          auto_resize = false,
+          mappings = {
+            custom_only = true,
+            list = {
+              { key = {'<CR>', 'l'}, action = 'edit' },
+              { key = '<C-v>', action = 'vsplit' },
+              { key = '<C-x>', action = 'split' },
+              { key = '<C-t>', action = 'tabnew' },
+              { key = '<', action = 'prev_sibling' },
+              { key = '>', action = 'next_sibling' },
+              { key = 'P', action = 'parent_node' },
+              { key = 'h', action = 'close_node' },
+              { key = 'K', action = 'first_sibling' },
+              { key = 'J', action = 'last_sibling' },
+              { key = 'I', action = 'toggle_ignored' },
+              { key = '.', action = 'toggle_dotfiles' },
+              { key = 'R', action = 'refresh' },
+              { key = 'ma', action = 'create' },
+              { key = 'md', action = 'remove' },
+              { key = 'mm', action = 'rename' },
+              { key = 'mx', action = 'cut' },
+              { key = 'mp', action = 'paste' },
+              { key = 'y', action = 'copy_name' },
+              { key = 'Y', action = 'copy_path' },
+              { key = 'gy', action = 'copy_absolute_path' },
+              { key = 'u', action = 'dir_up' },
+              { key = 'q', action = 'close' },
+              { key = '?', action = 'toggle_help' },
+            },
+          },
+          number = false,
+          relativenumber = false,
+          signcolumn = "yes"
+        },
+        trash = {
+          cmd = nil,
+          require_confirm = true
+        }
+      }
+      vim.cmd([[
+        let g:nvim_tree_disable_window_picker = 0
+        let g:nvim_tree_window_picker_chars = "sdfghjkl"
+        nn <Leader>e <cmd>NvimTreeToggle<CR>
+      ]])
+    end
+  }
 
   -- use {
   --   'nvim-telescope/telescope.nvim',
@@ -329,6 +321,7 @@ call ddc#enable()
     require('packer').sync()
   end
 end)
+
 vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
 local on_attach = function(client, bufnr)
@@ -339,19 +332,19 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
   buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-  buf_set_keymap("n", "<space>wr", "<cmd>luavim.lsp.buf.remove_workspace_folder()<CR>", opts)
-  buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-  buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-  buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+  -- buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  -- buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+  -- buf_set_keymap("n", "<space>wr", "<cmd>luavim.lsp.buf.remove_workspace_folder()<CR>", opts)
+  -- buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+  -- buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+  -- buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  -- buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
-  buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-  buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-  buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  -- buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
+  -- buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+  -- buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+  -- buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
+  -- buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
 local lsp_installer = require("nvim-lsp-installer")
@@ -361,3 +354,20 @@ lsp_installer.on_server_ready(function(server)
 
     server:setup(opts)
 end)
+
+-- CtrlP
+-- vim.cmd([[
+--   if executable('ag')
+--     let g:ctrlp_use_caching=0
+--     let g:ctrlp_user_command='ag %s -i -s --nocolor --nogroup -g ""'
+--   en
+--   let g:ctrlp_show_hidden = 1
+--   nn <Leader>f <cmd>CtrlP<CR>
+--   nn <Leader>l <cmd>CtrlPLine<CR>
+--   nn <Leader>b <cmd>CtrlPBuffer<CR>
+-- ]])
+-- vim.cmd([[
+--   nn <Leader>t <cmd>Telescope find_files<CR>
+--   nn <Leader>b <cmd>Telescope find_files<CR>
+-- ]])
+
