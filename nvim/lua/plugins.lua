@@ -70,70 +70,6 @@ require('packer').startup(function()
     end
   }
 
-  -- use {
-  --   'Shougo/ddc.vim',
-  --   requires = {
-  --   'neovim/nvim-lspconfig',
-  --   'williamboman/nvim-lsp-installer',
-  --     'vim-denops/denops.vim',
-  --     'Shougo/ddc-around',
-  --     'Shougo/ddc-matcher_head',
-  --     'Shougo/ddc-sorter_rank',
-  --     'Shougo/ddc-nvim-lsp',
-  --     'Shougo/pum.vim',
-  --     'Shougo/ddc-converter_remove_overlap',
-  --     'LumaKernel/ddc-file',
-  --     'matsui54/ddc-buffer',
-  --     'tani/ddc-fuzzy',
-  --     'tani/ddc-onp',
-  --     'Shougo/pum.vim',
-  --   },
-  --   config = function ()
-  --     vim.cmd([[
-  --       call ddc#custom#patch_global('sources', ['nvim-lsp', 'around', 'buffer', 'file'])
-  --       call ddc#custom#patch_global('completionMenu', 'pum.vim')
-  --       call ddc#custom#patch_global('sourceOptions', {
-  --         \ '_': {
-  --         \   'matchers': ['matcher_onp'],
-  --         \   'converters': ['converter_onp'],
-  --         \   'sorters': ['sorter_onp'] },
-  --         \ 'nvim-lsp': {
-  --         \   'mark': 'lsp',
-  --         \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
-  --         \ 'file': { 'mark': 'file', 'isVolatile': v:true, 'forceCompletionPattern': '\S/\S*' },
-  --         \ 'around': {'mark': 'around'},
-  --         \ 'buffer': {'mark': 'buffer'},
-  --         \ })
-  --       call ddc#custom#patch_global('sourceParams', {
-  --         \ 'buffer': {
-  --         \   'requireSameFiletype': v:false,
-  --         \   'limitBytes': 5000000,
-  --         \   'fromAltBuf': v:true,
-  --         \   'forceCollect': v:true,
-  --         \ },
-  --         \ })
-  --       call ddc#custom#patch_global('filterParams', {
-  --         \   'matcher_fuzzy': {
-  --         \     'splitMode': 'character',
-  --         \   }
-  --         \ })
-
-  --       call ddc#enable()
-
-  --       " inoremap <silent><expr> <TAB>
-  --       "       \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-  --       "       \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-  --       "       \ '<TAB>' : ddc#manual_complete()
-  --       inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
-  --       inoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
-  --       inoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
-  --       inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-  --       inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
-  --       inoremap <silent><expr> <TAB> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<TAB>'
-  --     ]])
-  --   end
-  -- }
-
   use {
     'hrsh7th/nvim-cmp',
     requires = {
@@ -199,6 +135,70 @@ require('packer').startup(function()
   }
 
   -- use {
+  --   'Shougo/ddc.vim',
+  --   requires = {
+  --   'neovim/nvim-lspconfig',
+  --   'williamboman/nvim-lsp-installer',
+  --     'vim-denops/denops.vim',
+  --     'Shougo/ddc-around',
+  --     'Shougo/ddc-matcher_head',
+  --     'Shougo/ddc-sorter_rank',
+  --     'Shougo/ddc-nvim-lsp',
+  --     'Shougo/pum.vim',
+  --     'Shougo/ddc-converter_remove_overlap',
+  --     'LumaKernel/ddc-file',
+  --     'matsui54/ddc-buffer',
+  --     'tani/ddc-fuzzy',
+  --     'tani/ddc-onp',
+  --     'Shougo/pum.vim',
+  --   },
+  --   config = function ()
+  --     vim.cmd([[
+  --       call ddc#custom#patch_global('sources', ['nvim-lsp', 'around', 'buffer', 'file'])
+  --       call ddc#custom#patch_global('completionMenu', 'pum.vim')
+  --       call ddc#custom#patch_global('sourceOptions', {
+  --         \ '_': {
+  --         \   'matchers': ['matcher_onp'],
+  --         \   'converters': ['converter_onp'],
+  --         \   'sorters': ['sorter_onp'] },
+  --         \ 'nvim-lsp': {
+  --         \   'mark': 'lsp',
+  --         \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
+  --         \ 'file': { 'mark': 'file', 'isVolatile': v:true, 'forceCompletionPattern': '\S/\S*' },
+  --         \ 'around': {'mark': 'around'},
+  --         \ 'buffer': {'mark': 'buffer'},
+  --         \ })
+  --       call ddc#custom#patch_global('sourceParams', {
+  --         \ 'buffer': {
+  --         \   'requireSameFiletype': v:false,
+  --         \   'limitBytes': 5000000,
+  --         \   'fromAltBuf': v:true,
+  --         \   'forceCollect': v:true,
+  --         \ },
+  --         \ })
+  --       call ddc#custom#patch_global('filterParams', {
+  --         \   'matcher_fuzzy': {
+  --         \     'splitMode': 'character',
+  --         \   }
+  --         \ })
+
+  --       call ddc#enable()
+
+  --       " inoremap <silent><expr> <TAB>
+  --       "       \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+  --       "       \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+  --       "       \ '<TAB>' : ddc#manual_complete()
+  --       inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
+  --       inoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
+  --       inoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
+  --       inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
+  --       inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
+  --       inoremap <silent><expr> <TAB> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<TAB>'
+  --     ]])
+  --   end
+  -- }
+
+  -- use {
   --   't9md/vim-choosewin',
   --   config = function ()
   --     vim.cmd[[let g:choosewin_label='sdfghjkl']]
@@ -206,102 +206,118 @@ require('packer').startup(function()
   -- }
 
   use {
-    'kyazdani42/nvim-tree.lua',
+    'lambdalisue/fern.vim',
     requires = {
-      'kyazdani42/nvim-web-devicons',
+      'lambdalisue/nerdfont.vim',
+      'lambdalisue/fern-hijack.vim',
+      -- 'lambdalisue/fern-renderer-nerdfont.vim',
+      'lambdalisue/fern-ssh',
     },
-    config = function()
-      require'nvim-tree'.setup {
-        disable_netrw       = true,
-        hijack_netrw        = true,
-        open_on_setup       = false,
-        ignore_ft_on_setup  = {},
-        auto_close          = false,
-        open_on_tab         = false,
-        hijack_cursor       = false,
-        update_cwd          = false,
-        update_to_buf_dir   = {
-          enable = true,
-          auto_open = true,
-        },
-        diagnostics = {
-          enable = false,
-          icons = {
-            hint = "",
-            info = "",
-            warning = "",
-            error = "",
-          }
-        },
-        update_focused_file = {
-          enable      = false,
-          update_cwd  = false,
-          ignore_list = {}
-        },
-        system_open = {
-          cmd  = nil,
-          args = {}
-        },
-        filters = {
-          dotfiles = false,
-          custom = {}
-        },
-        git = {
-          enable = true,
-          ignore = true,
-          timeout = 500,
-        },
-        view = {
-          width = 30,
-          height = 30,
-          hide_root_folder = false,
-          side = 'left',
-          auto_resize = false,
-          mappings = {
-            custom_only = true,
-            list = {
-              { key = {'<CR>', 'l'}, action = 'edit' },
-              { key = '<C-v>', action = 'vsplit' },
-              { key = '<C-x>', action = 'split' },
-              { key = '<C-t>', action = 'tabnew' },
-              { key = '<', action = 'prev_sibling' },
-              { key = '>', action = 'next_sibling' },
-              { key = 'P', action = 'parent_node' },
-              { key = 'h', action = 'close_node' },
-              { key = 'K', action = 'first_sibling' },
-              { key = 'J', action = 'last_sibling' },
-              { key = 'I', action = 'toggle_ignored' },
-              { key = '.', action = 'toggle_dotfiles' },
-              { key = 'R', action = 'refresh' },
-              { key = 'ma', action = 'create' },
-              { key = 'md', action = 'remove' },
-              { key = 'mm', action = 'rename' },
-              { key = 'mx', action = 'cut' },
-              { key = 'mp', action = 'paste' },
-              { key = 'y', action = 'copy_name' },
-              { key = 'Y', action = 'copy_path' },
-              { key = 'gy', action = 'copy_absolute_path' },
-              { key = 'u', action = 'dir_up' },
-              { key = 'q', action = 'close' },
-              { key = '?', action = 'toggle_help' },
-            },
-          },
-          number = false,
-          relativenumber = false,
-          signcolumn = "yes"
-        },
-        trash = {
-          cmd = nil,
-          require_confirm = true
-        }
-      }
+    config = function ()
       vim.cmd([[
-        let g:nvim_tree_disable_window_picker = 0
-        let g:nvim_tree_window_picker_chars = "sdfghjkl"
-        nn <Leader>e <cmd>NvimTreeToggle<CR>
+        let g:fern#renderer = "nerdfont"
+        nn <Leader>e <Cmd>Fern . -drawer -toggle<CR>
       ]])
     end
   }
+
+  -- use {
+  --   'kyazdani42/nvim-tree.lua',
+  --   requires = {
+  --     'kyazdani42/nvim-web-devicons',
+  --   },
+  --   config = function()
+  --     require'nvim-tree'.setup {
+  --       disable_netrw       = true,
+  --       hijack_netrw        = true,
+  --       open_on_setup       = false,
+  --       ignore_ft_on_setup  = {},
+  --       auto_close          = false,
+  --       open_on_tab         = false,
+  --       hijack_cursor       = false,
+  --       update_cwd          = false,
+  --       update_to_buf_dir   = {
+  --         enable = true,
+  --         auto_open = true,
+  --       },
+  --       diagnostics = {
+  --         enable = false,
+  --         icons = {
+  --           hint = "",
+  --           info = "",
+  --           warning = "",
+  --           error = "",
+  --         }
+  --       },
+  --       update_focused_file = {
+  --         enable      = false,
+  --         update_cwd  = false,
+  --         ignore_list = {}
+  --       },
+  --       system_open = {
+  --         cmd  = nil,
+  --         args = {}
+  --       },
+  --       filters = {
+  --         dotfiles = false,
+  --         custom = {}
+  --       },
+  --       git = {
+  --         enable = true,
+  --         ignore = true,
+  --         timeout = 500,
+  --       },
+  --       view = {
+  --         width = 30,
+  --         height = 30,
+  --         hide_root_folder = false,
+  --         side = 'left',
+  --         auto_resize = false,
+  --         mappings = {
+  --           custom_only = true,
+  --           list = {
+  --             { key = {'<CR>', 'l'}, action = 'edit' },
+  --             { key = '<C-v>', action = 'vsplit' },
+  --             { key = '<C-x>', action = 'split' },
+  --             { key = '<C-t>', action = 'tabnew' },
+  --             { key = '<', action = 'prev_sibling' },
+  --             { key = '>', action = 'next_sibling' },
+  --             { key = 'P', action = 'parent_node' },
+  --             { key = 'h', action = 'close_node' },
+  --             { key = 'K', action = 'first_sibling' },
+  --             { key = 'J', action = 'last_sibling' },
+  --             { key = 'I', action = 'toggle_ignored' },
+  --             { key = '.', action = 'toggle_dotfiles' },
+  --             { key = 'R', action = 'refresh' },
+  --             { key = 'ma', action = 'create' },
+  --             { key = 'md', action = 'remove' },
+  --             { key = 'mm', action = 'rename' },
+  --             { key = 'mx', action = 'cut' },
+  --             { key = 'mp', action = 'paste' },
+  --             { key = 'y', action = 'copy_name' },
+  --             { key = 'Y', action = 'copy_path' },
+  --             { key = 'gy', action = 'copy_absolute_path' },
+  --             { key = 'u', action = 'dir_up' },
+  --             { key = 'q', action = 'close' },
+  --             { key = '?', action = 'toggle_help' },
+  --           },
+  --         },
+  --         number = false,
+  --         relativenumber = false,
+  --         signcolumn = "yes"
+  --       },
+  --       trash = {
+  --         cmd = nil,
+  --         require_confirm = true
+  --       }
+  --     }
+  --     vim.cmd([[
+  --       let g:nvim_tree_disable_window_picker = 0
+  --       let g:nvim_tree_window_picker_chars = "sdfghjkl"
+  --       " nn <Leader>e <cmd>NvimTreeToggle<CR>
+  --     ]])
+  --   end
+  -- }
 
   use {
     'nvim-telescope/telescope.nvim',
