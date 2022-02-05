@@ -337,7 +337,7 @@ require('packer').startup(function()
   use {
     'nvim-treesitter/nvim-treesitter',
     config = function ()
-      vim.cmd [[TSUpdate]]
+      -- vim.cmd [[TSUpdate]]
     end
   }
 
