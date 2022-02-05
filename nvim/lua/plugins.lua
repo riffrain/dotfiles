@@ -33,7 +33,33 @@ require('packer').startup(function()
       ]])
     end
   }
-  use 'ctrlpvim/ctrlp.vim'
+  use {
+    'ctrlpvim/ctrlp.vim',
+    config = function ()
+      vim.cmd([[
+        if executable('rg')
+          set grepprg=rg\ --vimgrep\ --no-heading \ --color\ never
+          set grepformat=%f:%l:%c:%m,%f:%l:%m
+          let g:ctrlp_use_caching = 0
+          let g:ctrlp_user_command= 'rg %s --files --color=never --glob ""'
+          let g:ctrlp_user_command_async = 'rg %s --files --color=never --glob ""'
+          " let g:ctrlp_user_command = 'rg --files %s'
+          " let g:ctrlp_user_command_async = 'rg --files %s'
+          " let g:ctrlp_use_caching = 0
+          " let g:ctrlp_working_path_mode = 'ra'
+          " let g:ctrlp_switch_buffer = 'et'
+        elsei executable('ag')
+          let g:ctrlp_use_caching=0
+          let g:ctrlp_user_command='ag %s -i -s --nocolor --nogroup -g ""'
+          let g:ctrlp_user_command_async='ag %s -i -s --nocolor --nogroup -g ""'
+        en
+        let g:ctrlp_show_hidden = 1
+        nn <Leader>f <Cmd>CtrlP<CR>
+        nn <Leader>l <Cmd>CtrlPLine<CR>
+        nn <Leader>b <Cmd>CtrlPBuffer<CR>
+      ]])
+    end
+  }
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -211,7 +237,7 @@ require('packer').startup(function()
       'lambdalisue/nerdfont.vim',
       'lambdalisue/fern-hijack.vim',
       -- 'lambdalisue/fern-renderer-nerdfont.vim',
-      'lambdalisue/fern-ssh',
+      -- 'lambdalisue/fern-ssh',
     },
     config = function ()
       vim.cmd([[
@@ -319,18 +345,18 @@ require('packer').startup(function()
   --   end
   -- }
 
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-    },
-    config = function ()
-      vim.cmd([[
-        nn <Leader>t <cmd>Telescope find_files<CR>
-        nn <Leader>b <cmd>Telescope buffers<CR>
-      ]])
-    end
-  }
+  -- use {
+  --   'nvim-telescope/telescope.nvim',
+  --   requires = {
+  --     'nvim-lua/plenary.nvim',
+  --   },
+  --   config = function ()
+  --     vim.cmd([[
+  --       nn <Leader>t <cmd>Telescope find_files<CR>
+  --       nn <Leader>b <cmd>Telescope buffers<CR>
+  --     ]])
+  --   end
+  -- }
 
   -- use 'jremmen/vim-ripgrep'
 
@@ -349,14 +375,6 @@ end)
 vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
 -- CtrlP
--- vim.cmd([[
---   if executable('ag')
---     let g:ctrlp_use_caching=0
---     let g:ctrlp_user_command='ag %s -i -s --nocolor --nogroup -g ""'
---   en
---   let g:ctrlp_show_hidden = 1
---   nn <Leader>f <cmd>CtrlP<CR>
---   nn <Leader>l <cmd>CtrlPLine<CR>
---   nn <Leader>b <cmd>CtrlPBuffer<CR>
--- ]])
+vim.cmd([[
+]])
 

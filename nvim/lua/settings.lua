@@ -85,11 +85,10 @@ aug MarkMargin
   au BufEnter * :cal MarkMargin(1)
 aug END
 
-
-if executable('rg')
-  set grepprg=rg\ --vimgrep
-  set grepformat=%f:%l:%c:%m
-endif
+" if executable('rg')
+"   set grepprg=rg\ --vimgrep
+"   set grepformat=%f:%l:%c:%m
+" endif
 
 au QuickfixCmdPost make,grep,grepadd,vimgrep copen
 
