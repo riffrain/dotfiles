@@ -11,8 +11,6 @@ aug MyAutoCmd
   au!
 aug END
 
-let s:cache_home = '~/.cache'
-
 filetype plugin indent on
 syntax enable
 
@@ -59,12 +57,13 @@ se background=dark
 
 " Unlimited undo {{{
 if has('persistent_undo')
-    let s:undo_dir = expand(s:cache_home . '/nvimundo')
-    if !isdirectory(s:undo_dir)
-      cal system('mkdir -p ' . shellescape(s:undo_dir))
-    en
-    se undodir=~/.cache/nvimundo
-    se undofile
+  let s:cache_home = '~/.cache'
+  let s:undo_dir = expand(s:cache_home . '/nvimundo')
+  if !isdirectory(s:undo_dir)
+    cal system('mkdir -p ' . shellescape(s:undo_dir))
+  en
+  se undodir=~/.cache/nvimundo
+  se undofile
 en
 " }}}
 
@@ -93,4 +92,26 @@ if executable('rg')
 endif
 
 au QuickfixCmdPost make,grep,grepadd,vimgrep copen
+
+ino jj <Esc>
+nn <C-l> :<C-u>se nohlsearch!<CR>
+no j gj
+no k gk
+no gj j
+no gk k
+no <S-j> <Nop>
+no <S-k> <Nop>
+no <C-j> 10j
+no <C-k> 10k
+nn <Leader>s :<C-u>sp<CR>
+nn <Leader>v :<C-u>vs<CR>
+nn <Leader>T :<C-u>tabnew<cr>
+no <Leader>n :<C-u>:setl number!<CR>
+
+nn x "_x
+nn s "_s
+
+tno <silent><Esc><Esc> <C-\><C-n>
+au TermOpen * startinsert
+au WinEnter * if &buftype ==# 'terminal' | startinsert | endif
 ]])
