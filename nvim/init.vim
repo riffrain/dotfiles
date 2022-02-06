@@ -155,15 +155,17 @@ let g:netrw_browse_split=4
 " }}}
 
 " CtrlP {{{
-let g:ctrlp_use_git_command = 1
-let g:ctrlp_show_hidden = 1
 nn <Leader>f <Cmd>CtrlP<CR>
 nn <Leader>l <Cmd>CtrlPLine<CR>
 nn <Leader>b <Cmd>CtrlPBuffer<CR>
+
+let g:ctrlp_show_hidden = 1
 set grepformat=%f:%l:%c:%m,%f:%l:%m
 let g:ctrlp_use_caching=0
+
+let g:switch_ctrlp_user_command = 1
 function! GetGitToplevel() abort
-  if g:ctrlp_use_git_command == 0
+  if g:switch_ctrlp_user_command == 0
     return v:null
   endif
   let l:directory = len(argv()) > 0 ? fnamemodify(argv()[0], ':p:h') : getcwd()
@@ -171,22 +173,27 @@ function! GetGitToplevel() abort
 
   return l:toplevel =~ 'fatal' ? v:null : l:toplevel[:-2]
 endfunction
-function! SetCtrlPUserCommand()
-  let s:toplevel = GetGitToplevel()
-  if s:toplevel is v:null
+function! SwitchCtrlPUserCommand() abort
+  let l:toplevel = GetGitToplevel()
+  if l:toplevel is v:null
     echo '[ctrlp] use ripgrep'
     set grepformat=%f:%l:%c:%m,%f:%l:%m
     let g:ctrlp_user_command= 'rg %s --files --glob ""'
     let g:ctrlp_user_command_async = 'rg %s --files --glob ""'
   else
-    echo '[ctrlp] use git command'
-    let g:ctrlp_user_command='git -C '.shellescape(s:toplevel).' ls-files -c -o --exclude-standard'
-    let g:ctrlp_user_command_async='git -C '.shellescape(s:toplevel).' ls-files -c -o --exclude-standard'
-    " let g:ctrlp_user_command='git -C '.shellescape(s:toplevel).' ls-tree -r --name-only --full-name HEAD'
-    " let g:ctrlp_user_command_async='git -C '.shellescape(s:toplevel).' ls-tree -r --name-only --full-name HEAD'
+    if g:switch_ctrlp_user_command == 1
+      echo '[ctrlp] use git ls-files'
+      let g:ctrlp_user_command='git -C '.shellescape(l:toplevel).' ls-files -c -o --exclude-standard'
+      let g:ctrlp_user_command_async='git -C '.shellescape(l:toplevel).' ls-files -c -o --exclude-standard'
+    elseif g:switch_ctrlp_user_command == 2
+      echo '[ctrlp] use git ls-tree'
+      let g:ctrlp_user_command='git -C '.shellescape(l:toplevel).' ls-tree -r --name-only --full-name HEAD'
+      let g:ctrlp_user_command_async='git -C '.shellescape(l:toplevel).' ls-tree -r --name-only --full-name HEAD'
+    endif
   endif
 endfunction
-call SetCtrlPUserCommand()
+
+call SwitchCtrlPUserCommand()
 " }}}
 
 lua require('plugins')
