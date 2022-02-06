@@ -45,7 +45,7 @@ require('packer').startup(function()
       vim.cmd([[
         function! ToggleUserCommand()
           let cwd = getcwd()
-          let toplevel = system('git -C'.shellescape(cwd).'rev-parse --show-toplevel')
+          let toplevel = system('git -C '.shellescape(cwd).' rev-parse --show-toplevel')
           if toplevel =~ 'fatal'
             if executable('rg')
               set grepformat=%f:%l:%c:%m,%f:%l:%m
