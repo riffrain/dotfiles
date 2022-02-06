@@ -37,40 +37,7 @@ require('packer').startup(function()
     end
   }
 
-  use {
-    'ctrlpvim/ctrlp.vim',
-    config = function ()
-      vim.cmd([[
-        function! ToggleUserCommand()
-          let cwd = getcwd()
-          let toplevel = system('git -C '.shellescape(cwd).' rev-parse --show-toplevel')
-          if toplevel =~ 'fatal'
-            if executable('rg')
-              set grepformat=%f:%l:%c:%m,%f:%l:%m
-              let g:ctrlp_use_caching = 0
-              let g:ctrlp_user_command= 'rg %s --files --glob ""'
-              let g:ctrlp_user_command_async = 'rg %s --files --glob ""'
-            elseif executable('ag')
-              let g:ctrlp_use_caching=0
-              let g:ctrlp_user_command='ag %s -i -s --nogroup -g ""'
-              let g:ctrlp_user_command_async='ag %s -i -s --nogroup -g ""'
-            endif
-          else
-            let g:ctrlp_use_caching=0
-            let g:ctrlp_user_command='git -C '.shellescape(cwd).' ls-tree -r --fill-name --name-only HEAD'
-            let g:ctrlp_user_command_async='git -C '.shellescape(cwd).' ls-tree -r --fill-name --name-only HEAD'
-          endif
-        endfunction
-
-        au MyAutoGroup BufEnter ControlP call ToggleUserCommand()
-
-        let g:ctrlp_show_hidden = 1
-        nn <Leader>f <Cmd>CtrlP<CR>
-        nn <Leader>l <Cmd>CtrlPLine<CR>
-        nn <Leader>b <Cmd>CtrlPBuffer<CR>
-      ]])
-    end
-  }
+  use 'ctrlpvim/ctrlp.vim'
 
   use {
     't9md/vim-choosewin',
