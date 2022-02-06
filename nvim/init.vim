@@ -7,7 +7,11 @@ if &compatible
 en
 
 filetype plugin indent on
-syntax enable
+syntax off
+
+aug MyAutoGroup
+  au!
+aug END
 
 " Settings {{{
 se number
@@ -74,14 +78,12 @@ fu! MarkMargin (on)
     let b:MarkMargin = matchadd('ColorColumn', '\%81v\s*\zs\S', 100)
   en
 endf
-
 aug MarkMargin
   au!
   au BufEnter * :cal MarkMargin(1)
 aug END
 
-au QuickfixCmdPost make,grep,grepadd,vimgrep copen
-
+" Keymapping {{{
 ino jj <Esc>
 nn <C-l> :<C-u>se nohlsearch!<CR>
 no j gj
@@ -96,12 +98,60 @@ nn <Leader>s :<C-u>sp<CR>
 nn <Leader>v :<C-u>vs<CR>
 nn <Leader>T :<C-u>tabnew<cr>
 no <Leader>n :<C-u>:setl number!<CR>
-
 nn x "_x
 nn s "_s
+" }}}
 
+" terminal {{{
 tno <silent><Esc><Esc> <C-\><C-n>
-au TermOpen * startinsert
-au WinEnter * if &buftype ==# 'terminal' | startinsert | endif
+au MyAutoGroup TermOpen * startinsert
+au MyAutoGroup WinEnter * if &buftype ==# 'terminal' | startinsert | endif
+" }}}
+au MyAutoGroup QuickfixCmdPost make,grep,grepadd,vimgrep copen
+
+" Netrw {{{
+fu! NetrwMapping()
+  nmap <buffer> . gh
+  nmap <buffer> <C-t> <Nop>
+endf
+
+au MyAutoGroup filetype netrw call NetrwMapping()
+
+" required vim-choosewin
+fu! MyNetrwBrowse(isLocal)
+  let l:wincount = winnr('$')
+  let l:fname = netrw#Call('NetrwGetWord')
+  let l:ischoose = 0
+  if !(l:fname =~ '/$')
+    if l:wincount > 2
+      let l:winid = win_getid()
+      call choosewin#start(range(2, l:wincount))
+      let g:netrw_chgwin = winnr()
+      call win_gotoid(l:winid)
+    en
+  en
+  let l:path = netrw#Call('NetrwBrowseChgDir', a:isLocal, l:fname)
+  if a:isLocal
+    call netrw#LocalBrowseCheck(l:path)
+  el
+    call netrw#Call('NetrwBrowse', 0, l:path)
+  en
+  if g:netrw_chgwin != -1
+    let g:netrw_chgwin = -1
+  en
+endf
+
+let g:Netrw_UserMaps = []
+call add(g:Netrw_UserMaps, ['<CR>', 'MyNetrwBrowse'])
+call add(g:Netrw_UserMaps, ['l', 'MyNetrwBrowse'])
+call add(g:Netrw_UserMaps, ['o', 'MyNetrwBrowse'])
+
+let g:netrw_altv=1
+let g:netrw_keepdir=0
+let g:netrw_banner=0
+let g:netrw_winsize=20
+let g:netrw_liststyle=3
+let g:netrw_browse_split=4
+" }}}
 
 lua require('plugins')

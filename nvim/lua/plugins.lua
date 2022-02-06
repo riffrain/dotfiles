@@ -4,13 +4,10 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
-vim.cmd [[packadd packer.nvim]]
 vim.cmd([[
-  augroup reloadpacker
-    autocmd!
-    autocmd BufWritePost plugins.lua PackerCompile
-    autocmd BufWritePost init.lua source <afile> | PackerCompile
-  augroup END
+packadd packer.nvim
+au MyAutoGroup BufWritePost plugins.lua PackerCompile
+au MyAutoGroup BufWritePost init.lua source <afile> | PackerCompile
 ]])
 
 require('packer').startup(function()
@@ -39,6 +36,7 @@ require('packer').startup(function()
       ]])
     end
   }
+
   use {
     'ctrlpvim/ctrlp.vim',
     config = function ()
@@ -50,31 +48,34 @@ require('packer').startup(function()
             if executable('rg')
               set grepformat=%f:%l:%c:%m,%f:%l:%m
               let g:ctrlp_use_caching = 0
-              let g:ctrlp_user_command= 'rg %s --files --color=never --glob ""'
-              let g:ctrlp_user_command_async = 'rg %s --files --color=never --glob ""'
+              let g:ctrlp_user_command= 'rg %s --files --glob ""'
+              let g:ctrlp_user_command_async = 'rg %s --files --glob ""'
             elseif executable('ag')
               let g:ctrlp_use_caching=0
-              let g:ctrlp_user_command='ag %s -i -s --nocolor --nogroup -g ""'
-              let g:ctrlp_user_command_async='ag %s -i -s --nocolor --nogroup -g ""'
+              let g:ctrlp_user_command='ag %s -i -s --nogroup -g ""'
+              let g:ctrlp_user_command_async='ag %s -i -s --nogroup -g ""'
             endif
           else
-            let cwd = shellescape(cwd)
             let g:ctrlp_use_caching=0
-            let g:ctrlp_user_command='git -C '.cwd.' ls-tree -r --name-only HEAD'
-            let g:ctrlp_user_command_async='git -C '.cwd.' ls-tree -r --name-only HEAD'
+            let g:ctrlp_user_command='git -C '.shellescape(cwd).' ls-tree -r --fill-name --name-only HEAD'
+            let g:ctrlp_user_command_async='git -C '.shellescape(cwd).' ls-tree -r --fill-name --name-only HEAD'
           endif
         endfunction
 
-        augroup my_ctrlp_autocmd
-          autocmd!
-          autocmd BufEnter ControlP call ToggleUserCommand()
-        augroup END
+        au MyAutoGroup BufEnter ControlP call ToggleUserCommand()
 
         let g:ctrlp_show_hidden = 1
         nn <Leader>f <Cmd>CtrlP<CR>
         nn <Leader>l <Cmd>CtrlPLine<CR>
         nn <Leader>b <Cmd>CtrlPBuffer<CR>
       ]])
+    end
+  }
+
+  use {
+    't9md/vim-choosewin',
+    config = function ()
+      vim.cmd[[let g:choosewin_label='sdfghjkl']]
     end
   }
 
@@ -172,97 +173,12 @@ require('packer').startup(function()
           local opts = {}
           opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
           server:setup(opts)
-          vim.cmd [[ do User LspAttachBuffers ]]
+          vim.cmd([[
+            do User LspAttachBuffers
+          ]])
       end)
     end
   }
-
-  -- use {
-  --   'Shougo/ddc.vim',
-  --   requires = {
-  --   'neovim/nvim-lspconfig',
-  --   'williamboman/nvim-lsp-installer',
-  --     'vim-denops/denops.vim',
-  --     'Shougo/ddc-around',
-  --     'Shougo/ddc-matcher_head',
-  --     'Shougo/ddc-sorter_rank',
-  --     'Shougo/ddc-nvim-lsp',
-  --     'Shougo/pum.vim',
-  --     'Shougo/ddc-converter_remove_overlap',
-  --     'LumaKernel/ddc-file',
-  --     'matsui54/ddc-buffer',
-  --     'tani/ddc-fuzzy',
-  --     'tani/ddc-onp',
-  --     'Shougo/pum.vim',
-  --   },
-  --   config = function ()
-  --     vim.cmd([[
-  --       call ddc#custom#patch_global('sources', ['nvim-lsp', 'around', 'buffer', 'file'])
-  --       call ddc#custom#patch_global('completionMenu', 'pum.vim')
-  --       call ddc#custom#patch_global('sourceOptions', {
-  --         \ '_': {
-  --         \   'matchers': ['matcher_onp'],
-  --         \   'converters': ['converter_onp'],
-  --         \   'sorters': ['sorter_onp'] },
-  --         \ 'nvim-lsp': {
-  --         \   'mark': 'lsp',
-  --         \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
-  --         \ 'file': { 'mark': 'file', 'isVolatile': v:true, 'forceCompletionPattern': '\S/\S*' },
-  --         \ 'around': {'mark': 'around'},
-  --         \ 'buffer': {'mark': 'buffer'},
-  --         \ })
-  --       call ddc#custom#patch_global('sourceParams', {
-  --         \ 'buffer': {
-  --         \   'requireSameFiletype': v:false,
-  --         \   'limitBytes': 5000000,
-  --         \   'fromAltBuf': v:true,
-  --         \   'forceCollect': v:true,
-  --         \ },
-  --         \ })
-  --       call ddc#custom#patch_global('filterParams', {
-  --         \   'matcher_fuzzy': {
-  --         \     'splitMode': 'character',
-  --         \   }
-  --         \ })
-
-  --       call ddc#enable()
-
-  --       " inoremap <silent><expr> <TAB>
-  --       "       \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-  --       "       \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-  --       "       \ '<TAB>' : ddc#manual_complete()
-  --       inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
-  --       inoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
-  --       inoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
-  --       inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-  --       inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
-  --       inoremap <silent><expr> <TAB> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<TAB>'
-  --     ]])
-  --   end
-  -- }
-
-  -- use {
-  --   't9md/vim-choosewin',
-  --   config = function ()
-  --     vim.cmd[[let g:choosewin_label='sdfghjkl']]
-  --   end
-  -- }
-
-  -- use {
-  --   'lambdalisue/fern.vim',
-  --   requires = {
-  --     'lambdalisue/nerdfont.vim',
-  --     'lambdalisue/fern-hijack.vim',
-  --     -- 'lambdalisue/fern-renderer-nerdfont.vim',
-  --     'lambdalisue/fern-ssh',
-  --   },
-  --   config = function ()
-  --     vim.cmd([[
-  --       let g:fern#renderer = "nerdfont"
-  --       " nn <Leader>e <Cmd>Fern . -drawer -toggle<CR>
-  --     ]])
-  --   end
-  -- }
 
   use {
     'kyazdani42/nvim-tree.lua',
@@ -362,30 +278,17 @@ require('packer').startup(function()
     end
   }
 
-  -- use {
-  --   'nvim-telescope/telescope.nvim',
-  --   requires = {
-  --     'nvim-lua/plenary.nvim',
-  --   },
-  --   config = function ()
-  --     vim.cmd([[
-  --       nn <Leader>t <cmd>Telescope find_files<CR>
-  --       nn <Leader>b <cmd>Telescope buffers<CR>
-  --     ]])
-  --   end
-  -- }
-
-  -- use 'jremmen/vim-ripgrep'
-
   use {
     'nvim-treesitter/nvim-treesitter',
     config = function ()
-      vim.cmd([[
-        augroup my_treesitter
-          autocmd!
-          autocmd BufEnter * silent! TSUpdate
-        augroup END
-      ]])
+      require'nvim-treesitter.configs'.setup {
+        ensure_installed = 'maintained',
+        sync_install = true,
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
+        },
+      }
     end
   }
 
@@ -393,53 +296,3 @@ require('packer').startup(function()
     require('packer').sync()
   end
 end)
-
--- Netrw
--- vim.cmd([[
--- nn <Leader>e :Lexplore<CR>
---
--- augroup netrw_mapping
---   autocmd!
---   autocmd filetype netrw call NetrwMapping()
--- augroup END
---
--- fu! NetrwMapping()
---   nmap <buffer> . gh
---   nmap <buffer> <C-t> <Nop>
--- endf
---
--- let g:Netrw_UserMaps = []
--- call add(g:Netrw_UserMaps, ['<CR>', 'MyNetrwBrowse'])
--- call add(g:Netrw_UserMaps, ['l', 'MyNetrwBrowse'])
--- call add(g:Netrw_UserMaps, ['o', 'MyNetrwBrowse'])
---
--- fu! MyNetrwBrowse(isLocal)
---   let l:wincount = winnr('$')
---   let l:fname = netrw#Call('NetrwGetWord')
---   let l:ischoose = 0
---   if !(l:fname =~ '/$')
---     if l:wincount > 2
---       let l:winid = win_getid()
---       call choosewin#start(range(2, l:wincount))
---       let g:netrw_chgwin = winnr()
---       call win_gotoid(l:winid)
---     en
---   en
---   let l:path = netrw#Call('NetrwBrowseChgDir', a:isLocal, l:fname)
---   if a:isLocal
---     call netrw#LocalBrowseCheck(l:path)
---   el
---     call netrw#Call('NetrwBrowse', 0, l:path)
---   en
---   if g:netrw_chgwin != -1
---     let g:netrw_chgwin = -1
---   en
--- endf
---
--- let g:netrw_altv=1
--- let g:netrw_keepdir=0
--- let g:netrw_banner=0
--- let g:netrw_winsize=20
--- let g:netrw_liststyle=3
--- let g:netrw_browse_split=4
--- ]])
