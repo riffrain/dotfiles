@@ -33,3 +33,5 @@ PS1='%{$fg_bold[blue]%}%~%{$fg_bold[green]$(__git_ps1 "(%s)")%}%{$fg_bold[blue]%
 if [ -f "$HOME/.zprofile" ]; then
   source "$HOME/.zprofile"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

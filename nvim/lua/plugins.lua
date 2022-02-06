@@ -37,21 +37,38 @@ require('packer').startup(function()
     'ctrlpvim/ctrlp.vim',
     config = function ()
       vim.cmd([[
-        if executable('rg')
-          set grepformat=%f:%l:%c:%m,%f:%l:%m
-          let g:ctrlp_use_caching = 0
-          let g:ctrlp_user_command= 'rg %s --files --color=never --glob ""'
-          let g:ctrlp_user_command_async = 'rg %s --files --color=never --glob ""'
-          " let g:ctrlp_user_command = 'rg --files %s'
-          " let g:ctrlp_user_command_async = 'rg --files %s'
-          " let g:ctrlp_use_caching = 0
-          " let g:ctrlp_working_path_mode = 'ra'
-          " let g:ctrlp_switch_buffer = 'et'
-        elsei executable('ag')
-          let g:ctrlp_use_caching=0
-          let g:ctrlp_user_command='ag %s -i -s --nocolor --nogroup -g ""'
-          let g:ctrlp_user_command_async='ag %s -i -s --nocolor --nogroup -g ""'
-        en
+        function! ToggleUserCommand()
+          let cwd = getcwd()
+          let toplevel = system('git -C'.shellescape(cwd).'rev-parse --show-toplevel')
+          if toplevel =~ 'fatal'
+            if executable('rg')
+              set grepformat=%f:%l:%c:%m,%f:%l:%m
+              let g:ctrlp_use_caching = 0
+              let g:ctrlp_user_command= 'rg %s --files --color=never --glob ""'
+              let g:ctrlp_user_command_async = 'rg %s --files --color=never --glob ""'
+              " let g:ctrlp_user_command = 'rg --files %s'
+              " let g:ctrlp_user_command_async = 'rg --files %s'
+              " let g:ctrlp_use_caching = 0
+              " let g:ctrlp_working_path_mode = 'ra'
+              " let g:ctrlp_switch_buffer = 'et'
+            elseif executable('ag')
+              let g:ctrlp_use_caching=0
+              let g:ctrlp_user_command='ag %s -i -s --nocolor --nogroup -g ""'
+              let g:ctrlp_user_command_async='ag %s -i -s --nocolor --nogroup -g ""'
+            endif
+          else
+            let cwd = shellescape(cwd)
+            let g:ctrlp_use_caching=0
+            let g:ctrlp_user_command='git -C '.cwd.' ls-tree -r --name-only HEAD'
+            let g:ctrlp_user_command_async='git -C '.cwd.' ls-tree -r --name-only HEAD'
+          endif
+        endfunction
+
+        augroup my_ctrlp_autocmd
+          autocmd!
+          autocmd BufEnter ControlP call ToggleUserCommand()
+        augroup END
+
         let g:ctrlp_show_hidden = 1
         nn <Leader>f <Cmd>CtrlP<CR>
         nn <Leader>l <Cmd>CtrlPLine<CR>
@@ -339,7 +356,7 @@ require('packer').startup(function()
       vim.cmd([[
         let g:nvim_tree_disable_window_picker = 0
         let g:nvim_tree_window_picker_chars = "sdfghjkl"
-        " nn <Leader>e <cmd>NvimTreeToggle<CR>
+        nn <Leader>e <cmd>NvimTreeToggle<CR>
       ]])
     end
   }

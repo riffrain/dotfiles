@@ -61,3 +61,5 @@ alias less='less -qR'
 
 export EDITOR=vi
 export PATH="$HOME/.local/bin:$HOME/.yarn/bin:$PATH"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

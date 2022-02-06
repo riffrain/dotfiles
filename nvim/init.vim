@@ -1,4 +1,3 @@
-vim.cmd([[
 se encoding=utf-8
 
 let g:mapleader = "\<Space>"
@@ -104,4 +103,5 @@ nn s "_s
 tno <silent><Esc><Esc> <C-\><C-n>
 au TermOpen * startinsert
 au WinEnter * if &buftype ==# 'terminal' | startinsert | endif
-]])
+
+lua require('plugins')
