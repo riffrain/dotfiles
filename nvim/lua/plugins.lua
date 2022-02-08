@@ -10,6 +10,43 @@ au MyAutoGroup BufWritePost plugins.lua PackerCompile
 au MyAutoGroup BufWritePost init.lua source <afile> | PackerCompile
 ]])
 
+-- LSP
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+  }
+)
+vim.api.nvim_set_keymap('n', 'gd', ':lua vim.diagnostic.open_float()<CR>',  {noremap = true, silent = true})
+-- vim.g.diagnostics_active = true
+-- function _G.toggle_diagnostics()
+--   vim.diagnostic.hide()
+--   if vim.g.diagnostics_active then
+--     vim.g.diagnostics_active = false
+--     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--       vim.lsp.diagnostic.on_publish_diagnostics, {
+--         virtual_text = false,
+--         signs = true,
+--         underline = true,
+--         update_in_insert = false,
+--       }
+--     )
+--   else
+--     vim.g.diagnostics_active = true
+--     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--       vim.lsp.diagnostic.on_publish_diagnostics, {
+--         virtual_text = true,
+--         signs = true,
+--         underline = true,
+--         update_in_insert = false,
+--       }
+--     )
+--   end
+--   vim.diagnostic.show()
+-- end
+
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
@@ -95,6 +132,7 @@ require('packer').startup(function()
     },
     config = function ()
       vim.cmd [[set completeopt=menu,menuone,noselect]]
+
       local cmp = require'cmp'
       cmp.setup({
         snippet = {
@@ -134,6 +172,7 @@ require('packer').startup(function()
           { name = 'cmdline' }
         })
       })
+
       -- Setup LSP
       local lsp_installer = require('nvim-lsp-installer')
       lsp_installer.on_server_ready(function(server)
