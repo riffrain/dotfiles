@@ -51,6 +51,7 @@ if has("termguicolors")
 en
 se noshowmode
 se background=dark
+se signcolumn=yes
 " }}}
 
 
