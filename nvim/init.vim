@@ -7,7 +7,7 @@ if &compatible
 en
 
 filetype plugin indent on
-syntax off
+syntax on
 
 aug MyAutoGroup
   au!
