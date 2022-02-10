@@ -74,6 +74,15 @@ require('packer').startup(function()
     end
   }
 
+  -- use 'jremmen/vim-ripgrep'
+
+  use {
+    'junegunn/fzf.vim',
+    requires = {
+      'junegunn/fzf',
+    },
+  }
+
   use 'ctrlpvim/ctrlp.vim'
 
   use {

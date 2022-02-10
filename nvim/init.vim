@@ -108,7 +108,7 @@ tno <silent><Esc><Esc> <C-\><C-n>
 au MyAutoGroup TermOpen * startinsert
 au MyAutoGroup WinEnter * if &buftype ==# 'terminal' | startinsert | endif
 " }}}
-au MyAutoGroup QuickfixCmdPost make,grep,grepadd,vimgrep copen
+" au MyAutoGroup QuickfixCmdPost make,grep,grepadd,vimgrep copen
 
 " Netrw {{{
 fu! NetrwMapping()
@@ -162,7 +162,7 @@ nn <Leader>b <Cmd>CtrlPBuffer<CR>
 
 let g:ctrlp_show_hidden = 1
 set grepformat=%f:%l:%c:%m,%f:%l:%m
-let g:ctrlp_use_caching=0
+let g:ctrlp_use_caching=1
 
 let g:switch_ctrlp_user_command = 1
 function! GetGitToplevel() abort
