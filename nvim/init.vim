@@ -52,7 +52,6 @@ en
 se noshowmode
 se background=dark
 se signcolumn=yes
-se breakindent=yes
 " }}}
 
 
