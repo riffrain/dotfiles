@@ -52,6 +52,7 @@ en
 se noshowmode
 se background=dark
 se signcolumn=yes
+se breakindent=yes
 " }}}
 
 
@@ -67,22 +68,22 @@ if has('persistent_undo')
 en
 " }}}
 
-fu! MarkMargin (on)
-  if exists('b:MarkMargin')
-    try
-      cal matchdelete(b:MarkMargin)
-    cat /./
-    endt
-    unlet b:MarkMargin
-  en
-  if a:on
-    let b:MarkMargin = matchadd('ColorColumn', '\%81v\s*\zs\S', 100)
-  en
-endf
-aug MarkMargin
-  au!
-  au BufEnter * :cal MarkMargin(1)
-aug END
+" fu! MarkMargin (on)
+"   if exists('b:MarkMargin')
+"     try
+"       cal matchdelete(b:MarkMargin)
+"     cat /./
+"     endt
+"     unlet b:MarkMargin
+"   en
+"   if a:on
+"     let b:MarkMargin = matchadd('ColorColumn', '\%81v\s*\zs\S', 100)
+"   en
+" endf
+" aug MarkMargin
+"   au!
+"   au BufEnter * :cal MarkMargin(1)
+" aug END
 
 " Keymapping {{{
 ino jj <Esc>
@@ -184,8 +185,10 @@ function! SwitchCtrlPUserCommand() abort
   else
     if g:switch_ctrlp_user_command == 1
       echo '[ctrlp] use git ls-files'
-      let g:ctrlp_user_command='git -C '.shellescape(l:toplevel).' ls-files -c -o --exclude-standard'
-      let g:ctrlp_user_command_async='git -C '.shellescape(l:toplevel).' ls-files -c -o --exclude-standard'
+      let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard'];
+      let g:ctrlp_user_command_async = ['.git', 'cd %s && git ls-files -co --exclude-standard'];
+      " let g:ctrlp_user_command='git -C '.shellescape(l:toplevel).' ls-files -c -o --exclude-standard'
+      " let g:ctrlp_user_command_async='git -C '.shellescape(l:toplevel).' ls-files -c -o --exclude-standard'
     elseif g:switch_ctrlp_user_command == 2
       echo '[ctrlp] use git ls-tree'
       let g:ctrlp_user_command='git -C '.shellescape(l:toplevel).' ls-tree -r --name-only --full-name HEAD'
