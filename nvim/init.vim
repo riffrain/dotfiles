@@ -156,51 +156,52 @@ let g:netrw_browse_split=4
 " }}}
 
 " fzf {{{
-nn <Leader>f <Cmd>Files<CR>
+" nn <Leader>f <Cmd>Files<CR>
 nn <Leader>l <Cmd>Lines<CR>
 nn <Leader>b <Cmd>Buffers<CR>
+nn <Leader>g :Rg<Space>
 " }}}
 
 " CtrlP {{{
-" nn <Leader>f <Cmd>CtrlP<CR>
+nn <Leader>f <Cmd>CtrlP<CR>
 " nn <Leader>l <Cmd>CtrlPLine<CR>
 " nn <Leader>b <Cmd>CtrlPBuffer<CR>
-"
-" let g:ctrlp_show_hidden = 1
-" set grepformat=%f:%l:%c:%m,%f:%l:%m
-" let g:ctrlp_use_caching=1
-"
-" let g:switch_ctrlp_user_command = 1
-" function! GetGitToplevel() abort
-"   if g:switch_ctrlp_user_command == 0
-"     return v:null
-"   endif
-"   let l:directory = len(argv()) > 0 ? fnamemodify(argv()[0], ':p:h') : getcwd()
-"   let l:toplevel = system('git -C '.shellescape(l:directory).' rev-parse --show-toplevel')
-"
-"   return l:toplevel =~ 'fatal' ? v:null : l:toplevel[:-2]
-" endfunction
-" function! SwitchCtrlPUserCommand() abort
-"   let l:toplevel = GetGitToplevel()
-"   if l:toplevel is v:null
-"     echo '[ctrlp] use ripgrep'
-"     set grepformat=%f:%l:%c:%m,%f:%l:%m
-"     let g:ctrlp_user_command= 'rg %s --files --glob ""'
-"     let g:ctrlp_user_command_async = 'rg %s --files --glob ""'
-"   else
-"     if g:switch_ctrlp_user_command == 1
-"       echo '[ctrlp] use git ls-files'
-"       let g:ctrlp_user_command='git -C %s ls-files -co --exclude-standard'
-"       let g:ctrlp_user_command_async='git -C %s ls-files -co --exclude-standard'
-"     elseif g:switch_ctrlp_user_command == 2
-"       echo '[ctrlp] use git ls-tree'
-"       let g:ctrlp_user_command='git -C '.shellescape(l:toplevel).' ls-tree -r --name-only --full-name HEAD'
-"       let g:ctrlp_user_command_async='git -C '.shellescape(l:toplevel).' ls-tree -r --name-only --full-name HEAD'
-"     endif
-"   endif
-" endfunction
-"
-" call SwitchCtrlPUserCommand()
+
+let g:ctrlp_show_hidden = 1
+set grepformat=%f:%l:%c:%m,%f:%l:%m
+let g:ctrlp_use_caching=1
+
+let g:switch_ctrlp_user_command = 1
+function! GetGitToplevel() abort
+  if g:switch_ctrlp_user_command == 0
+    return v:null
+  endif
+  let l:directory = len(argv()) > 0 ? fnamemodify(argv()[0], ':p:h') : getcwd()
+  let l:toplevel = system('git -C '.shellescape(l:directory).' rev-parse --show-toplevel')
+
+  return l:toplevel =~ 'fatal' ? v:null : l:toplevel[:-2]
+endfunction
+function! SwitchCtrlPUserCommand() abort
+  let l:toplevel = GetGitToplevel()
+  if l:toplevel is v:null
+    echo '[ctrlp] use ripgrep'
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+    let g:ctrlp_user_command= 'rg %s --files --glob ""'
+    let g:ctrlp_user_command_async = 'rg %s --files --glob ""'
+  else
+    if g:switch_ctrlp_user_command == 1
+      echo '[ctrlp] use git ls-files'
+      let g:ctrlp_user_command='git -C %s ls-files -co --exclude-standard'
+      let g:ctrlp_user_command_async='git -C %s ls-files -co --exclude-standard'
+    elseif g:switch_ctrlp_user_command == 2
+      echo '[ctrlp] use git ls-tree'
+      let g:ctrlp_user_command='git -C '.shellescape(l:toplevel).' ls-tree -r --name-only --full-name HEAD'
+      let g:ctrlp_user_command_async='git -C '.shellescape(l:toplevel).' ls-tree -r --name-only --full-name HEAD'
+    endif
+  endif
+endfunction
+
+call SwitchCtrlPUserCommand()
 " }}}
 
 lua require('plugins')

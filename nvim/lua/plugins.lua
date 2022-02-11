@@ -89,7 +89,7 @@ require('packer').startup(function()
       'junegunn/fzf',
     },
   }
-  -- use 'ctrlpvim/ctrlp.vim'
+  use 'ctrlpvim/ctrlp.vim'
 
   use 'skywind3000/asyncrun.vim'
   use {
