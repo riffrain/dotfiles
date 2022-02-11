@@ -119,6 +119,52 @@ endf
 au MyAutoGroup filetype netrw call NetrwMapping()
 
 " required vim-choosewin
+" required asyncrun.vim
+fu! AsyncBufWriteOverScp(...) abort
+  let l:tmpfile = netrw#Call('GetTempfile', '')
+  if tmpfile == ""
+   return
+  endif
+
+  call netrw#Call('NetrwOptionsSave', 'w:')
+  call netrw#Call('NetrwOptionsSafe', 0)
+  let curbufname = expand('%')
+  exe 'sil NetrwKeepj w! '.fnameescape(v:cmdarg).' '.fnameescape(tmpfile)
+  if curbufname == ""
+   0file!
+  endif
+
+  NetrwKeepj call netrw#Call('NetrwMethod', curbufname)
+
+  if exists('g:netrw_port') && g:netrw_port != ''
+    let useport= ' '.g:netrw_scpport.' '.fnameescape(g:netrw_port)
+  else
+    let useport= ''
+  endif
+
+  let escaped_tmpfile = netrw#Call('ShellEscape', tmpfile, 1)
+  let escaped_fname = netrw#Call('ShellEscape', g:netrw_machine.":".b:netrw_fname, 1)
+  let bufnr = expand('<abuf>') + 0
+  let asyncrun_cmd = 'AsyncRun -post=call\ delete('.escaped_tmpfile.')\ |\ call\ setbufvar('.bufnr.',"&modified",0)\ |\ echo\ "(hijacked\ netrw)\ Your\ write\ request\ has\ finished."'
+  exec 'sil NetrwKeepj '.asyncrun_cmd.' '.g:netrw_scp_cmd.useport.' '.escaped_tmpfile.' '.escaped_fname
+  call netrw#Call('NetrwOptionsRestore', 'w:')
+endfu
+com! -range=% -nargs=* HijackedNwriteScp call AsyncBufWriteOverScp(<f-args>)
+
+fu! HijackNetrwBufWriteCmd()
+  " disable default BufWriteCmd of Netrw
+  au! Network BufWriteCmd
+
+  aug HijackNetrwBufWriteCmd
+    au!
+    " Restore default BufWriteCmd without scp://*
+    au BufWriteCmd  ftp://*,rcp://*,http://*,file://*,dav://*,davs://*,rsync://*,sftp://* exe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe 'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))
+    " New BufWriteCmd of scp://*
+    au BufWriteCmd scp://* exe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe "HijackedNwriteScp ".fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))
+  aug END
+endfu
+au MyAutoGroup VimEnter * call HijackNetrwBufWriteCmd()
+
 fu! MyNetrwBrowse(isLocal)
   let l:wincount = winnr('$')
   let l:fname = netrw#Call('NetrwGetWord')
@@ -134,7 +180,7 @@ fu! MyNetrwBrowse(isLocal)
   let l:path = netrw#Call('NetrwBrowseChgDir', a:isLocal, l:fname)
   if a:isLocal
     call netrw#LocalBrowseCheck(l:path)
-  el
+  else
     call netrw#Call('NetrwBrowse', 0, l:path)
   en
   if g:netrw_chgwin != -1
@@ -205,3 +251,4 @@ call SwitchCtrlPUserCommand()
 " }}}
 
 lua require('plugins')
+
