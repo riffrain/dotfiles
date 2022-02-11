@@ -83,14 +83,15 @@ require('packer').startup(function()
     },
   }
 
-  use 'ctrlpvim/ctrlp.vim'
+  use 'skywind3000/asyncrun.vim'
 
-  use {
-    't9md/vim-choosewin',
-    config = function ()
-      vim.cmd[[let g:choosewin_label='sdfghjkl']]
-    end
-  }
+  -- use 'ctrlpvim/ctrlp.vim'
+  -- use {
+  --   't9md/vim-choosewin',
+  --   config = function ()
+  --     vim.cmd[[let g:choosewin_label='sdfghjkl']]
+  --   end
+  -- }
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -182,7 +183,7 @@ require('packer').startup(function()
           { name = 'nvim_lsp' },
           { name = 'vsnip' },
           { name = 'buffer',
-            opts = {
+            option = {
               get_bufnrs = function()
                 local bufs = {}
                 for _, win in ipairs(vim.api.nvim_list_wins()) do
