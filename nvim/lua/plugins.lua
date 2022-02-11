@@ -61,6 +61,13 @@ require('packer').startup(function()
   use 'easymotion/vim-easymotion'
 
   use {
+    'mattn/vim-findroot',
+    config = vim.cmd [[
+      let g:findroot_not_for_subdir = 0
+    ]]
+  }
+
+  use {
     'Mofiqul/vscode.nvim',
     config = function ()
       vim.cmd([[
