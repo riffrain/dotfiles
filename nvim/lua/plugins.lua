@@ -82,16 +82,15 @@ require('packer').startup(function()
       'junegunn/fzf',
     },
   }
+  -- use 'ctrlpvim/ctrlp.vim'
 
   use 'skywind3000/asyncrun.vim'
-
-  -- use 'ctrlpvim/ctrlp.vim'
-  -- use {
-  --   't9md/vim-choosewin',
-  --   config = function ()
-  --     vim.cmd[[let g:choosewin_label='sdfghjkl']]
-  --   end
-  -- }
+  use {
+    't9md/vim-choosewin',
+    config = function ()
+      vim.cmd[[let g:choosewin_label='sdfghjkl']]
+    end
+  }
 
   use {
     'nvim-lualine/lualine.nvim',
