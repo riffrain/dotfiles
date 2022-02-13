@@ -101,14 +101,14 @@ require('packer').startup(function()
 
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    -- requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function ()
       require('lualine').setup {
         options = {
           icons_enabled = true,
           theme = 'auto',
-          component_separators = { left = '', right = ''},
-          section_separators = { left = '', right = ''},
+          component_separators = { left = '|', right = '|'},
+          section_separators = { left = ' ', right = ' '},
           disabled_filetypes = {},
           always_divide_middle = true,
         },
@@ -170,6 +170,7 @@ require('packer').startup(function()
               buffer = 1,
               path = 1,
               nvim_lsp = 0,
+              vsnip = 0,
             })[entry.source.name] or 0
             return vim_item
           end
@@ -232,9 +233,9 @@ require('packer').startup(function()
 
   use {
     'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons',
-    },
+    -- requires = {
+    --   'kyazdani42/nvim-web-devicons',
+    -- },
     config = function()
       require'nvim-tree'.setup {
         disable_netrw       = false,
@@ -251,12 +252,12 @@ require('packer').startup(function()
         },
         diagnostics = {
           enable = false,
-          icons = {
-            hint = "",
-            info = "",
-            warning = "",
-            error = "",
-          }
+          -- icons = {
+          --   hint = "",
+          --   info = "",
+          --   warning = "",
+          --   error = "",
+          -- }
         },
         update_focused_file = {
           enable      = false,
@@ -324,6 +325,7 @@ require('packer').startup(function()
         let g:nvim_tree_disable_window_picker = 0
         let g:nvim_tree_window_picker_chars = "sdfghjkl"
         nn <Leader>e <cmd>NvimTreeToggle<CR>
+        nn <Leader>l <cmd>NvimTreeRefresh<CR>
       ]])
     end
   }

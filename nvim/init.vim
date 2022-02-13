@@ -86,7 +86,7 @@ en
 
 " Keymapping {{{
 ino jj <Esc>
-nn <C-l> :<C-u>se nohlsearch!<CR>
+nn <Esc><Esc> :<C-u>se nohlsearch!<CR>
 no j gj
 no k gk
 no gj j
@@ -243,6 +243,9 @@ endfunction
 
 call SwitchCtrlPUserCommand()
 " }}}
+
+
+nn <Leader>c <Cmd>ChooseWin<CR>
 
 lua require('plugins')
 
