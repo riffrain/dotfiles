@@ -118,53 +118,46 @@ endf
 
 au MyAutoGroup filetype netrw call NetrwMapping()
 
-" required vim-choosewin
-" required asyncrun.vim
-fu! AsyncBufWriteOverScp(...) abort
-  let l:tmpfile = netrw#Call('GetTempfile', '')
-  if tmpfile == ""
-   return
-  endif
+" inspired by https://github.com/skywind3000/asyncrun.vim/wiki/Get-netrw-using-asyncrun-to-save-remote-files
+" required: skywind3000/asyncrun.vim
+fu! s:AsyncSaveRemoteFile(...) abort
+  let l:tmpfile = tempname()
+  sil exe 'w! '.fnameescape(v:cmdarg).' '.fnameescape(tmpfile)
 
-  call netrw#Call('NetrwOptionsSave', 'w:')
-  call netrw#Call('NetrwOptionsSafe', 0)
   let curbufname = expand('%')
-  exe 'sil NetrwKeepj w! '.fnameescape(v:cmdarg).' '.fnameescape(tmpfile)
-  if curbufname == ""
-   0file!
-  endif
-
-  NetrwKeepj call netrw#Call('NetrwMethod', curbufname)
-
-  if exists('g:netrw_port') && g:netrw_port != ''
-    let useport= ' '.g:netrw_scpport.' '.fnameescape(g:netrw_port)
+  let scpurm = '^scp://\([^/#:]\+\)\%([#:]\(\d\+\)\)\=/\(.*\)$'
+  let machine = substitute(curbufname,scpurm,'\1','')
+  let port = substitute(curbufname,scpurm,'\2','')
+  let fname = substitute(curbufname,scpurm,'\3','')
+  if port != ''
+    let scpcmd = 'scp -P '.shellescape(port)
   else
-    let useport= ''
+    let scpcmd = 'scp'
   endif
-
-  let escaped_tmpfile = netrw#Call('ShellEscape', tmpfile, 1)
-  let escaped_fname = netrw#Call('ShellEscape', g:netrw_machine.":".b:netrw_fname, 1)
-  let bufnr = expand('<abuf>') + 0
-  let asyncrun_cmd = 'AsyncRun -post=call\ delete('.escaped_tmpfile.')\ |\ call\ setbufvar('.bufnr.',"&modified",0)\ |\ echo\ "(hijacked\ netrw)\ Your\ write\ request\ has\ finished."'
-  exec 'sil NetrwKeepj '.asyncrun_cmd.' '.g:netrw_scp_cmd.useport.' '.escaped_tmpfile.' '.escaped_fname
-  call netrw#Call('NetrwOptionsRestore', 'w:')
+  let escaped_tmpfile = shellescape(tmpfile, 1)
+  let escaped_fname = shellescape(machine.":".fname, 1)
+  let bufnr = expand('<abuf>')+ 0
+  call asyncrun#run(
+    \ '',
+    \ { 'post': 'call delete('.escaped_tmpfile.')|call setbufvar('.bufnr.',"&modified",0)|echo "Saved. '.curbufname.'"' },
+    \ scpcmd.' '.escaped_tmpfile.' '.escaped_fname)
 endfu
-com! -range=% -nargs=* HijackedNwriteScp call AsyncBufWriteOverScp(<f-args>)
+com! -range=% -nargs=* AsyncSaveRemoteFile call s:AsyncSaveRemoteFile(<f-args>)
 
-fu! HijackNetrwBufWriteCmd()
-  " disable default BufWriteCmd of Netrw
-  au! Network BufWriteCmd
-
-  aug HijackNetrwBufWriteCmd
+fu! SetupAsyncSaveRemoteFile()
+  " disable Netrw's BufWriteCmd
+  au! Network BufWriteCmd scp://*
+  aug SetAsyncSaveSCP
     au!
-    " Restore default BufWriteCmd without scp://*
-    au BufWriteCmd  ftp://*,rcp://*,http://*,file://*,dav://*,davs://*,rsync://*,sftp://* exe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe 'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))
-    " New BufWriteCmd of scp://*
-    au BufWriteCmd scp://* exe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe "HijackedNwriteScp ".fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))
+    au BufWriteCmd scp://* exe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe "AsyncSaveRemoteFile ".fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))
   aug END
 endfu
-au MyAutoGroup VimEnter * call HijackNetrwBufWriteCmd()
 
+aug AsyncSaveRemoteFile
+  au VimEnter * call SetupAsyncSaveRemoteFile()
+aug END
+
+" required vim-choosewin
 fu! MyNetrwBrowse(isLocal)
   let l:wincount = winnr('$')
   let l:fname = netrw#Call('NetrwGetWord')
@@ -217,7 +210,7 @@ let g:ctrlp_show_hidden = 1
 set grepformat=%f:%l:%c:%m,%f:%l:%m
 let g:ctrlp_use_caching=1
 
-let g:switch_ctrlp_user_command = 1
+let g:switch_ctrlp_user_command = 0
 function! GetGitToplevel() abort
   if g:switch_ctrlp_user_command == 0
     return v:null
