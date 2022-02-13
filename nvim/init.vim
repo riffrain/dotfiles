@@ -154,6 +154,7 @@ fu! SetupAsyncSaveRemoteFile()
 endfu
 
 aug AsyncSaveRemoteFile
+  au!
   au VimEnter * call SetupAsyncSaveRemoteFile()
 aug END
 
