@@ -155,7 +155,7 @@ endfu
 
 aug AsyncSaveRemoteFile
   au!
-  au VimEnter * call SetupAsyncSaveRemoteFile()
+  " au VimEnter * call SetupAsyncSaveRemoteFile()
 aug END
 
 " required vim-choosewin
@@ -245,7 +245,36 @@ call SwitchCtrlPUserCommand()
 " }}}
 
 
+fu! s:MyFernSshBufWriteCmd(...) abort
+  let fri = fern#fri#parse(expand('<afile>'))
+  let conn = fern_ssh#connection#new(fri.authority)
+  let bufnr = expand('<abuf>') + 0
+
+  let l:tmpfile = tempname()
+  sil exe 'w! '.fnameescape(v:cmdarg).' '.fnameescape(tmpfile)
+
+  let escaped_tmpfile = shellescape(tmpfile, 1)
+  let fname = printf('%s:%s', fri.authority, fri.path)
+  let escaped_fname = shellescape(fname)
+
+  call asyncrun#run(
+    \ '',
+    \ { 'post': 'call delete('.escaped_tmpfile.')|call setbufvar('.bufnr.',"&modified",0)|echo "Save. '.fname.'"' },
+    \ 'scp '.escaped_tmpfile.' '.escaped_fname)
+endfu
+com! -range=% -nargs=* MyFernBufWrite call s:MyFernSshBufWriteCmd(<f-args>)
+fu! s:SetupMyFern() abort
+  au! fern_ssh_internal BufWriteCmd
+  au! Network BufWriteCmd ssh://*
+  aug myfern
+    au BufWriteCmd ssh://* exe 'MyFernBufWrite '.fnameescape(expand("<amatch>"))
+  aug END
+endf
+aug myfern
+  au!
+  au VimEnter * call s:SetupMyFern()
+aug END
+
 nn <Leader>c <Cmd>ChooseWin<CR>
 
 lua require('plugins')
-

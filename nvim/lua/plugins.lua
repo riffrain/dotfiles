@@ -347,6 +347,13 @@ require('packer').startup(function()
     end
   }
 
+  use {
+    'lambdalisue/fern.vim',
+    requires = {
+      'lambdalisue/fern-ssh',
+    },
+  }
+
   if packer_bootstrap then
     require('packer').sync()
   end
