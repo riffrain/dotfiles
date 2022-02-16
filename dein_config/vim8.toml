@@ -31,6 +31,11 @@ en
 '''
 
 [[plugins]]
+repo='mattn/vim-molder'
+[[plugins]]
+repo='mattn/vim-molder-operations'
+
+[[plugins]]
 repo='Erichain/vim-monokai-pro'
 # hook_add='''
 #   au MyAutoCmd VimEnter * nested colorscheme monokai_pro
@@ -38,9 +43,9 @@ repo='Erichain/vim-monokai-pro'
 # '''
 [[plugins]]
 repo='tomasiser/vim-code-dark'
-hook_add='''
-  au MyAutoCmd VimEnter * nested colorscheme codedark
-'''
+# hook_add='''
+#   au MyAutoCmd VimEnter * nested colorscheme codedark
+# '''
 # [[plugins]]
 # repo='doums/darcula'
 # hook_add='''
@@ -60,7 +65,7 @@ repo='itchyny/lightline.vim'
 depends=['tpope/vim-fugitive']
 hook_add='''
 let g:lightline = {
-      \ 'colorscheme': 'darculaOriginal',
+      \ 'colorscheme': 'codedark',
       \ 'component': {
       \   'readonly': '%{&readonly?"\ue0a2":""}',
       \ },
@@ -228,48 +233,48 @@ hook_add='''
   let g:choosewin_label='sdfghjkl'
 '''
 
-[[plugins]]
-repo='preservim/nerdtree'
-depends=['vim-choosewin']
-hook_add='''
-  let g:NERDTreeMouseMode = 0
-  let g:NERDTreeMapToggleHidden = '.'
-  let g:NERDTreeMapCustomOpen = 'o'
-  let g:NERDTreeMapActivateNode = '<CR>'
-
-  nn <Leader>e :NERDTreeToggle<CR>
-'''
-hook_post_source='''
-  cal NERDTreeAddKeyMap({ 'key': 'l', 'callback': 'OpenCurrentDir', 'scope': 'DirNode', 'quickhelpText': 'Open current dir' })
-  cal NERDTreeAddKeyMap({ 'key': 'h', 'callback': 'CloseCurrentDir', 'scope': 'Node', 'quickhelpText': 'Close current dir' })
-  cal NERDTreeAddKeyMap({ 'key': g:NERDTreeMapActivateNode, 'callback': 'ChooseWinOpen', 'scope': 'FileNode', 'override': 1 })
-
-  fu! OpenCurrentDir(dirNode) abort
-    if !a:dirNode.isRoot() && !a:dirNode.isOpen
-      cal a:dirNode.activate({})
-      let l:children = a:dirNode.getVisibleChildren()
-      cal l:children[0].putCursorHere(1, 0)
-    en
-  endf
-
-  fu! CloseCurrentDir(node) abort
-    let l:node = a:node.path.isDirectory ? a:node.getCascadeRoot() : a:node
-    if !l:node.isRoot() && !empty(l:node.parent) && !l:node.parent.isRoot() && l:node.parent.isOpen
-      cal l:node.parent.putCursorHere(1, 0)
-      cal l:node.parent.activate({})
-    en
-  endf
-
-  fu! ChooseWinOpen(fileNode) abort
-    let l:wincount = winnr('$')
-    if l:wincount > 2
-      let l:nardwinnr = winnr()
-      cal choosewin#start(range(2, l:wincount))
-      silent exe l:nardwinnr.'wincmd w'
-    en
-    cal a:fileNode.activate({ 'reuse': 'all', 'where': 'p', 'keepopen': 1 })
-  endf
-'''
+# [[plugins]]
+# repo='preservim/nerdtree'
+# depends=['vim-choosewin']
+# hook_add='''
+#   let g:NERDTreeMouseMode = 0
+#   let g:NERDTreeMapToggleHidden = '.'
+#   let g:NERDTreeMapCustomOpen = 'o'
+#   let g:NERDTreeMapActivateNode = '<CR>'
+#
+#   nn <Leader>e :NERDTreeToggle<CR>
+# '''
+# hook_post_source='''
+#   cal NERDTreeAddKeyMap({ 'key': 'l', 'callback': 'OpenCurrentDir', 'scope': 'DirNode', 'quickhelpText': 'Open current dir' })
+#   cal NERDTreeAddKeyMap({ 'key': 'h', 'callback': 'CloseCurrentDir', 'scope': 'Node', 'quickhelpText': 'Close current dir' })
+#   cal NERDTreeAddKeyMap({ 'key': g:NERDTreeMapActivateNode, 'callback': 'ChooseWinOpen', 'scope': 'FileNode', 'override': 1 })
+#
+#   fu! OpenCurrentDir(dirNode) abort
+#     if !a:dirNode.isRoot() && !a:dirNode.isOpen
+#       cal a:dirNode.activate({})
+#       let l:children = a:dirNode.getVisibleChildren()
+#       cal l:children[0].putCursorHere(1, 0)
+#     en
+#   endf
+#
+#   fu! CloseCurrentDir(node) abort
+#     let l:node = a:node.path.isDirectory ? a:node.getCascadeRoot() : a:node
+#     if !l:node.isRoot() && !empty(l:node.parent) && !l:node.parent.isRoot() && l:node.parent.isOpen
+#       cal l:node.parent.putCursorHere(1, 0)
+#       cal l:node.parent.activate({})
+#     en
+#   endf
+#
+#   fu! ChooseWinOpen(fileNode) abort
+#     let l:wincount = winnr('$')
+#     if l:wincount > 2
+#       let l:nardwinnr = winnr()
+#       cal choosewin#start(range(2, l:wincount))
+#       silent exe l:nardwinnr.'wincmd w'
+#     en
+#     cal a:fileNode.activate({ 'reuse': 'all', 'where': 'p', 'keepopen': 1 })
+#   endf
+# '''
 
 [[plugins]]
 repo='vim-syntastic/syntastic'
@@ -418,6 +423,11 @@ smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j
 " Expand or jump
 imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+nmap        s   <Plug>(vsnip-select-text)
+xmap        s   <Plug>(vsnip-select-text)
+nmap        S   <Plug>(vsnip-cut-text)
+xmap        S   <Plug>(vsnip-cut-text)
 '''
 
 # [[plugins]]

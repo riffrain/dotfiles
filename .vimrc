@@ -85,6 +85,8 @@ en
 se noshowmode
 se background=dark
 se signcolumn=yes
+colorscheme codedark
+let g:molder_show_hidden = 1
 " }}}
 
 " Keymaps {{{
@@ -103,6 +105,14 @@ nn <Leader>s :<C-u>sp<CR>
 nn <Leader>v :<C-u>vs<CR>
 nn <Leader>T :<C-u>tabnew<cr>
 no <Leader>n :<C-u>:setl number!<CR>
+cnoremap <c-x> <c-r>=expand('%:p')<cr>
+
+" aug Keymap
+"   au!
+"   au BufEnter molder nn s <plug>(molder-operations-shell)
+" aug END
+
+cnoremap <c-x> <c-r>=expand('%:p')<cr>
 "}}}
 
 " Unlimited undo {{{
