@@ -1,4 +1,5 @@
 se encoding=utf-8
+scriptencoding utf-8
 
 let g:mapleader = "\<Space>"
 

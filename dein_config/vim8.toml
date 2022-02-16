@@ -32,12 +32,15 @@ en
 
 [[plugins]]
 repo='Erichain/vim-monokai-pro'
+# hook_add='''
+#   au MyAutoCmd VimEnter * nested colorscheme monokai_pro
+#   highlight ColorColumn ctermfg=208 ctermbg=Black
+# '''
+[[plugins]]
+repo='tomasiser/vim-code-dark'
 hook_add='''
-  au MyAutoCmd VimEnter * nested colorscheme monokai_pro
-  highlight ColorColumn ctermfg=208 ctermbg=Black
+  au MyAutoCmd VimEnter * nested colorscheme codedark
 '''
-# [[plugins]]
-# repo='tomasiser/vim-code-dark'
 # [[plugins]]
 # repo='doums/darcula'
 # hook_add='''
@@ -270,89 +273,155 @@ hook_post_source='''
 
 [[plugins]]
 repo='vim-syntastic/syntastic'
-[[plugins]]
-repo='othree/yajs.vim'
-[[plugins]]
-repo='pangloss/vim-javascript'
-[[plugins]]
-repo='othree/html5.vim'
-hook_add='''
-  au BufNewFile,BufRead *.vue set filetype=html
-  au BufNewFile,BufRead *.vue syntax sync fromstart
-'''
+# [[plugins]]
+# repo='othree/yajs.vim'
+# [[plugins]]
+# repo='pangloss/vim-javascript'
+# [[plugins]]
+# repo='othree/html5.vim'
+# hook_add='''
+#   au BufNewFile,BufRead *.vue set filetype=html
+#   au BufNewFile,BufRead *.vue syntax sync fromstart
+# '''
 # [[plugins]]
 # repo='sheerun/vim-polyglot'
-
 [[plugins]]
 repo='easymotion/vim-easymotion'
+#
+# [[plugins]]
+# repo = 'vim-denops/denops.vim'
+#
+# [[plugins]]
+# repo = 'Shougo/ddc-around'
+#
+# [[plugins]]
+# repo = 'Shougo/ddc-matcher_head'
+#
+# [[plugins]]
+# repo = 'Shougo/ddc-sorter_rank'
+#
+# [[plugins]]
+# repo = 'shun/ddc-vim-lsp'
+#
+# [[plugins]]
+# repo='prabirshrestha/vim-lsp'
+#
+# [[plugins]]
+# repo='mattn/vim-lsp-settings'
+#
+# [[plugins]]
+# repo='matsui54/ddc-buffer'
+#
+# [[plugins]]
+# repo='Shougo/ddc-cmdline'
+#
+# [[plugins]]
+# repo = 'Shougo/ddc.vim'
+# depends = ['denops.vim', 'ddc-sorter_rank', 'ddc-matcher_head', 'ddc-around', 'ddc-vim-lsp', 'ddc-cmdline', 'ddc-buffer']
+# hook_add = '''
+# call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'buffer', 'cmdline'])
+#
+# call ddc#custom#patch_global('sourceOptions', {
+#       \ '_': {
+#       \   'matchers': ['matcher_head'],
+#       \   'sorters': ['sorter_rank']},
+#       \ 'vim-lsp': {
+#       \   'matchers': ['matcher_head'],
+#       \   'mark': 'LSP'},
+#       \ 'cmdline': {'mark': 'cmdline'},
+#       \ 'buffer': {'mark': 'B'},
+#       \ 'around': {
+#       \   'maxSize': 500,
+#       \   'mark': 'A'},
+#       \ })
+#
+# call ddc#custom#patch_global('sourceParams', {
+#     \ 'buffer': {
+#     \   'requireSameFiletype': v:false,
+#     \   'limitBytes': 5000000,
+#     \   'fromAltBuf': v:true,
+#     \   'forceCollect': v:true,
+#     \ },
+#     \ })
+#
+# " Mappings
+# " <TAB>: completion.
+# inoremap <silent><expr> <TAB>
+# \ ddc#map#pum_visible() ? '<C-n>' :
+# \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+# \ '<TAB>' : ddc#map#manual_complete()
+#
+# " <S-TAB>: completion back.
+# inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
+#
+# " Use ddc.
+# call ddc#enable()
+# '''
 
 [[plugins]]
-repo = 'vim-denops/denops.vim'
-
+repo='hrsh7th/vim-vsnip'
 [[plugins]]
-repo = 'Shougo/ddc-around'
-
-[[plugins]]
-repo = 'Shougo/ddc-matcher_head'
-
-[[plugins]]
-repo = 'Shougo/ddc-sorter_rank'
-
-[[plugins]]
-repo = 'shun/ddc-vim-lsp'
-
-[[plugins]]
-repo='prabirshrestha/vim-lsp'
-
+repo='hrsh7th/vim-vsnip-integ'
 [[plugins]]
 repo='mattn/vim-lsp-settings'
-
 [[plugins]]
-repo='matsui54/ddc-buffer'
-
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
 [[plugins]]
-repo='Shougo/ddc-cmdline'
-
+repo='prabirshrestha/asyncomplete-buffer.vim'
 [[plugins]]
-repo = 'Shougo/ddc.vim'
-depends = ['denops.vim', 'ddc-sorter_rank', 'ddc-matcher_head', 'ddc-around', 'ddc-vim-lsp', 'ddc-cmdline', 'ddc-buffer']
-hook_add = '''
-call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'buffer', 'cmdline'])
-
-call ddc#custom#patch_global('sourceOptions', {
-      \ '_': {
-      \   'matchers': ['matcher_head'],
-      \   'sorters': ['sorter_rank']},
-      \ 'vim-lsp': {
-      \   'matchers': ['matcher_head'],
-      \   'mark': 'LSP'},
-      \ 'cmdline': {'mark': 'cmdline'},
-      \ 'buffer': {'mark': 'B'},
-      \ 'around': {
-      \   'maxSize': 500,
-      \   'mark': 'A'},
-      \ })
-
-call ddc#custom#patch_global('sourceParams', {
-    \ 'buffer': {
-    \   'requireSameFiletype': v:false,
-    \   'limitBytes': 5000000,
-    \   'fromAltBuf': v:true,
-    \   'forceCollect': v:true,
-    \ },
-    \ })
-
-" Mappings
-" <TAB>: completion.
-inoremap <silent><expr> <TAB>
-\ ddc#map#pum_visible() ? '<C-n>' :
-\ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-\ '<TAB>' : ddc#map#manual_complete()
-
-" <S-TAB>: completion back.
-inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
-
-" Use ddc.
-call ddc#enable()
+repo = 'prabirshrestha/async.vim'
+[[plugins]]
+repo='yami-beta/asyncomplete-omni.vim'
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+hook_add='''
+nmap <silent> gd :LspDefinition<CR>
+nmap <silent> <f2> :LspRename<CR>
+nmap <silent> <Leader>d :LspTypeDefinition<CR>
+nmap <silent> <Leader>r :LspReferences<CR>
+nmap <silent> <Leader>i :LspImplementation<CR>
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:asyncomplete_popup_delay = 200
+let g:lsp_text_edit_enabled = 0
 '''
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+hook_add='''
+setlocal omnifunc=lsp#complete
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'allowlist': ['*'],
+    \ 'blocklist': ['go'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ 'config': {
+    \    'max_buffer_size': 5000000,
+    \  },
+    \ }))
+call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+  \ 'name': 'omni',
+  \ 'allowlist': ['*'],
+  \ 'blocklist': ['c', 'cpp', 'html'],
+  \ 'completor': function('asyncomplete#sources#omni#completor'),
+  \ 'config': {
+  \   'show_source_kind': 1,
+  \ },
+  \ }))
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+" Expand
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+'''
+
+# [[plugins]]
+# repo='junegunn/fzf'
+# [[plugins]]
+# repo='junegunn/fzf.vim'
 

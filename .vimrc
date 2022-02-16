@@ -116,21 +116,21 @@ if has('persistent_undo')
 en
 " }}}
 
-fu! MarkMargin (on)
-  if exists('b:MarkMargin')
-    try
-      cal matchdelete(b:MarkMargin)
-    cat /./
-    endt
-    unlet b:MarkMargin
-  en
-  if a:on
-    let b:MarkMargin = matchadd('ColorColumn', '\%81v\s*\zs\S', 100)
-  en
-endf
-
-aug MarkMargin
-  au!
-  au BufEnter * :cal MarkMargin(1)
-  au BufEnter *.vp* :cal MarkMargin(0)
-aug END
+" fu! MarkMargin (on)
+"   if exists('b:MarkMargin')
+"     try
+"       cal matchdelete(b:MarkMargin)
+"     cat /./
+"     endt
+"     unlet b:MarkMargin
+"   en
+"   if a:on
+"     let b:MarkMargin = matchadd('ColorColumn', '\%81v\s*\zs\S', 100)
+"   en
+" endf
+"
+" aug MarkMargin
+"   au!
+"   au BufEnter * :cal MarkMargin(1)
+"   au BufEnter *.vp* :cal MarkMargin(0)
+" aug END
