@@ -1,13 +1,358 @@
 [[plugins]]
+repo='Shougo/dein.vim'
+
+[[plugins]]
+repo='editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo='cohama/lexima.vim'
+
+[[plugins]]
+repo='tpope/vim-surround'
+
+[[plugins]]
+repo='wellle/targets.vim'
+
+[[plugins]]
+repo='tpope/vim-unimpaired'
+
+[[plugins]]
+repo='tpope/vim-fugitive'
+
+[[plugins]]
+repo='airblade/vim-gitgutter'
+
+[[plugins]]
+repo='iberianpig/tig-explorer.vim'
+hook_add='''
+if executable('tig')
+  nn <Leader>t :<C-u>TigOpenProjectRootDir<CR>
+en
+'''
+
+[[plugins]]
+repo='Erichain/vim-monokai-pro'
+hook_add='''
+  au MyAutoCmd VimEnter * nested colorscheme monokai_pro
+  highlight ColorColumn ctermfg=208 ctermbg=Black
+'''
+# [[plugins]]
+# repo='tomasiser/vim-code-dark'
+# [[plugins]]
+# repo='doums/darcula'
+# hook_add='''
+#   au MyAutoCmd VimEnter * nested colorscheme darcula
+# '''
+# [[plugins]]
+# repo='Mofiqul/vscode.nvim'
+# hook_add='''
+#   let g:vscode_style = "dark"
+#   let g:vscode_transparent = 1
+#   let g:vscode_italic_comment = 1
+#   au MyAutoCmd VimEnter * nested colorscheme vscode
+# '''
+
+[[plugins]]
+repo='itchyny/lightline.vim'
+depends=['tpope/vim-fugitive']
+hook_add='''
+let g:lightline = {
+      \ 'colorscheme': 'darculaOriginal',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"\ue0a2":""}',
+      \ },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
+      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LightlineFugitive',
+      \   'filename': 'LightlineFilename',
+      \   'fileformat': 'LightlineFileformat',
+      \   'filetype': 'LightlineFiletype',
+      \   'fileencoding': 'LightlineFileencoding',
+      \   'mode': 'LightlineMode',
+      \   'ctrlpmark': 'CtrlPMark',
+      \ },
+      \ 'component_expand': {
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \ },
+      \ 'component_type': {
+      \   'syntastic': 'error',
+      \ }
+      \ }
+
+  fu! LightlineModified()
+    retu &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  endf
+
+  fu! LightlineReadonly()
+    retu &ft !~? 'help' && &readonly ? 'RO' : ''
+  endf
+
+  fu! LightlineFilename()
+    let fname = expand('%:~')
+    retu fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
+      \ fname == '__Tagbar__' ? g:lightline.fname :
+      \ fname =~ '__Gundo\|NERD_tree' ? '' :
+      \ &ft == 'vimfiler' ? '' :
+      \ &ft == 'unite' ? unite#get_status_string() :
+      \ &ft == 'vimshell' ? vimshell#get_status_string() :
+      \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+      \ ('' != fname ? fname : '[No Name]') .
+      \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+  endf
+
+  fu! LightlineFugitive()
+    try
+      if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler'
+        let branch = fugitive#head()
+        retu branch !=# '' ? branch : ''
+      en
+    catch
+    endtry
+    retu ''
+  endf
+
+  fu! LightlineFileformat()
+    retu winwidth(0) > 70 ? &fileformat : ''
+  endf
+
+  fu! LightlineFiletype()
+    retu winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+  endf
+
+  fu! LightlineFileencoding()
+    retu winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+  endf
+
+  fu! LightlineMode()
+    let fname = expand('%:t')
+    retu fname == 'ControlP' ? 'CtrlP' :
+      \ fname =~ 'NERD_tree' ? 'NERDTree' :
+      \ &ft == 'unite' ? 'Unite' :
+      \ winwidth(0) > 60 ? lightline#mode() : ''
+  endf
+
+  fu! CtrlPMark()
+    if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
+      cal lightline#link('iR'[g:lightline.ctrlp_regex])
+      retu lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
+          \ , g:lightline.ctrlp_next], 0)
+    el
+      retu ''
+    en
+  endf
+
+  let g:ctrlp_status_func = {
+    \ 'main': 'CtrlPStatusFunc_1',
+    \ 'prog': 'CtrlPStatusFunc_2',
+    \ }
+
+  fu! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
+    let g:lightline.ctrlp_regex = a:regex
+    let g:lightline.ctrlp_prev = a:prev
+    let g:lightline.ctrlp_item = a:item
+    let g:lightline.ctrlp_next = a:next
+    retu lightline#statusline(0)
+  endf
+
+  fu! CtrlPStatusFunc_2(str)
+    retu lightline#statusline(0)
+  endf
+
+  let g:tagbar_status_func = 'TagbarStatusFunc'
+
+  fu! TagbarStatusFunc(current, sort, fname, ...) abort
+    let g:lightline.fname = a:fname
+    retu lightline#statusline(0)
+  endf
+
+  aug AutoSyntastic
+    au!
+    au BufWritePost *.c,*.cpp cal s:syntastic()
+  aug END
+
+  fu! s:syntastic()
+    SyntasticCheck
+    cal lightline#update()
+  endf
+'''
+
+[[plugins]]
+repo='rking/ag.vim'
+[[plugins]]
+repo='ctrlpvim/ctrlp.vim'
+hook_add='''
+  if executable('ag')
+    let g:ctrlp_use_caching=0
+    let g:ctrlp_user_command='ag %s -i -s --nocolor --nogroup -g ""'
+  en
+  let g:ctrlp_show_hidden = 1
+
+  nn <Leader>f :CtrlP<CR>
+'''
+
+[[plugins]]
+repo='Shougo/vimproc.vim'
+build='make'
+
+[[plugins]]
+repo='Shougo/unite.vim'
+depends=['vimproc.vim']
+hook_add='''
+  let g:unite_enable_start_insert = 1
+  let g:unite_enable_ignore_case = 1
+  let g:unite_enable_smart_case = 1
+
+  if executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+    let g:unite_source_grep_recursive_opt = ''
+  endif
+
+  nn <silent> <Leader>g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+  nn <silent> <Leader>c :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+  nn <silent> <Leader>r :<C-u>UniteResume search-buffer<CR>
+  nn <silent> <Leader>b :<C-u>Unite buffer<CR>
+  nn <silent> <Leader>m :<C-u>Unite mark<CR>
+  nn <silent> <Leader>l :<C-u>Unite line<CR>
+'''
+
+[[plugins]]
+repo='t9md/vim-choosewin'
+hook_add='''
+  let g:choosewin_label='sdfghjkl'
+'''
+
+[[plugins]]
+repo='preservim/nerdtree'
+depends=['vim-choosewin']
+hook_add='''
+  let g:NERDTreeMouseMode = 0
+  let g:NERDTreeMapToggleHidden = '.'
+  let g:NERDTreeMapCustomOpen = 'o'
+  let g:NERDTreeMapActivateNode = '<CR>'
+
+  nn <Leader>e :NERDTreeToggle<CR>
+'''
+hook_post_source='''
+  cal NERDTreeAddKeyMap({ 'key': 'l', 'callback': 'OpenCurrentDir', 'scope': 'DirNode', 'quickhelpText': 'Open current dir' })
+  cal NERDTreeAddKeyMap({ 'key': 'h', 'callback': 'CloseCurrentDir', 'scope': 'Node', 'quickhelpText': 'Close current dir' })
+  cal NERDTreeAddKeyMap({ 'key': g:NERDTreeMapActivateNode, 'callback': 'ChooseWinOpen', 'scope': 'FileNode', 'override': 1 })
+
+  fu! OpenCurrentDir(dirNode) abort
+    if !a:dirNode.isRoot() && !a:dirNode.isOpen
+      cal a:dirNode.activate({})
+      let l:children = a:dirNode.getVisibleChildren()
+      cal l:children[0].putCursorHere(1, 0)
+    en
+  endf
+
+  fu! CloseCurrentDir(node) abort
+    let l:node = a:node.path.isDirectory ? a:node.getCascadeRoot() : a:node
+    if !l:node.isRoot() && !empty(l:node.parent) && !l:node.parent.isRoot() && l:node.parent.isOpen
+      cal l:node.parent.putCursorHere(1, 0)
+      cal l:node.parent.activate({})
+    en
+  endf
+
+  fu! ChooseWinOpen(fileNode) abort
+    let l:wincount = winnr('$')
+    if l:wincount > 2
+      let l:nardwinnr = winnr()
+      cal choosewin#start(range(2, l:wincount))
+      silent exe l:nardwinnr.'wincmd w'
+    en
+    cal a:fileNode.activate({ 'reuse': 'all', 'where': 'p', 'keepopen': 1 })
+  endf
+'''
+
+[[plugins]]
+repo='vim-syntastic/syntastic'
+[[plugins]]
+repo='othree/yajs.vim'
+[[plugins]]
+repo='pangloss/vim-javascript'
+[[plugins]]
+repo='othree/html5.vim'
+hook_add='''
+  au BufNewFile,BufRead *.vue set filetype=html
+  au BufNewFile,BufRead *.vue syntax sync fromstart
+'''
+# [[plugins]]
+# repo='sheerun/vim-polyglot'
+
+[[plugins]]
+repo='easymotion/vim-easymotion'
+
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-around'
+
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+
+[[plugins]]
+repo = 'shun/ddc-vim-lsp'
+
+[[plugins]]
 repo='prabirshrestha/vim-lsp'
 
 [[plugins]]
 repo='mattn/vim-lsp-settings'
-depends=['vim-lsp']
 
 [[plugins]]
-repo = 'prabirshrestha/asyncomplete.vim'
+repo='matsui54/ddc-buffer'
 
 [[plugins]]
-repo = 'prabirshrestha/asyncomplete-lsp.vim'
-depends=['asyncomplete']
+repo='Shougo/ddc-cmdline'
+
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+depends = ['denops.vim', 'ddc-sorter_rank', 'ddc-matcher_head', 'ddc-around', 'ddc-vim-lsp', 'ddc-cmdline', 'ddc-buffer']
+hook_add = '''
+call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'buffer', 'cmdline'])
+
+call ddc#custom#patch_global('sourceOptions', {
+      \ '_': {
+      \   'matchers': ['matcher_head'],
+      \   'sorters': ['sorter_rank']},
+      \ 'vim-lsp': {
+      \   'matchers': ['matcher_head'],
+      \   'mark': 'LSP'},
+      \ 'cmdline': {'mark': 'cmdline'},
+      \ 'buffer': {'mark': 'B'},
+      \ 'around': {
+      \   'maxSize': 500,
+      \   'mark': 'A'},
+      \ })
+
+call ddc#custom#patch_global('sourceParams', {
+    \ 'buffer': {
+    \   'requireSameFiletype': v:false,
+    \   'limitBytes': 5000000,
+    \   'fromAltBuf': v:true,
+    \   'forceCollect': v:true,
+    \ },
+    \ })
+
+" Mappings
+" <TAB>: completion.
+inoremap <silent><expr> <TAB>
+\ ddc#map#pum_visible() ? '<C-n>' :
+\ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+\ '<TAB>' : ddc#map#manual_complete()
+
+" <S-TAB>: completion back.
+inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
+
+" Use ddc.
+call ddc#enable()
+'''
+

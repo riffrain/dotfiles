@@ -42,19 +42,27 @@ if executable('tig')
 en
 '''
 
-# [[plugins]]
-# repo='Erichain/vim-monokai-pro'
-# hook_add='''
-#   au MyAutoCmd VimEnter * nested colorscheme monokai_pro
-#   highlight ColorColumn ctermfg=208 ctermbg=Black
-# '''
+[[plugins]]
+repo='Erichain/vim-monokai-pro'
+hook_add='''
+  au MyAutoCmd VimEnter * nested colorscheme monokai_pro
+  highlight ColorColumn ctermfg=208 ctermbg=Black
+'''
 # [[plugins]]
 # repo='tomasiser/vim-code-dark'
-[[plugins]]
-repo='doums/darcula'
-hook_add='''
-  au MyAutoCmd VimEnter * nested colorscheme darcula
-'''
+# [[plugins]]
+# repo='doums/darcula'
+# hook_add='''
+#   au MyAutoCmd VimEnter * nested colorscheme darcula
+# '''
+# [[plugins]]
+# repo='Mofiqul/vscode.nvim'
+# hook_add='''
+#   let g:vscode_style = "dark"
+#   let g:vscode_transparent = 1
+#   let g:vscode_italic_comment = 1
+#   au MyAutoCmd VimEnter * nested colorscheme vscode
+# '''
 
 [[plugins]]
 repo='itchyny/lightline.vim'
