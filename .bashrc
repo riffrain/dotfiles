@@ -18,9 +18,17 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 if [ "$color_prompt" = yes ]; then
+  if [ -n "$VIMRUNTIME" ]; then
+    PS1='\[\033[01;34m\][vim][\w\[\033[00m\]\[\033[01;32m\]$(__git_ps1 "(%s)")\[\033[00m\]\[\033[01;34m\]]\[\033[00m\] '
+ else
     PS1='\[\033[01;34m\][\w\[\033[00m\]\[\033[01;32m\]$(__git_ps1 "(%s)")\[\033[00m\]\[\033[01;34m\]]\[\033[00m\] '
+ fi
 else
+  if [ -n "$VIMRUNTIME" ]; then
+    PS1='[vim][\w\$(__git_ps1 "(%s)")\] '
+  else
     PS1='[\w\$(__git_ps1 "(%s)")\] '
+  fi
 fi
 unset color_prompt force_color_prompt
 
@@ -58,7 +66,7 @@ fi
 alias vi='vim'
 alias ssh='ssh -A'
 alias less='less -qR'
-
+\
 export EDITOR=vi
 export PATH="$HOME/.local/bin:$HOME/.yarn/bin:$PATH"
 

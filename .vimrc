@@ -11,38 +11,6 @@ aug MyAutoCmd
   au!
 aug END
 
-" dein.vim {{{
-let s:cache_home = '~/.cache'
-let s:dein_dir = expand(s:cache_home . '/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-if !isdirectory(s:dein_repo_dir)
-  cal system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
-en
-if v:version < 800
-  cal system('cd ' . shellescape(s:dein_repo_dir) . ' && git checkout 1.5')
-else
-  cal system('cd ' . shellescape(s:dein_repo_dir) . ' && git checkout master')
-en
-let &runtimepath = s:dein_repo_dir .",". &runtimepath
-let s:dein_config_dir = expand(s:cache_home . '/dein_config')
-let s:toml_file = s:dein_config_dir.'/dein.toml'
-let s:toml_file_vim8 = s:dein_config_dir.'/vim8.toml'
-if dein#load_state(s:dein_dir)
-  cal dein#begin(s:dein_dir)
-  if v:version >= 800
-    cal dein#load_toml(s:toml_file_vim8, {'lazy': 0})
-  else
-    cal dein#load_toml(s:toml_file, {'lazy': 0})
-  en
-  cal dein#end()
-  cal dein#save_state()
-en
-if dein#check_install()
-  cal dein#install()
-en
-au VimEnter * cal dein#call_hook('post_source')
-" }}}
-
 filetype plugin indent on
 syntax enable
 
@@ -85,62 +53,55 @@ en
 se noshowmode
 se background=dark
 se signcolumn=yes
-colorscheme ayu
-let g:molder_show_hidden = 1
 " }}}
 
-" Keymaps {{{
-ino jj <Esc>
-nn <silent><Esc><Esc> :<C-u>se nohlsearch!<CR>
-no j gj
-no k gk
-no gj j
-no gk k
-no <S-j> <Nop>
-no <S-k> <Nop>
-no <C-j> 10j
-no <C-k> 10k
-nn <Leader>p :<C-u>se invpaste<CR>
-nn <Leader>s :<C-u>sp<CR>
-nn <Leader>v :<C-u>vs<CR>
-nn <Leader>T :<C-u>tabnew<cr>
-no <Leader>n :<C-u>:setl number!<CR>
-cnoremap <c-x> <c-r>=expand('%:p')<cr>
+call plug#begin('~/.vim/plugged')
 
-" aug Keymap
-"   au!
-"   au BufEnter molder nn s <plug>(molder-operations-shell)
-" aug END
+Plug 'editorconfig/editorconfig-vim'
+Plug 'cohama/lexima.vim'
+Plug 'tpope/vim-surround'
+Plug 'wellle/targets.vim'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-syntastic/syntastic'
+Plug 'rking/ag.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'easymotion/vim-easymotion'
 
-cnoremap <c-x> <c-r>=expand('%:p')<cr>
-"}}}
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'Shougo/unite.vim'
 
-" Unlimited undo {{{
-if has('persistent_undo')
-    let s:undo_dir = expand(s:cache_home . '/vimundo')
-    if !isdirectory(s:undo_dir)
-      cal system('mkdir -p ' . shellescape(s:undo_dir))
-    en
-    se undodir=~/.cache/vimundo
-    se undofile
-en
+Plug 't9md/vim-choosewin'
+Plug 'preservim/nerdtree'
+
+" LSP {{{
+Plug 'vim-denops/denops.vim'
+Plug 'Shougo/pum.vim'
+Plug 'Shougo/ddc-around'
+Plug 'Shougo/ddc-matcher_head'
+Plug 'Shougo/ddc-sorter_rank'
+Plug 'shun/ddc-vim-lsp'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'matsui54/ddc-buffer'
+Plug 'Shougo/ddc-cmdline'
+Plug 'Shougo/ddc.vim'
 " }}}
 
-" fu! MarkMargin (on)
-"   if exists('b:MarkMargin')
-"     try
-"       cal matchdelete(b:MarkMargin)
-"     cat /./
-"     endt
-"     unlet b:MarkMargin
-"   en
-"   if a:on
-"     let b:MarkMargin = matchadd('ColorColumn', '\%81v\s*\zs\S', 100)
-"   en
-" endf
-"
-" aug MarkMargin
-"   au!
-"   au BufEnter * :cal MarkMargin(1)
-"   au BufEnter *.vp* :cal MarkMargin(0)
-" aug END
+" colorscheme {{{
+Plug 'Erichain/vim-monokai-pro'
+Plug 'tomasiser/vim-code-dark'
+Plug 'ayu-theme/ayu-vim'
+" }}}
+
+call plug#end()
+
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
+
+" Load configrations
+call map(sort(split(globpath(&runtimepath, '/configs/*.vim'))), {->[execute('exec "so" v:val')]})

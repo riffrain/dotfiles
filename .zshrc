@@ -28,8 +28,11 @@ GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUPSTREAM=auto
 setopt PROMPT_SUBST
-PS1='%{$fg_bold[blue]%}%~%{$fg_bold[green]$(__git_ps1 "(%s)")%}%{$fg_bold[blue]%}$reset_color %# '
-
+if [ -n "$VIMRUNTIME" ]; then
+  PS1='%{$fg_bold[blue]%}[vim]%~%{$fg_bold[green]$(__git_ps1 "(%s)")%}%{$fg_bold[blue]%}$reset_color %# '
+else
+  PS1='%{$fg_bold[blue]%}%~%{$fg_bold[green]$(__git_ps1 "(%s)")%}%{$fg_bold[blue]%}$reset_color %# '
+fi
 if [ -f "$HOME/.zprofile" ]; then
   source "$HOME/.zprofile"
 fi
