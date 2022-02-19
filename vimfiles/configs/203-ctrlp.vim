@@ -1,10 +1,7 @@
 "
 " CtrlP
 "
-if empty(globpath(&rtp, 'plugged/ctrlp.vim'))
-  finish
-endif
-if !exists(':CtrlP')
+if empty(globpath(&rtp, 'autoload/ctrlp.vim'))
   finish
 endif
 if executable('ag')

@@ -2,21 +2,10 @@
 " Lsp Setting
 " use ddc.vim
 "
-if empty(globpath(&rtp, 'plugged/denops.vim'))
-  || empty(globpath(&rtp, 'plugged/ddc.vim'))
-  || empty(globpath(&rtp, 'plugged/pum.vim'))
-  || empty(globpath(&rtp, 'plugged/ddc-around'))
-  || empty(globpath(&rtp, 'plugged/ddc-matcher_head'))
-  || empty(globpath(&rtp, 'plugged/ddc-sorter_rank'))
-  || empty(globpath(&rtp, 'plugged/ddc-vim-lsp'))
-  || empty(globpath(&rtp, 'plugged/vim-lsp'))
-  || empty(globpath(&rtp, 'plugged/vim-lsp-settings'))
-  || empty(globpath(&rtp, 'plugged/ddc-buffer'))
-  || empty(globpath(&rtp, 'plugged/ddc-cmdline'))
-  finish
-endif
-
-if !exists('*ddc#enable')
+if empty(globpath(&rtp, 'autoload/denops.vim'))
+  || empty(globpath(&rtp, 'autoload/ddc.vim'))
+  || empty(globpath(&rtp, 'autoload/pum.vim'))
+  || empty(globpath(&rtp, 'autoload/lsp.vim'))
   finish
 endif
 
@@ -28,12 +17,11 @@ call ddc#custom#patch_global('sourceOptions', {
       \   'sorters': ['sorter_rank']},
       \ 'vim-lsp': {
       \   'matchers': ['matcher_head'],
-      \   'mark': 'LSP'},
-      \ 'cmdline': {'mark': 'cmdline'},
-      \ 'buffer': {'mark': 'B'},
+      \   'mark': 'l'},
+      \ 'buffer': {'mark': 'b'},
       \ 'around': {
       \   'maxSize': 500,
-      \   'mark': 'A'},
+      \   'mark': 'a'},
       \ })
 call ddc#custom#patch_global('sourceParams', {
     \ 'buffer': {

@@ -1,11 +1,8 @@
 "
 " NERDTree
 "
-if empty(globpath(&rtp, 'plugged/vim-choosewin'))
-  || empty(globpath(&rtp, 'plugged/nerdtree'))
-  finish
-endif
-if exists(':NERDTreeToggle') != 0
+if empty(globpath(&rtp, 'autoload/choosewin.vim'))
+  || empty(globpath(&rtp, 'autoload/nerdtree.vim'))
   finish
 endif
 

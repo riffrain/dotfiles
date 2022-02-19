@@ -1,10 +1,7 @@
 "
 " lightline.vim
 "
-if empty(globpath(&rtp, 'plugged/lightline.vim'))
-  finish
-endif
-if !exists('*lightline#update')
+if empty(globpath(&rtp, 'autoload/lightline.vim'))
   finish
 endif
 

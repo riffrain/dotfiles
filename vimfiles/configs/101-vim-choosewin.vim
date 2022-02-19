@@ -1,7 +1,7 @@
 "
 " vim-choosewin
 "
-if empty(globpath(&rtp, 'plugged/vim-choosewin'))
+if empty(globpath(&rtp, 'autoload/choosewin.vim'))
   finish
 endif
 

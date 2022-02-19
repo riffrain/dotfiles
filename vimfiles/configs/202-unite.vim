@@ -1,11 +1,8 @@
 "
 " unite.vim
 "
-if empty(globpath(&rtp, 'plugged/unite.vim'))
-  || empty(globpath(&rtp, 'plugged/vimproc.vim'))
-  finish
-endif
-if !exists(':Unite')
+if empty(globpath(&rtp, 'autoload/unite.vim'))
+  || empty(globpath(&rtp, 'autoload/vimproc.vim'))
   finish
 endif
 
