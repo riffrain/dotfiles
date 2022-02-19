@@ -84,6 +84,8 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'matsui54/ddc-buffer'
 Plug 'Shougo/ddc-cmdline'
 Plug 'statiolake/ddc-ale'
+Plug 'matsui54/denops-signature_help'
+Plug 'matsui54/denops-popup-preview.vim'
 
 Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'Shougo/vimproc.vim', { 'do': 'make' }

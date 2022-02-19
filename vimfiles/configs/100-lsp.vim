@@ -13,6 +13,8 @@ UsePlugin 'vim-lsp'
 UsePlugin 'vim-lsp-settings'
 UsePlugin 'ddc-buffer'
 UsePlugin 'ddc-cmdline'
+UsePlugin 'denops-signature_help'
+UsePlugin 'denops-popup-preview.vim'
 
 call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'buffer', 'ale'])
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
@@ -83,3 +85,16 @@ inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
 
 " Use ddc.
 call ddc#enable()
+
+" Use signature_help
+let g:signature_help_config = {
+    \ 'border': v:true,
+    \ 'maxWidth': 80,
+    \ 'maxHeight': 30,
+    \ 'style': "full",
+    \ 'onTriggerChar': v:false,
+    \ 'multiLabel': v:false,
+    \ }
+let g:lsp_signature_help_enabled = 0
+call signature_help#enable()
+call popup_preview#enable()
