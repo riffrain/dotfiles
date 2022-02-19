@@ -1,6 +1,13 @@
 "
 " lightline.vim
 "
+if empty(globpath(&rtp, 'plugged/lightline.vim'))
+  finish
+endif
+if !exists('*lightline#update')
+  finish
+endif
+
 let g:lightline = {
     \ 'colorscheme': 'ayu',
     \ 'component': {

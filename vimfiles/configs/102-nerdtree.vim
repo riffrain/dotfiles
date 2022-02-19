@@ -1,9 +1,13 @@
 "
 " NERDTree
 "
-" if empty(globpath(&rtp, 'autoload/nerd.vim'))
-"   finish
-" endif
+if empty(globpath(&rtp, 'plugged/vim-choosewin'))
+  || empty(globpath(&rtp, 'plugged/nerdtree'))
+  finish
+endif
+if exists(':NERDTreeToggle') != 0
+  finish
+endif
 
 let g:NERDTreeMouseMode = 0
 let g:NERDTreeMapToggleHidden = '.'
