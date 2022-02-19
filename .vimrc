@@ -87,6 +87,11 @@ Plug 'matsui54/denops-signature_help'
 Plug 'matsui54/denops-popup-preview.vim'
 
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mattn/ctrlp-matchfuzzy'
+
+Plug 'prabirshrestha/quickpick.vim'
+Plug 'prabirshrestha/quickpick-lsp.vim'
+
 " Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Plug 'Shougo/unite.vim'
 " Plug 'Shougo/ddu.vim'
