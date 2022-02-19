@@ -85,7 +85,7 @@ en
 se noshowmode
 se background=dark
 se signcolumn=yes
-colorscheme codedark
+colorscheme ayu
 let g:molder_show_hidden = 1
 " }}}
 
