@@ -1,10 +1,8 @@
 "
 " unite.vim
 "
-if empty(globpath(&rtp, 'autoload/unite.vim'))
-  || empty(globpath(&rtp, 'autoload/vimproc.vim'))
-  finish
-endif
+UsePlugin 'unite.vim'
+UsePlugin 'vimproc.vim'
 
 let g:unite_enable_start_insert = 1
 let g:unite_enable_ignore_case = 1

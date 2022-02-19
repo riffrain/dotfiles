@@ -1,6 +1,6 @@
 "
 " colorscheme
 "
-try
-  colorscheme ayu
-endtry
+UsePlugin 'ayu-vim'
+
+colorscheme ayu

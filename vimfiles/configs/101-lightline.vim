@@ -1,9 +1,7 @@
 "
 " lightline.vim
 "
-if empty(globpath(&rtp, 'autoload/lightline.vim'))
-  finish
-endif
+UsePlugin 'lightline.vim'
 
 let g:lightline = {
     \ 'colorscheme': 'ayu',

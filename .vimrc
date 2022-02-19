@@ -70,14 +70,12 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'easymotion/vim-easymotion'
 
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Shougo/unite.vim'
-
 Plug 't9md/vim-choosewin'
 Plug 'preservim/nerdtree'
 
-" LSP {{{
 Plug 'vim-denops/denops.vim'
+
+" LSP {{{
 Plug 'Shougo/ddc.vim'
 Plug 'Shougo/pum.vim'
 Plug 'Shougo/ddc-around'
@@ -90,9 +88,20 @@ Plug 'matsui54/ddc-buffer'
 Plug 'Shougo/ddc-cmdline'
 " }}}
 
+" finder {{{
+" Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" Plug 'Shougo/unite.vim'
+" Plug 'Shougo/ddu.vim'
+" Plug 'Shougo/ddu-ui-ff'
+" Plug 'Shougo/ddu-source-file_rec'
+" Plug 'Shougo/ddu-filter-matcher_substring'
+" Plug 'Shougo/ddu-kind-file'
+" Plug 'shun/ddu-source-buffer'
+" }}}
+
 " colorscheme {{{
-Plug 'Erichain/vim-monokai-pro'
-Plug 'tomasiser/vim-code-dark'
+" Plug 'Erichain/vim-monokai-pro'
+" Plug 'tomasiser/vim-code-dark'
 Plug 'ayu-theme/ayu-vim'
 " }}}
 
@@ -104,4 +113,10 @@ autocmd VimEnter *
   \| endif
 
 " Load configrations
-call map(sort(split(globpath(&runtimepath, '/configs/*.vim'))), {->[execute('exec "so" v:val')]})
+let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
+function! FindPlugin(name) abort
+  return has_key(s:plugs, a:name) ? isdirectory(s:plugs[a:name].dir) : 0
+endfunction
+command! -nargs=1 UsePlugin if !FindPlugin(<args>) | finish | endif
+
+runtime! configs/*.vim

@@ -1,10 +1,8 @@
 "
 " NERDTree
 "
-if empty(globpath(&rtp, 'autoload/choosewin.vim'))
-  || empty(globpath(&rtp, 'autoload/nerdtree.vim'))
-  finish
-endif
+UsePlugin 'vim-choosewin'
+UsePlugin 'nerdtree'
 
 let g:NERDTreeMouseMode = 0
 let g:NERDTreeMapToggleHidden = '.'

@@ -1,9 +1,8 @@
 "
-" CtrlP
+"CtrlP
 "
-if empty(globpath(&rtp, 'autoload/ctrlp.vim'))
-  finish
-endif
+UsePlugin 'ctrlp.vim'
+
 if executable('ag')
   let g:ctrlp_use_caching=0
   let g:ctrlp_user_command='ag %s -i -s --nocolor --nogroup -g ""'
@@ -17,3 +16,4 @@ let g:ctrlp_show_hidden = 1
 
 nn <Leader>f :CtrlP<CR>
 nn <Leader>l :CtrlPLine<CR>
+nn <Leader>b :CtrlPLine<CR>

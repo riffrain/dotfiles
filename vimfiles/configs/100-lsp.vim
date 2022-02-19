@@ -2,12 +2,17 @@
 " Lsp Setting
 " use ddc.vim
 "
-if empty(globpath(&rtp, 'autoload/denops.vim'))
-  || empty(globpath(&rtp, 'autoload/ddc.vim'))
-  || empty(globpath(&rtp, 'autoload/pum.vim'))
-  || empty(globpath(&rtp, 'autoload/lsp.vim'))
-  finish
-endif
+UsePlugin 'denops.vim'
+UsePlugin 'ddc.vim'
+UsePlugin 'pum.vim'
+UsePlugin 'ddc-around'
+UsePlugin 'ddc-matcher_head'
+UsePlugin 'ddc-sorter_rank'
+UsePlugin 'ddc-vim-lsp'
+UsePlugin 'vim-lsp'
+UsePlugin 'vim-lsp-settings'
+UsePlugin 'ddc-buffer'
+UsePlugin 'ddc-cmdline'
 
 call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'buffer'])
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
