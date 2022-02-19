@@ -1,12 +1,6 @@
 se encoding=utf-8
 scriptencoding utf-8
 
-let g:mapleader = "\<Space>"
-
-if &compatible
-  se nocompatible
-en
-
 aug MyAutoCmd
   au!
 aug END
@@ -14,8 +8,14 @@ aug END
 filetype plugin indent on
 syntax enable
 
-" Settings {{{
+let g:mapleader = "\<Space>"
+
+if &compatible
+  se nocompatible
+en
 se number
+se signcolumn=number
+se numberwidth=6
 se laststatus=2
 se showcmd
 se ruler
@@ -52,30 +52,27 @@ if has("termguicolors")
 en
 se noshowmode
 se background=dark
-se signcolumn=yes
-" }}}
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'cohama/lexima.vim'
 Plug 'tpope/vim-surround'
+Plug 'easymotion/vim-easymotion'
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-syntastic/syntastic'
-Plug 'rking/ag.vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'easymotion/vim-easymotion'
 
 Plug 't9md/vim-choosewin'
 Plug 'preservim/nerdtree'
 
+" Plug 'vim-syntastic/syntastic'
+Plug 'dense-analysis/ale'
+
 Plug 'vim-denops/denops.vim'
 
-" LSP {{{
 Plug 'Shougo/ddc.vim'
 Plug 'Shougo/pum.vim'
 Plug 'Shougo/ddc-around'
@@ -86,9 +83,9 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'matsui54/ddc-buffer'
 Plug 'Shougo/ddc-cmdline'
-" }}}
+Plug 'statiolake/ddc-ale'
 
-" finder {{{
+Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Plug 'Shougo/unite.vim'
 " Plug 'Shougo/ddu.vim'
@@ -97,20 +94,13 @@ Plug 'Shougo/ddc-cmdline'
 " Plug 'Shougo/ddu-filter-matcher_substring'
 " Plug 'Shougo/ddu-kind-file'
 " Plug 'shun/ddu-source-buffer'
-" }}}
 
-" colorscheme {{{
+Plug 'ayu-theme/ayu-vim'
 " Plug 'Erichain/vim-monokai-pro'
 " Plug 'tomasiser/vim-code-dark'
-Plug 'ayu-theme/ayu-vim'
-" }}}
 
 call plug#end()
-
-autocmd VimEnter *
-  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall --sync | q
-  \| endif
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
 
 " Load configrations
 let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))

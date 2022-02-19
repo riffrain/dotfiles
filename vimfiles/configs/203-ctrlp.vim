@@ -16,4 +16,4 @@ let g:ctrlp_show_hidden = 1
 
 nn <Leader>f :CtrlP<CR>
 nn <Leader>l :CtrlPLine<CR>
-nn <Leader>b :CtrlPLine<CR>
+nn <Leader>b :CtrlPBuffer<CR>

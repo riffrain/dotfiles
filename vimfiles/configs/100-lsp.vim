@@ -14,7 +14,7 @@ UsePlugin 'vim-lsp-settings'
 UsePlugin 'ddc-buffer'
 UsePlugin 'ddc-cmdline'
 
-call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'buffer'])
+call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'buffer', 'ale'])
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
 call ddc#custom#patch_global('sourceOptions', {
       \ '_': {
@@ -34,6 +34,9 @@ call ddc#custom#patch_global('sourceParams', {
     \   'limitBytes': 500,
     \   'fromAltBuf': v:true,
     \   'forceCollect': v:true,
+    \ },
+    \ 'ale': {
+    \   'cleanResultsWhitespace': v:false,
     \ },
     \ })
 call ddc#custom#patch_global('autoCompleteEvents', [
