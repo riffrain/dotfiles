@@ -78,6 +78,7 @@ Plug 'preservim/nerdtree'
 
 " LSP {{{
 Plug 'vim-denops/denops.vim'
+Plug 'Shougo/ddc.vim'
 Plug 'Shougo/pum.vim'
 Plug 'Shougo/ddc-around'
 Plug 'Shougo/ddc-matcher_head'
@@ -87,7 +88,6 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'matsui54/ddc-buffer'
 Plug 'Shougo/ddc-cmdline'
-Plug 'Shougo/ddc.vim'
 " }}}
 
 " colorscheme {{{
