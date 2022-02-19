@@ -4,7 +4,7 @@
 UsePlugin 'lightline.vim'
 
 let g:lightline = {
-    \ 'colorscheme': 'ayu',
+    \ 'colorscheme': 'codedark',
     \ 'component': {
     \   'readonly': '%{&readonly?"\ue0a2":""}',
     \ },

@@ -96,8 +96,10 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'shun/ddu-source-buffer'
 
 Plug 'ayu-theme/ayu-vim'
-" Plug 'Erichain/vim-monokai-pro'
-" Plug 'tomasiser/vim-code-dark'
+Plug 'Erichain/vim-monokai-pro'
+Plug 'sainnhe/sonokai'
+Plug 'Mangeshrex/everblush.vim'
+Plug 'tomasiser/vim-code-dark'
 
 call plug#end()
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
