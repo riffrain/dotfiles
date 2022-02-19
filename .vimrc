@@ -68,7 +68,6 @@ Plug 'itchyny/lightline.vim'
 Plug 't9md/vim-choosewin'
 Plug 'preservim/nerdtree'
 
-" Plug 'vim-syntastic/syntastic'
 Plug 'dense-analysis/ale'
 
 Plug 'vim-denops/denops.vim'

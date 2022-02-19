@@ -13,6 +13,7 @@ UsePlugin 'vim-lsp'
 UsePlugin 'vim-lsp-settings'
 UsePlugin 'ddc-buffer'
 UsePlugin 'ddc-cmdline'
+UsePlugin 'ddc-ale'
 UsePlugin 'denops-signature_help'
 UsePlugin 'denops-popup-preview.vim'
 
@@ -24,11 +25,12 @@ call ddc#custom#patch_global('sourceOptions', {
       \   'sorters': ['sorter_rank']},
       \ 'vim-lsp': {
       \   'matchers': ['matcher_head'],
-      \   'mark': 'l'},
-      \ 'buffer': {'mark': 'b'},
+      \   'mark': 'lsp'},
+      \ 'buffer': {'mark': 'buffer'},
       \ 'around': {
       \   'maxSize': 500,
-      \   'mark': 'a'},
+      \   'mark': 'around'},
+      \ 'ale': { 'mark': 'ale' },
       \ })
 call ddc#custom#patch_global('sourceParams', {
     \ 'buffer': {
