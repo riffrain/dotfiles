@@ -106,6 +106,7 @@ Plug 'Erichain/vim-monokai-pro'
 Plug 'sainnhe/sonokai'
 Plug 'Mangeshrex/everblush.vim'
 Plug 'tomasiser/vim-code-dark'
+Plug 'patstockwell/vim-monokai-tasty'
 
 call plug#end()
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif

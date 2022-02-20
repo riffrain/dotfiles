@@ -2,6 +2,12 @@
 " colorscheme
 "
 
+if FindPlugin('vim-monokai-tasty')
+  let g:vim_monokai_tasty_italic = 1
+  colorscheme vim-monokai-tasty
+  finish
+end
+
 if FindPlugin('vim-code-dark')
   let g:codedark_italics = 1
   colorscheme codedark
