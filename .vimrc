@@ -52,6 +52,9 @@ if has("termguicolors")
 en
 se noshowmode
 se background=dark
+se ignorecase
+se smartcase
+se autoindent
 
 call plug#begin('~/.vim/plugged')
 
@@ -68,7 +71,7 @@ Plug 'itchyny/lightline.vim'
 Plug 't9md/vim-choosewin'
 Plug 'preservim/nerdtree'
 
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 Plug 'vim-denops/denops.vim'
 
@@ -81,9 +84,8 @@ Plug 'shun/ddc-vim-lsp'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'matsui54/ddc-buffer'
-Plug 'Shougo/ddc-cmdline'
-Plug 'statiolake/ddc-ale'
-Plug 'matsui54/denops-signature_help'
+" Plug 'statiolake/ddc-ale'
+" Plug 'matsui54/denops-signature_help'
 Plug 'matsui54/denops-popup-preview.vim'
 
 Plug 'ctrlpvim/ctrlp.vim'

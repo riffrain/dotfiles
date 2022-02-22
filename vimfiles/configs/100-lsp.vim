@@ -12,9 +12,6 @@ UsePlugin 'ddc-vim-lsp'
 UsePlugin 'vim-lsp'
 UsePlugin 'vim-lsp-settings'
 UsePlugin 'ddc-buffer'
-UsePlugin 'ddc-cmdline'
-UsePlugin 'denops-signature_help'
-UsePlugin 'denops-popup-preview.vim'
 
 call ddc#custom#patch_global('sources', ['vim-lsp', 'around', 'buffer'])
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
