@@ -2,7 +2,7 @@
 " unlimited undo
 "
 if has('persistent_undo')
-    let s:undo_dir = '~/.cache/vimundo'
+    let s:undo_dir = expand('~/.cache/vimundo')
     if !isdirectory(s:undo_dir)
       cal system('mkdir -p ' . shellescape(s:undo_dir))
     en
