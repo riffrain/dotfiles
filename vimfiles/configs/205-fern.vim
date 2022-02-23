@@ -3,7 +3,7 @@ UsePlugin 'fern.vim'
 function! s:init_fern() abort
   setlocal nonumber
   nmap <buffer> <Plug>(fern-action-open) <Plug>(fern-action-open:select)
-  nmap <buffer> <Plug>(fern-action-expand) <Plug>(fern-action-open:stay)
+  " nmap <buffer> <Plug>(fern-action-expand) <Plug>(fern-action-open:stay)
 endfunction
 
 augroup MyFern

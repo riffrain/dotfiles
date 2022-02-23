@@ -59,14 +59,17 @@ se autoindent
 call plug#begin('~/.vim/plugged')
 
 Plug 'editorconfig/editorconfig-vim'
-Plug 'cohama/lexima.vim'
-Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
+Plug 'airblade/vim-gitgutter'
+Plug 'itchyny/lightline.vim'
+Plug 'mattn/vim-findroot'
+Plug 'tpope/vim-repeat'
+Plug 'cohama/lexima.vim'
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-surround'
+Plug 'Matt-A-Bennett/vim-surround-funk'
 
 Plug 'mhinz/vim-startify'
 
@@ -96,8 +99,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-matchfuzzy'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
-Plug 'mattn/vim-findroot'
 
 " Plug 'prabirshrestha/quickpick.vim'
 " Plug 'prabirshrestha/quickpick-lsp.vim'
