@@ -90,6 +90,8 @@ Plug 'matsui54/denops-popup-preview.vim'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-matchfuzzy'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 Plug 'prabirshrestha/quickpick.vim'
 Plug 'prabirshrestha/quickpick-lsp.vim'
