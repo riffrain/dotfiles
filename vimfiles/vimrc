@@ -68,8 +68,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 
+Plug 'mhinz/vim-startify'
+
 Plug 't9md/vim-choosewin'
-Plug 'preservim/nerdtree'
+" Plug 'preservim/nerdtree'
+" Plug 'justinmk/vim-dirvish'
+Plug 'lambdalisue/fern.vim'
 
 " Plug 'dense-analysis/ale'
 
@@ -93,8 +97,10 @@ Plug 'mattn/ctrlp-matchfuzzy'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-Plug 'prabirshrestha/quickpick.vim'
-Plug 'prabirshrestha/quickpick-lsp.vim'
+Plug 'mattn/vim-findroot'
+
+" Plug 'prabirshrestha/quickpick.vim'
+" Plug 'prabirshrestha/quickpick-lsp.vim'
 
 " Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Plug 'Shougo/unite.vim'
