@@ -15,7 +15,7 @@ if &compatible
 en
 se number
 se signcolumn=number
-se numberwidth=6
+se numberwidth=8
 se laststatus=2
 se showcmd
 se ruler
