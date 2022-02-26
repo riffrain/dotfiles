@@ -74,11 +74,28 @@ function! s:on_lsp_buffer_enabled() abort
   imap <buffer> <C-e>   <Cmd>call pum#map#cancel()<CR>
 
   nmap <buffer> gd <plug>(lsp-peek-definition)
+  nmap <buffer> gD <plug>(lsp-definition)
+  nmap <buffer> gs <plug>(lsp-document-symbol-search)
+  nmap <buffer> gS <plug>(lsp-document-workspace-search)
   nmap <buffer> gr <plug>(lsp-references)
+  nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+  nmap <buffer> ]g <plug>(lsp-next-diagnostic)
   nmap <buffer> gf <plug>(lsp-document-format)
   vmap <buffer> gf <plug>(lsp-document-range-format)
   nmap <buffer> <S-k> <plug>(lsp-hover)
+  nnoremap <buffer> <expr><c-d> lsp#scroll(+8)
+  nnoremap <buffer> <expr><c-f> lsp#scroll(-8)
 endfunction
+
+let g:lsp_completion_documentation_enabled = 1
+let g:lsp_completion_documentation_delay = 50
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 0
+let g:lsp_diagnostics_echo_delay = 50
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_float_delay = 1000
+let g:lsp_semantic_enabled = 1
+let g:lsp_fold_enabled = 0
 
 augroup lsp_install
   au!
