@@ -79,7 +79,8 @@ Plug 't9md/vim-choosewin'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 
-Plug 'posva/vim-vue'
+" Plug 'posva/vim-vue'
+Plug 'sheerun/vim-polyglot'
 
 " Plug 'dense-analysis/ale'
 
