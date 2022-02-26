@@ -74,12 +74,12 @@ Plug 'Matt-A-Bennett/vim-surround-funk'
 Plug 'mhinz/vim-startify'
 
 Plug 't9md/vim-choosewin'
+
 " Plug 'preservim/nerdtree'
 " Plug 'justinmk/vim-dirvish'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 
-" Plug 'posva/vim-vue'
 Plug 'sheerun/vim-polyglot'
 
 " Plug 'dense-analysis/ale'
@@ -122,6 +122,8 @@ Plug 'sainnhe/sonokai'
 Plug 'Mangeshrex/everblush.vim'
 Plug 'tomasiser/vim-code-dark'
 Plug 'patstockwell/vim-monokai-tasty'
+Plug 'sickill/vim-monokai'
+Plug 'tomasr/molokai'
 
 call plug#end()
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
