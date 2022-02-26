@@ -4,15 +4,16 @@
 
 let g:vim_monokai_tasty_italic = 1
 let g:codedark_italics = 1
-if FindPlugin('vim-monokai-tasty')
-  colorscheme vim-monokai-tasty
-  finish
-end
 
 if FindPlugin('vim-code-dark')
   colorscheme codedark
   finish
 endif
+
+if FindPlugin('vim-monokai-tasty')
+  colorscheme vim-monokai-tasty
+  finish
+end
 
 if FindPlugin('everblush.vim')
   colorscheme everblush
