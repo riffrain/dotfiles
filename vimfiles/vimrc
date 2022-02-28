@@ -99,6 +99,11 @@ Plug 'matsui54/ddc-buffer'
 " Plug 'matsui54/denops-signature_help'
 Plug 'matsui54/denops-popup-preview.vim'
 
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'rafamadriz/friendly-snippets'
+
+
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-matchfuzzy'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }

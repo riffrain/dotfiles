@@ -14,19 +14,17 @@ UsePlugin 'vim-lsp-settings'
 UsePlugin 'ddc-buffer'
 
 function! s:on_lsp_buffer_enabled() abort
-  call ddc#custom#patch_buffer('sources', ['vim-lsp', 'around', 'buffer'])
+  call ddc#custom#patch_buffer('sources', ['vsnip', 'vim-lsp', 'around', 'buffer'])
   call ddc#custom#patch_buffer('completionMenu', 'pum.vim')
   call ddc#custom#patch_buffer('sourceOptions', {
         \ '_': {
         \   'matchers': ['matcher_head'],
-        \   'sorters': ['sorter_rank']},
-        \ 'vim-lsp': {
-        \   'matchers': ['matcher_head'],
-        \   'mark': 'lsp'},
-        \ 'buffer': {'mark': 'buffer'},
-        \ 'around': {
-        \   'maxSize': 500,
-        \   'mark': 'around'},
+        \   'sorters': ['sorter_rank']
+        \ },
+        \ 'vim-lsp': { 'mark': 'L' },
+        \ 'buffer': { 'mark': 'B' },
+        \ 'vsnip': { 'mark': 'S', 'dup': v:true },
+        \ 'around': { 'mark': 'A', 'maxSize': 500 },
         \ })
   call ddc#custom#patch_buffer('sourceParams', {
       \ 'buffer': {
@@ -34,9 +32,6 @@ function! s:on_lsp_buffer_enabled() abort
       \   'limitBytes': 5000000,
       \   'fromAltBuf': v:true,
       \   'forceCollect': v:true,
-      \ },
-      \ 'ale': {
-      \   'cleanResultsWhitespace': v:false,
       \ },
       \ })
   call ddc#custom#patch_buffer('autoCompleteEvents', [
@@ -100,4 +95,8 @@ let g:lsp_fold_enabled = 0
 augroup lsp_install
   au!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+
+  if FindPlugin('vim-vsnip') && FindPlugin('vim-vsnip-integ')
+    autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
+  endif
 augroup END
