@@ -4,25 +4,34 @@
 UsePlugin 'denops.vim'
 UsePlugin 'ddu.vim'
 UsePlugin 'ddu-ui-ff'
+UsePlugin 'ddu-ui-filer'
 UsePlugin 'ddu-source-file_rec'
 UsePlugin 'ddu-filter-matcher_substring'
 UsePlugin 'ddu-kind-file'
 UsePlugin 'ddu-source-buffer'
+UsePlugin 'ddu-filter-fzf'
 
 call ddu#custom#patch_global({
     \   'ui': 'ff',
     \   'sources': [{'name': 'file_rec', 'params': {}}, {'name': 'buffer'}],
     \   'sourceOptions': {
     \     '_': {
-    \       'matchers': ['matcher_substring'],
+    \       'matchers': ['matcher_fzf'],
     \     },
     \   },
     \   'kindOptions': {
     \     'file': {
     \       'defaultAction': 'open',
     \     },
-    \   }
+    \   },
+    \   'uiParams': {
+    \     'ff': {
+    \       'startFilter': v:true,
+    \     }
+    \   },
     \ })
+
+
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
   nnoremap <buffer><silent> <CR>
