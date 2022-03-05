@@ -14,7 +14,7 @@ if &compatible
   se nocompatible
 en
 se number
-se signcolumn=number
+se signcolumn=yes
 se numberwidth=8
 se laststatus=2
 se showcmd
@@ -32,7 +32,7 @@ au InsertLeave * se cursorline!
 se fenc=utf-8
 se nobackup
 se noswapfile
-se visualbell
+se novisualbell
 se wildmode=list:longest
 se nobackup
 se noswapfile
@@ -75,10 +75,10 @@ Plug 'mhinz/vim-startify'
 
 Plug 't9md/vim-choosewin'
 
-" Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree'
 " Plug 'justinmk/vim-dirvish'
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/fern-hijack.vim'
+" Plug 'lambdalisue/fern.vim'
+" Plug 'lambdalisue/fern-hijack.vim'
 
 Plug 'sheerun/vim-polyglot'
 
@@ -86,23 +86,26 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'vim-denops/denops.vim'
 
-Plug 'Shougo/ddc.vim'
-Plug 'Shougo/pum.vim'
-Plug 'Shougo/ddc-around'
-Plug 'Shougo/ddc-matcher_head'
-Plug 'Shougo/ddc-sorter_rank'
-Plug 'shun/ddc-vim-lsp'
+" Plug 'Shougo/ddc.vim'
+" Plug 'Shougo/pum.vim'
+" Plug 'Shougo/ddc-around'
+" Plug 'Shougo/ddc-matcher_head'
+" Plug 'Shougo/ddc-sorter_rank'
+" Plug 'shun/ddc-vim-lsp'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'mattn/vim-lsp-settings'
+" Plug 'matsui54/ddc-buffer'
+" Plug 'matsui54/denops-popup-preview.vim'
+
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
-Plug 'matsui54/ddc-buffer'
-" Plug 'statiolake/ddc-ale'
-" Plug 'matsui54/denops-signature_help'
-Plug 'matsui54/denops-popup-preview.vim'
-
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'rafamadriz/friendly-snippets'
 
+Plug 'rafamadriz/friendly-snippets'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-matchfuzzy'
