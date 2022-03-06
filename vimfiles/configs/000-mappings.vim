@@ -1,5 +1,3 @@
-" global keymappings
-
 inoremap jj <Esc>
 nnoremap <silent><Esc><Esc> :<C-u>se nohlsearch!<CR>
 noremap j gj

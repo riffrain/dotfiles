@@ -1,6 +1,3 @@
-"
-" ddu
-"
 UsePlugin 'denops.vim'
 UsePlugin 'ddu.vim'
 UsePlugin 'ddu-ui-ff'

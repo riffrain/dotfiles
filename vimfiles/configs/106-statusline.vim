@@ -1,28 +1,24 @@
-"
-" lightline.vim
-"
 UsePlugin 'lightline.vim'
 
 let g:lightline = {
-    \ 'colorscheme': 'sonokai',
-    \ 'component': {
-    \   'hostname': '%{trim(system("hostname"))}',
-    \   'readonly': '%{&readonly?"\ue0a2":""}',
-    \ },
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-    \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype', 'hostname' ] ]
-    \ },
-    \ 'component_function': {
-    \   'fugitive': 'LightlineFugitive',
-    \   'filename': 'LightlineFilename',
-    \   'fileformat': 'LightlineFileformat',
-    \   'filetype': 'LightlineFiletype',
-    \   'fileencoding': 'LightlineFileencoding',
-    \   'mode': 'LightlineMode',
-    \   'ctrlpmark': 'CtrlPMark',
-    \ },
-    \ }
+  \ 'component': {
+  \   'hostname': '%{trim(system("hostname"))}',
+  \   'readonly': '%{&readonly?"\ue0a2":""}',
+  \ },
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
+  \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype', 'hostname' ] ]
+  \ },
+  \ 'component_function': {
+  \   'fugitive': 'LightlineFugitive',
+  \   'filename': 'LightlineFilename',
+  \   'fileformat': 'LightlineFileformat',
+  \   'filetype': 'LightlineFiletype',
+  \   'fileencoding': 'LightlineFileencoding',
+  \   'mode': 'LightlineMode',
+  \   'ctrlpmark': 'CtrlPMark',
+  \ },
+  \ }
 
 function! LightlineModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'

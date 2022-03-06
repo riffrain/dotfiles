@@ -1,6 +1,3 @@
-"
-" NERDTree
-"
 UsePlugin 'nerdtree'
 
 let g:NERDTreeMouseMode = 0

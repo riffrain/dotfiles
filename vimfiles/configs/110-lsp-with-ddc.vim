@@ -1,7 +1,3 @@
-"
-" Lsp Setting
-" use ddc.vim
-"
 UsePlugin 'denops.vim'
 UsePlugin 'ddc.vim'
 UsePlugin 'pum.vim'
