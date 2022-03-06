@@ -4,13 +4,14 @@
 UsePlugin 'lightline.vim'
 
 let g:lightline = {
-    \ 'colorscheme': 'monokai_tasty',
+    \ 'colorscheme': 'sonokai',
     \ 'component': {
+    \   'hostname': '%{trim(system("hostname"))}',
     \   'readonly': '%{&readonly?"\ue0a2":""}',
     \ },
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-    \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype', 'hostname' ] ]
     \ },
     \ 'component_function': {
     \   'fugitive': 'LightlineFugitive',
@@ -21,75 +22,68 @@ let g:lightline = {
     \   'mode': 'LightlineMode',
     \   'ctrlpmark': 'CtrlPMark',
     \ },
-    \ 'component_expand': {
-    \   'syntastic': 'SyntasticStatuslineFlag',
-    \ },
-    \ 'component_type': {
-    \   'syntastic': 'error',
-    \ }
     \ }
 
-fu! LightlineModified()
-  retu &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endf
+function! LightlineModified()
+  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
 
-fu! LightlineReadonly()
-  retu &ft !~? 'help' && &readonly ? 'RO' : ''
-endf
+function! LightlineReadonly()
+  return &ft !~? 'help' && &readonly ? 'RO' : ''
+endfunction
 
-fu! LightlineFilename()
+function! LightlineFilename()
   let fname = expand('%:~')
-  retu fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
-    \ fname == '__Tagbar__' ? g:lightline.fname :
-    \ fname =~ '__Gundo\|NERD_tree' ? '' :
-    \ &ft == 'vimfiler' ? '' :
-    \ &ft == 'unite' ? unite#get_status_string() :
-    \ &ft == 'vimshell' ? vimshell#get_status_string() :
+  return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
+    \ fname =~ 'NERD_tree' ? '' :
     \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
     \ ('' != fname ? fname : '[No Name]') .
     \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
-endf
+endfunction
 
-fu! LightlineFugitive()
+function! LightlineFugitive()
   try
-    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler'
+    if expand('%:t') !~? 'NERD'
       let branch = fugitive#head()
-      retu branch !=# '' ? branch : ''
-    en
+      return branch !=# '' ? branch : ''
+    endif
   catch
   endtry
-  retu ''
-endf
+  return ''
+endfunction
 
-fu! LightlineFileformat()
-  retu winwidth(0) > 70 ? &fileformat : ''
-endf
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
 
-fu! LightlineFiletype()
-  retu winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endf
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
 
-fu! LightlineFileencoding()
-  retu winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-endf
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
 
-fu! LightlineMode()
+function! LightlineMode()
   let fname = expand('%:t')
-  retu fname == 'ControlP' ? 'CtrlP' :
+  return fname == 'ControlP' ? 'CtrlP' :
     \ fname =~ 'NERD_tree' ? 'NERDTree' :
-    \ &ft == 'unite' ? 'Unite' :
     \ winwidth(0) > 60 ? lightline#mode() : ''
-endf
+endfunction
 
-fu! CtrlPMark()
+function! LightlineHostname()
+  return split(system('hostname'), "\n")[0]
+endfunction
+
+function! CtrlPMark()
   if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
-    cal lightline#link('iR'[g:lightline.ctrlp_regex])
-    retu lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
+    call lightline#link('iR'[g:lightline.ctrlp_regex])
+    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
         \ , g:lightline.ctrlp_next], 0)
-  el
-    retu ''
-  en
-endf
+  else
+    return ''
+  endif
+endfunction
 
 let g:ctrlp_status_func = {
   \ 'main': 'CtrlPStatusFunc_1',
@@ -106,21 +100,4 @@ endf
 
 fu! CtrlPStatusFunc_2(str)
   retu lightline#statusline(0)
-endf
-
-let g:tagbar_status_func = 'TagbarStatusFunc'
-
-fu! TagbarStatusFunc(current, sort, fname, ...) abort
-  let g:lightline.fname = a:fname
-  retu lightline#statusline(0)
-endf
-
-aug AutoSyntastic
-  au!
-  au BufWritePost *.c,*.cpp cal s:syntastic()
-aug END
-
-fu! s:syntastic()
-  SyntasticCheck
-  cal lightline#update()
 endf

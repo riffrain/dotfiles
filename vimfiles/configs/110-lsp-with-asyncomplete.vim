@@ -18,7 +18,6 @@ function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
 
-  " inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
   inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
   nmap <buffer> gd <plug>(lsp-peek-definition)
@@ -31,7 +30,7 @@ function! s:on_lsp_buffer_enabled() abort
 endfunction
 
 augroup lsp_install
-  au!
+  autocmd!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 

@@ -1,10 +1,9 @@
-se encoding=utf-8
+set encoding=utf-8
 scriptencoding utf-8
 
-aug MyAutoCmd
+augroup MyAutoCmd
   au!
-aug END
-
+augroup END
 " autocmd MyAutoCmd QuickFixCmdPost *grep* cwindow
 
 filetype plugin indent on
@@ -13,50 +12,48 @@ syntax enable
 let g:mapleader = "\<Space>"
 
 if &compatible
-  se nocompatible
-en
-se number
-se signcolumn=yes
-se numberwidth=8
-se laststatus=2
-se showcmd
-se ruler
-se wildmenu
-se showmatch
-se matchtime=1
-se list
-se listchars=tab:¦\ ,trail:･,extends:>,precedes:<
-se backspace=indent,eol,start
-se title
-se whichwrap=b,s,[,],<,>
-se nocursorline
-au InsertLeave * se cursorline!
-se fenc=utf-8
-se nobackup
-se noswapfile
-se novisualbell
-se wildmode=list:longest
-se nobackup
-se noswapfile
-se tabstop=2
-se shiftwidth=2
-se expandtab
-se softtabstop=0
-se showtabline=2
-se t_Co=256
-se mouse=
-se incsearch
-se hlsearch
+  set nocompatible
+endif
+set number
+set signcolumn=yes
+set numberwidth=8
+set laststatus=2
+set showcmd
+set ruler
+set wildmenu
+set showmatch
+set matchtime=1
+set list
+set listchars=tab:¦\ ,trail:･,extends:>,precedes:<
+set backspace=indent,eol,start
+set title
+set whichwrap=b,s,[,],<,>
+set nocursorline
+aut InsertLeave * se cursorline!
+set fenc=utf-8
+set nobackup
+set noswapfile
+set novisualbell
+set wildmode=list:longest
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set softtabstop=0
+set showtabline=2
+set t_Co=256
+set mouse=
+set incsearch
+set hlsearch
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 if has("termguicolors")
-  se termguicolors
-en
-se noshowmode
-se background=dark
-se ignorecase
-se smartcase
-se autoindent
+  set termguicolors
+endif
+set noshowmode
+set background=dark
+set ignorecase
+set smartcase
+set autoindent
 
 call plug#begin('~/.vim/plugged')
 
@@ -72,19 +69,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'Matt-A-Bennett/vim-surround-funk'
-
 Plug 'mhinz/vim-startify'
-
 Plug 't9md/vim-choosewin'
-
 Plug 'preservim/nerdtree'
-" Plug 'justinmk/vim-dirvish'
-" Plug 'lambdalisue/fern.vim'
-" Plug 'lambdalisue/fern-hijack.vim'
-
-Plug 'sheerun/vim-polyglot'
-
-" Plug 'dense-analysis/ale'
 
 " Plug 'vim-denops/denops.vim'
 " Plug 'Shougo/ddc.vim'
@@ -98,16 +85,15 @@ Plug 'sheerun/vim-polyglot'
 " Plug 'matsui54/ddc-buffer'
 " Plug 'matsui54/denops-popup-preview.vim'
 
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/asyncomplete-buffer.vim'
-
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
-
 Plug 'rafamadriz/friendly-snippets'
+
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-matchfuzzy'
@@ -117,17 +103,7 @@ Plug 'mhinz/vim-grepper'
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'
 
-" Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-" Plug 'Shougo/unite.vim'
-" Plug 'Shougo/ddu.vim'
-" Plug 'Shougo/ddu-ui-ff'
-" Plug 'Shougo/ddu-ui-filer'
-" Plug 'Shougo/ddu-source-file_rec'
-" Plug 'Shougo/ddu-filter-matcher_substring'
-" Plug 'Shougo/ddu-kind-file'
-" Plug 'shun/ddu-source-buffer'
-" Plug 'yuki-yano/ddu-filter-fzf'
-
+Plug 'sheerun/vim-polyglot'
 Plug 'ayu-theme/ayu-vim'
 Plug 'Erichain/vim-monokai-pro'
 Plug 'sainnhe/sonokai'
@@ -138,6 +114,7 @@ Plug 'sickill/vim-monokai'
 Plug 'tomasr/molokai'
 
 call plug#end()
+
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
 
 " Load configrations

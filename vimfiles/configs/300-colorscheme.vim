@@ -14,7 +14,7 @@ if FindPlugin('sonokai')
 
   colorscheme sonokai
   finish
-end
+endif
 
 if FindPlugin('vim-code-dark')
   colorscheme codedark
@@ -24,7 +24,7 @@ endif
 if FindPlugin('vim-monokai-tasty')
   colorscheme vim-monokai-tasty
   finish
-end
+endif
 
 if FindPlugin('everblush.vim')
   colorscheme everblush
@@ -34,9 +34,9 @@ endif
 if FindPlugin('ayu-vim')
   colorscheme ayu
   finish
-end
+endif
 
 if FindPlugin('vim-monokai-pro')
   colorscheme monokai_pro
   finish
-end
+endif
