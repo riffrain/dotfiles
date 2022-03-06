@@ -136,6 +136,10 @@ Plug 'patstockwell/vim-monokai-tasty'
 Plug 'sickill/vim-monokai'
 Plug 'tomasr/molokai'
 
+" Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+Plug 'skywind3000/asyncrun.vim'
+Plug 'paretje/async-grepper'
+
 call plug#end()
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
 
