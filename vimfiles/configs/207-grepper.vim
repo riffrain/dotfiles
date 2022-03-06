@@ -1,8 +1,11 @@
 UsePlugin 'vim-grepper'
 
-let g:grepper = {}
-let g:grepper.switch = 1
-let g:grepper.quickfix = 0
+nnoremap <leader>g <cmd>Grepper -noopen -quickfix -noswitch<cr>
+nnoremap <leader>* <cmd>Grepper -noopen -quickfix -noswitch -cword<cr>
 
-nnoremap <leader>g <cmd>Grepper<cr>
-nnoremap <leader>* <cmd>Grepper -cword<cr>
+if FindPlugin('ctrlp.vim')
+  augroup on_grepper_finished
+    autocmd!
+    autocmd User Grepper execute 'CtrlPQuickfix'
+  augroup END
+endif
