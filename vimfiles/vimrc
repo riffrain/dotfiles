@@ -5,6 +5,8 @@ aug MyAutoCmd
   au!
 aug END
 
+" autocmd MyAutoCmd QuickFixCmdPost *grep* cwindow
+
 filetype plugin indent on
 syntax enable
 
@@ -110,11 +112,11 @@ Plug 'rafamadriz/friendly-snippets'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-matchfuzzy'
+Plug 'prabirshrestha/quickpick.vim'
+Plug 'prabirshrestha/quickpick-lsp.vim'
+Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
-" Plug 'prabirshrestha/quickpick.vim'
-" Plug 'prabirshrestha/quickpick-lsp.vim'
 
 " Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Plug 'Shougo/unite.vim'
@@ -137,8 +139,8 @@ Plug 'sickill/vim-monokai'
 Plug 'tomasr/molokai'
 
 " Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
-Plug 'skywind3000/asyncrun.vim'
-Plug 'paretje/async-grepper'
+" Plug 'skywind3000/asyncrun.vim'
+" Plug 'paretje/async-grepper'
 
 call plug#end()
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
