@@ -4,7 +4,8 @@ scriptencoding utf-8
 augroup MyAutoCmd
   au!
 augroup END
-" autocmd MyAutoCmd QuickFixCmdPost *grep* cwindow
+" autocmd QuickFixCmdPost *grep* cwindow
+autocmd InsertLeave * set cursorline!
 
 filetype plugin indent on
 syntax enable
@@ -29,7 +30,6 @@ set backspace=indent,eol,start
 set title
 set whichwrap=b,s,[,],<,>
 set nocursorline
-aut InsertLeave * se cursorline!
 set fenc=utf-8
 set nobackup
 set noswapfile
