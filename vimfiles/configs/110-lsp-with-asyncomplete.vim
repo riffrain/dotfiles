@@ -3,6 +3,18 @@ UsePlugin 'asyncomplete.vim'
 UsePlugin 'asyncomplete-lsp.vim'
 
 function! s:on_lsp_buffer_enabled() abort
+
+  if FindPlugin('asyncomplete-buffer.vim')
+    call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+      \ 'name': 'buffer',
+      \ 'allowlist': ['*'],
+      \ 'completor': function('asyncomplete#sources#buffer#completor'),
+      \ 'config': {
+      \    'max_buffer_size': 5000000,
+      \  },
+      \ }))
+  endif
+
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
 
