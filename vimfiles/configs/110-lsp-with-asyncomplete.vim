@@ -2,19 +2,42 @@ UsePlugin 'vim-lsp'
 UsePlugin 'asyncomplete.vim'
 UsePlugin 'asyncomplete-lsp.vim'
 
+let g:lsp_completion_documentation_enabled = 1
+let g:lsp_completion_documentation_delay = 50
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 0
+let g:lsp_diagnostics_echo_delay = 50
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_float_delay = 1000
+let g:lsp_semantic_enabled = 1
+let g:lsp_fold_enabled = 0
+let g:lsp_text_edit_enabled = 1
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 1
+let g:asyncomplete_popup_delay = 200
+
+if FindPlugin('asyncomplete-buffer.vim')
+  call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'allowlist': ['*'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ 'priority': 9,
+    \ 'config': {
+    \    'max_buffer_size': 5000000,
+    \  },
+    \ }))
+endif
+
+if FindPlugin('asyncomplete-around.vim')
+  call asyncomplete#register_source(asyncomplete#sources#around#get_source_options({
+    \ 'name': 'around',
+    \ 'allowlist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#around#completor'),
+    \ }))
+endif
+
 function! s:on_lsp_buffer_enabled() abort
-
-  if FindPlugin('asyncomplete-buffer.vim')
-    call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-      \ 'name': 'buffer',
-      \ 'allowlist': ['*'],
-      \ 'completor': function('asyncomplete#sources#buffer#completor'),
-      \ 'config': {
-      \    'max_buffer_size': 5000000,
-      \  },
-      \ }))
-  endif
-
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
 
@@ -33,17 +56,3 @@ augroup lsp_install
   autocmd!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
-
-let g:lsp_completion_documentation_enabled = 1
-let g:lsp_completion_documentation_delay = 50
-let g:lsp_diagnostics_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 0
-let g:lsp_diagnostics_echo_delay = 50
-let g:lsp_diagnostics_float_cursor = 1
-let g:lsp_diagnostics_float_delay = 1000
-let g:lsp_semantic_enabled = 1
-let g:lsp_fold_enabled = 0
-let g:lsp_text_edit_enabled = 1
-let g:asyncomplete_auto_popup = 1
-let g:asyncomplete_auto_completeopt = 1
-let g:asyncomplete_popup_delay = 200

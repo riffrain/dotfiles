@@ -1,16 +1,23 @@
 set encoding=utf-8
 scriptencoding utf-8
 
-augroup MyAutoCmd
-  au!
-augroup END
-" autocmd QuickFixCmdPost *grep* cwindow
-autocmd InsertLeave * set cursorline!
-
 filetype plugin indent on
 syntax enable
 
 let g:mapleader = "\<Space>"
+let g:loaded_2html_plugin = 1
+let g:loaded_getscriptPlugin = 1
+let g:loaded_gzip = 1
+let g:loaded_logipat = 1
+let g:loaded_rrhelper = 1
+let g:loaded_spellfile_plugin = 1
+let g:loaded_tarPlugin = 1
+let g:loaded_vimballPlugin = 1
+let g:loaded_zipPlugin = 1
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+let g:netrw_dirhistmax = 0
 
 if &compatible
   set nocompatible
@@ -22,6 +29,7 @@ set laststatus=2
 set showcmd
 set ruler
 set wildmenu
+set wildmode=list:longest,full
 set showmatch
 set matchtime=1
 set list
@@ -34,7 +42,6 @@ set fenc=utf-8
 set nobackup
 set noswapfile
 set novisualbell
-set wildmode=list:longest
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -44,80 +51,82 @@ set t_Co=256
 set mouse=
 set incsearch
 set hlsearch
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 if has("termguicolors")
   set termguicolors
 endif
 set noshowmode
-set background=dark
 set ignorecase
 set smartcase
 set autoindent
+set lazyredraw
+set more
+set background=dark
+
+augroup vimrc
+  autocmd!
+augroup END
+
+augroup vimrc
+  autocmd WinEnter * set cursorline
+  autocmd WinLeave * set nocursorline
+  autocmd InsertEnter * set nocursorline
+  autocmd InsertLeave * set cursorline
+augroup END
 
 call plug#begin('~/.vim/plugged')
+  Plug 'ayu-theme/ayu-vim'
+  Plug 'Erichain/vim-monokai-pro'
+  Plug 'sainnhe/sonokai'
+  Plug 'Mangeshrex/everblush.vim'
+  Plug 'tomasiser/vim-code-dark'
+  Plug 'patstockwell/vim-monokai-tasty'
 
-Plug 'editorconfig/editorconfig-vim'
-Plug 'easymotion/vim-easymotion'
-Plug 'airblade/vim-gitgutter'
-Plug 'itchyny/lightline.vim'
-Plug 'mattn/vim-findroot'
-Plug 'tpope/vim-repeat'
-Plug 'cohama/lexima.vim'
-Plug 'wellle/targets.vim'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'Matt-A-Bennett/vim-surround-funk'
-Plug 'mhinz/vim-startify'
-Plug 't9md/vim-choosewin'
-Plug 'preservim/nerdtree'
+  Plug 'sheerun/vim-polyglot'
 
-" Plug 'vim-denops/denops.vim'
-" Plug 'Shougo/ddc.vim'
-" Plug 'Shougo/pum.vim'
-" Plug 'Shougo/ddc-around'
-" Plug 'Shougo/ddc-matcher_head'
-" Plug 'Shougo/ddc-sorter_rank'
-" Plug 'shun/ddc-vim-lsp'
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'mattn/vim-lsp-settings'
-" Plug 'matsui54/ddc-buffer'
-" Plug 'matsui54/denops-popup-preview.vim'
+  Plug 'itchyny/lightline.vim'
 
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'rafamadriz/friendly-snippets'
+  Plug 'editorconfig/editorconfig-vim'
 
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/asyncomplete-buffer.vim'
+  Plug 'easymotion/vim-easymotion'
 
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mattn/ctrlp-matchfuzzy'
-Plug 'prabirshrestha/quickpick.vim'
-Plug 'prabirshrestha/quickpick-lsp.vim'
-Plug 'mhinz/vim-grepper'
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'
+  Plug 'airblade/vim-gitgutter'
 
-Plug 'sheerun/vim-polyglot'
-Plug 'ayu-theme/ayu-vim'
-Plug 'Erichain/vim-monokai-pro'
-Plug 'sainnhe/sonokai'
-Plug 'Mangeshrex/everblush.vim'
-Plug 'tomasiser/vim-code-dark'
-Plug 'patstockwell/vim-monokai-tasty'
-Plug 'sickill/vim-monokai'
-Plug 'tomasr/molokai'
+  Plug 'tpope/vim-repeat'
 
+  Plug 'cohama/lexima.vim'
+  Plug 'wellle/targets.vim'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-surround'
+  Plug 'Matt-A-Bennett/vim-surround-funk'
+  Plug 'AndrewRadev/splitjoin.vim'
+
+  Plug 'mhinz/vim-startify'
+  Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'mattn/ctrlp-matchfuzzy'
+  Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+
+  Plug 't9md/vim-choosewin'
+  Plug 'preservim/nerdtree'
+
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-buffer.vim'
+  Plug 'akaimo/asyncomplete-around.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
+  Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/vim-vsnip-integ'
+  Plug 'rafamadriz/friendly-snippets'
+
+  Plug 'prabirshrestha/quickpick.vim'
+  Plug 'prabirshrestha/quickpick-lsp.vim'
 call plug#end()
 
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
 
-" Load configrations
 let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
 function! FindPlugin(name) abort
   return has_key(s:plugs, a:name) ? isdirectory(s:plugs[a:name].dir) : 0
