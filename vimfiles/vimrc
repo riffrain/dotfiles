@@ -114,7 +114,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-matchfuzzy'
 Plug 'prabirshrestha/quickpick.vim'
 Plug 'prabirshrestha/quickpick-lsp.vim'
-Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+Plug 'mhinz/vim-grepper'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -138,7 +138,6 @@ Plug 'patstockwell/vim-monokai-tasty'
 Plug 'sickill/vim-monokai'
 Plug 'tomasr/molokai'
 
-" Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 " Plug 'skywind3000/asyncrun.vim'
 " Plug 'paretje/async-grepper'
 

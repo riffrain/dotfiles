@@ -1,5 +1,7 @@
 UsePlugin 'vim-grepper'
 
-noremap <leader>g <cmd>Grepper<cr>
+let g:grepper = {}
+let g:grepper.switch = 1
 
-nnoremap <leader>* :Grepper -tool ag -cword -noprompt<cr>
+nnoremap <leader>g <cmd>Grepper<cr>
+nnoremap <leader>* <cmd>Grepper -cword<cr>
