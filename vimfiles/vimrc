@@ -86,8 +86,7 @@ Plug 'sheerun/vim-polyglot'
 
 " Plug 'dense-analysis/ale'
 
-Plug 'vim-denops/denops.vim'
-
+" Plug 'vim-denops/denops.vim'
 " Plug 'Shougo/ddc.vim'
 " Plug 'Shougo/pum.vim'
 " Plug 'Shougo/ddc-around'
@@ -115,8 +114,8 @@ Plug 'mattn/ctrlp-matchfuzzy'
 Plug 'prabirshrestha/quickpick.vim'
 Plug 'prabirshrestha/quickpick-lsp.vim'
 Plug 'mhinz/vim-grepper'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
 
 " Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Plug 'Shougo/unite.vim'
@@ -137,9 +136,6 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'sickill/vim-monokai'
 Plug 'tomasr/molokai'
-
-" Plug 'skywind3000/asyncrun.vim'
-" Plug 'paretje/async-grepper'
 
 call plug#end()
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
