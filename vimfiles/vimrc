@@ -137,6 +137,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'matsui54/ddc-buffer'
   Plug 'matsui54/denops-popup-preview.vim'
 
+  Plug 'dense-analysis/ale'
+
   " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
