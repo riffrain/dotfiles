@@ -5,7 +5,6 @@ UsePlugin 'asyncomplete-lsp.vim'
 let g:lsp_use_lua = (has('lua') && has('patch-8.2.0775'))
 let g:lsp_async_completion = 1
 let g:lsp_auto_enable = 1
-let g:lsp_diagnostics_enabled = 1
 let g:lsp_preview_keep_focus = 1
 let g:lsp_preview_float = 1
 let g:lsp_preview_autoclose = 1
@@ -14,7 +13,7 @@ let g:lsp_insert_text_enabled = 1
 let g:lsp_text_edit_enabled = 1
 let g:lsp_completion_documentation_enabled = 1
 let g:lsp_completion_documentation_delay = 0
-let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 0
 " let g:lsp_diagnostics_echo_delay = 200
 let g:lsp_diagnostics_float_cursor = 1
@@ -80,8 +79,8 @@ function! s:on_lsp_buffer_enabled() abort
 
   nmap <buffer> gd <plug>(lsp-peek-definition)
   nmap <buffer> gD <plug>(lsp-definition)
-  nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-  nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+  " nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+  " nmap <buffer> ]g <plug>(lsp-next-diagnostic)
   nmap <buffer> <S-k> <plug>(lsp-hover)
   nnoremap <buffer> <expr><c-d> lsp#scroll(+8)
   nnoremap <buffer> <expr><c-f> lsp#scroll(-8)
