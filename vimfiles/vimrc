@@ -111,36 +111,36 @@ call plug#begin('~/.vim/plugged')
   Plug 't9md/vim-choosewin'
   Plug 'preservim/nerdtree'
 
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/asyncomplete-buffer.vim'
-  Plug 'akaimo/asyncomplete-around.vim'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'mattn/vim-lsp-settings'
-
-  Plug 'prabirshrestha/quickpick.vim'
-  Plug 'prabirshrestha/quickpick-lsp.vim'
-
-  Plug 'hrsh7th/vim-vsnip'
-  Plug 'hrsh7th/vim-vsnip-integ'
-  Plug 'rafamadriz/friendly-snippets'
-
-  " Plug 'vim-denops/denops.vim'
-  " Plug 'Shougo/ddc.vim'
-  " Plug 'Shougo/pum.vim'
-  " Plug 'Shougo/ddc-around'
-  " Plug 'Shougo/ddc-matcher_head'
-  " Plug 'Shougo/ddc-sorter_rank'
-  " Plug 'shun/ddc-vim-lsp'
+  " Plug 'prabirshrestha/asyncomplete.vim'
+  " Plug 'prabirshrestha/asyncomplete-buffer.vim'
+  " Plug 'akaimo/asyncomplete-around.vim'
+  " Plug 'prabirshrestha/asyncomplete-lsp.vim'
   " Plug 'prabirshrestha/vim-lsp'
   " Plug 'mattn/vim-lsp-settings'
-  " Plug 'matsui54/ddc-buffer'
-  " Plug 'matsui54/denops-popup-preview.vim'
 
-  Plug 'dense-analysis/ale'
-  " Plug 'vim-syntastic/syntastic'
+  " Plug 'prabirshrestha/quickpick.vim'
+  " Plug 'prabirshrestha/quickpick-lsp.vim'
 
-  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " Plug 'hrsh7th/vim-vsnip'
+  " Plug 'hrsh7th/vim-vsnip-integ'
+  " Plug 'rafamadriz/friendly-snippets'
+
+  " " Plug 'vim-denops/denops.vim'
+  " " Plug 'Shougo/ddc.vim'
+  " " Plug 'Shougo/pum.vim'
+  " " Plug 'Shougo/ddc-around'
+  " " Plug 'Shougo/ddc-matcher_head'
+  " " Plug 'Shougo/ddc-sorter_rank'
+  " " Plug 'shun/ddc-vim-lsp'
+  " " Plug 'prabirshrestha/vim-lsp'
+  " " Plug 'mattn/vim-lsp-settings'
+  " " Plug 'matsui54/ddc-buffer'
+  " " Plug 'matsui54/denops-popup-preview.vim'
+
+  " Plug 'dense-analysis/ale'
+  " " Plug 'vim-syntastic/syntastic'
+
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
