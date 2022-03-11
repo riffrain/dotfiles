@@ -111,6 +111,8 @@ call plug#begin('~/.vim/plugged')
   Plug 't9md/vim-choosewin'
   Plug 'preservim/nerdtree'
 
+  Plug 'mattn/vim-sonictemplate'
+
   " Plug 'prabirshrestha/asyncomplete.vim'
   " Plug 'prabirshrestha/asyncomplete-buffer.vim'
   " Plug 'akaimo/asyncomplete-around.vim'

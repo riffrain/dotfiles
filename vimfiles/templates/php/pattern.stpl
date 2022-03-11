@@ -1,0 +1,33 @@
+\(.*\)\.if$
+	if ({{$1}}) {
+		{{_cursor_}}
+	}
+
+
+\(\S\+\)\.const$
+	const {{$1}} = '{{$1}}';
+	{{_cursor_}}
+
+\(\S\+\)\.class$
+	class {{$1}}
+	{
+		{{_cursor_}}
+	}
+
+\(\S\+\)\.pub\.func$
+	public function {{$1}} ()
+	{
+		{{_cursor_}}
+	}
+
+\(\S\+\)\.pri\.func$
+	private function {{$1}} ()
+	{
+		{{_cursor_}}
+	}
+
+\(\S\+\)\.pro\.func$
+	private function {{$1}} ()
+	{
+		{{_cursor_}}
+	}
