@@ -15,14 +15,10 @@ cnoremap <c-x> <c-r>=expand('%:p')<cr>
 if has('terminal')
   tnoremap <Esc><Esc> <C-\><C-n>
 
-  " popup terminal
-  function! s:popupterminal()
-    call popup_create(
-          \ term_start(
-          \   [&shell],
-          \   #{ hidden: 1, term_finish: 'close'}),
-          \   #{ border: [], minwidth: winwidth(0)/2, minheight: &lines/2 }
-          \)
-  endfunction
-  com! -range=% PopupTerminal call s:popupterminal()
+  command! PopupTerminal call popup_create(
+                                \ term_start(
+                                \   [&shell],
+                                \   #{ hidden: 1, term_finish: 'close'}),
+                                \   #{ border: [], minwidth: winwidth(0)/2, minheight: &lines/2 }
+                                \)
 endif
