@@ -112,6 +112,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'preservim/nerdtree'
 
   Plug 'mattn/vim-sonictemplate'
+  Plug 'mattn/vim-findroot'
 
   " Plug 'prabirshrestha/asyncomplete.vim'
   " Plug 'prabirshrestha/asyncomplete-buffer.vim'

@@ -1,3 +1,3 @@
 UsePlugin 'vim-findroot'
 
-let g:findroot_not_for_subdir = 0
+let g:findroot_not_for_subdir = 1
