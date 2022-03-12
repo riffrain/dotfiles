@@ -5,3 +5,4 @@ let g:sonictemplate_vim_template_dir = [
       \ ]
 
 inoremap <expr> <C-e><C-e> pumvisible()?'<c-y><c-e><plug>(sonictemplate-postfix)':'<plug>(sonictemplate-postfix)'
+nnoremap <C-e><C-e> a<plug>(sonictemplate-postfix)
