@@ -6,12 +6,12 @@ mdoc$
 sdoc$
 	/** {{_cursor_}} */
 
-\(.*\)\.if$
+(\(.*\))\.if$
 	if ({{$1}}) {
 		{{_cursor_}}
 	}
 
-}\s*\(.*\)\.elseif$
+}\s*(\((.*\))\.elseif$
 	} elseif ({{$1}}) {
 		{{_cursor_}}
 	}
@@ -44,12 +44,12 @@ sdoc$
 		{{_cursor_}}
 	}
 
-\(.\+\)\.foreach$
+(\(.\+\))\.foreach$
 	foreach ({{$1}}) {
 		{{_cursor_}}
 	}
 
-\(.\+\)\.switch$
+(\(.\+\))\.switch$
 	switch ({{$1}}) {
 		case {{_cursor_}}:
 			break;

@@ -6,17 +6,17 @@ mdoc$
 sdoc$
 	/** {{_cursor_}} */
 
-\(.*\)\.if$
+(\(.*\))\.if$
 	if ({{$1}}) {
 		{{_cursor_}}
 	}
 
-}\s*\(.*\)\.elseif$
+}\s*(\(.*\))\.elseif$
 	} elseif ({{$1}}) {
 		{{_cursor_}}
 	}
 
-\(.\+\)\.for[Ee]ach$
+\(.\+\))\.for[Ee]ach$
 	{{$1}}.forEach((it) => {{_cursor_}})
 
 \(.\+\)\.map$
