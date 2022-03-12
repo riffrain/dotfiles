@@ -4,4 +4,4 @@ let g:sonictemplate_vim_template_dir = [
       \ expand('~/.vim/templates'),
       \ ]
 
-let g:sonictemplate_postfix_key =  "<C-e>"
+inoremap <expr> <C-e><C-e> pumvisible()?'<c-y><c-e><plug>(sonictemplate-postfix)':'<plug>(sonictemplate-postfix)'

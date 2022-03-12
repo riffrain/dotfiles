@@ -3,6 +3,10 @@
 		{{_cursor_}}
 	}
 
+}\s*\(.*\)\.elseif$
+	} elseif ({{$1}}) {
+		{{_cursor_}}
+	}
 
 \(\S\+\)\.const$
 	const {{$1}} = '{{$1}}';
@@ -14,20 +18,36 @@
 		{{_cursor_}}
 	}
 
-\(\S\+\)\.pub\.func$
+\(\S\+\)\.func\.pub$
 	public function {{$1}} ()
 	{
 		{{_cursor_}}
 	}
 
-\(\S\+\)\.pri\.func$
+\(\S\+\)\.func\.pri$
 	private function {{$1}} ()
 	{
 		{{_cursor_}}
 	}
 
-\(\S\+\)\.pro\.func$
+\(\S\+\)\.func\.pro$
 	private function {{$1}} ()
 	{
 		{{_cursor_}}
 	}
+
+\(.\+\)\.foreach$
+	foreach ({{$1}}) {
+		{{_cursor_}}
+	}
+
+\(.\+\)\.switch$
+	switch ({{$1}}) {
+		case {{_cursor_}}:
+			break;
+		default:
+			break;
+	}
+
+\(\S\+\)\.form\.control$
+	$this->Form->control('{{$1}}', ['label' => '{{_cursor_}}'])
