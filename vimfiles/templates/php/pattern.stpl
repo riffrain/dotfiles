@@ -1,3 +1,11 @@
+mdoc$
+	/**
+	 * {{_cursor_}}
+	 */
+
+sdoc$
+	/** {{_cursor_}} */
+
 \(.*\)\.if$
 	if ({{$1}}) {
 		{{_cursor_}}
@@ -48,6 +56,15 @@
 		default:
 			break;
 	}
+
+\(.\+\)\.collect\(ion\)\?$
+	collection({{$1}}){{_cursor_}}
+
+dd$
+	dd({{_cursor_}});
+
+debug$
+	debug({{_cursor_}});
 
 \(\S\+\)\.form\.control$
 	$this->Form->control('{{$1}}', ['label' => '{{_cursor_}}'])

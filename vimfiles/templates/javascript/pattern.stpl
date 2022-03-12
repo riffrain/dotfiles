@@ -1,3 +1,11 @@
+mdoc$
+	/**
+	 * {{_cursor_}}
+	 */
+
+sdoc$
+	/** {{_cursor_}} */
+
 \(.*\)\.if$
 	if ({{$1}}) {
 		{{_cursor_}}
@@ -7,3 +15,18 @@
 	} elseif ({{$1}}) {
 		{{_cursor_}}
 	}
+
+\(.\+\)\.for[Ee]ach$
+	{{$1}}.forEach((it) => {{_cursor_}})
+
+\(.\+\)\.map$
+	{{$1}}.map((it) => {{_cursor_}})
+
+\(.\+\)\.reduce$
+	{{$1}}.reduce((it) => {{_cursor_}})
+
+\(.\+\)\.filter$
+	{{$1}}.filter((it) => {{_cursor_}})
+
+clog$
+	console.log({{_cursor_}});
