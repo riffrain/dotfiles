@@ -1,3 +1,11 @@
+if FindPlugin('elly.vim')
+  " let g:elly_termmode="cterm"
+  set termguicolors
+  let g:lightline.colorscheme = 'elly'
+  colorscheme elly
+  finish
+endif
+
 
 if FindPlugin('ayu-vim')
   let g:lightline.colorscheme = 'ayu'
