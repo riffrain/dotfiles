@@ -80,6 +80,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Mangeshrex/everblush.vim'
   Plug 'tomasiser/vim-code-dark'
   Plug 'patstockwell/vim-monokai-tasty'
+  Plug 'mhinz/vim-janah'
 
   Plug 'sheerun/vim-polyglot'
 
