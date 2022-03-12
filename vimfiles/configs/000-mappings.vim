@@ -15,7 +15,7 @@ cnoremap <c-x> <c-r>=expand('%:p')<cr>
 if has('terminal')
   tnoremap <Esc><Esc> <C-\><C-n>
 
-  command! PopupTerminal call popup_create(
+  command! PopTerm call popup_create(
                                 \ term_start(
                                 \   [&shell],
                                 \   #{ hidden: 1, term_finish: 'close'}),
