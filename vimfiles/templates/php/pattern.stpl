@@ -26,20 +26,20 @@ sdoc$
 		{{_cursor_}}
 	}
 
-\(\S\+\)\.func\.pub$
+\(\S\+\)\.func\(tion\)\?\.pub\(lic\)\?$
 	public function {{$1}} ()
 	{
 		{{_cursor_}}
 	}
 
-\(\S\+\)\.func\.pri$
+\(\S\+\)\.func\(tion\)\?\.pri\(vate\)\?$
 	private function {{$1}} ()
 	{
 		{{_cursor_}}
 	}
 
-\(\S\+\)\.func\.pro$
-	private function {{$1}} ()
+\(\S\+\)\.func\(tion\)\?\.pro\(tected\)\?$
+	protected function {{$1}} ()
 	{
 		{{_cursor_}}
 	}
@@ -57,7 +57,7 @@ sdoc$
 			break;
 	}
 
-\(.\+\)\.collect\(ion\)\?$
+\(\S\+\)\.collect\(ion\)\?$
 	collection({{$1}}){{_cursor_}}
 
 dd$
@@ -67,4 +67,7 @@ debug$
 	debug({{_cursor_}});
 
 \(\S\+\)\.form\.control$
+	$this->Form->control('{{$1}}', ['label' => '{{_cursor_}}'])
+
+\(\S\+\)\.form\.ctrl$
 	$this->Form->control('{{$1}}', ['label' => '{{_cursor_}}'])
