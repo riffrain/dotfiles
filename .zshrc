@@ -40,3 +40,5 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob \"!.git/*\"'
+
+export PATH=$HOME/.local/bin:$PATH
