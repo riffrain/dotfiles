@@ -1,4 +1,4 @@
-let default_colorscheme = 'elly'
+let default_colorscheme = 'codedark'
 
 let lightline_colorschemes = {}
 if FindPlugin('elly.vim')

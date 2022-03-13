@@ -29,8 +29,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'Matt-A-Bennett/vim-surround-funk'
   Plug 'AndrewRadev/splitjoin.vim'
 
-  Plug 'mhinz/vim-startify'
-  Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+  " Plug 'mhinz/vim-startify'
+  " Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'mattn/ctrlp-matchfuzzy'

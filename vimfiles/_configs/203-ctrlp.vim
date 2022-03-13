@@ -18,3 +18,4 @@ endif
 nn <Leader>f :CtrlP<CR>
 nn <Leader>l :CtrlPLine<CR>
 nn <Leader>b :CtrlPBuffer<CR>
+nn <Leader>m :CtrlPMixed<CR>
