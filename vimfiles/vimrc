@@ -88,7 +88,7 @@ if has('persistent_undo')
   if !isdirectory(s:undo_dir)
     call system('mkdir -p ' . shellescape(s:undo_dir))
   endif
-  set undodir=expand('~/.cache/vimundo')
+  set undodir=~/.cache/vimundo
   set undofile
 endif
 
