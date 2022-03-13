@@ -92,7 +92,6 @@ if has('persistent_undo')
   set undofile
 endif
 
-
 " Auto commands {{{1
 augroup vimrc
   autocmd!
