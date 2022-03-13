@@ -19,9 +19,7 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 let g:netrw_dirhistmax = 0
 
-if &compatible
-  set nocompatible
-endif
+if &compatible | set nocompatible |endif
 set number
 set signcolumn=yes
 set numberwidth=8
@@ -51,109 +49,61 @@ set t_Co=256
 set mouse=
 set incsearch
 set hlsearch
-if has("termguicolors")
-  set termguicolors
-endif
+if has("termguicolors") | set termguicolors | endif
 set noshowmode
 set ignorecase
 set smartcase
 set autoindent
-set lazyredraw
 set more
 set background=dark
+set updatetime=300 timeout timeoutlen=500 ttimeout ttimeoutlen=50 ttyfast lazyredraw
 
+" Language {{{1
+let g:PHP_noArrowMatching = 1
+let g:PHP_vintage_case_default_indent = 1
+
+" Auto commands {{{1
 augroup vimrc
   autocmd!
 augroup END
 
-augroup vimrc
-  autocmd WinEnter * set cursorline
-  autocmd WinLeave * set nocursorline
-  autocmd InsertEnter * set nocursorline
-  autocmd InsertLeave * set cursorline
-augroup END
+autocmd vimrc WinEnter * if &l:buftype ==# 'quickfix' && winnr('$') == 1 | quit | endif
 
-call plug#begin('~/.vim/plugged')
-  Plug 'ayu-theme/ayu-vim'
-  Plug 'Erichain/vim-monokai-pro'
-  Plug 'sainnhe/sonokai'
-  Plug 'Mangeshrex/everblush.vim'
-  Plug 'tomasiser/vim-code-dark'
-  Plug 'patstockwell/vim-monokai-tasty'
-  Plug 'mhinz/vim-janah'
-  Plug 'ulwlu/elly.vim'
+" Toggle cursorline highlight
+autocmd vimrc WinEnter * set cursorline
+autocmd vimrc WinLeave * set nocursorline
+autocmd vimrc InsertEnter * set nocursorline
+autocmd vimrc InsertLeave * set cursorline
 
-  Plug 'sheerun/vim-polyglot'
+" Key mappings {{{1
+inoremap jj <Esc>
+nnoremap <silent><Esc><Esc> :<C-u>se nohlsearch!<CR>
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
+noremap <S-j> <Nop>
+noremap <S-k> <Nop>
+noremap <C-j> 10j
+noremap <C-k> 10k
+noremap <Leader>n :<C-u>:setl number!<CR>
+nnoremap <Leader>s :<C-u>sp<CR>
+nnoremap <Leader>v :<C-u>vs<CR>
+nnoremap + <C-a>
+nnoremap - <C-x>
+nnoremap Q <Nop>
+if has('terminal') | tnoremap <Esc><Esc> <C-\><C-n> | endif
+cnoremap <c-x> <c-r>=expand('%:p')<cr>
 
-  Plug 'itchyny/lightline.vim'
+" Undo {{{1
+if has('persistent_undo')
+  let s:undo_dir = expand('~/.cache/vimundo')
+  if !isdirectory(s:undo_dir)
+    call system('mkdir -p ' . shellescape(s:undo_dir))
+  endif
+  set undodir=expand('~/.cache/vimundo')
+  set undofile
+endif
 
-  Plug 'editorconfig/editorconfig-vim'
-
-  Plug 'easymotion/vim-easymotion'
-
-  Plug 'airblade/vim-gitgutter'
-
-  Plug 'tpope/vim-repeat'
-
-  Plug 'cohama/lexima.vim'
-  Plug 'wellle/targets.vim'
-  Plug 'tpope/vim-unimpaired'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-surround'
-  Plug 'Matt-A-Bennett/vim-surround-funk'
-  Plug 'AndrewRadev/splitjoin.vim'
-
-  Plug 'mhinz/vim-startify'
-  Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
-
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'mattn/ctrlp-matchfuzzy'
-  Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
-
-  Plug 't9md/vim-choosewin'
-  Plug 'preservim/nerdtree'
-
-  Plug 'mattn/vim-sonictemplate'
-  Plug 'mattn/vim-findroot'
-
-  " Plug 'prabirshrestha/asyncomplete.vim'
-  " Plug 'prabirshrestha/asyncomplete-buffer.vim'
-  " Plug 'akaimo/asyncomplete-around.vim'
-  " Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  " Plug 'prabirshrestha/vim-lsp'
-  " Plug 'mattn/vim-lsp-settings'
-
-  " Plug 'prabirshrestha/quickpick.vim'
-  " Plug 'prabirshrestha/quickpick-lsp.vim'
-
-  " Plug 'hrsh7th/vim-vsnip'
-  " Plug 'hrsh7th/vim-vsnip-integ'
-  " Plug 'rafamadriz/friendly-snippets'
-
-  " " Plug 'vim-denops/denops.vim'
-  " " Plug 'Shougo/ddc.vim'
-  " " Plug 'Shougo/pum.vim'
-  " " Plug 'Shougo/ddc-around'
-  " " Plug 'Shougo/ddc-matcher_head'
-  " " Plug 'Shougo/ddc-sorter_rank'
-  " " Plug 'shun/ddc-vim-lsp'
-  " " Plug 'prabirshrestha/vim-lsp'
-  " " Plug 'mattn/vim-lsp-settings'
-  " " Plug 'matsui54/ddc-buffer'
-  " " Plug 'matsui54/denops-popup-preview.vim'
-
-  " Plug 'dense-analysis/ale'
-  " " Plug 'vim-syntastic/syntastic'
-
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-call plug#end()
-
-autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
-
-let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
-function! FindPlugin(name) abort
-  return has_key(s:plugs, a:name) ? isdirectory(s:plugs[a:name].dir) : 0
-endfunction
-command! -nargs=1 UsePlugin if !FindPlugin(<args>) | finish | endif
-
-runtime! configs/*.vim
+" Plugins {{{1
+runtime! vimrc.plugins
