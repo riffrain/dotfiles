@@ -62,19 +62,6 @@ set updatetime=300 timeout timeoutlen=500 ttimeout ttimeoutlen=50 ttyfast lazyre
 let g:PHP_noArrowMatching = 1
 let g:PHP_vintage_case_default_indent = 1
 
-" Auto commands {{{1
-augroup vimrc
-  autocmd!
-augroup END
-
-autocmd vimrc WinEnter * if &l:buftype ==# 'quickfix' && winnr('$') == 1 | quit | endif
-
-" Toggle cursorline highlight
-autocmd vimrc WinEnter * set cursorline
-autocmd vimrc WinLeave * set nocursorline
-autocmd vimrc InsertEnter * set nocursorline
-autocmd vimrc InsertLeave * set cursorline
-
 " Key mappings {{{1
 inoremap jj <Esc>
 nnoremap <silent><Esc><Esc> :<C-u>se nohlsearch!<CR>
@@ -105,5 +92,19 @@ if has('persistent_undo')
   set undofile
 endif
 
-" Plugins {{{1
-runtime! vimrc.plugins
+
+" Auto commands {{{1
+augroup vimrc
+  autocmd!
+augroup END
+
+autocmd vimrc WinEnter * if &l:buftype ==# 'quickfix' && winnr('$') == 1 | quit | endif
+
+" Toggle cursorline highlight
+autocmd vimrc WinEnter * set cursorline
+autocmd vimrc WinLeave * set nocursorline
+autocmd vimrc InsertEnter * set nocursorline
+autocmd vimrc InsertLeave * set cursorline
+
+" Plugins
+runtime! plugins.vim
