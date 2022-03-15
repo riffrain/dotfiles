@@ -43,7 +43,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/vim-findroot'
 
   Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'yami-beta/asyncomplete-omni.vim'
+  " Plug 'yami-beta/asyncomplete-omni.vim'
   Plug 'prabirshrestha/asyncomplete-buffer.vim'
   Plug 'akaimo/asyncomplete-around.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
