@@ -1,6 +1,6 @@
 UsePlugin 'ale'
 
-let g:ale_enabled = 0
+let g:ale_enabled = 1
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 0
 let g:ale_lint_on_save = 1
@@ -15,8 +15,6 @@ let g:ale_float_preview = 1
 let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
 
 function! s:init_ale()
-  let b:ale_enabled = 1
-
   nmap <buffer> <Leader>K <plug>(ale_detail)
   nmap <buffer> <Leader>[g <plug>(ale_previous)
   nmap <buffer> <Leader>]g <plug>(ale_next)

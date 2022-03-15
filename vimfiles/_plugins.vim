@@ -42,12 +42,13 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/vim-sonictemplate'
   Plug 'mattn/vim-findroot'
 
-  " Plug 'prabirshrestha/asyncomplete.vim'
-  " Plug 'prabirshrestha/asyncomplete-buffer.vim'
-  " Plug 'akaimo/asyncomplete-around.vim'
-  " Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  " Plug 'prabirshrestha/vim-lsp'
-  " Plug 'mattn/vim-lsp-settings'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'yami-beta/asyncomplete-omni.vim'
+  Plug 'prabirshrestha/asyncomplete-buffer.vim'
+  Plug 'akaimo/asyncomplete-around.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
 
   " Plug 'prabirshrestha/quickpick.vim'
   " Plug 'prabirshrestha/quickpick-lsp.vim'
@@ -56,22 +57,22 @@ call plug#begin('~/.vim/plugged')
   " Plug 'hrsh7th/vim-vsnip-integ'
   " Plug 'rafamadriz/friendly-snippets'
 
-  " " Plug 'vim-denops/denops.vim'
-  " " Plug 'Shougo/ddc.vim'
-  " " Plug 'Shougo/pum.vim'
-  " " Plug 'Shougo/ddc-around'
-  " " Plug 'Shougo/ddc-matcher_head'
-  " " Plug 'Shougo/ddc-sorter_rank'
-  " " Plug 'shun/ddc-vim-lsp'
-  " " Plug 'prabirshrestha/vim-lsp'
-  " " Plug 'mattn/vim-lsp-settings'
-  " " Plug 'matsui54/ddc-buffer'
-  " " Plug 'matsui54/denops-popup-preview.vim'
+  " Plug 'vim-denops/denops.vim'
+  " Plug 'Shougo/ddc.vim'
+  " Plug 'Shougo/pum.vim'
+  " Plug 'Shougo/ddc-around'
+  " Plug 'Shougo/ddc-matcher_head'
+  " Plug 'Shougo/ddc-sorter_rank'
+  " Plug 'shun/ddc-vim-lsp'
+  " Plug 'prabirshrestha/vim-lsp'
+  " Plug 'mattn/vim-lsp-settings'
+  " Plug 'matsui54/ddc-buffer'
+  " Plug 'matsui54/denops-popup-preview.vim'
 
-  " Plug 'dense-analysis/ale'
-  " " Plug 'vim-syntastic/syntastic'
+  Plug 'dense-analysis/ale'
+  " Plug 'vim-syntastic/syntastic'
 
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " Auto install plugins
