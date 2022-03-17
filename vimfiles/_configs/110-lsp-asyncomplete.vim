@@ -48,6 +48,7 @@ let g:lsp_text_document_did_save_delay = 100
 let g:lsp_completion_resolve_timeout = 0
 let g:lsp_show_message_request_enabled = 0
 let g:lsp_untitled_buffer_enabled = 0
+let g:lsp_hover_ui = 'preview'
 
 function! s:my_asyncomplete_preprocessor(options, matches) abort
   let l:visited = {}

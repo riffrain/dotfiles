@@ -9,9 +9,9 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_set_balloons = 1
 let g:ale_hover_cursor = 0
-let g:ale_hover_to_preview = 0
+let g:ale_hover_to_preview = 1
 let g:ale_detail_to_floating_preview = 1
-let g:ale_float_preview = 1
+let g:ale_floating_preview = 1
 let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
 
 function! s:init_ale()
