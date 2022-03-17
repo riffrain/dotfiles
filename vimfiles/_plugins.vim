@@ -44,8 +44,8 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'prabirshrestha/asyncomplete.vim'
   " Plug 'yami-beta/asyncomplete-omni.vim'
-  Plug 'prabirshrestha/asyncomplete-buffer.vim'
-  Plug 'akaimo/asyncomplete-around.vim'
+  " Plug 'prabirshrestha/asyncomplete-buffer.vim'
+  " Plug 'akaimo/asyncomplete-around.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'prabirshrestha/vim-lsp'
   Plug 'mattn/vim-lsp-settings'
@@ -69,7 +69,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'matsui54/ddc-buffer'
   " Plug 'matsui54/denops-popup-preview.vim'
 
-  Plug 'dense-analysis/ale'
+  " Plug 'dense-analysis/ale'
   " Plug 'vim-syntastic/syntastic'
 
   " Plug 'neoclide/coc.nvim', {'branch': 'release'}

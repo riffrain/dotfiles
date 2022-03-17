@@ -16,7 +16,11 @@ let g:lsp_insert_text_enabled = 1
 let g:lsp_text_edit_enabled = 1
 let g:lsp_completion_documentation_enabled = 1
 let g:lsp_completion_documentation_delay = 500
-let g:lsp_diagnostics_enabled = 0
+if FindPlugin('ale')
+  let g:lsp_diagnostics_enabled = 0
+else
+  let g:lsp_diagnostics_enabled = 1
+endif
 let g:lsp_diagnostics_echo_cursor = 0
 " let g:lsp_diagnostics_echo_delay = 200
 let g:lsp_diagnostics_float_cursor = 1
@@ -48,7 +52,6 @@ let g:lsp_text_document_did_save_delay = 100
 let g:lsp_completion_resolve_timeout = 0
 let g:lsp_show_message_request_enabled = 0
 let g:lsp_untitled_buffer_enabled = 0
-let g:lsp_hover_ui = 'preview'
 
 function! s:my_asyncomplete_preprocessor(options, matches) abort
   let l:visited = {}
@@ -84,40 +87,42 @@ function! s:sort_by_priority_preprocessor(options, matches) abort
   call asyncomplete#preprocess_complete(a:options, l:items)
 endfunction
 
-let g:asyncomplete_preprocessor = [function('s:my_asyncomplete_preprocessor')]
+let g:asyncomplete_preprocessor = [function('s:sort_by_priority_preprocessor')]
 
-if FindPlugin('asyncomplete-buffer.vim')
-  call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-    \ 'name': 'buffer',
-    \ 'allowlist': ['*'],
-    \ 'completor': function('asyncomplete#sources#buffer#completor'),
-    \ 'priority': 9,
-    \ 'config': {
-    \    'max_buffer_size': 1000000,
-    \  },
-    \ }))
-endif
+function! s:on_asyncomplete_setup() abort
+  if FindPlugin('asyncomplete-buffer.vim')
+    call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+      \ 'name': 'buffer',
+      \ 'allowlist': ['*'],
+      \ 'completor': function('asyncomplete#sources#buffer#completor'),
+      \ 'priority': 9,
+      \ 'config': {
+      \    'max_buffer_size': 1000000,
+      \  },
+      \ }))
+  endif
 
-if FindPlugin('asyncomplete-around.vim')
-  call asyncomplete#register_source(asyncomplete#sources#around#get_source_options({
-    \ 'name': 'around',
-    \ 'allowlist': ['*'],
-    \ 'priority': 10,
-    \ 'completor': function('asyncomplete#sources#around#completor'),
-    \ }))
-endif
+  if FindPlugin('asyncomplete-around.vim')
+    call asyncomplete#register_source(asyncomplete#sources#around#get_source_options({
+      \ 'name': 'around',
+      \ 'allowlist': ['*'],
+      \ 'priority': 10,
+      \ 'completor': function('asyncomplete#sources#around#completor'),
+      \ }))
+  endif
 
-if FindPlugin('asyncomplete-omni.vim')
-  call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-    \ 'name': 'omni',
-    \ 'allowlist': ['*'],
-    \ 'blocklist': ['c', 'cpp', 'html'],
-    \ 'completor': function('asyncomplete#sources#omni#completor'),
-    \ 'config': {
-    \   'show_source_kind': 1,
-    \ },
-    \ }))
-endif
+  if FindPlugin('asyncomplete-omni.vim')
+    call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+      \ 'name': 'omni',
+      \ 'allowlist': ['*'],
+      \ 'blocklist': ['c', 'cpp', 'html'],
+      \ 'completor': function('asyncomplete#sources#omni#completor'),
+      \ 'config': {
+      \   'show_source_kind': 1,
+      \ },
+      \ }))
+  endif
+endfunction
 
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
@@ -127,14 +132,17 @@ function! s:on_lsp_buffer_enabled() abort
 
   nmap <buffer> gd <plug>(lsp-peek-definition)
   nmap <buffer> gD <plug>(lsp-definition)
-  " nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-  " nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+  if g:lsp_diagnostics_enabled == 1
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+  endif
   nmap <buffer> <S-k> <plug>(lsp-hover)
   nnoremap <buffer> <expr><c-d> lsp#scroll(+8)
   nnoremap <buffer> <expr><c-f> lsp#scroll(-8)
 endfunction
 
-augroup lsp_install
+augroup lsp_asyncomplete
   autocmd!
+  autocmd User asyncomplete_setup call s:on_asyncomplete_setup()
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
