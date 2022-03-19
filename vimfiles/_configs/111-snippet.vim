@@ -11,7 +11,7 @@ smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab
 imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 
-nmap <expr> s vsnip#available(1) ? '<Plug>(vsnip-select-text)' : 's'
-xmap <expr> s vsnip#available(1) ? '<Plug>(vsnip-select-text)' : 's'
-nmap <expr> S vsnip#available(1) ? '<Plug>(vsnip-cut-text)' : 'S'
-xmap <expr> S vsnip#available(1) ? '<Plug>(vsnip-cut-text)' : 'S'
+" nmap <expr> s vsnip#available(1) ? '<Plug>(vsnip-select-text)' : 's'
+" xmap <expr> s vsnip#available(1) ? '<Plug>(vsnip-select-text)' : 's'
+" nmap <expr> S vsnip#available(1) ? '<Plug>(vsnip-cut-text)' : 'S'
+" xmap <expr> S vsnip#available(1) ? '<Plug>(vsnip-cut-text)' : 'S'
