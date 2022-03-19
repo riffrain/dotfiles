@@ -97,7 +97,15 @@ augroup vimrc
   autocmd!
 augroup END
 
-autocmd vimrc WinEnter * if &l:buftype ==# 'quickfix' && winnr('$') == 1 | quit | endif
+function! s:auto_close_quickfix() abort
+  let info = getwininfo(win_getid())[0]
+
+  if info.quickfix && winnr('$') == 1
+    quit
+  endif
+endfunction
+
+autocmd vimrc WinEnter * call s:auto_close_quickfix()
 
 " Toggle cursorline highlight
 " autocmd vimrc WinEnter * set cursorline
