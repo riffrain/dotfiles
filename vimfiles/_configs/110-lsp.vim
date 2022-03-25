@@ -54,7 +54,7 @@ function! s:on_asyncomplete_setup() abort
       \ 'name': 'buffer',
       \ 'allowlist': ['*'],
       \ 'completor': function('asyncomplete#sources#buffer#completor'),
-      \ 'priority': 9,
+      \ 'priority': 90,
       \ 'config': {
       \    'max_buffer_size': 1000000,
       \  },
@@ -65,9 +65,21 @@ function! s:on_asyncomplete_setup() abort
     call asyncomplete#register_source(asyncomplete#sources#around#get_source_options({
       \ 'name': 'around',
       \ 'allowlist': ['*'],
-      \ 'priority': 10,
+      \ 'priority': 100,
       \ 'completor': function('asyncomplete#sources#around#completor'),
       \ }))
+  endif
+
+  if FindPlugin('asyncomplete-omni.vim')
+    call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+    \ 'name': 'omni',
+    \ 'allowlist': ['*'],
+    \ 'blocklist': ['c', 'cpp', 'html'],
+    \ 'completor': function('asyncomplete#sources#omni#completor'),
+    \ 'config': {
+    \   'show_source_kind': 1,
+    \ },
+    \ }))
   endif
 endfunction
 
