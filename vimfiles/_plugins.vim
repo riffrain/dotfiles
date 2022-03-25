@@ -55,7 +55,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'rafamadriz/friendly-snippets'
 
   " linter
-  " Plug 'dense-analysis/ale'
+  Plug 'dense-analysis/ale'
   " Plug 'vim-syntastic/syntastic'
 call plug#end()
 
