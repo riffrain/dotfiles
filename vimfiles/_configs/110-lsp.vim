@@ -143,6 +143,7 @@ function! s:on_lsp_buffer_enabled() abort
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ asyncomplete#force_refresh()
+    inoremap <buffer> <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
   endif
   inoremap <buffer> <silent><expr> <cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
