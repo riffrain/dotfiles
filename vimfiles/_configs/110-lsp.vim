@@ -139,9 +139,9 @@ function! s:on_lsp_buffer_enabled() abort
   setlocal signcolumn=yes
 
   if g:asyncomplete_auto_popup == 0
-    inoremap <buffer> <silent><expr> <C-n>
+    inoremap <buffer> <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
       \ asyncomplete#force_refresh()
   endif
   inoremap <buffer> <silent><expr> <cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>"
