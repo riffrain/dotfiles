@@ -82,7 +82,7 @@ nnoremap Q <Nop>
 if has('terminal') | tnoremap <Esc><Esc> <C-\><C-n> | endif
 cnoremap <c-x> <c-r>=expand('%:p')<cr>
 
-command! Q execute('qa')
+command! -bang Q execute("qa<bang>")
 
 " Undo {{{1
 if has('persistent_undo')
