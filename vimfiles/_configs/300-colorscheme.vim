@@ -40,6 +40,3 @@ endif
 
 let g:lightline.colorscheme = s:lightline_colorschemes[s:default_colorscheme]
 silent! execute 'colorscheme ' . s:default_colorscheme
-
-unlet s:default_colorscheme
-unlet s:lightline_colorschemes
