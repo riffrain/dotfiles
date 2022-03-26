@@ -28,7 +28,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'Matt-A-Bennett/vim-surround-funk'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'mattn/vim-findroot'
-  " Plug 'gko/vim-coloresque'
   Plug 'ap/vim-css-color'
 
   " git
