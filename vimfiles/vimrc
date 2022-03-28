@@ -56,7 +56,7 @@ set smartcase
 set autoindent
 set more
 set background=dark
-set updatetime=300 timeout timeoutlen=500 ttimeout ttimeoutlen=50 ttyfast
+set ttyfast
 set nolazyredraw
 
 " Language {{{1
