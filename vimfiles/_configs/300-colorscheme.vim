@@ -1,4 +1,4 @@
-let s:default_colorscheme = 'vim-monokai-tasty'
+let s:default_colorscheme = 'sonokai'
 
 let s:lightline_colorschemes = {}
 if FindPlugin('elly.vim')
@@ -11,7 +11,7 @@ if FindPlugin('ayu-vim')
 endif
 
 if FindPlugin('sonokai')
-  let g:sonokai_style = 'default'
+  let g:sonokai_style = 'maia'
   let g:sonokai_enable_italic = 1
   let g:sonokai_diagnostic_text_highlight = 1
   let g:sonokai_diagnostic_line_highlight = 1
