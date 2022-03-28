@@ -1,4 +1,4 @@
-let s:default_colorscheme = 'sonokai'
+let s:default_colorscheme = 'monokai'
 
 let s:lightline_colorschemes = {}
 if FindPlugin('elly.vim')
@@ -36,6 +36,12 @@ endif
 
 if FindPlugin('vim-monokai-pro')
   let s:lightline_colorschemes['monokai_pro'] = 'monokai_pro'
+endif
+
+if FindPlugin('vim-monokai')
+  let g:monokai_term_italic = 1
+  let g:monokai_gui_italic = 1
+  let s:lightline_colorschemes['monokai'] = 'monokai_pro'
 endif
 
 let g:lightline.colorscheme = s:lightline_colorschemes[s:default_colorscheme]

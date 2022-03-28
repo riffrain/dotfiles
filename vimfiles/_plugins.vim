@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mhinz/vim-janah'
   Plug 'ulwlu/elly.vim'
   Plug 'tomasr/molokai'
+  Plug 'crusoexia/vim-monokai'
 
   " syntax highlight
   Plug 'sheerun/vim-polyglot'
