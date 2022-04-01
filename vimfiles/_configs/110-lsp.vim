@@ -1,3 +1,7 @@
+if has('nvim')
+  finish
+endif
+
 UsePlugin 'vim-lsp'
 UsePlugin 'asyncomplete.vim'
 UsePlugin 'asyncomplete-lsp.vim'
