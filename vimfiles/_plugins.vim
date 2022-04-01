@@ -61,6 +61,10 @@ call plug#begin('~/.vim/plugged')
   " linter
   Plug 'dense-analysis/ale'
   " Plug 'vim-syntastic/syntastic'
+
+  if has('nvim')
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  endif
 call plug#end()
 
 " Auto install plugins
