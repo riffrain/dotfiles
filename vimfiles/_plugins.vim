@@ -42,28 +42,44 @@ call plug#begin('~/.vim/plugged')
   Plug 't9md/vim-choosewin'
   Plug 'preservim/nerdtree'
 
-  " LSP & completion
-  Plug 'prabirshrestha/asyncomplete.vim'
-  " Plug 'prabirshrestha/asyncomplete-buffer.vim'
-  " Plug 'akaimo/asyncomplete-around.vim'
-  " Plug 'yami-beta/asyncomplete-omni.vim'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'mattn/vim-lsp-settings'
-  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
   " snippets
   Plug 'mattn/vim-sonictemplate'
   " Plug 'hrsh7th/vim-vsnip'
   " Plug 'hrsh7th/vim-vsnip-integ'
   " Plug 'rafamadriz/friendly-snippets'
 
-  " linter
-  Plug 'dense-analysis/ale'
-  " Plug 'vim-syntastic/syntastic'
+  if !has('nvim')
+    " LSP & completion
+    Plug 'prabirshrestha/asyncomplete.vim'
+    " Plug 'prabirshrestha/asyncomplete-buffer.vim'
+    " Plug 'akaimo/asyncomplete-around.vim'
+    " Plug 'yami-beta/asyncomplete-omni.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
+    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+    " linter
+    Plug 'dense-analysis/ale'
+    " Plug 'vim-syntastic/syntastic'
+  endif
 
   if has('nvim')
+    Plug 'Mofiqul/vscode.nvim'
+
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/cmp-vsnip'
+    Plug 'hrsh7th/vim-vsnip'
+    Plug 'hrsh7th/vim-vsnip-integ'
+    Plug 'rafamadriz/friendly-snippets'
+    Plug 'williamboman/nvim-lsp-installer'
   endif
 call plug#end()
 
