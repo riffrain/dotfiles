@@ -1,8 +1,4 @@
-if has('nvim')
-  let s:default_colorscheme = 'vscode'
-else
-  let s:default_colorscheme = 'vim-monokai-tasty'
-endif
+let s:default_colorscheme = 'vim-monokai-tasty'
 
 let s:lightline_colorschemes = {}
 if FindPlugin('elly.vim')
