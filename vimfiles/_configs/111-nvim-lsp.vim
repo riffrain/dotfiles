@@ -1,12 +1,12 @@
-UsePlugin 'hrsh7th/nvim-cmp'
-UsePlugin 'neovim/nvim-lspconfig'
-UsePlugin 'hrsh7th/cmp-nvim-lsp'
-UsePlugin 'hrsh7th/cmp-buffer'
-UsePlugin 'hrsh7th/cmp-path'
-UsePlugin 'hrsh7th/cmp-cmdline'
-UsePlugin 'hrsh7th/cmp-vsnip'
-UsePlugin 'hrsh7th/vim-vsnip'
-UsePlugin 'williamboman/nvim-lsp-installer'
+UsePlugin 'nvim-cmp'
+UsePlugin 'nvim-lspconfig'
+UsePlugin 'cmp-nvim-lsp'
+UsePlugin 'cmp-buffer'
+UsePlugin 'cmp-path'
+UsePlugin 'cmp-cmdline'
+UsePlugin 'cmp-vsnip'
+UsePlugin 'vim-vsnip'
+UsePlugin 'nvim-lsp-installer'
 
 set completeopt=menu,menuone,noselect
 
