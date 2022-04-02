@@ -80,6 +80,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/vim-vsnip-integ'
     Plug 'rafamadriz/friendly-snippets'
     Plug 'williamboman/nvim-lsp-installer'
+    Plug 'ray-x/lsp_signature.nvim'
+
+    Plug 'folke/trouble.nvim'
   endif
 call plug#end()
 
