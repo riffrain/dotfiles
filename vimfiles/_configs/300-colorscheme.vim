@@ -1,4 +1,5 @@
-let s:default_colorscheme = 'vim-monokai-tasty'
+" let s:default_colorscheme = 'vim-monokai-tasty'
+let s:default_colorscheme = 'monokai_pro'
 
 let s:lightline_colorschemes = {}
 if FindPlugin('elly.vim')
@@ -34,21 +35,23 @@ if FindPlugin('everblush.vim')
   let s:lightline_colorschemes['everblush'] = 'everblush'
 endif
 
-if FindPlugin('vim-monokai-pro')
-  let s:lightline_colorschemes['monokai_pro'] = 'monokai_pro'
-endif
-
 if FindPlugin('vim-monokai')
   let g:monokai_term_italic = 1
   let g:monokai_gui_italic = 1
   let s:lightline_colorschemes['monokai'] = 'monokai_pro'
 endif
 
-if FindPlugin('vscode.nvim')
-  let g:vscode_style = "dark"
-  let g:vscode_transparent = 1
-  let g:vscode_italic_comment = 1
-  let s:lightline_colorschemes['vscode'] = 'codedark'
+if has('nvim')
+  if FindPlugin('vscode.nvim')
+    let g:vscode_style = "dark"
+    let g:vscode_transparent = 1
+    let g:vscode_italic_comment = 1
+    let s:lightline_colorschemes['vscode'] = 'codedark'
+  endif
+
+  if FindPlugin('monokai.nvim')
+    let s:lightline_colorschemes['monokai_pro'] = 'monokai_tasty'
+  endif
 endif
 
 let g:lightline.colorscheme = s:lightline_colorschemes[s:default_colorscheme]

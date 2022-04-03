@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plugged')
   " colorscheme
   Plug 'ayu-theme/ayu-vim'
-  Plug 'Erichain/vim-monokai-pro'
+  " Plug 'Erichain/vim-monokai-pro'
   Plug 'sainnhe/sonokai'
   Plug 'Mangeshrex/everblush.vim'
   Plug 'tomasiser/vim-code-dark'
@@ -66,6 +66,7 @@ call plug#begin('~/.vim/plugged')
 
   if has('nvim')
     Plug 'Mofiqul/vscode.nvim'
+    Plug 'tanvirtin/monokai.nvim'
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
