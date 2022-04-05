@@ -1,7 +1,9 @@
 call plug#begin('~/.vim/plugged')
   " colorscheme
   Plug 'ayu-theme/ayu-vim'
-  " Plug 'Erichain/vim-monokai-pro'
+  if !has('nvim')
+    Plug 'Erichain/vim-monokai-pro'
+  endif
   Plug 'sainnhe/sonokai'
   Plug 'Mangeshrex/everblush.vim'
   Plug 'tomasiser/vim-code-dark'
