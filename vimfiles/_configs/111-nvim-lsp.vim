@@ -7,6 +7,7 @@ UsePlugin 'cmp-cmdline'
 UsePlugin 'cmp-vsnip'
 UsePlugin 'vim-vsnip'
 UsePlugin 'nvim-lsp-installer'
+UsePlugin 'cmp-nvim-lsp-signature-help'
 
 set completeopt=menu,menuone,noselect
 
@@ -49,6 +50,7 @@ lua <<EOF
     -- },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
+      { name = 'nvim_lsp_signature_help' },
       { name = 'vsnip' },
       { name = 'buffer',
         option = {
@@ -100,16 +102,6 @@ lua <<EOF
     buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
     -- buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
     -- buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-
-    require "lsp_signature".on_attach({
-      bind = true,
-      handler_opts = {
-        border = "rounded"
-      },
-      floating_window = false,
-      hint_prefix = "",
-      zindex = 50,
-    }, bufnr)
   end
 
   -- Setup LSP

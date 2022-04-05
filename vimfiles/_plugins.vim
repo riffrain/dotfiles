@@ -83,7 +83,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/vim-vsnip-integ'
     Plug 'rafamadriz/friendly-snippets'
     Plug 'williamboman/nvim-lsp-installer'
-    Plug 'ray-x/lsp_signature.nvim'
+    Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 
     Plug 'folke/trouble.nvim'
   endif
