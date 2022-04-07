@@ -86,6 +86,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 
     Plug 'folke/trouble.nvim'
+
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
   endif
 call plug#end()
 
