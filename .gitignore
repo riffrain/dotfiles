@@ -2,5 +2,6 @@
 *~
 nvim/plugin/packer_compiled.lua
 vimfiles/plugged/*
+vimfiles/autoload/plug.vim.old
 sample
 !.gitkeep
