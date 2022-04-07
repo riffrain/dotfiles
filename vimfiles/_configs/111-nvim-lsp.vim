@@ -14,6 +14,9 @@ set completeopt=menu,menuone,noselect
 lua <<EOF
   local cmp = require'cmp'
   cmp.setup({
+    completion = {
+      autocomplete = false
+    },
     snippet = {
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
@@ -116,3 +119,13 @@ lua <<EOF
       ]])
   end)
 EOF
+
+let s:timer = 0
+autocmd TextChangedI * call s:on_text_changed()
+function! s:on_text_changed() abort
+  call timer_stop(s:timer)
+  let s:timer = timer_start(200, function('s:complete'))
+endfunction
+function! s:complete(...) abort
+  lua require('cmp').complete({ reason = require('cmp').ContextReason.Auto })
+endfunction
