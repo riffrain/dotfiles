@@ -18,7 +18,7 @@ if FindPlugin('ctrlp-matchfuzzy')
 endif
 
 let g:ctrlp_compare_lim = 100
-let g:ctrlp_lazy_update = 50
+let g:ctrlp_lazy_update = 0
 
 nn <Leader>f :CtrlP<CR>
 nn <Leader>l :CtrlPLine<CR>
