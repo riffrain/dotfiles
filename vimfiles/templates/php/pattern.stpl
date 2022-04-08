@@ -27,19 +27,19 @@ sdoc$
 	}
 
 \(\S\+\)\.func\(tion\)\?\.pub\(lic\)\?$
-	public function {{$1}} ()
+	public function {{$1}}()
 	{
 		{{_cursor_}}
 	}
 
 \(\S\+\)\.func\(tion\)\?\.pri\(vate\)\?$
-	private function {{$1}} ()
+	private function {{$1}}()
 	{
 		{{_cursor_}}
 	}
 
 \(\S\+\)\.func\(tion\)\?\.pro\(tected\)\?$
-	protected function {{$1}} ()
+	protected function {{$1}}()
 	{
 		{{_cursor_}}
 	}
