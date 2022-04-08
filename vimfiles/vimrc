@@ -57,7 +57,8 @@ set autoindent
 set more
 set background=dark
 set ttyfast
-set nolazyredraw
+set lazyredraw
+set redrawtime=200
 
 " Language {{{1
 let g:PHP_noArrowMatching = 1
