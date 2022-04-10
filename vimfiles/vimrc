@@ -89,15 +89,21 @@ nnoremap Q <Nop>
 if has('terminal') | tnoremap <Esc><Esc> <C-\><C-n> | endif
 cnoremap <c-x> <c-r>=expand('%:p')<cr>
 
+" Command {{{1
 command! -bang Q execute("qa<bang>")
 
 " Undo {{{1
 if has('persistent_undo')
-  let s:undo_dir = expand('~/.cache/vimundo')
+  if has('nvim')
+    let s:undo_dir = expand('~/.cache/nvimundo')
+    set undodir=~/.cache/nvimundo
+  else
+    let s:undo_dir = expand('~/.cache/vimundo')
+    set undodir=~/.cache/vimundo
+  endif
   if !isdirectory(s:undo_dir)
     call system('mkdir -p ' . shellescape(s:undo_dir))
   endif
-  set undodir=~/.cache/vimundo
   set undofile
 endif
 
