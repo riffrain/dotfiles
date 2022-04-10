@@ -45,6 +45,8 @@ call plug#begin('~/.vim/plugged')
   Plug 't9md/vim-choosewin'
   Plug 'preservim/nerdtree'
 
+  Plug 'rhysd/clever-f.vim'
+
   " snippets
   Plug 'mattn/vim-sonictemplate'
   " Plug 'hrsh7th/vim-vsnip'
