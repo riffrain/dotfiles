@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ulwlu/elly.vim'
   Plug 'tomasr/molokai'
   Plug 'crusoexia/vim-monokai'
+  Plug 'jacoborus/tender.vim'
 
   " syntax highlight
   Plug 'sheerun/vim-polyglot'
@@ -69,6 +70,7 @@ call plug#begin('~/.vim/plugged')
   if has('nvim')
     Plug 'Mofiqul/vscode.nvim'
     Plug 'tanvirtin/monokai.nvim'
+    Plug 'EdenEast/nightfox.nvim'
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -87,8 +89,15 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'folke/trouble.nvim'
 
-    " Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+
     " Plug 'nvim-telescope/telescope.nvim'
+
+    " Plug 'kyazdani42/nvim-tree.lua'
+    " Plug 'kyazdani42/nvim-web-devicons'
+
+    " Plug 'phaazon/hop.nvim'
+    Plug 'lukas-reineke/indent-blankline.nvim'
   endif
 call plug#end()
 

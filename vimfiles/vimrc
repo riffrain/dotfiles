@@ -22,7 +22,7 @@ let g:netrw_dirhistmax = 0
 if &compatible | set nocompatible | endif
 set number
 set signcolumn=yes
-set numberwidth=8
+set numberwidth=4
 set laststatus=2
 set showcmd
 set ruler
