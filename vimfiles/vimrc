@@ -24,7 +24,7 @@ set number
 set signcolumn=yes
 set numberwidth=4
 if has('nvim')
-  set laststatus=3
+  set laststatus=2
   set fillchars=horiz:━,horizup:┻,horizdown:┳,vert:┃,vertleft:┫,vertright:┣,verthoriz:╋,
 else
   set laststatus=2
