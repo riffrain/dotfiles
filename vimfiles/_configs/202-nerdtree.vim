@@ -11,7 +11,9 @@ function! OpenCurrentDir(dirNode) abort
   if !a:dirNode.isRoot() && !a:dirNode.isOpen
     call a:dirNode.activate({})
     let l:children = a:dirNode.getVisibleChildren()
-    call l:children[0].putCursorHere(1, 0)
+    if len(children) > 0
+      call l:children[0].putCursorHere(1, 0)
+    endif
   endif
 endfunction
 
