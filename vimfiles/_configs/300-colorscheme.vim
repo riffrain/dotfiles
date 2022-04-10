@@ -1,5 +1,8 @@
-" let s:default_colorscheme = 'vim-monokai-tasty'
-let s:default_colorscheme = 'monokai_pro'
+if has('nvim')
+  let s:default_colorscheme = 'monokai_pro'
+else
+  let s:default_colorscheme = 'vim-monokai-tasty'
+endif
 
 let s:lightline_colorschemes = {}
 if FindPlugin('elly.vim')
