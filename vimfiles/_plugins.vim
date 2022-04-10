@@ -99,7 +99,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'kyazdani42/nvim-web-devicons'
 
     " Plug 'phaazon/hop.nvim'
-    Plug 'lukas-reineke/indent-blankline.nvim'
+    " Plug 'lukas-reineke/indent-blankline.nvim'
   endif
 call plug#end()
 
