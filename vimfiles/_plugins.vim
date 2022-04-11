@@ -14,9 +14,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'crusoexia/vim-monokai'
   Plug 'jacoborus/tender.vim'
 
-  " syntax highlight
-  Plug 'sheerun/vim-polyglot'
-
   " statusline
   Plug 'itchyny/lightline.vim'
 
@@ -32,7 +29,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'Matt-A-Bennett/vim-surround-funk'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'mattn/vim-findroot'
-  Plug 'ap/vim-css-color'
+  " Plug 'ap/vim-css-color'
+  Plug 'rhysd/clever-f.vim'
 
   " git
   Plug 'airblade/vim-gitgutter'
@@ -45,8 +43,6 @@ call plug#begin('~/.vim/plugged')
   Plug 't9md/vim-choosewin'
   Plug 'preservim/nerdtree'
 
-  Plug 'rhysd/clever-f.vim'
-
   " snippets
   Plug 'mattn/vim-sonictemplate'
   " Plug 'hrsh7th/vim-vsnip'
@@ -54,6 +50,9 @@ call plug#begin('~/.vim/plugged')
   " Plug 'rafamadriz/friendly-snippets'
 
   if !has('nvim')
+    " syntax highlight
+    Plug 'sheerun/vim-polyglot'
+
     " LSP & completion
     Plug 'prabirshrestha/asyncomplete.vim'
     " Plug 'prabirshrestha/asyncomplete-buffer.vim'
