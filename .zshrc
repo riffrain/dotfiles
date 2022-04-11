@@ -42,3 +42,9 @@ fi
 export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob \"!.git/*\"'
 
 export PATH=$HOME/.local/bin:$PATH
+
+if command -v nvim &> /dev/null; then
+  alias vi='nvim'
+else
+  alias vi='vim'
+fi
