@@ -32,7 +32,7 @@ lua <<EOF
           buffer   = '[B]',
         })[entry.source.name]
         vim_item.dup = ({
-          buffer = 1,
+          buffer = 0,
           path = 1,
           nvim_lsp = 0,
           vsnip = 0,
