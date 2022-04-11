@@ -63,7 +63,7 @@ set more
 set background=dark
 set ttyfast
 set lazyredraw
-set redrawtime=200
+set redrawtime=500
 set regexpengine=2
 
 " Language {{{1
