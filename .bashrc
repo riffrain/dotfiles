@@ -63,10 +63,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias vi='vim'
+if command -v nvim &> /dev/null; then
+  alias vi='nvim'
+else
+  alias vi='vim'
+fi
 alias ssh='ssh -A'
 alias less='less -qR'
-\
+
 export EDITOR=vi
 export PATH="$HOME/.local/bin:$HOME/.yarn/bin:$PATH"
 
