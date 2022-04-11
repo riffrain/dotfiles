@@ -4,8 +4,8 @@ UsePlugin 'cmp-nvim-lsp'
 UsePlugin 'cmp-buffer'
 UsePlugin 'cmp-path'
 UsePlugin 'cmp-cmdline'
-UsePlugin 'cmp-vsnip'
-UsePlugin 'vim-vsnip'
+" UsePlugin 'cmp-vsnip'
+" UsePlugin 'vim-vsnip'
 UsePlugin 'nvim-lsp-installer'
 UsePlugin 'cmp-nvim-lsp-signature-help'
 
@@ -28,14 +28,14 @@ lua <<EOF
           nvim_lsp = '[L]',
           path     = '[F]',
           calc     = '[C]',
-          vsnip    = '[S]',
+          -- vsnip    = '[S]',
           buffer   = '[B]',
         })[entry.source.name]
         vim_item.dup = ({
           buffer = 0,
           path = 1,
           nvim_lsp = 0,
-          vsnip = 0,
+          -- vsnip = 0,
         })[entry.source.name] or 0
         return vim_item
       end
@@ -54,7 +54,7 @@ lua <<EOF
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'nvim_lsp_signature_help' },
-      { name = 'vsnip' },
+      -- { name = 'vsnip' },
       { name = 'buffer',
         option = {
           get_bufnrs = function()
