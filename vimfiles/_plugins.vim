@@ -20,7 +20,9 @@ call plug#begin('~/.vim/plugged')
   " edit support
   Plug 'itchyny/vim-cursorword'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'easymotion/vim-easymotion'
+  if !has('nvim')
+    Plug 'easymotion/vim-easymotion'
+  endif
   Plug 'tpope/vim-repeat'
   Plug 'cohama/lexima.vim'
   Plug 'wellle/targets.vim'
@@ -75,6 +77,10 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+    Plug 'phaazon/hop.nvim'
+
+    Plug 'lukas-reineke/indent-blankline.nvim'
+
     Plug 'hrsh7th/nvim-cmp'
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/cmp-nvim-lsp'
@@ -96,9 +102,6 @@ call plug#begin('~/.vim/plugged')
 
     " Plug 'kyazdani42/nvim-tree.lua'
     " Plug 'kyazdani42/nvim-web-devicons'
-
-    " Plug 'phaazon/hop.nvim'
-    " Plug 'lukas-reineke/indent-blankline.nvim'
   endif
 call plug#end()
 
