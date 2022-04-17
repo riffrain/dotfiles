@@ -96,6 +96,8 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'folke/trouble.nvim'
 
+    Plug 'simrat39/symbols-outline.nvim'
+
     Plug 'nvim-lua/plenary.nvim'
 
     " Plug 'nvim-telescope/telescope.nvim'
