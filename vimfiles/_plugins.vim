@@ -1,18 +1,21 @@
 call plug#begin('~/.vim/plugged')
   " colorscheme
   Plug 'ayu-theme/ayu-vim'
-  if !has('nvim')
-    Plug 'Erichain/vim-monokai-pro'
-  endif
   Plug 'sainnhe/sonokai'
   Plug 'Mangeshrex/everblush.vim'
-  Plug 'tomasiser/vim-code-dark'
   Plug 'patstockwell/vim-monokai-tasty'
-  Plug 'mhinz/vim-janah'
   Plug 'ulwlu/elly.vim'
   Plug 'tomasr/molokai'
   Plug 'crusoexia/vim-monokai'
   Plug 'jacoborus/tender.vim'
+  if has('nvim')
+    Plug 'Mofiqul/vscode.nvim'
+    Plug 'tanvirtin/monokai.nvim'
+    Plug 'EdenEast/nightfox.nvim'
+  else
+    Plug 'Erichain/vim-monokai-pro'
+    Plug 'tomasiser/vim-code-dark'
+  endif
 
   " statusline
   Plug 'itchyny/lightline.vim'
@@ -22,7 +25,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'editorconfig/editorconfig-vim'
   if !has('nvim')
     Plug 'easymotion/vim-easymotion'
+  else
+    Plug 'phaazon/hop.nvim'
   endif
+
   Plug 'tpope/vim-repeat'
   Plug 'cohama/lexima.vim'
   Plug 'wellle/targets.vim'
@@ -32,7 +38,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'mattn/vim-findroot'
   " Plug 'ap/vim-css-color'
-  Plug 'rhysd/clever-f.vim'
+  " Plug 'rhysd/clever-f.vim'
+  Plug 'ap/vim-buftabline'
 
   " git
   Plug 'airblade/vim-gitgutter'
@@ -47,40 +54,16 @@ call plug#begin('~/.vim/plugged')
 
   " snippets
   Plug 'mattn/vim-sonictemplate'
-  " Plug 'hrsh7th/vim-vsnip'
-  " Plug 'hrsh7th/vim-vsnip-integ'
-  " Plug 'rafamadriz/friendly-snippets'
 
-  if !has('nvim')
-    " syntax highlight
+  " syntax
+  if has('nvim')
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  else
     Plug 'sheerun/vim-polyglot'
-
-    " LSP & completion
-    Plug 'prabirshrestha/asyncomplete.vim'
-    " Plug 'prabirshrestha/asyncomplete-buffer.vim'
-    " Plug 'akaimo/asyncomplete-around.vim'
-    " Plug 'yami-beta/asyncomplete-omni.vim'
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'mattn/vim-lsp-settings'
-    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-    " linter
-    Plug 'dense-analysis/ale'
-    " Plug 'vim-syntastic/syntastic'
   endif
 
+  " completion
   if has('nvim')
-    Plug 'Mofiqul/vscode.nvim'
-    Plug 'tanvirtin/monokai.nvim'
-    Plug 'EdenEast/nightfox.nvim'
-
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-    Plug 'phaazon/hop.nvim'
-
-    Plug 'lukas-reineke/indent-blankline.nvim'
-
     Plug 'hrsh7th/nvim-cmp'
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/cmp-nvim-lsp'
@@ -93,15 +76,28 @@ call plug#begin('~/.vim/plugged')
     Plug 'rafamadriz/friendly-snippets'
     Plug 'williamboman/nvim-lsp-installer'
     Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+  else
+    Plug 'prabirshrestha/asyncomplete.vim'
+    " Plug 'prabirshrestha/asyncomplete-buffer.vim'
+    " Plug 'akaimo/asyncomplete-around.vim'
+    " Plug 'yami-beta/asyncomplete-omni.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
+    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  endif
 
+  " linter
+  if !has('nvim')
+    Plug 'dense-analysis/ale'
+    " Plug 'vim-syntastic/syntastic'
+  endif
+
+  if has('nvim')
     Plug 'folke/trouble.nvim'
-
     Plug 'simrat39/symbols-outline.nvim'
-
     Plug 'nvim-lua/plenary.nvim'
-
     " Plug 'nvim-telescope/telescope.nvim'
-
     " Plug 'kyazdani42/nvim-tree.lua'
     " Plug 'kyazdani42/nvim-web-devicons'
   endif
