@@ -130,8 +130,21 @@ lua <<EOF
   local lsp_installer = require('nvim-lsp-installer')
   lsp_installer.on_server_ready(function(server)
       local opts = {}
+
+      if server.name == 'phpactor' then
+        opts.init_options = {
+          ["core.min_memory_limit"] = 201326592,
+          ["indexer.poll_time"] = 60000,
+          ["indexer.buffer_time"] = 500,
+          ["language_server_worse_reflection.workspace_index.update_interval"] = 1000,
+          ["language_server_reference_reference_finder.reference_timeout"] = 3,
+          ["language_server.enable_workspace"] = false,
+          ["composer.enabled"] = true,
+        }
+      end
+
       opts.on_attach = on_attach
-      -- opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+      opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
       server:setup(opts)
       vim.cmd([[
         do User LspAttachBuffers
