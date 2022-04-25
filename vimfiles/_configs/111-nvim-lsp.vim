@@ -1,7 +1,6 @@
 UsePlugin 'nvim-cmp'
 UsePlugin 'nvim-lspconfig'
 UsePlugin 'cmp-nvim-lsp'
-UsePlugin 'cmp-buffer'
 UsePlugin 'cmp-path'
 UsePlugin 'cmp-cmdline'
 UsePlugin 'nvim-lsp-installer'
@@ -30,15 +29,13 @@ lua <<EOF
         vim_item.menu = ({
           nvim_lsp = '[L]',
           path     = '[F]',
-          calc     = '[C]',
-          -- vsnip    = '[S]',
-          buffer   = '[B]',
+          -- calc     = '[C]',
+          vsnip    = '[S]',
         })[entry.source.name]
         vim_item.dup = ({
-          buffer = 0,
-          path = 1,
           nvim_lsp = 0,
-          -- vsnip = 0,
+          vsnip = 0,
+          path = 1,
         })[entry.source.name] or 0
         return vim_item
       end
@@ -74,18 +71,6 @@ lua <<EOF
       { name = 'nvim_lsp' },
       { name = 'nvim_lsp_signature_help' },
       -- { name = 'vsnip' },
-      { name = 'buffer',
-        option = {
-          get_bufnrs = function()
-            local bufs = {}
-            for _, win in ipairs(vim.api.nvim_list_wins()) do
-              bufs[vim.api.nvim_win_get_buf(win)] = true
-            end
-
-            return vim.tbl_keys(bufs)
-          end
-        }
-      },
     })
   })
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -131,33 +116,85 @@ lua <<EOF
   lsp_installer.on_server_ready(function(server)
       local opts = {}
 
+      if server.name == 'intelephense' then
+        -- https://github.com/bmewburn/intelephense-docs/blob/master/installation.md
+        opts.settings = {
+          intelephense = {
+            maxMemory = 256,
+            diagnostics = {
+              enable = true,
+              run = 'onSave',
+              unusedSymbols = true,
+            },
+            format = {
+              enable = false,
+            },
+            files = {
+              maxSize = 1000000,
+            },
+            completion = {
+              insertUseDeclaration = true,
+              maxItems = 15,
+            },
+            compatibility = {
+              correctForBaseClassStaticUnionTypes = false,
+              correctForArrayAccessArrayAndTraversableArrayUnionTypes = false,
+            },
+          },
+        }
+      end
+
       if server.name == 'phpactor' then
+        -- https://phpactor.readthedocs.io/en/master/reference/configuration.html
         opts.init_options = {
-          ["core.min_memory_limit"] = 201326592,
+          ["core.min_memory_limit"] = 10000, -- 201326592,
           ["indexer.poll_time"] = 60000,
           ["indexer.buffer_time"] = 500,
           ["language_server_worse_reflection.workspace_index.update_interval"] = 1000,
           ["language_server_reference_reference_finder.reference_timeout"] = 3,
-          ["language_server.enable_workspace"] = false,
-          ["composer.enabled"] = true,
-          ["indexer.exclude_pattern"] = [
-            "\/vendor\/**\/Tests\/**\/*",
-            "\/vendor\/**\/tests\/**\/*",
-            "\/vendor\/composer\/**\/*",
-            "\/.git\/**\/*",
-            "\/.svn\/**\/*",
-            "\/.hg\/**\/*",
-            "\/CVS\/**\/*",
-            "\/.DS_Store\/**\/*",
-            "\/node_modules\/**\/*",
-            "\/.history\/**\/*",
-            "\/vendor\/**\/vendor\/**\/*",
-          ],
+          ["language_server.enable_workspace"] = true,
+          ["language_server.file_events"] = false,
+          ["language_server.diagnostics_on_save"] = true,
+          ["language_server.diagnostics_on_update"] = false,
+          ["composer.enable"] = true,
+          ["indexer.exclude_patterns"] = {
+            "/webroot/**/*",
+            "/tmp/**/*",
+            "/benchmarks/**/*",
+            "/vendor/**/Tests/**/*",
+            "/vendor/**/tests/**/*",
+            "/vendor/**/Test/**/*",
+            "/vendor/**/test/**/*",
+            "/vendor/composer/**/*",
+            "/vendor/deployer/**/*",
+            "/.git/**/*",
+            "/node_modules/**/*",
+            "/vendor/**/vendor/**/*",
+          },
+          ["indexer.reference_finder.deep"] = false,
+          ["indexer.implementation_finder.deep"] = false,
+          ["completion.limit"] = 100,
+          ["completion_worse.snippets"] = true,
+          ["completion_worse.completor.class.limit"] = 10,
+          ["completion_worse.completor.declared_class.enabled"] = false,
+          ["completion_worse.completor.name_search.enabled"] = false,
+          ["completion_worse.completor.class_alias.enabled"] = false,
+          ["completion_worse.completor.constant.enabled"] = false,
+          ["completion_worse.completor.scf_class.enabled"] = false,
+          ["completion_worse.completor.declared_function.enabled"] = false,
+          ["completion_worse.completor.local_variable.enabled"] = true,
+          ["completion_worse.completor.constructor.enabled"] = false,
+          ["completion_worse.completor.named_parameter.enabled"] = false,
+          ["completion_worse.completor.worse_parameter.enabled"] = false,
+          ["language_server_code_transform.import_globals"] = false,
+          ["language_server_code_transform.import_name.report_non_existing_names"] = false,
+          ["class_to_file.brute_force_conversion"] = false,
+          ["core.warn_on_develop"] = false,
         }
       end
 
       opts.on_attach = on_attach
-      opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+      -- opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
       server:setup(opts)
       vim.cmd([[
         do User LspAttachBuffers
