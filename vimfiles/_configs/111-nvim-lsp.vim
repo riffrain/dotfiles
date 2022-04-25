@@ -140,6 +140,19 @@ lua <<EOF
           ["language_server_reference_reference_finder.reference_timeout"] = 3,
           ["language_server.enable_workspace"] = false,
           ["composer.enabled"] = true,
+          ["indexer.exclude_pattern"] = [
+            "\/vendor\/**\/Tests\/**\/*",
+            "\/vendor\/**\/tests\/**\/*",
+            "\/vendor\/composer\/**\/*",
+            "\/.git\/**\/*",
+            "\/.svn\/**\/*",
+            "\/.hg\/**\/*",
+            "\/CVS\/**\/*",
+            "\/.DS_Store\/**\/*",
+            "\/node_modules\/**\/*",
+            "\/.history\/**\/*",
+            "\/vendor\/**\/vendor\/**\/*",
+          ],
         }
       end
 
