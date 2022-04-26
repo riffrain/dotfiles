@@ -116,6 +116,12 @@ lua <<EOF
   lsp_installer.on_server_ready(function(server)
       local opts = {}
 
+      if server.name == 'tsserver' then
+        opts.init_options = {
+          maxTsServerMemory = 256,
+        }
+      end
+
       if server.name == 'intelephense' then
         -- https://github.com/bmewburn/intelephense-docs/blob/master/installation.md
         opts.settings = {
