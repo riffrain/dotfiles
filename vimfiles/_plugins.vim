@@ -39,7 +39,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/vim-findroot'
   " Plug 'ap/vim-css-color'
   " Plug 'rhysd/clever-f.vim'
-  Plug 'ap/vim-buftabline'
+  " Plug 'ap/vim-buftabline'
 
   " git
   Plug 'airblade/vim-gitgutter'
@@ -70,6 +70,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/cmp-omni'
+    Plug 'ray-x/cmp-treesitter'
     Plug 'hrsh7th/cmp-vsnip'
     Plug 'hrsh7th/vim-vsnip'
     Plug 'hrsh7th/vim-vsnip-integ'
@@ -88,9 +90,11 @@ call plug#begin('~/.vim/plugged')
   endif
 
   " linter
-  " Plug 'dense-analysis/ale'
+  Plug 'dense-analysis/ale'
   " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " Plug 'vim-syntastic/syntastic'
+
+  " Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
 
   if has('nvim')
     Plug 'folke/trouble.nvim'
