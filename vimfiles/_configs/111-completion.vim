@@ -29,10 +29,7 @@ lua <<EOF
         vim_item.menu = ({
           nvim_lsp = '[L]',
           path     = '[F]',
-          -- calc     = '[C]',
-          vsnip    = '[S]',
           omni     = '[O]',
-          treesitter = '[T]',
         })[entry.source.name]
         vim_item.dup = ({
           nvim_lsp = 0,
@@ -72,9 +69,6 @@ lua <<EOF
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'nvim_lsp_signature_help' },
-      -- { name = 'treesitter' },
-      -- { name = 'omni' },
-      -- { name = 'vsnip' },
     })
   })
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -156,52 +150,52 @@ lua <<EOF
 
       if server.name == 'phpactor' then
         -- https://phpactor.readthedocs.io/en/master/reference/configuration.html
-        opts.init_options = {
-          ["core.min_memory_limit"] = 10000, -- 201326592,
-          ["indexer.enabled_watchers"] = {}, -- disable indexer
-          ["indexer.poll_time"] = 60000,
-          ["indexer.buffer_time"] = 500,
-          ["language_server_worse_reflection.workspace_index.update_interval"] = 1000,
-          ["language_server_reference_reference_finder.reference_timeout"] = 3,
-          ["language_server.enable_workspace"] = true,
-          ["language_server.file_events"] = false,
-          ["language_server.diagnostics_on_save"] = true,
-          ["language_server.diagnostics_on_update"] = false,
-          ["composer.enable"] = true,
-          ["indexer.exclude_patterns"] = {
-            "/webroot/**/*",
-            "/tmp/**/*",
-            "/benchmarks/**/*",
-            "/vendor/**/Tests/**/*",
-            "/vendor/**/tests/**/*",
-            "/vendor/**/Test/**/*",
-            "/vendor/**/test/**/*",
-            "/vendor/composer/**/*",
-            "/vendor/deployer/**/*",
-            "/.git/**/*",
-            "/node_modules/**/*",
-            "/vendor/**/vendor/**/*",
-          },
-          ["indexer.reference_finder.deep"] = false,
-          ["indexer.implementation_finder.deep"] = false,
-          ["completion.limit"] = 100,
-          ["completion_worse.snippets"] = true,
-          ["completion_worse.completor.class.limit"] = 10,
-          ["completion_worse.completor.declared_class.enabled"] = false,
-          ["completion_worse.completor.name_search.enabled"] = false,
-          ["completion_worse.completor.class_alias.enabled"] = false,
-          ["completion_worse.completor.constant.enabled"] = false,
-          ["completion_worse.completor.scf_class.enabled"] = false,
-          ["completion_worse.completor.declared_function.enabled"] = false,
-          ["completion_worse.completor.local_variable.enabled"] = true,
-          ["completion_worse.completor.constructor.enabled"] = false,
-          ["completion_worse.completor.named_parameter.enabled"] = false,
-          ["completion_worse.completor.worse_parameter.enabled"] = false,
-          ["language_server_code_transform.import_globals"] = false,
-          ["language_server_code_transform.import_name.report_non_existing_names"] = false,
-          ["class_to_file.brute_force_conversion"] = false,
-          ["core.warn_on_develop"] = false,
-        }
+        -- opts.init_options = {
+        --   ["core.min_memory_limit"] = 10000, -- 201326592,
+        --   ["indexer.enabled_watchers"] = {}, -- disable indexer
+        --   ["indexer.poll_time"] = 60000,
+        --   ["indexer.buffer_time"] = 500,
+        --   ["language_server_worse_reflection.workspace_index.update_interval"] = 1000,
+        --   ["language_server_reference_reference_finder.reference_timeout"] = 3,
+        --   ["language_server.enable_workspace"] = true,
+        --   ["language_server.file_events"] = false,
+        --   ["language_server.diagnostics_on_save"] = true,
+        --   ["language_server.diagnostics_on_update"] = false,
+        --   ["composer.enable"] = true,
+        --   ["indexer.exclude_patterns"] = {
+        --     -- "/webroot/**/*",
+        --     -- "/tmp/**/*",
+        --     -- "/benchmarks/**/*",
+        --     -- "/vendor/**/Tests/**/*",
+        --     -- "/vendor/**/tests/**/*",
+        --     -- "/vendor/**/Test/**/*",
+        --     -- "/vendor/**/test/**/*",
+        --     -- "/vendor/composer/**/*",
+        --     -- "/vendor/deployer/**/*",
+        --     -- "/.git/**/*",
+        --     -- "/node_modules/**/*",
+        --     -- "/vendor/**/vendor/**/*",
+        --   },
+        --   ["indexer.reference_finder.deep"] = false,
+        --   ["indexer.implementation_finder.deep"] = false,
+        --   ["completion.limit"] = 100,
+        --   ["completion_worse.snippets"] = true,
+        --   ["completion_worse.completor.class.limit"] = 10,
+        --   ["completion_worse.completor.declared_class.enabled"] = false,
+        --   ["completion_worse.completor.name_search.enabled"] = false,
+        --   ["completion_worse.completor.class_alias.enabled"] = false,
+        --   ["completion_worse.completor.constant.enabled"] = false,
+        --   ["completion_worse.completor.scf_class.enabled"] = false,
+        --   ["completion_worse.completor.declared_function.enabled"] = false,
+        --   ["completion_worse.completor.local_variable.enabled"] = true,
+        --   ["completion_worse.completor.constructor.enabled"] = false,
+        --   ["completion_worse.completor.named_parameter.enabled"] = false,
+        --   ["completion_worse.completor.worse_parameter.enabled"] = false,
+        --   ["language_server_code_transform.import_globals"] = false,
+        --   ["language_server_code_transform.import_name.report_non_existing_names"] = false,
+        --   ["class_to_file.brute_force_conversion"] = false,
+        --   ["core.warn_on_develop"] = false,
+        -- }
       end
 
       opts.on_attach = on_attach
