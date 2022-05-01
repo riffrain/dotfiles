@@ -94,7 +94,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " Plug 'vim-syntastic/syntastic'
 
-  " Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
+  Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
 
   if has('nvim')
     Plug 'folke/trouble.nvim'
@@ -104,6 +104,8 @@ call plug#begin('~/.vim/plugged')
     " Plug 'kyazdani42/nvim-tree.lua'
     " Plug 'kyazdani42/nvim-web-devicons'
   endif
+
+  Plug 'rhysd/git-messenger.vim'
 call plug#end()
 
 " Auto install plugins
