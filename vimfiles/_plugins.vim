@@ -89,6 +89,8 @@ call plug#begin('~/.vim/plugged')
   "   " Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " endif
 
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
   " linter
   " Plug 'dense-analysis/ale'
   " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -107,9 +109,9 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'rhysd/git-messenger.vim'
 
-  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-  Plug 'ncm2/ncm2'
-  Plug 'roxma/nvim-yarp'
+  " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+  " Plug 'ncm2/ncm2'
+  " Plug 'roxma/nvim-yarp'
 call plug#end()
 
 " Auto install plugins
