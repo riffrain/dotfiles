@@ -59,6 +59,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   else
     Plug 'sheerun/vim-polyglot'
+    " Plug 'mattn/vim-treesitter', { 'branch': 'main', 'do': 'cd cmd/treesitter-server && go build' }
   endif
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
