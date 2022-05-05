@@ -11,7 +11,6 @@ call plug#begin('~/.vim/plugged')
   if has('nvim')
     Plug 'Mofiqul/vscode.nvim'
     Plug 'tanvirtin/monokai.nvim'
-    " Plug 'EdenEast/nightfox.nvim'
   else
     Plug 'Erichain/vim-monokai-pro'
     Plug 'tomasiser/vim-code-dark'
@@ -56,41 +55,18 @@ call plug#begin('~/.vim/plugged')
 
   " syntax
   if has('nvim')
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   else
     if executable('go')
       Plug 'mattn/vim-treesitter', { 'branch': 'main' }
+    else
+      Plug 'sheerun/vim-polyglot'
     endif
-    Plug 'sheerun/vim-polyglot'
   endif
 
+  " LSP
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-  " completion
-  " if has('nvim')
-  "   Plug 'hrsh7th/nvim-cmp'
-  " "   Plug 'neovim/nvim-lspconfig'
-  " "   Plug 'hrsh7th/cmp-nvim-lsp'
-  "   Plug 'hrsh7th/cmp-buffer'
-  "   Plug 'hrsh7th/cmp-path'
-  "   Plug 'hrsh7th/cmp-cmdline'
-  " "   Plug 'hrsh7th/cmp-omni'
-  " "   Plug 'ray-x/cmp-treesitter'
-  " "   Plug 'hrsh7th/cmp-vsnip'
-  " "   Plug 'hrsh7th/vim-vsnip'
-  " "   Plug 'hrsh7th/vim-vsnip-integ'
-  " "   Plug 'rafamadriz/friendly-snippets'
-  " "   Plug 'williamboman/nvim-lsp-installer'
-  " "   Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
-  " " else
-  " "   Plug 'prabirshrestha/asyncomplete.vim'
-  " " Plug 'prabirshrestha/asyncomplete-buffer.vim'
-  " " Plug 'akaimo/asyncomplete-around.vim'
-  " " Plug 'yami-beta/asyncomplete-omni.vim'
-  " "   Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  " "   Plug 'prabirshrestha/vim-lsp'
-  " "   Plug 'mattn/vim-lsp-settings'
-  " endif
   " linter
   " Plug 'dense-analysis/ale'
   " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -98,17 +74,39 @@ call plug#begin('~/.vim/plugged')
   " Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
 
   " if has('nvim')
-  "   " Plug 'folke/trouble.nvim'
-  "   " Plug 'simrat39/symbols-outline.nvim'
-  "   " Plug 'nvim-lua/plenary.nvim'
-  "   " Plug 'nvim-telescope/telescope.nvim'
-  "   " Plug 'kyazdani42/nvim-tree.lua'
-  "   " Plug 'kyazdani42/nvim-web-devicons'
+  "   Plug 'hrsh7th/nvim-cmp'
+  "   Plug 'neovim/nvim-lspconfig'
+  "   Plug 'hrsh7th/cmp-nvim-lsp'
+  "   Plug 'hrsh7th/cmp-buffer'
+  "   Plug 'hrsh7th/cmp-path'
+  "   Plug 'hrsh7th/cmp-cmdline'
+  "   Plug 'hrsh7th/cmp-omni'
+  "   Plug 'ray-x/cmp-treesitter'
+  "   Plug 'hrsh7th/cmp-vsnip'
+  "   Plug 'hrsh7th/vim-vsnip'
+  "   Plug 'hrsh7th/vim-vsnip-integ'
+  "   Plug 'rafamadriz/friendly-snippets'
+  "   Plug 'williamboman/nvim-lsp-installer'
+  "   Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+  "
+  "   Plug 'folke/trouble.nvim'
+  "   Plug 'simrat39/symbols-outline.nvim'
+  "   Plug 'nvim-lua/plenary.nvim'
+  "   Plug 'nvim-telescope/telescope.nvim'
+  "   Plug 'kyazdani42/nvim-tree.lua'
+  "   Plug 'kyazdani42/nvim-web-devicons'
+  "   Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+  "   Plug 'ncm2/ncm2'
+  "   Plug 'roxma/nvim-yarp'
+  " else
+  "   Plug 'prabirshrestha/asyncomplete.vim'
+  "   Plug 'prabirshrestha/asyncomplete-buffer.vim'
+  "   Plug 'akaimo/asyncomplete-around.vim'
+  "   Plug 'yami-beta/asyncomplete-omni.vim'
+  "   Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  "   Plug 'prabirshrestha/vim-lsp'
+  "   Plug 'mattn/vim-lsp-settings'
   " endif
-
-  " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-  " Plug 'ncm2/ncm2'
-  " Plug 'roxma/nvim-yarp'
 call plug#end()
 
 " Auto install plugins
