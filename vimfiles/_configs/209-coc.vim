@@ -1,13 +1,6 @@
 UsePlugin 'coc.nvim'
 
-let g:coc_global_extensions = [
-      \ 'coc-html',
-      \ 'coc-tsserver',
-      \ 'coc-json',
-      \ 'coc-css',
-      \ 'coc-phpls',
-      \ 'coc-vetur',
-      \ ]
+let g:coc_global_extensions = [ 'coc-tabnine' ]
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> g[ <Plug>(coc-diagnostic-prev)
