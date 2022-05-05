@@ -58,7 +58,9 @@ call plug#begin('~/.vim/plugged')
   if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   else
-    " Plug 'mattn/vim-treesitter', { 'branch': 'main' }
+    if executable('go')
+      Plug 'mattn/vim-treesitter', { 'branch': 'main' }
+    endif
     Plug 'sheerun/vim-polyglot'
   endif
 

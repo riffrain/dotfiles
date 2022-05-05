@@ -72,6 +72,7 @@ alias ssh='ssh -A'
 alias less='less -qR'
 
 export EDITOR=vi
-export PATH="$HOME/.local/bin:$HOME/.yarn/bin:$PATH"
+export GOROOT=$HOME/.go
+export PATH=$HOME/.go/bin:$HOME/.local/bin:$HOME/.yarn/bin:$PATH
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
