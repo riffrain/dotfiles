@@ -1,11 +1,11 @@
 call plug#begin('~/.vim/plugged')
   " colorscheme
-  " Plug 'ayu-theme/ayu-vim'
-  " Plug 'sainnhe/sonokai'
+  Plug 'ayu-theme/ayu-vim'
+  Plug 'sainnhe/sonokai'
   " Plug 'Mangeshrex/everblush.vim'
   Plug 'patstockwell/vim-monokai-tasty'
   " Plug 'ulwlu/elly.vim'
-  " Plug 'tomasr/molokai'
+  Plug 'tomasr/molokai'
   " Plug 'crusoexia/vim-monokai'
   " Plug 'jacoborus/tender.vim'
   if has('nvim')
@@ -58,8 +58,8 @@ call plug#begin('~/.vim/plugged')
   if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   else
+    " Plug 'mattn/vim-treesitter', { 'branch': 'main' }
     Plug 'sheerun/vim-polyglot'
-    " Plug 'mattn/vim-treesitter', { 'branch': 'main', 'do': 'cd cmd/treesitter-server && go build' }
   endif
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -82,13 +82,12 @@ call plug#begin('~/.vim/plugged')
   " "   Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
   " " else
   " "   Plug 'prabirshrestha/asyncomplete.vim'
-  " "   " Plug 'prabirshrestha/asyncomplete-buffer.vim'
-  " "   " Plug 'akaimo/asyncomplete-around.vim'
-  " "   " Plug 'yami-beta/asyncomplete-omni.vim'
+  " " Plug 'prabirshrestha/asyncomplete-buffer.vim'
+  " " Plug 'akaimo/asyncomplete-around.vim'
+  " " Plug 'yami-beta/asyncomplete-omni.vim'
   " "   Plug 'prabirshrestha/asyncomplete-lsp.vim'
   " "   Plug 'prabirshrestha/vim-lsp'
   " "   Plug 'mattn/vim-lsp-settings'
-  " "   " Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " endif
   " linter
   " Plug 'dense-analysis/ale'
