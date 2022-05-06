@@ -43,6 +43,8 @@ export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob \"!.git/*\"'
 
 export GOROOT=$HOME/.go
 export PATH=$HOME/.go/bin:$HOME/.local/bin:$HOME/.yarn/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH=$HOME/.local/lib:$DYLD_LIBRARY_PATH
 
 if command -v nvim &> /dev/null; then
   alias vi='nvim'

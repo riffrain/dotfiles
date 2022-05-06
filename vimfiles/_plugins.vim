@@ -66,6 +66,13 @@ call plug#begin('~/.vim/plugged')
 
   " LSP
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " if has('nvim')
+  "   Plug 'neovim/nvim-lspconfig'
+  "   Plug 'tami5/lspsaga.nvim'
+  "   Plug 'williamboman/nvim-lsp-installer'
+  "   Plug 'hrsh7th/nvim-cmp'
+  "   Plug 'hrsh7th/cmp-nvim-lsp'
+  " endif
 
   " linter
   " Plug 'dense-analysis/ale'

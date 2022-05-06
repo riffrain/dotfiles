@@ -74,5 +74,7 @@ alias less='less -qR'
 export EDITOR=vi
 export GOROOT=$HOME/.go
 export PATH=$HOME/.go/bin:$HOME/.local/bin:$HOME/.yarn/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH=$HOME/.local/lib:$DYLD_LIBRARY_PATH
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
