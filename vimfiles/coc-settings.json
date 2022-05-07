@@ -1,0 +1,14 @@
+{
+  "suggest.autoTrigger": "always",
+  "suggest.disableKind": true,
+  "suggest.disableMenu": true,
+  "suggest.triggerCompletionWait": 50,
+  "suggest.disableMenuShortcut": false,
+  "suggest.removeDuplicateItems": true,
+  "diagnostic.enable": true,
+  "diagnostic.level": "warning",
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextPrefix": " ",
+  "refactor.saveToFile": false,
+  "coc.preferences.enableFloatHighlight": false
+}
