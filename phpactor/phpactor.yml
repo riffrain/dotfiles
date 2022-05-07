@@ -1,8 +1,8 @@
 # $HOME/.config/phpactor/phpactor.yml
-"core.min_memory_limit": 10000
-"indexer.enabled_watchers":
-  - 'fswatch'
-  - 'find'
+# "core.min_memory_limit": 10000
+# indexer.enabled_watchers":
+#  - 'fswatch'
+#  - 'find'
 # "indexer.poll_time" : 60000
 # "indexer.buffer_time" : 500
 # "language_server_worse_reflection.workspace_index.update_interval": 1000
@@ -31,7 +31,7 @@
 #   - "/vendor/**/vendor/**/*"
 # "indexer.reference_finder.deep" : false
 # "indexer.implementation_finder.deep" : false
-# "completion.limit" : 100
+"completion.limit" : 100
 # "completion_worse.snippets" : true
 # "completion_worse.completor.class.limit" : 10
 # "completion_worse.completor.declared_class.enabled" : false
