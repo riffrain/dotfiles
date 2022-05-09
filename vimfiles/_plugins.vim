@@ -66,13 +66,21 @@ call plug#begin('~/.vim/plugged')
 
   " LSP
   " Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  " if has('nvim')
-  "   Plug 'neovim/nvim-lspconfig'
-  "   Plug 'tami5/lspsaga.nvim'
-  "   Plug 'williamboman/nvim-lsp-installer'
-  "   Plug 'hrsh7th/nvim-cmp'
-  "   Plug 'hrsh7th/cmp-nvim-lsp'
-  " endif
+  if has('nvim')
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'williamboman/nvim-lsp-installer'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+    Plug 'hrsh7th/cmp-vsnip'
+    Plug 'hrsh7th/vim-vsnip'
+    Plug 'hrsh7th/vim-vsnip-integ'
+    Plug 'rafamadriz/friendly-snippets'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    " Plug 'tami5/lspsaga.nvim'
+  endif
 
   Plug 'phpactor/phpactor', { 'for': 'php', 'branch': 'master', 'do': 'composer install --no-dev -o' }
 

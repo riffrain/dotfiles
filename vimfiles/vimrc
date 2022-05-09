@@ -69,7 +69,7 @@ let g:PHP_noArrowMatching = 1
 let g:PHP_vintage_case_default_indent = 1
 
 " Key mappings {{{1
-inoremap jj <Esc>
+inoremap <silent>jj <Esc>
 nnoremap <silent><Esc><Esc> :<C-u>se nohlsearch!<CR>
 noremap j gj
 noremap k gk
@@ -87,6 +87,15 @@ nnoremap - <C-x>
 nnoremap Q <Nop>
 if has('terminal') | tnoremap <Esc><Esc> <C-\><C-n> | endif
 cnoremap <c-x> <c-r>=expand('%:p')<cr>
+nmap <C-w>+ <C-w>+<SID>ws
+nmap <C-w>- <C-w>-<SID>ws
+nmap <C-w>> <C-w>><SID>ws
+nmap <C-w>< <C-w><<SID>ws
+nnoremap <script> <SID>ws+ <C-w>+<SID>ws
+nnoremap <script> <SID>ws- <C-w>-<SID>ws
+nnoremap <script> <SID>ws> <C-w>><SID>ws
+nnoremap <script> <SID>ws< <C-w><<SID>ws
+nmap <SID>ws <Nop>
 
 " Command {{{1
 command! -bang Q execute("qa<bang>")
