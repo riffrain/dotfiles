@@ -2,7 +2,7 @@ UsePlugin 'vim-choosewin'
 
 nnoremap <C-w><C-w> <Plug>(choosewin)
 
-let g:choosewin_label='sdfghjklqwertyuioopzxcvbnm'
+let g:choosewin_label='sdfghjklqwertyuiopzxcvbnm'
 let g:choosewin_overlay_enable=1
 let g:choosewin_overlay_clear_multibyte = 1
 let g:choosewin_color_overlay = {
