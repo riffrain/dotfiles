@@ -36,7 +36,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-surround'
   " Plug 'Matt-A-Bennett/vim-surround-funk'
-  Plug 'AndrewRadev/splitjoin.vim', { 'on': [' SplitjoinJoin', 'SplitjoinSplit'] }
+  Plug 'AndrewRadev/splitjoin.vim', { 'on': ['SplitjoinJoin', 'SplitjoinSplit', '<plug>SplitjoinJoin', '<plug>SplitjoinSplit'] }
   Plug 'mattn/vim-findroot'
   " Plug 'rhysd/clever-f.vim'
 

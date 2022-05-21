@@ -130,6 +130,11 @@ lua <<EOF
       end
 
       if server.name == 'phpactor' then
+        opts.init_options = {
+          ["code_transform.import_globals"] = true,
+          ["language_server_code_transform.import_globals"] = true,
+          ["language_server_code_transform.import_name.report_non_existing_names"] = true
+        }
       end
 
       opts.on_attach = on_attach

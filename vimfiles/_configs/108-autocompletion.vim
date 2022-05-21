@@ -67,7 +67,6 @@ lua <<EOF
     --     i = cmp.mapping.abort(),
     --     c = cmp.mapping.close(),
     --   }),
-    --   ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     -- },
     mapping = {
       ["<Tab>"] = cmp.mapping(function(fallback)
@@ -76,7 +75,7 @@ lua <<EOF
         elseif has_words_before() then
           cmp.complete()
         else
-          fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+          fallback()
         end
       end, { "i", "s" }),
       ["<S-Tab>"] = cmp.mapping(function()
@@ -84,6 +83,7 @@ lua <<EOF
           cmp.select_prev_item()
         end
       end, { "i", "s" }),
+      ["<CR>"] = cmp.mapping.confirm({ select = true }),
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
