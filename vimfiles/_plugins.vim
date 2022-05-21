@@ -17,7 +17,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'preservim/vim-colors-pencil'
 
   " statusline
-  Plug 'itchyny/lightline.vim'
+  Plug 'itchyny/lightline.vim' | Plug 'tpope/vim-fugitive'
 
   " edit support
   Plug 'editorconfig/editorconfig-vim'
@@ -35,15 +35,14 @@ call plug#begin('~/.vim/plugged')
 
   " git
   Plug 'airblade/vim-gitgutter'
-  Plug 'tpope/vim-fugitive'
   Plug 'rhysd/git-messenger.vim', { 'on': ['GitMessenger', '<plug>(git-messenger)'] }
 
   " finder
   Plug 'ctrlpvim/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPLine', 'CtrlPBuffer', 'CtrlPMixed'] }
   Plug 'mattn/ctrlp-matchfuzzy', { 'on': ['CtrlP', 'CtrlPLine', 'CtrlPBuffer', 'CtrlPMixed'] }
   Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
-  Plug 't9md/vim-choosewin', { 'on': ['<plug>(choosewin)', 'NERDTree', 'NERDTreeToggle'] }
-  Plug 'preservim/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle'] }
+  Plug 't9md/vim-choosewin'
+  Plug 'preservim/nerdtree'
 
   " snippets
   Plug 'mattn/vim-sonictemplate', { 'on': ['<plug>(sonictemplate-postfix)'] }
