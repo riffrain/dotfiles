@@ -39,9 +39,10 @@ endif
 
 augroup MyNERDTreeConfig
   autocmd!
-  autocmd VimEnter * call NERDTreeAddKeyMap({ 'key': 'l', 'callback': 'OpenCurrentDir', 'scope': 'DirNode', 'quickhelpText': 'Open current dir' })
-  autocmd VimEnter * call NERDTreeAddKeyMap({ 'key': 'h', 'callback': 'CloseCurrentDir', 'scope': 'Node', 'quickhelpText': 'Close current dir' })
-  if exists('*ChooseWinOpen')
-    autocmd VimEnter * call NERDTreeAddKeyMap({ 'key': g:NERDTreeMapActivateNode, 'callback': 'ChooseWinOpen', 'scope': 'FileNode', 'override': 1 })
-  endif
+  autocmd FileType nerdtree call NERDTreeAddKeyMap({ 'key': 'l', 'callback': 'OpenCurrentDir', 'scope': 'DirNode', 'quickhelpText': 'Open current dir' })
+        \| call NERDTreeAddKeyMap({ 'key': 'h', 'callback': 'CloseCurrentDir', 'scope': 'Node', 'quickhelpText': 'Close current dir' })
+        \| if exists('*ChooseWinOpen')
+        \| call NERDTreeAddKeyMap({ 'key': g:NERDTreeMapActivateNode, 'callback': 'ChooseWinOpen', 'scope': 'FileNode', 'override': 1 })
+        \| endif
+        \| autocmd! MyNERDTreeConfig
 augroup END
