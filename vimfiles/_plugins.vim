@@ -4,16 +4,16 @@ call plug#begin('~/.vim/plugged')
   Plug 'sainnhe/sonokai'
   " Plug 'Mangeshrex/everblush.vim'
   Plug 'patstockwell/vim-monokai-tasty'
-  " Plug 'ulwlu/elly.vim'
+  Plug 'ulwlu/elly.vim'
   Plug 'tomasr/molokai'
   " Plug 'crusoexia/vim-monokai'
   " Plug 'jacoborus/tender.vim'
+  Plug 'tomasiser/vim-code-dark'
   if has('nvim')
     Plug 'Mofiqul/vscode.nvim'
     Plug 'tanvirtin/monokai.nvim'
   else
     Plug 'Erichain/vim-monokai-pro'
-    Plug 'tomasiser/vim-code-dark'
   endif
 
   Plug 'preservim/vim-colors-pencil'
@@ -53,7 +53,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'preservim/nerdtree'
 
   " snippets
-  Plug 'mattn/vim-sonictemplate'
+  Plug 'mattn/vim-sonictemplate', { 'on': ['<plug>(sonictemplate-postfix)'] }
 
   " syntax
   if has('nvim')

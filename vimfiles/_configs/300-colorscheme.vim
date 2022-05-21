@@ -1,61 +1,55 @@
+fun! s:setLightlineColorscheme(name)
+    let g:lightline.colorscheme = a:name
+    call lightline#init()
+    call lightline#colorscheme()
+    call lightline#update()
+endfun
+
+" Plug 'ulwlu/elly.vim'
+autocmd vimrc ColorScheme elly call s:setLightlineColorscheme('elly')
+
+" Plug 'ayu-theme/ayu-vim'
+let g:ayucolor = 'dark'
+autocmd vimrc ColorScheme ayu call s:setLightlineColorscheme('ayu')
+
+" Plug 'sainnhe/sonokai'
+let g:sonokai_style = 'maia'
+let g:sonokai_enable_italic = 0
+let g:sonokai_diagnostic_text_highlight = 0
+let g:sonokai_diagnostic_line_highlight = 0
+let g:sonokai_better_performance = 0
+autocmd vimrc ColorScheme sonokai call s:setLightlineColorscheme('sonokai')
+
+" Plug 'tomasiser/vim-code-dark'
+" let g:codedark_italics = 1
+autocmd vimrc ColorScheme codedark call s:setLightlineColorscheme('codedark')
+
+" Plug 'patstockwell/vim-monokai-tasty'
+" let g:vim_monokai_tasty_italic = 0
+autocmd vimrc ColorScheme vim-monokai-tasty call s:setLightlineColorscheme('monokai_tasty')
+
+
+" Plug 'Mangeshrex/everblush.vim'
+autocmd vimrc ColorScheme everblush call s:setLightlineColorscheme('everblush')
+
+" Plug 'crusoexia/vim-monokai'
+let g:monokai_term_italic = 1
+let g:monokai_gui_italic = 1
+autocmd vimrc ColorScheme monokai call s:setLightlineColorscheme('monokai_pro')
+
 if has('nvim')
-  let s:default_colorscheme = 'monokai_pro'
+  " Plug 'Mofiqul/vscode.nvim'
+  let g:vscode_style = "dark"
+  let g:vscode_transparent = 1
+  let g:vscode_italic_comment = 1
+  autocmd vimrc ColorScheme vscode call s:setLightlineColorscheme('codedark') " require 'tomasiser/vim-code-dark'
+
+  " Plug 'tanvirtin/monokai.nvim'
+  autocmd vimrc ColorScheme monokai_pro call s:setLightlineColorscheme('monokai_tasty')
+endif
+
+if has('nvim')
+  colorscheme monokai_pro
 else
-  let s:default_colorscheme = 'vim-monokai-tasty'
+  colorscheme monokai
 endif
-
-let s:lightline_colorschemes = {}
-if FindPlugin('elly.vim')
-  let s:lightline_colorschemes['elly'] = 'elly'
-endif
-
-if FindPlugin('ayu-vim')
-  let s:lightline_colorschemes['ayu'] = 'ayu'
-  let g:ayucolor = 'dark'
-endif
-
-if FindPlugin('sonokai')
-  let g:sonokai_style = 'maia'
-  let g:sonokai_enable_italic = 0
-  let g:sonokai_diagnostic_text_highlight = 0
-  let g:sonokai_diagnostic_line_highlight = 0
-  let g:sonokai_better_performance = 0
-  let s:lightline_colorschemes['sonokai'] = 'sonokai'
-endif
-
-if FindPlugin('vim-code-dark')
-  " let g:codedark_italics = 1
-  let s:lightline_colorschemes['codedark'] = 'codedark'
-endif
-
-if FindPlugin('vim-monokai-tasty')
-  let g:vim_monokai_tasty_italic = 0
-  let s:lightline_colorschemes['vim-monokai-tasty'] = 'monokai_tasty'
-endif
-
-
-if FindPlugin('everblush.vim')
-  let s:lightline_colorschemes['everblush'] = 'everblush'
-endif
-
-if FindPlugin('vim-monokai')
-  let g:monokai_term_italic = 1
-  let g:monokai_gui_italic = 1
-  let s:lightline_colorschemes['monokai'] = 'monokai_pro'
-endif
-
-if has('nvim')
-  if FindPlugin('vscode.nvim')
-    let g:vscode_style = "dark"
-    let g:vscode_transparent = 1
-    let g:vscode_italic_comment = 1
-    let s:lightline_colorschemes['vscode'] = 'codedark'
-  endif
-
-  if FindPlugin('monokai.nvim')
-    let s:lightline_colorschemes['monokai_pro'] = 'monokai_tasty'
-  endif
-endif
-
-let g:lightline.colorscheme = s:lightline_colorschemes[s:default_colorscheme]
-silent! execute 'colorscheme ' . s:default_colorscheme
