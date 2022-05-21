@@ -14,9 +14,9 @@ autocmd vimrc ColorScheme ayu call s:setLightlineColorscheme('ayu')
 
 " Plug 'sainnhe/sonokai'
 let g:sonokai_style = 'maia'
-let g:sonokai_enable_italic = 0
-let g:sonokai_diagnostic_text_highlight = 0
-let g:sonokai_diagnostic_line_highlight = 0
+" let g:sonokai_enable_italic = 0
+" let g:sonokai_diagnostic_text_highlight = 0
+" let g:sonokai_diagnostic_line_highlight = 0
 let g:sonokai_better_performance = 0
 autocmd vimrc ColorScheme sonokai call s:setLightlineColorscheme('sonokai')
 
@@ -51,5 +51,5 @@ endif
 if has('nvim')
   colorscheme monokai_pro
 else
-  colorscheme sonokai
+  colorscheme vim-monokai-tasty
 endif

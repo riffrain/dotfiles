@@ -49,10 +49,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/vim-sonictemplate', { 'on': ['<plug>(sonictemplate-postfix)'] }
 
   " syntax
+  Plug 'sheerun/vim-polyglot'
   if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   else
-    Plug 'sheerun/vim-polyglot'
     if executable('go')
       Plug 'mattn/vim-treesitter', { 'branch': 'main' }
     endif
