@@ -16,20 +16,20 @@ endif
 
 if FindPlugin('sonokai')
   let g:sonokai_style = 'maia'
-  let g:sonokai_enable_italic = 1
-  let g:sonokai_diagnostic_text_highlight = 1
-  let g:sonokai_diagnostic_line_highlight = 1
+  let g:sonokai_enable_italic = 0
+  let g:sonokai_diagnostic_text_highlight = 0
+  let g:sonokai_diagnostic_line_highlight = 0
   let g:sonokai_better_performance = 0
   let s:lightline_colorschemes['sonokai'] = 'sonokai'
 endif
 
 if FindPlugin('vim-code-dark')
-  let g:codedark_italics = 1
+  " let g:codedark_italics = 1
   let s:lightline_colorschemes['codedark'] = 'codedark'
 endif
 
 if FindPlugin('vim-monokai-tasty')
-  let g:vim_monokai_tasty_italic = 1
+  let g:vim_monokai_tasty_italic = 0
   let s:lightline_colorschemes['vim-monokai-tasty'] = 'monokai_tasty'
 endif
 

@@ -18,6 +18,20 @@ lua <<EOF
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
 
+  local tabnine = require('cmp_tabnine.config')
+  tabnine:setup({
+    max_lines = 1000;
+    max_num_results = 20;
+    sort = true;
+    run_on_every_keystroke = true;
+    snippet_placeholder = '..';
+    ignored_file_types = { -- default is not to ignore
+      -- uncomment to ignore in lua:
+      -- lua = true
+    };
+    show_prediction_strength = false;
+  })
+
   local cmp = require'cmp'
   cmp.setup({
     completion = {
@@ -33,6 +47,7 @@ lua <<EOF
         vim_item.menu = ({
           nvim_lsp = '[L]',
           path     = '[F]',
+          cmp_tabnine = '[TN]',
           -- omni     = '[O]',
         })[entry.source.name]
         vim_item.dup = ({
@@ -73,6 +88,7 @@ lua <<EOF
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'nvim_lsp_signature_help' },
+      { name = 'cmp_tabnine' },
     })
   })
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).

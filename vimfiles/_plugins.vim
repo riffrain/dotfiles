@@ -16,6 +16,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'tomasiser/vim-code-dark'
   endif
 
+  Plug 'preservim/vim-colors-pencil'
+
   " statusline
   Plug 'itchyny/lightline.vim'
 
@@ -30,22 +32,22 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'tpope/vim-repeat'
   Plug 'cohama/lexima.vim'
-  Plug 'wellle/targets.vim'
+  " Plug 'wellle/targets.vim'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-surround'
-  Plug 'Matt-A-Bennett/vim-surround-funk'
-  Plug 'AndrewRadev/splitjoin.vim'
+  " Plug 'Matt-A-Bennett/vim-surround-funk'
+  Plug 'AndrewRadev/splitjoin.vim', { 'on': [' SplitjoinJoin', 'SplitjoinSplit'] }
   Plug 'mattn/vim-findroot'
   " Plug 'rhysd/clever-f.vim'
 
   " git
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
-  Plug 'rhysd/git-messenger.vim'
+  Plug 'rhysd/git-messenger.vim', { 'on': ['GitMessenger', '<plug>(git-messenger)'] }
 
   " finder
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'mattn/ctrlp-matchfuzzy'
+  Plug 'ctrlpvim/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPLine', 'CtrlPBuffer', 'CtrlPMixed'] }
+  Plug 'mattn/ctrlp-matchfuzzy', { 'on': ['CtrlP', 'CtrlPLine', 'CtrlPBuffer', 'CtrlPMixed'] }
   Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
   Plug 't9md/vim-choosewin'
   Plug 'preservim/nerdtree'
@@ -57,10 +59,9 @@ call plug#begin('~/.vim/plugged')
   if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   else
+    Plug 'sheerun/vim-polyglot'
     if executable('go')
       Plug 'mattn/vim-treesitter', { 'branch': 'main' }
-    else
-      Plug 'sheerun/vim-polyglot'
     endif
   endif
 
@@ -69,6 +70,7 @@ call plug#begin('~/.vim/plugged')
   if has('nvim')
     Plug 'neovim/nvim-lspconfig'
     Plug 'williamboman/nvim-lsp-installer'
+
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
@@ -80,14 +82,19 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     " Plug 'tami5/lspsaga.nvim'
+    Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
   endif
 
-  Plug 'phpactor/phpactor', { 'for': 'php', 'branch': 'master', 'do': 'composer install --no-dev -o' }
+  if executable('php') && executable('composer')
+    Plug 'phpactor/phpactor', { 'for': 'php', 'branch': 'master', 'do': 'composer install --no-dev -o' }
+  endif
 
   " linter
   " Plug 'dense-analysis/ale'
   " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  " Plug 'vim-syntastic/syntastic'
+  if !has('nvim')
+    Plug 'vim-syntastic/syntastic'
+  endif
   " Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
 
   " if has('nvim')
