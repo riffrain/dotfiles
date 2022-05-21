@@ -51,5 +51,5 @@ endif
 if has('nvim')
   colorscheme monokai_pro
 else
-  colorscheme monokai
+  colorscheme sonokai
 endif

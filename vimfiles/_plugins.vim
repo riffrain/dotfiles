@@ -13,7 +13,6 @@ call plug#begin('~/.vim/plugged')
   " Plug 'Mangeshrex/everblush.vim'
   " Plug 'ulwlu/elly.vim'
   " Plug 'tomasr/molokai'
-  " Plug 'crusoexia/vim-monokai'
   " Plug 'jacoborus/tender.vim'
   " Plug 'preservim/vim-colors-pencil'
 
