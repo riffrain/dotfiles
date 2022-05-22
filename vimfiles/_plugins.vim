@@ -92,6 +92,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'simrat39/symbols-outline.nvim'
     " Plug 'nvim-lua/plenary.nvim'
     " Plug 'nvim-telescope/telescope.nvim'
+
+    Plug 'folke/zen-mode.nvim'
   else
     " Plug 'prabirshrestha/asyncomplete.vim'
     " Plug 'prabirshrestha/asyncomplete-buffer.vim'

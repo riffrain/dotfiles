@@ -19,7 +19,6 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 let g:netrw_dirhistmax = 0
 
-set nocompatible
 set number
 set signcolumn=yes
 set numberwidth=4

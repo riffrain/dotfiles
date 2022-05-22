@@ -51,3 +51,12 @@ if command -v nvim &> /dev/null; then
 else
   alias vi='vim'
 fi
+
+alias kitty="kitty --config=$HOME/.config/kitty/kitty.conf"
+
+if [ -d $HOME/.zsh/pure ]; then
+  fpath+=$HOME/.zsh/pure
+
+  autoload -U promptinit; promptinit
+  prompt pure
+fi
