@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
   if has('nvim')
     Plug 'tanvirtin/monokai.nvim'
     " Plug 'Mofiqul/vscode.nvim' | Plug 'tomasiser/vim-code-dark'
+    Plug 'RRethy/nvim-base16'
   else
     Plug 'Erichain/vim-monokai-pro'
     " Plug 'tomasiser/vim-code-dark'
@@ -51,6 +52,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'sheerun/vim-polyglot'
   if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+
+    Plug 'p00f/nvim-ts-rainbow'
   else
     if executable('go')
       Plug 'mattn/vim-treesitter', { 'branch': 'main' }
