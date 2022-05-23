@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
   else
     Plug 'Erichain/vim-monokai-pro'
     " Plug 'tomasiser/vim-code-dark'
+    Plug 'chriskempson/base16-vim'
   endif
   " Plug 'ayu-theme/ayu-vim'
   " Plug 'Mangeshrex/everblush.vim'
@@ -33,6 +34,8 @@ call plug#begin('~/.vim/plugged')
   " Plug 'wellle/targets.vim'
   " Plug 'Matt-A-Bennett/vim-surround-funk'
   " Plug 'rhysd/clever-f.vim'
+
+  Plug 'tpope/vim-commentary'
 
   " git
   Plug 'airblade/vim-gitgutter'

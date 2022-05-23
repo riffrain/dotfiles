@@ -46,13 +46,14 @@ if has('nvim')
 
   " Plug 'tanvirtin/monokai.nvim'
   autocmd vimrc ColorScheme monokai_pro call s:setLightlineColorscheme('monokai_tasty')
-
-  " Plug 'RRethy/nvim-base16'
-  autocmd vimrc ColorScheme base16-monokai call s:setLightlineColorscheme('monokai_tasty')
 endif
+
+" Plug 'RRethy/nvim-base16' for neovim
+" Plug 'chriskempson/base16-vim' for vim
+autocmd vimrc ColorScheme base16-monokai call s:setLightlineColorscheme('monokai_tasty')
 
 if has('nvim')
   colorscheme base16-monokai
 else
-  colorscheme vim-monokai-tasty
+  colorscheme base16-monokai
 endif
