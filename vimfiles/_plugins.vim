@@ -106,6 +106,8 @@ call plug#begin('~/.vim/plugged')
     " Plug 'prabirshrestha/vim-lsp'
     " Plug 'mattn/vim-lsp-settings'
   endif
+
+  Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 " Auto install plugins
