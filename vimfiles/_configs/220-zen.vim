@@ -4,7 +4,7 @@ lua << EOF
   require("zen-mode").setup {
     window = {
       backdrop = 1,
-      width = 120,
+      width = 128,
     },
     plugins = {
       options = {
@@ -17,5 +17,3 @@ lua << EOF
     },
   }
 EOF
-
-
