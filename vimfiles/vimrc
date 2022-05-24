@@ -22,9 +22,14 @@ let g:netrw_dirhistmax = 0
 set number
 set signcolumn=yes
 set numberwidth=4
-set laststatus=2
 if has('nvim')
   set fillchars=horiz:━,horizup:┻,horizdown:┳,vert:┃,vertleft:┫,vertright:┣,verthoriz:╋,
+  set laststatus=3
+  set winbar=%f
+  set showtabline=0
+else
+  set laststatus=2
+  set showtabline=2
 endif
 set showcmd
 set ruler
@@ -46,7 +51,6 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set softtabstop=0
-set showtabline=2
 set t_Co=256
 set mouse=
 set incsearch
@@ -60,9 +64,9 @@ set more
 set background=dark
 set ttyfast
 set lazyredraw
-set redrawtime=500
+set redrawtime=10000
 set regexpengine=2
-set scrolloff=8
+set scrolloff=4
 
 " Language {{{1
 let g:PHP_noArrowMatching = 1

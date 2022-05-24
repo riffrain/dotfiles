@@ -42,8 +42,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/git-messenger.vim', { 'on': ['GitMessenger', '<plug>(git-messenger)'] }
 
   " finder
-  Plug 'ctrlpvim/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPLine', 'CtrlPBuffer', 'CtrlPMixed'] }
-  Plug 'mattn/ctrlp-matchfuzzy', { 'on': ['CtrlP', 'CtrlPLine', 'CtrlPBuffer', 'CtrlPMixed'] }
+  Plug 'ctrlpvim/ctrlp.vim', { 'on': ['Grepper', '<plug>(GrepperOperator)', 'CtrlP', 'CtrlPLine', 'CtrlPBuffer', 'CtrlPMixed'] }
+  Plug 'mattn/ctrlp-matchfuzzy', { 'on': ['Grepper', '<plug>(GrepperOperator)', 'CtrlP', 'CtrlPLine', 'CtrlPBuffer', 'CtrlPMixed'] }
   Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
   Plug 't9md/vim-choosewin'
   Plug 'preservim/nerdtree'
@@ -57,6 +57,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
     Plug 'p00f/nvim-ts-rainbow'
+    Plug 'windwp/nvim-ts-autotag'
   else
     if executable('go')
       Plug 'mattn/vim-treesitter', { 'branch': 'main' }
@@ -100,6 +101,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'nvim-telescope/telescope.nvim'
 
     Plug 'folke/zen-mode.nvim'
+    Plug 'folke/twilight.nvim'
   else
     " Plug 'prabirshrestha/asyncomplete.vim'
     " Plug 'prabirshrestha/asyncomplete-buffer.vim'
