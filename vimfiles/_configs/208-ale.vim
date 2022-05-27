@@ -23,14 +23,3 @@ augroup ale_enable
   autocmd!
   autocmd BufEnter *.js,*.vue,*.php,*.ctp,*.sh call s:init_ale()
 augroup END
-
-if FindPlugin('deoplete.nvim')
-  let g:deoplete#enable_at_startup = 1
-  set omnifunc=ale#completion#OmniFunc
-  let g:ale_completion_autoimport = 1
-  let g:ale_disable_lsp = 0
-  let g:ale_completion_enabled = 1
-  call deoplete#custom#option('sources', {
-  \ '_': ['ale'],
-  \})
-endif

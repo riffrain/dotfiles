@@ -89,10 +89,9 @@ call plug#begin('~/.vim/plugged')
 
   " linter
   if !has('nvim')
-    Plug 'vim-syntastic/syntastic'
+    " Plug 'vim-syntastic/syntastic'
+    Plug 'dense-analysis/ale'
   endif
-  " Plug 'dense-analysis/ale'
-  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
   if has('nvim')
     Plug 'folke/trouble.nvim'

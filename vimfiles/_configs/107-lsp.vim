@@ -1,74 +1,10 @@
 UsePlugin 'nvim-lspconfig'
 
 lua <<EOF
-
--- local saga = require 'lspsaga'
--- saga.init_lsp_saga {
---   debug = false,
---   use_saga_diagnostic_sign = true,
---   -- diagnostic sign
---   error_sign = ">",
---   warn_sign = "_",
---   hint_sign = "",
---   infor_sign = "?",
---   diagnostic_header_icon = "",
---   -- code action title icon
---   code_action_icon = " ",
---   code_action_prompt = {
---     enable = true,
---     sign = true,
---     sign_priority = 40,
---     virtual_text = true,
---   },
---   finder_definition_icon = "",
---   finder_reference_icon = "",
---   max_preview_lines = 10,
---   finder_action_keys = {
---     open = "o",
---     vsplit = "s",
---     split = "i",
---     quit = "q",
---     scroll_down = "<C-f>",
---     scroll_up = "<C-b>",
---   },
---   code_action_keys = {
---     quit = "q",
---     exec = "<CR>",
---   },
---   rename_action_keys = {
---     quit = "<C-c>",
---     exec = "<CR>",
---   },
---   definition_preview_icon = "",
---   border_style = "single",
---   rename_prompt_prefix = ">",
---   rename_output_qflist = {
---     enable = false,
---     auto_open_qflist = false,
---   },
---   server_filetype_map = {},
---   diagnostic_prefix_format = "%d. ",
---   diagnostic_message_format = "%m %c",
---   highlight_prefix = false,
--- }
-
   local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    --- In lsp attach function
-    -- buf_set_keymap("n", "gr", "<cmd>Lspsaga rename<cr>", {silent = true, noremap = true})
-    -- buf_set_keymap("n", "gx", "<cmd>Lspsaga code_action<cr>", {silent = true, noremap = true})
-    -- buf_set_keymap("x", "gx", ":<c-u>Lspsaga range_code_action<cr>", {silent = true, noremap = true})
-    -- buf_set_keymap("n", "K",  "<cmd>Lspsaga hover_doc<cr>", {silent = true, noremap = true})
-    -- buf_set_keymap("n", "go", "<cmd>Lspsaga show_line_diagnostics<cr>", {silent = true, noremap = true})
-    -- buf_set_keymap("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", {silent = true, noremap = true})
-    -- buf_set_keymap("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", {silent = true, noremap = true})
-    -- buf_set_keymap("n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<cr>", {})
-    -- buf_set_keymap("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<cr>", {})
-    -- buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { silent = true, noremap = true })
-    -- buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true, noremap = true })
 
     local opts = { noremap=true, silent=true }
     buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -138,7 +74,7 @@ lua <<EOF
       end
 
       opts.on_attach = on_attach
-      -- opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+      opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
       server:setup(opts)
       vim.cmd([[
         do User LspAttachBuffers

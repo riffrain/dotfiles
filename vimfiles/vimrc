@@ -24,13 +24,9 @@ set signcolumn=yes
 set numberwidth=4
 if has('nvim')
   set fillchars=horiz:━,horizup:┻,horizdown:┳,vert:┃,vertleft:┫,vertright:┣,verthoriz:╋,
-  set laststatus=3
-  set winbar=%f
-  set showtabline=0
-else
-  set laststatus=2
-  set showtabline=2
 endif
+set laststatus=2
+set showtabline=0
 set showcmd
 set ruler
 set wildmenu
