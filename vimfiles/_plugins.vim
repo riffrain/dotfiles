@@ -42,9 +42,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/git-messenger.vim', { 'on': ['GitMessenger', '<plug>(git-messenger)'] }
 
   " finder
-  Plug 'ctrlpvim/ctrlp.vim', { 'on': ['Grepper', '<plug>(GrepperOperator)', 'CtrlP', 'CtrlPLine', 'CtrlPBuffer', 'CtrlPMixed'] }
-  Plug 'mattn/ctrlp-matchfuzzy', { 'on': ['Grepper', '<plug>(GrepperOperator)', 'CtrlP', 'CtrlPLine', 'CtrlPBuffer', 'CtrlPMixed'] }
-  Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'mattn/ctrlp-matchfuzzy'
+  Plug 'mhinz/vim-grepper'
   Plug 't9md/vim-choosewin'
   Plug 'preservim/nerdtree'
 
