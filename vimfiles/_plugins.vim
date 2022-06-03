@@ -23,7 +23,6 @@ call plug#begin('~/.vim/plugged')
 
   " edit support
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'itchyny/vim-cursorword'
   Plug 'easymotion/vim-easymotion'
   Plug 'tpope/vim-repeat'
   Plug 'cohama/lexima.vim'
@@ -60,7 +59,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'windwp/nvim-ts-autotag'
   else
     if executable('go')
-      Plug 'mattn/vim-treesitter', { 'branch': 'main' }
+      " Plug 'mattn/vim-treesitter', { 'branch': 'main' }
     endif
   endif
 
@@ -84,7 +83,7 @@ call plug#begin('~/.vim/plugged')
   endif
 
   if executable('php') && executable('composer')
-    Plug 'phpactor/phpactor', { 'for': 'php', 'branch': 'master', 'do': 'composer install --no-dev -o' }
+    " Plug 'phpactor/phpactor', { 'for': 'php', 'branch': 'master', 'do': 'composer install --no-dev -o' }
   endif
 
   " linter

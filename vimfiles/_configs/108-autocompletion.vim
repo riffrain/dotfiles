@@ -3,7 +3,7 @@ UsePlugin 'nvim-cmp'
 set completeopt=menu,menuone,noselect
 
 let s:timer = 0
-autocmd TextChangedI * call s:on_text_changed()
+autocmd vimrc TextChangedI * call s:on_text_changed()
 function! s:on_text_changed() abort
   call timer_stop(s:timer)
   let s:timer = timer_start(200, function('s:complete'))

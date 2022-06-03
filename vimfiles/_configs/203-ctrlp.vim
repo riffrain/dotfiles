@@ -10,7 +10,7 @@ else
   let g:ctrlp_user_command= ['.git', 'cd %s && git ls-files -co --exclude-standard']
 endif
 
-let g:ctrlp_user_command_async = 1
+" let g:ctrlp_user_command_async = 1
 let g:ctrlp_show_hidden = 1
 " let g:ctrlp_custom_ignore = '\.(git|hg|svn)$'
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
