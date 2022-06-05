@@ -41,11 +41,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/git-messenger.vim', { 'on': ['GitMessenger', '<plug>(git-messenger)'] }
 
   " finder
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'mattn/ctrlp-matchfuzzy'
+  Plug 'ctrlpvim/ctrlp.vim' | Plug 'mattn/ctrlp-matchfuzzy'
   Plug 'mhinz/vim-grepper'
   Plug 't9md/vim-choosewin'
   Plug 'preservim/nerdtree'
+
+  Plug 'liuchengxu/vim-clap'
 
   " snippets
   Plug 'mattn/vim-sonictemplate', { 'on': ['<plug>(sonictemplate-postfix)'] }
