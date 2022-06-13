@@ -1,0 +1,3 @@
+UsePlugin 'vim-clap'
+
+

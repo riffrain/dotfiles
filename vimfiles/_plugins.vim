@@ -101,6 +101,8 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'folke/zen-mode.nvim'
     Plug 'folke/twilight.nvim'
+
+    " Plug 'github/copilot.vim'
   else
     " Plug 'prabirshrestha/asyncomplete.vim'
     " Plug 'prabirshrestha/asyncomplete-buffer.vim'
@@ -112,6 +114,7 @@ call plug#begin('~/.vim/plugged')
   endif
 
   Plug 'voldikss/vim-floaterm'
+  Plug 'wellle/context.vim'
 call plug#end()
 
 " Auto install plugins
