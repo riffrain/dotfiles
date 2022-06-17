@@ -91,6 +91,8 @@ call plug#begin('~/.vim/plugged')
   if !has('nvim')
     " Plug 'vim-syntastic/syntastic'
     Plug 'dense-analysis/ale'
+
+    Plug 'yegappan/lsp'
   endif
 
   if has('nvim')
@@ -112,9 +114,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'prabirshrestha/vim-lsp'
     " Plug 'mattn/vim-lsp-settings'
   endif
-
   Plug 'voldikss/vim-floaterm'
-  Plug 'wellle/context.vim'
 call plug#end()
 
 " Auto install plugins
