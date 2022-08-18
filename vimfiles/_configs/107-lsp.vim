@@ -1,6 +1,19 @@
 UsePlugin 'nvim-lspconfig'
 
 lua <<EOF
+  -- vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
+  -- vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+
+  local border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'}
+
+  local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+
+  function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = opts.border or border
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+  end
+
   local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
@@ -70,7 +83,8 @@ lua <<EOF
           ["indexer.enabled_watchers"] = { 'watchman', 'find' },
           ["code_transform.import_globals"] = true,
           ["language_server_code_transform.import_globals"] = true,
-          ["language_server_code_transform.import_name.report_non_existing_names"] = true
+          ["language_server_code_transform.import_name.report_non_existing_names"] = true,
+          ["completion_worse.experimantal"] = true,
         }
       end
 

@@ -37,6 +37,15 @@ lua <<EOF
     completion = {
       autocomplete = false
     },
+    window = {
+      documentation = {
+        border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+      },
+      completion = {
+        border = {'┌', '─', '┐', '│', '┘', '─', '└', '│'},
+        winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None',
+      }
+    },
     snippet = {
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
