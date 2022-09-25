@@ -60,3 +60,6 @@ if [ -d $HOME/.zsh/pure ]; then
   autoload -U promptinit; promptinit
   prompt pure
 fi
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"
