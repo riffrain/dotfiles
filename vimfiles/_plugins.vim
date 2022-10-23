@@ -68,7 +68,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'neoclide/coc.nvim', {'branch': 'release'}
   if has('nvim')
     Plug 'neovim/nvim-lspconfig'
-    Plug 'williamboman/nvim-lsp-installer'
+    Plug 'williamboman/mason.nvim' | Plug 'williamboman/mason-lspconfig.nvim'
 
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-nvim-lsp'
@@ -116,6 +116,11 @@ call plug#begin('~/.vim/plugged')
     " Plug 'mattn/vim-lsp-settings'
   endif
   Plug 'voldikss/vim-floaterm'
+
+  " post install (yarn install | npm install) then load plugin only for editing supported files
+  Plug 'prettier/vim-prettier', {
+    \ 'do': 'yarn install --frozen-lockfile --production',
+    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html', 'php'] }
 call plug#end()
 
 " Auto install plugins
