@@ -137,3 +137,8 @@ autocmd vimrc InsertLeave * set cursorline
 
 " Plugins
 runtime! _plugins.vim
+
+if executable('rg')
+    let &grepprg = 'rg --vimgrep --hidden'
+    set grepformat=%f:%l:%c:%m
+endif

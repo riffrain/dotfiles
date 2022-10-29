@@ -55,7 +55,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'sheerun/vim-polyglot'
   if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-
+    Plug 'haringsrob/nvim_context_vt'
     Plug 'p00f/nvim-ts-rainbow'
     Plug 'windwp/nvim-ts-autotag'
   else
