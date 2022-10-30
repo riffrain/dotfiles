@@ -1,15 +1,24 @@
 local wezterm = require 'wezterm'
 
+local ascii_font_size = 12.0
+local non_ascii_font_scale = 14.0 / ascii_font_size
+
 return {
   font = wezterm.font_with_fallback {
     {
       family = 'Fira Code',
       harfbuzz_features = { 'zero' },
     },
-    'Ricty Nerd Font',
-    'Migu 1M',
+    {
+      family = 'Ricty Nerd Font',
+      scale = non_ascii_font_scale,
+    },
+    {
+      family = 'Migu 1M',
+      scale = non_ascii_font_scale,
+    },
   },
-  font_size = 12.0,
+  font_size = ascii_font_size,
   use_ime = true,
   tab_bar_at_bottom = false,
   color_scheme = 'Monokai (terminal.sexy)',
