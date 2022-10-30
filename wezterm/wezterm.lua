@@ -17,24 +17,28 @@ return {
   window_padding = {
     left = 5,
     right = 5,
-    top = 0,
-    bottom = 0,
+    top = 5,
+    bottom = 5,
   },
   keys = {
     {
+      key = '¥',
+      action = wezterm.action.SendString '\\',
+    },
+    {
+      key = '¥',
+      mods = 'OPT',
+      action = wezterm.action.SendString '\\',
+    },
+    {
       key = 'd',
       mods = 'CMD',
-      action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+      action = wezterm.action.SplitHorizontal,
     },
     {
-      key = 'D',
-      mods = 'CMD',
-      action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
-    },
-    {
-      key = 'l',
-      mods = 'SHIFT',
-      action = wezterm.action.Nop,
+      key = 'd',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action.SplitVertical,
     },
     {
       key = 'Enter',

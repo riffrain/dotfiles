@@ -34,9 +34,9 @@ GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUPSTREAM=auto
 setopt PROMPT_SUBST
 if [ -n "$VIMRUNTIME" ]; then
-  PS1='%{$fg_bold[blue]%}[vim]%~%{$fg_bold[green]$(__git_ps1 "(%s)")%}%{$fg_bold[blue]%}$reset_color %# '
+  PS1="%{$fg_bold[blue]%}[vim]%~%{$fg_bold[green]$(__git_ps1 '(%s)')%}%{$fg_bold[blue]%}$reset_color"$'\n'"%# "
 else
-  PS1='%{$fg_bold[blue]%}%~%{$fg_bold[green]$(__git_ps1 "(%s)")%}%{$fg_bold[blue]%}$reset_color %# '
+  PS1="%{$fg_bold[blue]%}%~%{$fg_bold[green]$(__git_ps1 '(%s)')%}%{$fg_bold[blue]%}$reset_color"$'\n'"%# "
 fi
 if [ -f "$HOME/.zprofile" ]; then
   source "$HOME/.zprofile"
@@ -70,4 +70,6 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH="$HOME/.phpenv/bin:$PATH"
-eval "$(phpenv init -)"
+if command -v phpenv &> /dev/null; then
+  eval "$(phpenv init -)"
+fi
