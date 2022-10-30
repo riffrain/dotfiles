@@ -6,6 +6,7 @@ return {
       family = 'Fira Code',
       harfbuzz_features = { 'zero' },
     },
+    'Ricty Nerd Font',
     'Migu 1M',
   },
   font_size = 12.0,
