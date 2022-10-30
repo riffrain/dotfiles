@@ -2,8 +2,10 @@ local wezterm = require 'wezterm'
 
 return {
   font = wezterm.font_with_fallback {
-    'FiraCode Nerd Font',
-    'FiraCode',
+    {
+      family = 'Fira Code',
+      harfbuzz_features = { 'zero' },
+    },
     'Migu 1M',
   },
   font_size = 12.0,
@@ -11,6 +13,7 @@ return {
   tab_bar_at_bottom = false,
   color_scheme = 'Monokai (terminal.sexy)',
   enable_scroll_bar = true,
+  native_macos_fullscreen_mode = true,
   window_padding = {
     left = 5,
     right = 5,
