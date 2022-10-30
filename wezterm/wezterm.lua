@@ -26,6 +26,11 @@ return {
       action = wezterm.action.SendString '\\',
     },
     {
+      key = '¥',
+      mods = 'OPT',
+      action = wezterm.action.SendString '\\',
+    },
+    {
       key = 'd',
       mods = 'CMD',
       action = wezterm.action.SplitHorizontal,
