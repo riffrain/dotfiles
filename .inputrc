@@ -3,6 +3,11 @@ set bell-style none
 set visible-stats on
 set editing-mode vi
 
+# set meta-flag on
+# set input-meta on
+# set convert-meta off
+# set output-meta on
+
 "\C-p":history-search-backward
 "\C-n":history-search-forward
 "\e[A":history-search-backward
@@ -11,6 +16,4 @@ set editing-mode vi
 
 $if Bash
     space: magic-space
-    "\C-x\C-p": " | percol"
-    "\C-^": "~/"
 $endif
