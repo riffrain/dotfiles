@@ -19,10 +19,15 @@ setopt print_eight_bit
 autoload -Uz compinit && compinit
 autoload -Uz colors && colors
 
-zstyle ':completion:*:*:git:*' script "$HOME/.git-completion.zsh"
+if [ -f $HOME/.git-completion.zsh ]; then
+  zstyle ':completion:*:*:git:*' script "$HOME/.git-completion.zsh"
+fi
+if [ -f $HOME/.git-prompt.sh ]; then
+  source "$HOME/.git-prompt.sh"
+fi
+
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-source "$HOME/.git-prompt.sh"
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWSTASHSTATE=true
