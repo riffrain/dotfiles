@@ -15,10 +15,10 @@ return {
   enable_scroll_bar = true,
   native_macos_fullscreen_mode = true,
   window_padding = {
-    left = 5,
-    right = 5,
-    top = 5,
-    bottom = 5,
+    left = 15,
+    right = 15,
+    top = 15,
+    bottom = 15,
   },
   keys = {
     {
