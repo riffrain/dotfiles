@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 
 local ascii_font_size = 12.0
-local non_ascii_font_scale = 14.0 / ascii_font_size
+local non_ascii_font_scale = math.floor(14.0 / ascii_font_size * 10) / 10
 
 return {
   font = wezterm.font_with_fallback {
