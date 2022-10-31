@@ -20,11 +20,39 @@ return {
   },
   font_size = ascii_font_size,
   use_ime = true,
-  tab_bar_at_bottom = false,
   color_scheme = 'Monokai (terminal.sexy)',
+  tab_bar_at_bottom = false,
+  use_fancy_tab_bar = false,
+  colors = {
+    split = '#666666',
+    tab_bar = {
+      background = '#222222',
+      active_tab = {
+        bg_color = '#444444',
+        fg_color = '#ffffff',
+      },
+      inactive_tab = {
+        bg_color = '#222222',
+        fg_color = '#808080',
+      },
+      inactive_tab_hover = {
+        bg_color = '#222222',
+        fg_color = '#ffffff',
+        italic = false,
+      },
+      new_tab = {
+        bg_color = '#222222',
+        fg_color = '#808080',
+      },
+      new_tab_hover = {
+        bg_color = '#222222',
+        fg_color = '#ffffff',
+        italic = false,
+      },
+    },
+  },
   enable_scroll_bar = true,
   native_macos_fullscreen_mode = true,
-  hide_tab_bar_if_only_one_tab = true,
   initial_cols = 140,
   initial_rows = 50,
   window_padding = {
@@ -77,23 +105,14 @@ return {
         Up = { streak = 1, button = 'Left' },
       },
       mods = 'CMD',
-      action = 'OpenLinkAtMouseCursor',
-      mouse_reporting = true,
-    },
-    {
-      event = {
-        Up = { streak = 1, button = 'Left' },
-      },
-      mods = 'CMD',
-      action = 'OpenLinkAtMouseCursor',
+      action = wezterm.action.OpenLinkAtMouseCursor,
     },
     {
       event = {
         Down = { streak = 1, button = 'Left' },
       },
       mods = 'CMD',
-      action = 'Nop',
-      mouse_reporting = true,
+      action = wezterm.action.Nop,
     },
   },
 }
