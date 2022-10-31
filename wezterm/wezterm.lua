@@ -24,6 +24,9 @@ return {
   color_scheme = 'Monokai (terminal.sexy)',
   enable_scroll_bar = true,
   native_macos_fullscreen_mode = true,
+  hide_tab_bar_if_only_one_tab = true,
+  initial_cols = 140,
+  initial_rows = 50,
   window_padding = {
     left = 15,
     right = 15,
@@ -59,6 +62,38 @@ return {
       key = '¥',
       mods = 'CMD',
       action = wezterm.action.PaneSelect,
+    },
+  },
+  mouse_bindings = {
+    {
+      event = {
+        Up = { streak = 1, button = 'Left' },
+      },
+      mods = 'NONE',
+      action = wezterm.action.CompleteSelection('PrimarySelection'),
+    },
+    {
+      event = {
+        Up = { streak = 1, button = 'Left' },
+      },
+      mods = 'CMD',
+      action = 'OpenLinkAtMouseCursor',
+      mouse_reporting = true,
+    },
+    {
+      event = {
+        Up = { streak = 1, button = 'Left' },
+      },
+      mods = 'CMD',
+      action = 'OpenLinkAtMouseCursor',
+    },
+    {
+      event = {
+        Down = { streak = 1, button = 'Left' },
+      },
+      mods = 'CMD',
+      action = 'Nop',
+      mouse_reporting = true,
     },
   },
 }
