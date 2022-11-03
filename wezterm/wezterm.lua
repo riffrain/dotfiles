@@ -5,23 +5,45 @@ wezterm.on('update-right-status', function(window, pane)
   local battery_info = '';
   for _, b in ipairs(wezterm.battery_info()) do
     battery_info = string.format('%.0f%%', b.state_of_charge * 100);
+    -- if (b.state == 'Charging') then
+    --   -- battery_info = battery_info .. wezterm.nerdfonts.pom_external_interruption;
+    --   battery_info = battery_info .. wezterm.nerdfonts['mdi_battery_charging'];
+    --   -- table.insert(elements, { Foreground = { Color = '#222222' } });
+    --   -- table.insert(elements, { Background = { Color = '#90E600' } });
+    -- else
+    --   -- if (b.state_of_charge <= 0.15) then
+    --   --   table.insert(elements, { Foreground = { Color = '#ffffff' } });
+    --   --   table.insert(elements, { Background = { Color = '#FF0071' } });
+    --   -- elseif (b.state_of_charge <= 0.25 ) then
+    --   --   table.insert(elements, { Foreground = { Color = '#222222' } });
+    --   --   table.insert(elements, { Background = { Color = '#E9DC57' } });
+    --   -- else
+    --   --   table.insert(elements, { Foreground = { Color = '#B3B3B3' } });
+    --   --   table.insert(elements, { Background = { Color = '#5f5f5f' } });
+    --   -- end;
+    -- end;
+    local battery_icon = 'mdi_battery';
+    local battery_per = math.floor(b.state_of_charge * 10) * 10;
     if (b.state == 'Charging') then
-      table.insert(elements, { Foreground = { Color = '#222222' } });
-      table.insert(elements, { Background = { Color = '#90E600' } });
-    else
-      if (b.state_of_charge <= 0.15) then
-        table.insert(elements, { Foreground = { Color = '#ffffff' } });
-        table.insert(elements, { Background = { Color = '#FF0071' } });
-      elseif (b.state_of_charge <= 0.25 ) then
-        table.insert(elements, { Foreground = { Color = '#222222' } });
-        table.insert(elements, { Background = { Color = '#E9DC57' } });
-      else
-        table.insert(elements, { Foreground = { Color = '#B3B3B3' } });
-        table.insert(elements, { Background = { Color = '#5f5f5f' } });
-      end;
-    end;
+      -- battery_icon = battery_icon .. '_charging';
+      -- if battery_per <= 20 then
+      --   battery_icon = battery_icon .. '_20';
+      -- else
+      --   battery_icon = battery_icon .. string.format('_%.0f', battery_per);
+      -- end
+      battery_icon = 'pom_external_interruption';
+    else 
+      if battery_per == 0 then
+        battery_icon = battery_icon .. '_outline';
+      elseif battery_per <= 90 then
+        battery_icon = battery_icon .. string.format('_%.0f', battery_per);
+      end
+    end
+    -- battery_info = battery_icon;
+    battery_info = battery_info .. '' .. wezterm.nerdfonts[battery_icon];
   end;
-  table.insert(elements, { Text = ' ' .. battery_info .. ' ' });
+  table.insert(elements, {Attribute={Intensity="Bold"}});
+  table.insert(elements, { Text = '| ' .. battery_info .. ' ' });
 
   local date = wezterm.strftime('%m/%d %H:%M');
   table.insert(elements, { Foreground = { Color = '#222222' } });
