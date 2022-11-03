@@ -1,51 +1,29 @@
 local wezterm = require 'wezterm'
 
 wezterm.on('update-right-status', function(window, pane)
-  local elements = {};
   local battery_info = '';
   for _, b in ipairs(wezterm.battery_info()) do
     battery_info = string.format('%.0f%%', b.state_of_charge * 100);
-    -- if (b.state == 'Charging') then
-    --   -- battery_info = battery_info .. wezterm.nerdfonts.pom_external_interruption;
-    --   battery_info = battery_info .. wezterm.nerdfonts['mdi_battery_charging'];
-    --   -- table.insert(elements, { Foreground = { Color = '#222222' } });
-    --   -- table.insert(elements, { Background = { Color = '#90E600' } });
-    -- else
-    --   -- if (b.state_of_charge <= 0.15) then
-    --   --   table.insert(elements, { Foreground = { Color = '#ffffff' } });
-    --   --   table.insert(elements, { Background = { Color = '#FF0071' } });
-    --   -- elseif (b.state_of_charge <= 0.25 ) then
-    --   --   table.insert(elements, { Foreground = { Color = '#222222' } });
-    --   --   table.insert(elements, { Background = { Color = '#E9DC57' } });
-    --   -- else
-    --   --   table.insert(elements, { Foreground = { Color = '#B3B3B3' } });
-    --   --   table.insert(elements, { Background = { Color = '#5f5f5f' } });
-    --   -- end;
-    -- end;
     local battery_icon = 'mdi_battery';
-    local battery_per = math.floor(b.state_of_charge * 10) * 10;
     if (b.state == 'Charging') then
-      -- battery_icon = battery_icon .. '_charging';
-      -- if battery_per <= 20 then
-      --   battery_icon = battery_icon .. '_20';
-      -- else
-      --   battery_icon = battery_icon .. string.format('_%.0f', battery_per);
-      -- end
-      battery_icon = 'pom_external_interruption';
-    else 
+      battery_icon = battery_icon .. '_charging';
+    else
+      local battery_per = math.floor(b.state_of_charge * 10) * 10;
       if battery_per == 0 then
         battery_icon = battery_icon .. '_outline';
       elseif battery_per <= 90 then
         battery_icon = battery_icon .. string.format('_%.0f', battery_per);
       end
     end
-    -- battery_info = battery_icon;
-    battery_info = battery_info .. '' .. wezterm.nerdfonts[battery_icon];
-  end;
-  table.insert(elements, {Attribute={Intensity="Bold"}});
-  table.insert(elements, { Text = '| ' .. battery_info .. ' ' });
-
+    battery_info = wezterm.nerdfonts[battery_icon] .. ' ' .. battery_info;
+  end
   local date = wezterm.strftime('%m/%d %H:%M');
+
+  local elements = {};
+  table.insert(elements, { Foreground = { Color = '#9C9C9C' } });
+  table.insert(elements, { Background = { Color = '#444444' } });
+  table.insert(elements, { Text = ' ' .. battery_info .. ' ' });
+
   table.insert(elements, { Foreground = { Color = '#222222' } });
   table.insert(elements, { Background = { Color = '#8a8a8a' } });
   table.insert(elements, { Text = ' ' .. date .. ' ' });
@@ -54,7 +32,7 @@ wezterm.on('update-right-status', function(window, pane)
 end);
 
 local ascii_font_size = 12.0
-local non_ascii_font_scale = math.floor(13.3 / ascii_font_size * 10) / 10
+local non_ascii_font_scale = math.floor(13.3 / ascii_font_size * 100) / 100
 
 return {
   tab_max_width = 1000,
@@ -64,15 +42,19 @@ return {
       harfbuzz_features = { 'zero' },
     },
     {
-      family = 'Ricty Nerd Font',
-      scale = non_ascii_font_scale,
+      family = 'JetBrains Mono',
     },
     {
       family = 'Migu 1M',
       scale = non_ascii_font_scale,
     },
+    {
+      family = 'Ricty Nerd Font',
+      scale = non_ascii_font_scale,
+    },
   },
-  line_height = 1.05,
+  line_height = 1.1,
+  cell_width = 1.0,
   font_size = ascii_font_size,
   use_ime = true,
   color_scheme = 'Monokai (terminal.sexy)',
