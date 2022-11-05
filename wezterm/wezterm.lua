@@ -21,7 +21,7 @@ wezterm.on('update-right-status', function(window, pane)
     end
     battery_info = wezterm.nerdfonts[battery_icon] .. ' ' .. battery_info;
   end
-  local date = string.format(wezterm.strftime('%m/%d(%a) %H:%M'));
+  local date = wezterm.strftime('%m/%d(%a) %H:%M');
 
   local elements = {};
   table.insert(elements, { Foreground = { Color = battery_fg } });
