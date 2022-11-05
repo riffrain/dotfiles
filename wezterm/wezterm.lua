@@ -9,11 +9,10 @@ wezterm.on('update-right-status', function(window, pane)
     if (b.state == 'Charging') then
       battery_icon = battery_icon .. '_charging';
     else
-      local battery_per = math.floor(b.state_of_charge * 10) * 10;
-      if battery_per == 0 then
+      if b.state_of_charge < 0.1 then
         battery_icon = battery_icon .. '_outline';
-      elseif battery_per <= 90 then
-        battery_icon = battery_icon .. string.format('_%.0f', battery_per);
+      elseif b.state_of_charge <= 0.9 then
+        battery_icon = battery_icon .. string.format('_%.0f', math.floor(b.state_of_charge * 10) * 10);
       end
 
       if b.state_of_charge <= 0.15 then
@@ -22,7 +21,7 @@ wezterm.on('update-right-status', function(window, pane)
     end
     battery_info = wezterm.nerdfonts[battery_icon] .. ' ' .. battery_info;
   end
-  local date = wezterm.strftime('%m/%d %H:%M');
+  local date = string.format(wezterm.strftime('%m/%d(%a) %H:%M'));
 
   local elements = {};
   table.insert(elements, { Foreground = { Color = battery_fg } });
