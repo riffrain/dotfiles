@@ -1,5 +1,9 @@
 UsePlugin 'vim-grepper'
 
+let g:grepper = {
+      \ 'tools': ['rg', 'ag', 'git'],
+      \ }
+
 nnoremap <leader>g <cmd>Grepper -noopen -quickfix -noswitch<cr>
 nnoremap <leader>* <cmd>Grepper -noopen -quickfix -noswitch -cword -noprompt<cr>
 
