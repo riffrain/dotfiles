@@ -41,16 +41,8 @@ wezterm.on('update-right-status', function(window, pane)
 end)
 
 wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
-  local count = 0;
-  for _, v in pairs(panes) do
-    if tab.is_active then
-      count = count + 1
-    end
-  end
-
   local title = tab.tab_index + 1 .. ': '
     .. string.gsub(tab.active_pane.foreground_process_name, '(.*[/\\])(.*)', '%2')
-    .. '(' .. count .. ')'
 
   return {
     { Text = ' ' .. title .. ' ' },
