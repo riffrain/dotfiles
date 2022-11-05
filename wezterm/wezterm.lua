@@ -24,6 +24,11 @@ wezterm.on('update-right-status', function(window, pane)
   local date = wezterm.strftime('%m/%d(%a) %H:%M');
 
   local elements = {};
+
+  table.insert(elements, { Foreground = { Color = '#ACADA1' } });
+  table.insert(elements, { Background = { Color = '#303030' } });
+  table.insert(elements, { Text = ' ' .. pane:get_domain_name() .. ' ' });
+
   table.insert(elements, { Foreground = { Color = battery_fg } });
   table.insert(elements, { Background = { Color = '#444444' } });
   table.insert(elements, { Text = ' ' .. battery_info .. ' ' });
@@ -33,7 +38,24 @@ wezterm.on('update-right-status', function(window, pane)
   table.insert(elements, { Text = ' ' .. date .. ' ' });
 
   window:set_right_status(wezterm.format(elements));
-end);
+end)
+
+wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+  local count = 0;
+  for _, v in pairs(panes) do
+    if tab.is_active then
+      count = count + 1
+    end
+  end
+
+  local title = tab.tab_index + 1 .. ': '
+    .. string.gsub(tab.active_pane.foreground_process_name, '(.*[/\\])(.*)', '%2')
+    .. '(' .. count .. ')'
+
+  return {
+    { Text = ' ' .. title .. ' ' },
+  }
+end)
 
 local ascii_font_size = 13.0
 local non_ascii_font_scale = math.floor(13.3 / ascii_font_size * 100) / 100
@@ -96,12 +118,12 @@ return {
   native_macos_fullscreen_mode = true,
   initial_cols = 140,
   initial_rows = 50,
-  -- window_padding = {
-  --   left = 15,
-  --   right = 15,
-  --   top = 0,
-  --   bottom = 0,
-  -- },
+  window_padding = {
+    -- left = 15,
+    -- right = 15,
+    -- top = 0,
+    bottom = 0,
+  },
   keys = {
     {
       key = '¥',
