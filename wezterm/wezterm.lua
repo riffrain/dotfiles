@@ -36,7 +36,7 @@ wezterm.on('update-right-status', function(window, pane)
   window:set_right_status(wezterm.format(elements));
 end);
 
-local ascii_font_size = 12.0
+local ascii_font_size = 13.0
 local non_ascii_font_scale = math.floor(13.3 / ascii_font_size * 100) / 100
 
 return {
@@ -93,16 +93,16 @@ return {
       },
     },
   },
-  enable_scroll_bar = true,
+  enable_scroll_bar = false,
   native_macos_fullscreen_mode = true,
   initial_cols = 140,
   initial_rows = 50,
-  window_padding = {
-    left = 15,
-    right = 15,
-    top = 15,
-    bottom = 15,
-  },
+  -- window_padding = {
+  --   left = 15,
+  --   right = 15,
+  --   top = 0,
+  --   bottom = 0,
+  -- },
   keys = {
     {
       key = '¥',
@@ -136,26 +136,6 @@ return {
     {
       key = 'Enter',
       mods = 'ALT',
-      action = wezterm.action.DisableDefaultAssignment,
-    },
-    {
-      key = '-',
-      mods = 'SUPER',
-      action = wezterm.action.DisableDefaultAssignment,
-    },
-    {
-      key = '-',
-      mods = 'CTRL',
-      action = wezterm.action.DisableDefaultAssignment,
-    },
-    {
-      key = '=',
-      mods = 'SUPER',
-      action = wezterm.action.DisableDefaultAssignment,
-    },
-    {
-      key = '=',
-      mods = 'CTRL',
       action = wezterm.action.DisableDefaultAssignment,
     },
   },
