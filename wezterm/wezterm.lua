@@ -2,6 +2,7 @@ local wezterm = require 'wezterm'
 
 wezterm.on('update-right-status', function(window, pane)
   local battery_info = '';
+  local battery_fg = '#9c9c9c';
   for _, b in ipairs(wezterm.battery_info()) do
     battery_info = string.format('%.0f%%', b.state_of_charge * 100);
     local battery_icon = 'mdi_battery';
@@ -14,13 +15,17 @@ wezterm.on('update-right-status', function(window, pane)
       elseif battery_per <= 90 then
         battery_icon = battery_icon .. string.format('_%.0f', battery_per);
       end
+
+      if b.state_of_charge <= 0.15 then
+        battery_fg = '#FF0071';
+      end
     end
     battery_info = wezterm.nerdfonts[battery_icon] .. ' ' .. battery_info;
   end
   local date = wezterm.strftime('%m/%d %H:%M');
 
   local elements = {};
-  table.insert(elements, { Foreground = { Color = '#9C9C9C' } });
+  table.insert(elements, { Foreground = { Color = battery_fg } });
   table.insert(elements, { Background = { Color = '#444444' } });
   table.insert(elements, { Text = ' ' .. battery_info .. ' ' });
 
@@ -127,6 +132,31 @@ return {
       key = '¥',
       mods = 'CMD',
       action = wezterm.action.PaneSelect,
+    },
+    {
+      key = 'Enter',
+      mods = 'ALT',
+      action = wezterm.action.DisableDefaultAssignment,
+    },
+    {
+      key = '-',
+      mods = 'SUPER',
+      action = wezterm.action.DisableDefaultAssignment,
+    },
+    {
+      key = '-',
+      mods = 'CTRL',
+      action = wezterm.action.DisableDefaultAssignment,
+    },
+    {
+      key = '=',
+      mods = 'SUPER',
+      action = wezterm.action.DisableDefaultAssignment,
+    },
+    {
+      key = '=',
+      mods = 'CTRL',
+      action = wezterm.action.DisableDefaultAssignment,
     },
   },
   mouse_bindings = {
