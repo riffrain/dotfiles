@@ -82,6 +82,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+
+    Plug 'glepnir/lspsaga.nvim'
   endif
 
   if executable('php') && executable('composer')
