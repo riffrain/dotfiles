@@ -33,19 +33,21 @@ GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUPSTREAM=auto
 setopt PROMPT_SUBST
-PS1='%{$fg_bold[blue]%}%~%{$fg_bold[green]$(__git_ps1 " | %s")%}'$'\n''$reset_color%# '
-if [ -f "$HOME/.zprofile" ]; then
-  source "$HOME/.zprofile"
-fi
+PS1='%{$fg_bold[blue]%}%~%{$fg_bold[green]$(__git_ps1 "(%s)")%}'$'\n''$reset_color%# '
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob \"!.git/*\"'
-
-export GOROOT=$HOME/.go
-export PATH=$HOME/.go/bin:$HOME/.local/bin:$HOME/.yarn/bin:$PATH
 export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
 export DYLD_LIBRARY_PATH=$HOME/.local/lib:$DYLD_LIBRARY_PATH
+export GOROOT=$HOME/.go
+export PATH=$HOME/.go/bin:$HOME/.local/bin:$HOME/.yarn/bin:$PATH
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+export PATH="$HOME/.phpenv/bin:$PATH"
+
+if command -v phpenv &> /dev/null; then
+  eval "$(phpenv init -)"
+fi
 
 if command -v nvim &> /dev/null; then
   alias vi='nvim'
@@ -53,19 +55,6 @@ else
   alias vi='vim'
 fi
 
-alias kitty="kitty --config=$HOME/.config/kitty/kitty.conf"
-
-if [ -d $HOME/.zsh/pure ]; then
-  fpath+=$HOME/.zsh/pure
-
-  autoload -U promptinit; promptinit
-  prompt pure
-fi
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-export PATH="$HOME/.phpenv/bin:$PATH"
-if command -v phpenv &> /dev/null; then
-  eval "$(phpenv init -)"
+if [ -f "$HOME/.zprofile" ]; then
+  source "$HOME/.zprofile"
 fi
