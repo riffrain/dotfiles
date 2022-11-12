@@ -70,6 +70,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'neovim/nvim-lspconfig'
     Plug 'williamboman/mason.nvim' | Plug 'williamboman/mason-lspconfig.nvim'
 
+    Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
+
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
@@ -92,8 +94,6 @@ call plug#begin('~/.vim/plugged')
   if !has('nvim')
     " Plug 'vim-syntastic/syntastic'
     Plug 'dense-analysis/ale'
-
-    Plug 'yegappan/lsp'
   endif
 
   if has('nvim')
@@ -104,6 +104,8 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'folke/zen-mode.nvim'
     Plug 'folke/twilight.nvim'
+
+    " Plug 'folke/noice.nvim' | Plug 'MunifTanjim/nui.nvim'
 
     " Plug 'github/copilot.vim'
   else

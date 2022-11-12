@@ -1,4 +1,5 @@
 UsePlugin 'mason.nvim'
+UsePlugin 'nvim-cmp'
 
 lua <<EOF
   -- vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
@@ -93,7 +94,7 @@ lua <<EOF
       }
     end
 
-    opts.on_attach = on_attach
+    -- opts.on_attach = on_attach
     opts.capabilities = require('cmp_nvim_lsp').default_capabilities()
     nvim_lsp[server_name].setup(opts)
     vim.cmd([[

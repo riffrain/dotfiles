@@ -3,6 +3,7 @@ local wezterm = require 'wezterm'
 wezterm.on('update-right-status', function(window, pane)
   local battery_info = '';
   local battery_fg = '#9c9c9c';
+  local battery_bg = '#444444';
   for _, b in ipairs(wezterm.battery_info()) do
     battery_info = string.format('%.0f%%', b.state_of_charge * 100);
     local battery_icon = 'mdi_battery';
@@ -16,7 +17,8 @@ wezterm.on('update-right-status', function(window, pane)
       end
 
       if b.state_of_charge <= 0.15 then
-        battery_fg = '#FF0071';
+        battery_bg = '#FF0071'
+        battery_fg = '#ffffff'
       end
     end
     battery_info = wezterm.nerdfonts[battery_icon] .. ' ' .. battery_info;
@@ -30,7 +32,7 @@ wezterm.on('update-right-status', function(window, pane)
   table.insert(elements, { Text = ' ' .. pane:get_domain_name() .. ' ' });
 
   table.insert(elements, { Foreground = { Color = battery_fg } });
-  table.insert(elements, { Background = { Color = '#444444' } });
+  table.insert(elements, { Background = { Color = battery_bg } });
   table.insert(elements, { Text = ' ' .. battery_info .. ' ' });
 
   table.insert(elements, { Foreground = { Color = '#222222' } });

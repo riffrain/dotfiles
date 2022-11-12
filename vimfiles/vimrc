@@ -79,9 +79,9 @@ noremap <S-j> <Nop>
 noremap <S-k> <Nop>
 noremap <C-j> 10j
 noremap <C-k> 10k
-noremap <Leader>n :<C-u>:setl number!<CR>
-nnoremap <Leader>s :<C-u>sp<CR>
-nnoremap <Leader>v :<C-u>vs<CR>
+noremap <silent><Leader>n :<C-u>:setl number!<CR>
+nnoremap <silent><Leader>s :<C-u>sp<CR>
+nnoremap <silent><Leader>v :<C-u>vs<CR>
 nnoremap + <C-a>
 nnoremap - <C-x>
 nnoremap Q <Nop>
