@@ -84,6 +84,8 @@ call plug#begin('~/.vim/plugged')
 
   if has('nvim')
     Plug 'folke/trouble.nvim'
+    " Plug 'petertriho/nvim-scrollbar'
+    " Plug 'kevinhwang91/nvim-hlslens'
   else
     " Plug 'prabirshrestha/asyncomplete.vim'
     " Plug 'prabirshrestha/asyncomplete-buffer.vim'
@@ -97,7 +99,7 @@ call plug#begin('~/.vim/plugged')
   " post install (yarn install | npm install) then load plugin only for editing supported files
   Plug 'prettier/vim-prettier', {
     \ 'do': 'yarn install --frozen-lockfile --production',
-    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html', 'php'] }
+    \ 'for': ['lua', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html', 'php'] }
 call plug#end()
 
 " Auto install plugins
