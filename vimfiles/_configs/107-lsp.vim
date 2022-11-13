@@ -6,6 +6,12 @@ lua <<EOF
   local saga = require('lspsaga')
   saga.init_lsp_saga({
     border_style = "rounded",
+    symbol_in_winbar = {
+      enable = true,
+      separator = ' > ',
+      show_file = true,
+      file_formatter = '%:., %',
+    },
   })
 
   -- vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]

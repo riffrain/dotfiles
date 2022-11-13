@@ -71,6 +71,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'williamboman/mason.nvim' | Plug 'williamboman/mason-lspconfig.nvim'
 
     Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
+    " Plug 'SmiteshP/nvim-navic'
 
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-nvim-lsp'
@@ -104,6 +105,8 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'folke/zen-mode.nvim'
     Plug 'folke/twilight.nvim'
+
+    " Plug 'fgheng/winbar.nvim'
 
     " Plug 'folke/noice.nvim' | Plug 'MunifTanjim/nui.nvim'
 
