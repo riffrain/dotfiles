@@ -1,8 +1,10 @@
 fun! s:setLightlineColorscheme(name)
+  if FindPlugin('lightline')
     let g:lightline.colorscheme = a:name
     call lightline#init()
     call lightline#colorscheme()
     call lightline#update()
+  endif
 endfun
 
 " Plug 'ulwlu/elly.vim'

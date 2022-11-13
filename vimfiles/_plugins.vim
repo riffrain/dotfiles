@@ -1,25 +1,20 @@
 call plug#begin('~/.vim/plugged')
   " colorscheme
-  Plug 'sainnhe/sonokai'
-  Plug 'patstockwell/vim-monokai-tasty'
   if has('nvim')
-    Plug 'tanvirtin/monokai.nvim'
-    " Plug 'Mofiqul/vscode.nvim' | Plug 'tomasiser/vim-code-dark'
     Plug 'RRethy/nvim-base16'
   else
+    Plug 'sainnhe/sonokai'
+    Plug 'patstockwell/vim-monokai-tasty'
     Plug 'Erichain/vim-monokai-pro'
-    " Plug 'tomasiser/vim-code-dark'
     Plug 'chriskempson/base16-vim'
   endif
-  " Plug 'ayu-theme/ayu-vim'
-  " Plug 'Mangeshrex/everblush.vim'
-  " Plug 'ulwlu/elly.vim'
-  " Plug 'tomasr/molokai'
-  " Plug 'jacoborus/tender.vim'
-  " Plug 'preservim/vim-colors-pencil'
 
   " statusline
-  Plug 'itchyny/lightline.vim' | Plug 'tpope/vim-fugitive'
+  if has('nvim')
+    Plug 'nvim-lualine/lualine.nvim'
+  else
+    Plug 'itchyny/lightline.vim' | Plug 'tpope/vim-fugitive'
+  endif
 
   " edit support
   Plug 'editorconfig/editorconfig-vim'
@@ -52,16 +47,13 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/vim-sonictemplate', { 'on': ['<plug>(sonictemplate-postfix)'] }
 
   " syntax
-  Plug 'sheerun/vim-polyglot'
   if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
     Plug 'haringsrob/nvim_context_vt'
     Plug 'p00f/nvim-ts-rainbow'
     Plug 'windwp/nvim-ts-autotag'
   else
-    if executable('go')
-      " Plug 'mattn/vim-treesitter', { 'branch': 'main' }
-    endif
+    Plug 'sheerun/vim-polyglot'
   endif
 
   " LSP
@@ -71,7 +63,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'williamboman/mason.nvim' | Plug 'williamboman/mason-lspconfig.nvim'
 
     Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
-    " Plug 'SmiteshP/nvim-navic'
 
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-nvim-lsp'
@@ -87,10 +78,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
   endif
 
-  if executable('php') && executable('composer')
-    " Plug 'phpactor/phpactor', { 'for': 'php', 'branch': 'master', 'do': 'composer install --no-dev -o' }
-  endif
-
   " linter
   if !has('nvim')
     " Plug 'vim-syntastic/syntastic'
@@ -99,18 +86,6 @@ call plug#begin('~/.vim/plugged')
 
   if has('nvim')
     Plug 'folke/trouble.nvim'
-    Plug 'simrat39/symbols-outline.nvim'
-    " Plug 'nvim-lua/plenary.nvim'
-    " Plug 'nvim-telescope/telescope.nvim'
-
-    Plug 'folke/zen-mode.nvim'
-    Plug 'folke/twilight.nvim'
-
-    " Plug 'fgheng/winbar.nvim'
-
-    " Plug 'folke/noice.nvim' | Plug 'MunifTanjim/nui.nvim'
-
-    " Plug 'github/copilot.vim'
   else
     " Plug 'prabirshrestha/asyncomplete.vim'
     " Plug 'prabirshrestha/asyncomplete-buffer.vim'
@@ -120,7 +95,6 @@ call plug#begin('~/.vim/plugged')
     " Plug 'prabirshrestha/vim-lsp'
     " Plug 'mattn/vim-lsp-settings'
   endif
-  Plug 'voldikss/vim-floaterm'
 
   " post install (yarn install | npm install) then load plugin only for editing supported files
   Plug 'prettier/vim-prettier', {
