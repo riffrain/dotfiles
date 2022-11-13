@@ -28,8 +28,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'wellle/targets.vim'
   " Plug 'Matt-A-Bennett/vim-surround-funk'
   " Plug 'rhysd/clever-f.vim'
-
-  Plug 'tpope/vim-commentary'
+  " Plug 'tpope/vim-commentary'
 
   " git
   Plug 'airblade/vim-gitgutter'
@@ -57,7 +56,6 @@ call plug#begin('~/.vim/plugged')
   endif
 
   " LSP
-  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
   if has('nvim')
     Plug 'neovim/nvim-lspconfig'
     Plug 'williamboman/mason.nvim' | Plug 'williamboman/mason-lspconfig.nvim'
