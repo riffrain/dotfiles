@@ -77,15 +77,16 @@ call plug#begin('~/.vim/plugged')
   endif
 
   " linter
+  Plug 'dense-analysis/ale'
   if !has('nvim')
     " Plug 'vim-syntastic/syntastic'
-    Plug 'dense-analysis/ale'
   endif
 
   if has('nvim')
     Plug 'folke/trouble.nvim'
     " Plug 'petertriho/nvim-scrollbar'
     " Plug 'kevinhwang91/nvim-hlslens'
+    " Plug 'jose-elias-alvarez/null-ls.nvim'
   else
     " Plug 'prabirshrestha/asyncomplete.vim'
     " Plug 'prabirshrestha/asyncomplete-buffer.vim'
