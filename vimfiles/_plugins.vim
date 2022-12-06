@@ -38,6 +38,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'ctrlpvim/ctrlp.vim' | Plug 'mattn/ctrlp-matchfuzzy'
   Plug 'mhinz/vim-grepper'
   Plug 't9md/vim-choosewin'
+
+  if has('nvim')
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'j-morano/buffer_manager.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'stevearc/dressing.nvim'
+    Plug 'mrjones2014/legendary.nvim'
+  endif
+
   Plug 'preservim/nerdtree'
 
   Plug 'liuchengxu/vim-clap'
