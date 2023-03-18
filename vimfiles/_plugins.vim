@@ -89,9 +89,9 @@ call plug#begin('~/.vim/plugged')
   endif
 
   " linter
-  Plug 'dense-analysis/ale'
   if !has('nvim')
     " Plug 'vim-syntastic/syntastic'
+    Plug 'dense-analysis/ale'
   endif
 
   if has('nvim')
