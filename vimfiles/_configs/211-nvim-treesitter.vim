@@ -7,6 +7,7 @@ lua <<EOF
       'html', 'javascript', 'jsdoc', 'json', 'lua', 'php',
       'scss', 'tsx', 'typescript', 'vim', 'vue',
       'yaml',
+      'markdown', 'markdown_inline',
     },
     sync_install = false,
     highlight = {

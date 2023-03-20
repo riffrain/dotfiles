@@ -70,6 +70,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'williamboman/mason.nvim' | Plug 'williamboman/mason-lspconfig.nvim'
 
     Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
+    Plug 'nvim-tree/nvim-web-devicons'
 
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-nvim-lsp'
