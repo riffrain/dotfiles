@@ -39,13 +39,13 @@ call plug#begin('~/.vim/plugged')
   Plug 'mhinz/vim-grepper'
   Plug 't9md/vim-choosewin'
 
-  if has('nvim')
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'j-morano/buffer_manager.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
-    Plug 'stevearc/dressing.nvim'
-    Plug 'mrjones2014/legendary.nvim'
-  endif
+  " if has('nvim')
+  "   Plug 'nvim-lua/plenary.nvim'
+  "   Plug 'j-morano/buffer_manager.nvim'
+  "   Plug 'nvim-telescope/telescope.nvim'
+  "   Plug 'stevearc/dressing.nvim'
+  "   Plug 'mrjones2014/legendary.nvim'
+  " endif
 
   Plug 'preservim/nerdtree'
 
@@ -94,6 +94,7 @@ call plug#begin('~/.vim/plugged')
 
   if has('nvim')
     Plug 'folke/trouble.nvim'
+
     " Plug 'petertriho/nvim-scrollbar'
     " Plug 'kevinhwang91/nvim-hlslens'
     " Plug 'jose-elias-alvarez/null-ls.nvim'
