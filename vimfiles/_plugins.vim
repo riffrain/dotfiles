@@ -49,10 +49,10 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'preservim/nerdtree'
 
-  Plug 'liuchengxu/vim-clap'
+  " Plug 'liuchengxu/vim-clap'
 
   " snippets
-  Plug 'mattn/vim-sonictemplate', { 'on': ['<plug>(sonictemplate-postfix)'] }
+  " Plug 'mattn/vim-sonictemplate', { 'on': ['<plug>(sonictemplate-postfix)'] }
 
   " syntax
   if has('nvim')
@@ -94,7 +94,6 @@ call plug#begin('~/.vim/plugged')
 
   if has('nvim')
     Plug 'folke/trouble.nvim'
-
     " Plug 'petertriho/nvim-scrollbar'
     " Plug 'kevinhwang91/nvim-hlslens'
     " Plug 'jose-elias-alvarez/null-ls.nvim'
