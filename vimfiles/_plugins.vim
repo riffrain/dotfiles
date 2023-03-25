@@ -29,6 +29,8 @@ call plug#begin('~/.vim/plugged')
   " Plug 'Matt-A-Bennett/vim-surround-funk'
   " Plug 'rhysd/clever-f.vim'
   " Plug 'tpope/vim-commentary'
+  Plug 'ap/vim-css-color'
+  Plug 'bkad/CamelCaseMotion'
 
   " git
   Plug 'airblade/vim-gitgutter'
