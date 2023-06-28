@@ -55,6 +55,7 @@ local ascii_font_size = 13.0
 local non_ascii_font_scale = math.floor(13.3 / ascii_font_size * 100) / 100
 
 return {
+  check_for_updates = false,
   tab_max_width = 1000,
   font = wezterm.font_with_fallback {
     {
