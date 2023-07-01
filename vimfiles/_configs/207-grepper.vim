@@ -2,6 +2,7 @@ UsePlugin 'vim-grepper'
 
 let g:grepper = {
       \ 'tools': ['rg', 'ag', 'git'],
+      \ 'dir': 'repo,file',
       \ }
 
 nnoremap <leader>g <cmd>Grepper -noopen -quickfix -noswitch<cr>
